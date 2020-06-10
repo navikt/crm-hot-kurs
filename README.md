@@ -13,9 +13,9 @@ Template repository for PO Arbeidsgiver Salesforce packages. Necessary steps aft
 
 # crm-arbeidsgiver-template
 
-[![Build](https://github.com/navikt/XXXXXXXXXXXXX/workflows/master/badge.svg)](https://github.com/navikt/XXXXXXXXXXXXX/actions?query=workflow%3ABuild)
-[![GitHub version](https://badgen.net/github/release/navikt/XXXXXXXXXXXXX/stable)](https://github.com/navikt/XXXXXXXXXXXXX)
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/XXXXXXXXXXXXX/blob/master/LICENSE)
+[![Build](https://github.com/navikt/crm-arbeidsgiver-community/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-community/actions?query=workflow%3ABuild)
+[![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-community/stable)](https://github.com/navikt/crm-arbeidsgiver-community)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-community/blob/master/LICENSE)
 
 [DESCRIPTION]
 
@@ -23,8 +23,11 @@ Template repository for PO Arbeidsgiver Salesforce packages. Necessary steps aft
 
 Pakken er avhengig av følgende pakker:
 
-* XXXXXXXXXXXXX(https://github.com/navikt/XXXXXXXXXXXXX)
-* XXXXXXXXXXXXX(https://github.com/navikt/XXXXXXXXXXXXX)
+* [crm-platform-base](https://github.com/navikt/crm-platform-base) (internal)
+* [crm-platform-access-control](https://github.com/navikt/crm-platform-access-control) (internal)
+* [crm-community-base](https://github.com/navikt/crm-community-base) (internal)
+* [crm-arbeidsgiver-base](https://github.com/navikt/crm-arbeidsgiver-base)
+
 
 
 ## Komme i gang
