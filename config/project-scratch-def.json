@@ -1,0 +1,36 @@
+{
+    "orgName": "NAV VIRKSOMHETSLØSNINGER",
+    "edition": "Enterprise",
+    "release": "Current",
+    "adminEmail": "fakeemail@nav.no.scratchorg",
+    "features": [
+        "ProcessBuilder",
+        "API",
+        "ContactsToMultipleAccounts"
+    ],
+    "country": "NO",
+    "language": "en_US",
+    "settings": {
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
+        },
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "omniChannelSettings": {
+            "enableOmniChannel": true
+        },
+        "liveAgentSettings": {
+            "enableLiveAgent": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true
+        },
+        "accountSettings": {
+            "enableAccountTeams": true
+        },
+        "emailAdministrationSettings": {
+            "enableEnhancedEmailEnabled": true
+        }
+    }
+}
