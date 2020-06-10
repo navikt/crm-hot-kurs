@@ -4,6 +4,12 @@
     "release": "Current",
     "adminEmail": "fakeemail@nav.no.scratchorg",
     "features": [
+        "Sites",
+        "ForceComPlatform",
+        "Communities",
+        "CustomerCommunity",
+        "CustomerCommunityPlus",
+        "LiveAgent",
         "ProcessBuilder",
         "API",
         "ContactsToMultipleAccounts"
@@ -11,17 +17,18 @@
     "country": "NO",
     "language": "en_US",
     "settings": {
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
+        },
         "communitiesSettings": {
-            "enableNetworksEnabled": true
+            "enableNetworksEnabled": true,
+            "enableOotbProfExtUserOpsEnable": true
         },
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
         },
         "omniChannelSettings": {
             "enableOmniChannel": true
-        },
-        "liveAgentSettings": {
-            "enableLiveAgent": true
         },
         "languageSettings": {
             "enableTranslationWorkbench": true
