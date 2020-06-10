@@ -2,11 +2,16 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true
+            "default": true,
+            "package": "crm-arbeidsgiver-community",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT"
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "47.0",
-    "packageAliases": {}
+    "packageAliases": {
+        "crm-arbeidsgiver-community": "0Ho2o000000KylvCAC"
+    }
 }
