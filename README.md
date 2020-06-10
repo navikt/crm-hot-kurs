@@ -1,23 +1,10 @@
-Template repository for PO Arbeidsgiver Salesforce packages. Necessary steps after using template:
-
-1. Update README.md (this file)
-2. Add secrets
-    - INTEGRATION_SANDBOX_SFDX_URL
-    - PACKAGE_KEY
-    - PREPROD_SFDX_URL
-    - PROD_SFDX_URL
-    - REPO_ACCESS_TOKEN
-    - SLACK_WEBHOOK
-3. Create a package in SFDX
-    - `sfdx force:package:create -n YourPackageName -t Unlocked -r force-app`
-
-# crm-arbeidsgiver-template
+# crm-arbeidsgiver-community
 
 [![Build](https://github.com/navikt/crm-arbeidsgiver-community/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-community/actions?query=workflow%3ABuild)
 [![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-community/stable)](https://github.com/navikt/crm-arbeidsgiver-community)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-community/blob/master/LICENSE)
 
-[DESCRIPTION]
+Repo for Salesforce communities som blir brukt i sammenheng med PO Arbeidsgiver.
 
 ## Dependencies
 
