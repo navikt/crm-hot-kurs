@@ -67,6 +67,8 @@
 **/workflows/CustomOpportunity__c*
 **/workflows/Contract__c*
 **/layouts/CustomOpportunity__c-Custom Opportunity Layout.layout-meta.xml
+**/Arbeidsgiver_Admin_Group.permissionsetgroup-meta.xml
+**/Arbeidsgiver_Base_Group.permissionsetgroup-meta.xml
 
 
 # # community classes
@@ -123,3 +125,19 @@
 # **/components/SiteHeader.component
 # **/components/SiteLogin.component
 # **/components/SitePoweredBy.component
+
+
+# Community
+# ----------------------------------------------------------------------------------------
+**/audience/*
+**/networks/*
+**/documents/*
+**/networkBranding/*
+**/experiences/*
+**/siteDotComSites/*
+**/sites/*
+**/community/pages/*
+**/classes/ChangePasswordController*
+**/classes/CommunitiesLandingController*
+**/classes/MyProfilePageController*
+**/sharingSets/HOT_RequestSharingSet.sharingSet-meta.xml
