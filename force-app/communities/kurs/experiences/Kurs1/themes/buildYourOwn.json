@@ -1,0 +1,100 @@
+{
+  "activeBrandingSetId" : "deff80f6-8705-412e-bd3d-035240b95270",
+  "customCSS" : "",
+  "developerName" : "starter",
+  "id" : "559b379b-f947-48c5-b0db-c50c57db1d3e",
+  "label" : "Build Your Own",
+  "layouts" : {
+    "Inner" : "589ed305-e288-4081-afc2-dc58fe43de89",
+    "Login" : "f3b533cc-4052-44de-80b0-a3281e231524"
+  },
+  "type" : "theme",
+  "views" : [ {
+    "componentName" : "salesforceIdentity:loginBody2",
+    "id" : "f3b533cc-4052-44de-80b0-a3281e231524",
+    "label" : "Login",
+    "regions" : [ {
+      "id" : "6d5d6f76-6dd4-4ae6-b718-db0268c03728",
+      "regionName" : "header",
+      "type" : "region"
+    }, {
+      "id" : "06968b6b-4117-42e1-9571-7b807976aaa5",
+      "regionName" : "content",
+      "type" : "region"
+    }, {
+      "id" : "2d6b6920-5fb6-46c5-8947-34fa2d96d558",
+      "regionName" : "footer",
+      "type" : "region"
+    } ],
+    "type" : "view"
+  }, {
+    "componentName" : "siteforce:starterBody",
+    "id" : "589ed305-e288-4081-afc2-dc58fe43de89",
+    "label" : "Default",
+    "regions" : [ {
+      "components" : [ {
+        "componentAttributes" : {
+          "maxAutoCompleteResults" : 5,
+          "searchLabel" : "Search...",
+          "searchObjects" : [ {
+            "name" : "Account",
+            "isPublic" : true
+          } ]
+        },
+        "componentName" : "forceCommunity:globalSearchInput",
+        "id" : "03ea1ac6-3b7a-4f36-9889-2dd59f0a810e",
+        "renderPriority" : "NEUTRAL",
+        "renditionMap" : { },
+        "type" : "component"
+      } ],
+      "id" : "f4f33f3b-8dc2-4159-b743-c6c446fbeb7d",
+      "regionName" : "search",
+      "type" : "region"
+    }, {
+      "components" : [ {
+        "componentAttributes" : {
+          "accountManagementLabel" : "Account Management",
+          "communityBuilderLabel" : "Experience Builder",
+          "communitySetupLabel" : "Salesforce Setup",
+          "contactSupportLabel" : "Contact Support",
+          "filterName" : "MyCases",
+          "homeLabel" : "Home",
+          "includeContactSupport" : true,
+          "includeMessages" : false,
+          "loginLabel" : "Login",
+          "logoutLabel" : "Logout",
+          "myAccountLabel" : "My Account",
+          "showAccountManagement" : false,
+          "showUserSettings" : true,
+          "userSettingsLabel" : "My Settings",
+          "viewProfileLabel" : "My Profile"
+        },
+        "componentName" : "selfService:userProfileMenu",
+        "id" : "56b25515-cedd-4337-9ac3-cba69e31f599",
+        "renderPriority" : "NEUTRAL",
+        "renditionMap" : { },
+        "type" : "component"
+      } ],
+      "id" : "847a2332-bf58-4b51-8d80-478e2b4100ca",
+      "regionName" : "profileMenu",
+      "type" : "region"
+    }, {
+      "components" : [ {
+        "componentAttributes" : {
+          "NavigationMenuEditorRefresh" : "",
+          "hideAppLauncher" : true,
+          "hideHomeText" : true
+        },
+        "componentName" : "forceCommunity:globalNavigation",
+        "id" : "ec3b8432-2054-4350-ab92-079cbfbbb366",
+        "renderPriority" : "NEUTRAL",
+        "renditionMap" : { },
+        "type" : "component"
+      } ],
+      "id" : "a827779b-2f0c-48eb-bb34-2e7435a0b937",
+      "regionName" : "navBar",
+      "type" : "region"
+    } ],
+    "type" : "view"
+  } ]
+}

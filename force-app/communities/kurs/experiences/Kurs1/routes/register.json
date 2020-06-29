@@ -1,0 +1,8 @@
+{
+  "appPageId" : "78612492-74f5-4c2b-aee8-232a174b332f",
+  "id" : "36f1e3cd-699b-4ce2-a91c-3aff0045fb34",
+  "label" : "Register",
+  "routeType" : "self-register",
+  "type" : "route",
+  "urlPrefix" : "SelfRegister"
+}

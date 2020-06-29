@@ -1,0 +1,9 @@
+{
+  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "id" : "bb5b1328-dddd-4ccd-a675-12a302872332",
+  "label" : "Record List",
+  "pageAccess" : "UseParent",
+  "routeType" : "list",
+  "type" : "route",
+  "urlPrefix" : "recordlist"
+}
