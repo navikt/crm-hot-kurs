@@ -82,8 +82,10 @@
 # **/classes/ChangePasswordController*
 # **/classes/CommunitiesLandingController*
 **/classes/CommunitiesLoginController*
+**/classes/CommunitiesSelfRegConfirmController*
 **/classes/CommunitiesSelfRegController*
 **/classes/ForgotPasswordController*
+**/classes/LightningForgotPasswordController*
 **/classes/LightningLoginFormController*
 **/classes/LightningSelfRegisterController*
 **/classes/MyProfilePageController*
