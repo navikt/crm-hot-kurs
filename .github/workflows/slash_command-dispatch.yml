@@ -1,4 +1,4 @@
-name: Slash Command Dispatch
+name: "[Slash] Command Dispatch"
 on:
   issue_comment:
     types: [created]
@@ -6,6 +6,7 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
+      # ! deprecated, remove once dispatch workflows are sufficient
       # Basic configuration
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v1
