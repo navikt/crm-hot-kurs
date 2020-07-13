@@ -1,22 +1,35 @@
 public with sharing class CourseRegistrationController {
-    public List<Course__c> getCourses(Id courseId) {
-        return [SELECT Id, Name FROM Course__c WHERE Id =:courseId ];
-    }
+	@AuraEnabled
+	public static void findOrCreateContact( String fields ) {
+		CourseRegistrationModel model = CourseRegistrationModel.parse( fields );
+		SharedIntegrationFunctions_Helper.ContactWrapper wrapper = new SharedIntegrationFunctions_Helper.ContactWrapper();
+		wrapper.firstName = model.firstName;
+		wrapper.lastName = model.lastName;
+		wrapper.email = model.email;
+		wrapper.phone = model.phone;
+		List<SharedIntegrationFunctions_Helper.ContactWrapper> wrapperList = new List<SharedIntegrationFunctions_Helper.ContactWrapper> { wrapper };
 
-    public static List<Contact> findOrCreateContact() {
-        List<Contact> contacts = [SELECT Id, Name FROM Contact];
-        //finn potensiell arbeidsgiver
-        return null;
-    }
+		Map<String, Account> accountMap = new Map<String, Account>();
+		Map<String, Contact> conts = SharedIntegrationFunctions.fetchOrCreateContact( wrapperList, accountMap );
+		Contact con = conts.get( model.email );
+		Id courseId = getCourseId();
+		createRegistration( con.Id, courseId );
 
-    public List<Account> findAccount() {
-        return null;
-    }
+	}
 
-    public static Course_Registration__c createRegistration() {
-        //opprett påmelding. courseId, contactId og status = påmeldt
-        //sjekk om personen allerede er påmeldt ?
-        return null;
-    }
+	public static Id getCourseId() {
+		Network myNetwork = [SELECT Id, UrlPathPrefix FROM Network WHERE Name = 'kurs' ];
+		ConnectApi.Community myCommunity = ConnectApi.Communities.getCommunity( myNetwork.id );
+		Id courseId = [SELECT Id FROM Course__c WHERE RegistrationUrl__c = : myCommunity.siteUrl LIMIT 1].Id;
+
+		return courseId;
+	}
+
+	public static Course_Registration__c createRegistration( Id contactId, Id courseId ) {
+		Course_Registration__c registration = new Course_Registration__c( Course_registration__c = courseId, Course_participant__c = contactId, Status__c = 'Påmeldt' );
+		insert registration;
+
+		return registration;
+	}
 
 }
