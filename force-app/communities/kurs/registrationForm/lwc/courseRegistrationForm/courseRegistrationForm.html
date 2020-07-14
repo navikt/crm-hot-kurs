@@ -1,10 +1,8 @@
 <template>
-    <div class="slds-m-top_medium slds-m-bottom_x-large">
+    <div if:true={showForm} class="slds-m-top_medium slds-m-bottom_x-large">
         <h2 class="slds-text-heading_medium slds-m-bottom_medium">
             Påmeldingsskjema
         </h2>
-
-
         <div class="slds-p-around_medium lgc-bg">
             <lightning-input type="text" name="firstName" value={firstName} onchange={handleChange} label="Fornavn">
             </lightning-input>
@@ -29,6 +27,9 @@
         <lightning-button title="Meld på" class="slds-m-left_x-small" type="submit" variant="brand" label="Meld på"
             onclick={handleSubmit}>
         </lightning-button>
+    </div>
 
+    <div if:true={showConfirmation} class="slds-m-top_medium slds-m-bottom_x-large">
+        <h2>{message}</h2>
     </div>
 </template>

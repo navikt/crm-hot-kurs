@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": {},
+        "paths": {
+            "c/courseRegistrationForm": [
+                "../../../communities/kurs/registrationForm/lwc/courseRegistrationForm/courseRegistrationForm.js"
+            ]
+        },
         "experimentalDecorators": true
     },
     "include": [
