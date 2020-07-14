@@ -1,4 +1,4 @@
-name: Promote Command
+name: "[Slash] Promote Command"
 on:
   repository_dispatch:
     types: [promote-command]
@@ -6,6 +6,7 @@ jobs:
   promoteCommand:
     runs-on: ubuntu-latest
     steps:
+      # ! deprecated, remove once dispatch workflows are sufficient
       # Install Salesforce CLI
       - name: Install Salesforce CLI
         run: |
@@ -93,6 +94,18 @@ jobs:
         run: |
           echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
           cat sfdx-project.json
+
+      # # Create pull request
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v2
+      #   with:
+      #     title: ${{steps.build-commit-message.outputs.message}}
+      #     body: |
+      #       Please merge me to update my version number :heart_eyes:
+
+      #       **You do NOT have to wait for my tests to finish, because they will never finish!**
+      #       Simply use your admin privileges to merge me :smirk: (but just this once!)
+      #     commit-message: ${{steps.build-commit-message.outputs.message}}
 
       - name: Commit files
         run: |

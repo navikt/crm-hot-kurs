@@ -1,4 +1,4 @@
-name: Deploy Command
+name: "[Slash] Deploy Command"
 on:
   repository_dispatch:
     types: [deploy-command]
@@ -6,6 +6,7 @@ jobs:
   deployCommand:
     runs-on: ubuntu-latest
     steps:
+      # ! deprecated, remove once dispatch workflows are sufficient
       # Install Salesforce CLI
       - name: Install Salesforce CLI
         run: |
