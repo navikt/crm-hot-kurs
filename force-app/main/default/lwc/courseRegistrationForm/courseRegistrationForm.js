@@ -39,6 +39,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
 
   handleChange(event) {
     this.theRecord[event.target.name] = event.target.value;
+    this.showError = false;
   }
   handleSubmit() {
     if (
