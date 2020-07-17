@@ -7,7 +7,7 @@ public with sharing class CourseRegistrationController {
 			Id contactId  = findOrCreateContact( fields ).Id;
 			Boolean duplicate = checkForDuplicates( contactId, courseId );
 			if ( duplicate ) { return 'Du er allerede påmeldt dette kurset'; }
-			createRegistration2( contactId, courseId );
+			insertRegistration( contactId, courseId );
 
 			return 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost';
 		} catch ( Exception e ) {
@@ -37,7 +37,7 @@ public with sharing class CourseRegistrationController {
 		return con;
 	}
 
-	public static void createRegistration2( Id contactId, Id courseId ) {
+	public static void insertRegistration( Id contactId, Id courseId ) {
 
 		Course_Registration__c registration = new Course_Registration__c( Course_registration__c = courseId, Course_participant__c = contactId, Status__c = 'Påmeldt' );
 		insert registration;
