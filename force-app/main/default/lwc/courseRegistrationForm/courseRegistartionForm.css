@@ -1,0 +1,26 @@
+.navno-dekorator.alertstripe {
+  /* background-color: #FFF !important;*/
+  display: block !important;
+  padding: 1rem 1rem 1rem 1rem !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-content: center !important;
+  border-radius: 0.25rem !important;
+  color: #3e3832 !important;
+}
+
+.navno-dekorator.alertstripe--advarsel {
+  border: 1px solid #ff9100 !important;
+  background-color: #ffe9cc !important;
+}
+
+.navno-dekorator.alertstripe__ikon {
+  margin-right: 0.75rem !important;
+  display: flex !important;
+  top: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
+.midtstill {
+  text-align: center !important;
+}
