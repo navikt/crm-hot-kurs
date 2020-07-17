@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": {},
+        "paths": {
+            "c/courseInviter": [
+                "courseInviter/courseInviter.js"
+            ]
+        },
         "experimentalDecorators": true
     },
     "include": [

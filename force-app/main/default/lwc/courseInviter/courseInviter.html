@@ -1,0 +1,12 @@
+<template>
+
+    <lightning-pill-container items={items} onitemremove={handleItemRemove}></lightning-pill-container>
+    <form>
+
+        <lightning-input type="email" oncommit={addEmail} label="E-mail address"></lightning-input>
+    </form>
+
+    <!-- Button for sending email -->
+    <lightning-button label="Send" onclick={sendEmail} class="slds-m-left_x-small"> </lightning-button>
+
+</template>
