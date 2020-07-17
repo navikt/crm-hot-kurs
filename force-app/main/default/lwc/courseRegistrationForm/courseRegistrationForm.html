@@ -3,15 +3,15 @@
         <img class="skjema-ikon-img" src="/sfsites/c/resource/1594807743000/logo"></img>
     </div>
     <br></br>
-    <lightning-record-view-form record-id={courseId} object-api-name="Course__c" style="border-bottom: 1px solid black">
-        <h1 class="navno-dekorator typo-sidetittel">
-            <lightning-output-field field-name="Name" variant="label-hidden" class="navno-dekorator typo-sidetittel">
+    <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
+        <h1 class="navno-dekorator typo-sidetittel midtstill">
+            <lightning-output-field field-name="Name" variant="label-hidden" field-class="navno-dekorator typo-sidetittel">
             </lightning-output-field>
         </h1>
     </lightning-record-view-form>
-
+    <br></br>
     <div if:true={showForm} class="">
-        <h2 class="navno-dekorator typo-innholdstittel">
+        <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
             Påmeldingsskjema
         </h2>
         <div class="slds-p-around_medium lgc-bg">
@@ -61,7 +61,8 @@
         </div>
     </div>
 
-    <div if:true={showConfirmation} class="slds-m-top_medium slds-m-bottom_x-large">
-        <h2>{message}</h2>
+    <div if:true={showConfirmation} class="midtstill">
+        <br></br>
+        <h1>{message}</h1>
     </div>
 </template>
