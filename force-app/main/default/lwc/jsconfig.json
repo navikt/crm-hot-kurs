@@ -1,16 +1,31 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": {},
-        "experimentalDecorators": true
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
+        "paths": {
+            "c/accountMessages": [
+                "../../../components/accountMessages/lwc/accountMessages/accountMessages.js"
+            ],
+            "c/accountTeamMember": [
+                "../../../components/accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
+            ],
+            "c/tagActivityTimeline": [
+                "../../../components/activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
+            ],
+            "c/tagActivityTimelineGroup": [
+                "../../../components/activityTimeline/lwc/tagActivityTimelineGroup/tagActivityTimelineGroup.js"
+            ],
+            "c/tagActivityTimelineItem": [
+                "../../../components/activityTimeline/lwc/tagActivityTimelineItem/tagActivityTimelineItem.js"
+            ],
+            "c/tagActivityTimelineNewObject": [
+                "../../../components/activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+            ],
+            "c/arbeidsplassenView": [
+                "../../../components/arbeidsplassen/lwc/arbeidsplassenView/arbeidsplassenView.js"
+            ],
+            "c/markdownViewer": [
+                "../../../components/markdownViewer/lwc/markdownViewer/markdownViewer.js"
+            ]
+        }
     }
 }
