@@ -3,6 +3,7 @@
 [![Build](https://github.com/navikt/crm-arbeidsgiver-community/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-community/actions?query=workflow%3ABuild)
 [![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-community/stable)](https://github.com/navikt/crm-arbeidsgiver-community)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-community/blob/master/LICENSE)
+[![codecov](https://codecov.io/gh/navikt/crm-arbeidsgiver-community/branch/master/graph/badge.svg)](https://codecov.io/gh/navikt/crm-arbeidsgiver-community)
 
 Repo for Salesforce communities som blir brukt i sammenheng med PO Arbeidsgiver.
 
