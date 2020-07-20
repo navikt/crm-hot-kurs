@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": {},
+        "paths": {
+            "c/courseRegistrationForm": [
+                "courseRegistrationForm/courseRegistrationForm.js"
+            ]
+        },
         "experimentalDecorators": true
     },
     "include": [
