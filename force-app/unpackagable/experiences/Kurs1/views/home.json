@@ -1,6 +1,6 @@
 {
   "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-  "componentName" : "siteforce:sldsOneColLayout",
+  "componentName" : "siteforce:sldsThreeCol363Layout",
   "id" : "12bdd159-18d0-465b-b6ee-c45803c13956",
   "label" : "Home",
   "regions" : [ {
@@ -9,11 +9,9 @@
     "type" : "region"
   }, {
     "components" : [ {
-      "componentAttributes" : {
-        "richTextValue" : "<div>     <p><span style='font-size: 48px;'>Let's get started!</span></p>     <ol>         <li><span style='font-size: 18px;'>Unfamiliar with Build Your Own? Click Take a Tour in the Help menu.</span></li>         <li><span style='font-size: 18px;'>Want to add more pages? Take a look at the Pages menu.</span></li>         <li><span style='font-size: 18px;'>Want more components on your page? Drag and drop components from the Components panel.</span></li>         <li><span style='font-size: 18px;'>Want your users to see your company logo? Head on over to the Branding panel.</span></li>         <li><span style='font-size: 18px;'>Refine the look of your community with a custom theme layout. See the Lightning Communities Developer Guide.</span></li>     </ol> </div>"
-      },
-      "componentName" : "forceCommunity:richTextInline",
-      "id" : "ce4d3408-4b1d-480e-a3e0-aa25c912662a",
+      "componentAttributes" : { },
+      "componentName" : "c:courseRegistrationForm",
+      "id" : "cd658f19-5935-4f95-8c45-90ff6ea9e5ea",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -40,6 +38,14 @@
     } ],
     "id" : "2e51e639-5b46-4437-9e69-3de602ebf51a",
     "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "id" : "f04d654e-280e-4471-8a8d-87501a4bb5c0",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "a4ac6130-a6b9-4c41-a703-71231bff0e24",
+    "regionName" : "sidebarAlt",
     "type" : "region"
   } ],
   "themeLayoutType" : "Inner",
