@@ -1,0 +1,68 @@
+<template>
+    <div class="midtstill">
+        <img class="skjema-ikon-img" src="/sfsites/c/resource/1594807743000/logo"></img>
+    </div>
+    <br></br>
+    <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
+        <h1 class="navno-dekorator typo-sidetittel midtstill">
+            <lightning-output-field field-name="Name" variant="label-hidden" field-class="navno-dekorator typo-sidetittel">
+            </lightning-output-field>
+        </h1>
+    </lightning-record-view-form>
+    <br></br>
+    <div if:true={showForm} class="">
+        <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
+            Påmeldingsskjema
+        </h2>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" class="tolk-skjema-input" name="firstName" value={firstName}
+                onchange={handleChange} label="Fornavn" required>
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" class="tolk-skjema-input" name="lastName" value={lastName}
+                onchange={handleChange} label="Etternavn" required>
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="email" class="tolk-skjema-input" name="email" value={email} onchange={handleChange}
+                label="E-post" required>
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="phone" class="tolk-skjema-input" name="phone" value={phone} onchange={handleChange}
+                label="Mobil" required>
+            </lightning-input>
+        </div>
+        <div class="navno-dekorator alertstripe">
+            <lightning-icon icon-name="utility:info" alternative-text="Information" title="Information" size="small"
+                class="navno-dekorator alertstripe__ikon">
+            </lightning-icon>
+            <div class="typo-normal">NAV bruker disse opplysningene når vi kontakter deg. Vi lagrer disse opplysningene
+                om
+                deg, slik at vi kan kontakte deg om kurset du er meldt på. Opplysningene blir
+                ikke delt eller brukt til andre formål.
+
+            </div>
+        </div>
+
+        <div if:true={showError}>
+            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"
+                    class="navno-dekorator alertstripe__ikon" size="small"></lightning-icon>
+                <div class="typo-normal alertstripe__tekst">Du må fylle ut alle feltene for å melde deg på</div>
+            </div>
+            <br></br>
+        </div>
+        <div class="midtstill">
+            <lightning-button title="Meld på" class="" type="submit" variant="brand" label="Meld på"
+                onclick={handleSubmit}>
+            </lightning-button>
+        </div>
+    </div>
+
+    <div if:true={showConfirmation} class="midtstill">
+        <br></br>
+        <h1>{message}</h1>
+    </div>
+</template>
