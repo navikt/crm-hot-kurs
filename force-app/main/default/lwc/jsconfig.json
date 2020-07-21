@@ -4,6 +4,9 @@
         "paths": {
             "c/courseRegistrationForm": [
                 "courseRegistrationForm/courseRegistrationForm.js"
+            ],
+            "c/courseRegistrationInformation": [
+                "courseRegistrationInformation/courseRegistrationInformation.js"
             ]
         },
         "experimentalDecorators": true
