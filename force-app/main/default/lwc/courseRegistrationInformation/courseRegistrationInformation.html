@@ -1,0 +1,27 @@
+<template>
+    <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
+
+        <div class="slds-box slds-theme_shade">
+
+            <div class="slds-text-heading_medium">Informasjon</div>
+
+            <div class="slds-text-title_bold slds-p-top_medium">Sted</div>
+            <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
+            </lightning-output-field>
+            <p></p>
+
+            <div class="slds-text-title_bold slds-p-top_medium">Tid</div>
+            <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
+            </lightning-output-field>
+
+            <div class="slds-text-title_bold slds-p-top_medium">Sluttdato</div>
+            <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
+            </lightning-output-field>
+
+            <div class="slds-text-title_bold slds-p-top_medium">Påmeldingsfrist</div>
+            <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
+            </lightning-output-field>
+
+        </div>
+    </lightning-record-view-form>
+</template>
