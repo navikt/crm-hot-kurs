@@ -17,6 +17,7 @@ private without sharing class CourseRegistrationControllerTest {
 		wrapper.phone = '90080900';
 		wrapper.email = '';
 		wrapper.companyNumber = '677777';
+		wrapper.source = 'Kurs';
 		wrapperList.add( wrapper );
 
 		String fields = JSON.serialize( wrapper );

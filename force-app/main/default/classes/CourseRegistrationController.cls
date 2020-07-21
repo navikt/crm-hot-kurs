@@ -21,15 +21,16 @@ public with sharing class CourseRegistrationController {
 
 		if ( fields != null ) {
 			CourseRegistrationModel model = CourseRegistrationModel.parse( fields );
-			SharedIntegrationFunctions_Helper.ContactWrapper wrapper = new SharedIntegrationFunctions_Helper.ContactWrapper();
+			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
 			wrapper.firstName = model.firstName;
 			wrapper.lastName = model.lastName;
 			wrapper.email = model.email;
 			wrapper.phone = model.phone;
-			List<SharedIntegrationFunctions_Helper.ContactWrapper> wrapperList = new List<SharedIntegrationFunctions_Helper.ContactWrapper> { wrapper };
+			wrapper.source = 'Kurs';
+			List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper> { wrapper };
 
 			Map<String, Account> accountMap = new Map<String, Account>();
-			Map<String, Contact> contacts = SharedIntegrationFunctions.fetchOrCreateContact( wrapperList, accountMap );
+			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
 
 			con = contacts.get( model.email );
 		}
