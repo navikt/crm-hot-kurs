@@ -13,11 +13,11 @@
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.22.0"
+                    "versionNumber": "0.22.0.1"
                 },
                 {
                     "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "0.99.0"
+                    "versionNumber": "0.99.0.LATEST"
                 },
                 {
                     "package": "crm-community-base",
@@ -30,10 +30,10 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "47.0",
     "packageAliases": {
-        "crm-arbeidsgiver-kurs": "0Ho2o000000KylvCAC",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
-        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
-        "crm-community-base": "0Ho2o0000008OSzCAM"
+        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
+        "crm-community-base": "0Ho2o0000008OSzCAM",
+        "crm-arbeidsgiver-kurs": "0Ho2o000000KylvCAC"
     }
 }
