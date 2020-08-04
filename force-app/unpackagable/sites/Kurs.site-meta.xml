@@ -23,8 +23,8 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>test-xlyxnu2toqj1@example.com</siteAdmin>
+
     <siteType>ChatterNetwork</siteType>
-    <subdomain>saas-efficiency-6719-1730034d26e</subdomain>
+    <subdomain>navdialog</subdomain>
     <urlPathPrefix>kurs</urlPathPrefix>
 </CustomSite>
