@@ -102,12 +102,13 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Course_registration__c</field>
+            <field>Course__c</field>
             <value>
                 <elementReference>varCourseRecordIDFound</elementReference>
             </value>
         </inputAssignments>
         <object>Course_Registration__c</object>
+
     </recordCreates>
     <recordCreates>
         <name>Create_course_participant_registration_0</name>
@@ -124,7 +125,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Course_registration__c</field>
+            <field>Course__c</field>
             <value>
                 <elementReference>varCourseRecordIDFound</elementReference>
             </value>
