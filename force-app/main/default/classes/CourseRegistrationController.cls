@@ -40,17 +40,17 @@ public with sharing class CourseRegistrationController {
 
 	public static void insertRegistration( Id contactId, Id courseId ) {
 
-		Course_Registration__c registration = new Course_Registration__c( Course_registration__c = courseId, Course_participant__c = contactId, Status__c = 'Påmeldt' );
+		Course_Registration__c registration = new Course_Registration__c( Course__c = courseId, Course_participant__c = contactId, Status__c = 'Påmeldt' );
 		insert registration;
 
 	}
 
 	public static Boolean checkForDuplicates( Id contactId, Id courseId ) {
 		List<Course_Registration__c> existingRecord =
-		[SELECT Id, Course_registration__c, Course_participant__c
+		[SELECT Id, Course__c, Course_participant__c
 		 FROM Course_Registration__c
-		 WHERE Course_registration__c =: courseId
-		                                AND Course_participant__c =: contactId LIMIT 1];
+		 WHERE Course__c =: courseId
+		                   AND Course_participant__c =: contactId LIMIT 1];
 
 		Boolean exists = existingRecord.size() > 0 ? true : false;
 
