@@ -5,11 +5,22 @@
     <br></br>
     <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
         <h1 class="navno-dekorator typo-sidetittel midtstill">
-            <lightning-output-field field-name="Name" variant="label-hidden" field-class="navno-dekorator typo-sidetittel">
+            <lightning-output-field field-name="Name" variant="label-hidden"
+                field-class="navno-dekorator typo-sidetittel">
             </lightning-output-field>
         </h1>
     </lightning-record-view-form>
     <br></br>
+    <div if:true={showValidationInput}>
+        <h2>Kun inviterte kan melde seg på aktiviteten</h2>
+        <lightning-input type="text" class="tolk-skjema-input" name={inputValCode} value={inputValCode}
+            onchange={handleChange2} label="Tast inn din tilgangskode">
+        </lightning-input>
+        <br></br>
+        <lightning-button title="Vis aktivitet" class="" type="submit" variant="brand" label="Vis aktivitet"
+            onclick={validateCode}>
+        </lightning-button>
+    </div>
     <div if:true={showForm} class="">
         <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
             Påmeldingsskjema

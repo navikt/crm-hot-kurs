@@ -10,6 +10,7 @@ public with sharing class CourseRegistrationController {
 			insertRegistration( contactId, courseId );
 
 			return 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost';
+
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
 		}
@@ -55,5 +56,18 @@ public with sharing class CourseRegistrationController {
 		Boolean exists = existingRecord.size() > 0 ? true : false;
 
 		return exists;
+	}
+
+	@AuraEnabled
+	public static String getInvitationCode( Id courseId ) {
+		String invitationCode = [SELECT InvitationCode__c FROM Course__c WHERE Id =:courseId LIMIT 1].InvitationCode__c;
+
+		System.debug( 'code' + invitationCode );
+		System.debug( 'string' + String.isBlank( invitationCode ) );
+		if ( String.isBlank( invitationCode ) ) {
+			invitationCode = '';
+		}
+
+		return invitationCode;
 	}
 }
