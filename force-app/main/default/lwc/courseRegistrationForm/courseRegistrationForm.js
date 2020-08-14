@@ -36,7 +36,6 @@ export default class CourseRegistrationForm extends NavigationMixin(
             result => {
                 if (result) {
                     this.showValidationInput = true;
-                    this.showForm = false;
                     this.code = result;
                 } else {
                     this.showForm = true;
