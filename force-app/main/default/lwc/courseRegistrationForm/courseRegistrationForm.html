@@ -31,7 +31,12 @@
 
                     <!--======== COURSEID DOES NOT EXIST ===========-->
                     <div if:false={courseId} class="">
-                        <p>Noe gikk galt, prøv igjen senere</p>
+                        <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                            <img class="navno-dekorator alertstripe__ikon"
+                                src="/sfsites/c/resource/1597414613000/warningicon"></img>
+                            <div class="typo-normal alertstripe__tekst">En feil har oppstått, prøv igjen senere
+                            </div>
+                        </div>
                     </div>
                     <!--===================================================================================-->
 
@@ -66,9 +71,12 @@
 
                         </lightning-layout-item>
                         <div class="navno-dekorator alertstripe">
-                            <lightning-icon icon-name="utility:info" alternative-text="Information" title="Information"
+                            <!--<lightning-icon icon-name="utility:info" alternative-text="Information" title="Information"
                                 size="small" class="navno-dekorator alertstripe__ikon">
-                            </lightning-icon>
+                            </lightning-icon>-->
+
+                            <img class="navno-dekorator alertstripe__ikon"
+                                src="/sfsites/c/resource/1597414345000/informationcircle"></img>
                             <div class="typo-normal">NAV bruker disse opplysningene når vi kontakter deg. Vi lagrer
                                 disse
                                 opplysningene
@@ -80,8 +88,11 @@
                         </div>
                         <div if:true={showError}>
                             <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"
-                                    class="navno-dekorator alertstripe__ikon" size="small"></lightning-icon>
+                                <!-- <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"
+                                    class="navno-dekorator alertstripe__ikon" size="small"></lightning-icon> -->
+
+                                <img class="navno-dekorator alertstripe__ikon"
+                                    src="/sfsites/c/resource/1597414613000/warningicon"></img>
                                 <div class="typo-normal alertstripe__tekst">Du må fylle ut alle feltene for å melde deg
                                     på
                                 </div>
@@ -102,6 +113,7 @@
                         <h1>{message}</h1>
                     </div>
                     <!--=========================================================================================-->
+                    <a href="https://arbeidsgiver.nav.no/kursoversikt/">Tilbake til kursoversikten</a>
                 </div>
             </lightning-layout-item>
 
