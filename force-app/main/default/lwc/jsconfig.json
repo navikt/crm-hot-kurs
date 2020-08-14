@@ -7,6 +7,15 @@
             ],
             "c/courseRegistrationInformation": [
                 "courseRegistrationInformation/courseRegistrationInformation.js"
+            ],
+            "c/employerCommunityHeader": [
+                "employerCommunityHeader/employerCommunityHeader.js"
+            ],
+            "c/employerHeaderDesktopMenu": [
+                "employerHeaderDesktopMenu/employerHeaderDesktopMenu.js"
+            ],
+            "c/employerCommunityFooter": [
+                "employerCommunityFooter/employerCommunityFooter.js"
             ]
         },
         "experimentalDecorators": true
