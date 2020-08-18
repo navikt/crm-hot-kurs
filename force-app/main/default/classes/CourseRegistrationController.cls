@@ -10,6 +10,7 @@ public with sharing class CourseRegistrationController {
 			insertRegistration( contactId, courseId );
 
 			return 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost';
+
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
 		}
@@ -40,20 +41,33 @@ public with sharing class CourseRegistrationController {
 
 	public static void insertRegistration( Id contactId, Id courseId ) {
 
-		Course_Registration__c registration = new Course_Registration__c( Course__c = courseId, Course_participant__c = contactId, Status__c = 'Påmeldt' );
+		CourseRegistration__c registration = new CourseRegistration__c( Course__c = courseId, CourseParticipant__c = contactId, Status__c = 'Påmeldt' );
 		insert registration;
 
 	}
 
 	public static Boolean checkForDuplicates( Id contactId, Id courseId ) {
-		List<Course_Registration__c> existingRecord =
-		[SELECT Id, Course__c, Course_participant__c
-		 FROM Course_Registration__c
+		List<CourseRegistration__c> existingRecord =
+		[SELECT Id, Course__c, CourseParticipant__c
+		 FROM CourseRegistration__c
 		 WHERE Course__c =: courseId
-		                   AND Course_participant__c =: contactId LIMIT 1];
+		                   AND CourseParticipant__c =: contactId LIMIT 1];
 
 		Boolean exists = existingRecord.size() > 0 ? true : false;
 
 		return exists;
+	}
+
+	@AuraEnabled
+	public static String getInvitationCode( Id courseId ) {
+		String invitationCode = [SELECT InvitationCode__c FROM Course__c WHERE Id =:courseId LIMIT 1].InvitationCode__c;
+
+		System.debug( 'code' + invitationCode );
+		System.debug( 'string' + String.isBlank( invitationCode ) );
+		if ( String.isBlank( invitationCode ) ) {
+			invitationCode = '';
+		}
+
+		return invitationCode;
 	}
 }
