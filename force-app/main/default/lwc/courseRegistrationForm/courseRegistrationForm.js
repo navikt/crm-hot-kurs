@@ -2,6 +2,7 @@ import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import createRegistration from "@salesforce/apex/CourseRegistrationController.createRegistration";
 import getInvitationCode from "@salesforce/apex/CourseRegistrationController.getInvitationCode";
+import { validateData } from "./helper";
 
 
 export default class CourseRegistrationForm extends NavigationMixin(
@@ -62,13 +63,19 @@ export default class CourseRegistrationForm extends NavigationMixin(
     handleChange(event) {
         this.theRecord[event.target.name] = event.target.value;
         this.showError = false;
+
+        /*  if (event.target.checkValidity()) {
+              event.target.reportValidity();
+          }*/
+
     }
 
     handleChange2(event) {
         this.inputValCode = event.target.value;
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault();
         if (
             this.theRecord.firstName &&
             this.theRecord.lastName &&

@@ -17,16 +17,18 @@
                 <div class="kursPanel">
 
                     <!--===========================VALIDERING===============================-->
-                    <div if:true={showValidationInput}>
+                    <form if:true={showValidationInput}>
                         <h2>Kun inviterte kan melde seg på aktiviteten</h2>
+
                         <lightning-input type="text" class="tolk-skjema-input" name={inputValCode} value={inputValCode}
-                            onchange={handleChange2} label="Tast inn din tilgangskode">
+                            onchange={handleChange2} label="Tast inn din tilgangskode" required>
                         </lightning-input>
+
                         <br></br>
                         <lightning-button title="Vis aktivitet" class="" type="submit" variant="brand"
                             label="Vis aktivitet" onclick={validateCode}>
                         </lightning-button>
-                    </div>
+                    </form>
                     <!--======================================================================================-->
 
                     <!--======== COURSEID DOES NOT EXIST ===========-->
@@ -41,7 +43,7 @@
                     <!--===================================================================================-->
 
                     <!--============================REGISTRATION FORM=========================================-->
-                    <div if:true={showForm}>
+                    <form if:true={showForm}>
                         <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
                             Påmeldingsskjema
                         </h2>
@@ -71,12 +73,8 @@
 
                         </lightning-layout-item>
                         <div class="navno-dekorator alertstripe">
-                            <!--<lightning-icon icon-name="utility:info" alternative-text="Information" title="Information"
-                                size="small" class="navno-dekorator alertstripe__ikon">
-                            </lightning-icon>-->
-
                             <img class="navno-dekorator alertstripe__ikon"
-                                src="/sfsites/c/resource/1597414345000/informationcircle"></img>
+                                src="/sfsites/c/resource/1597414345000/informationcircle" alt="informasjon-ikon"></img>
                             <div class="typo-normal">NAV bruker disse opplysningene når vi kontakter deg. Vi lagrer
                                 disse
                                 opplysningene
@@ -88,9 +86,6 @@
                         </div>
                         <div if:true={showError}>
                             <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                <!-- <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"
-                                    class="navno-dekorator alertstripe__ikon" size="small"></lightning-icon> -->
-
                                 <img class="navno-dekorator alertstripe__ikon"
                                     src="/sfsites/c/resource/1597414613000/warningicon"></img>
                                 <div class="typo-normal alertstripe__tekst">Du må fylle ut alle feltene for å melde deg
@@ -104,23 +99,24 @@
                                 onclick={handleSubmit}>
                             </lightning-button>
                         </div>
-
-                    </div>
+                    </form>
 
                     <!--======================== CONFIRMATION PAGE =============================================-->
                     <div if:true={showConfirmation} class="midtstill">
-                        <br></br>
+                        </br>
                         <h1>{message}</h1>
                     </div>
                     <!--=========================================================================================-->
-                    <a href="https://arbeidsgiver.nav.no/kursoversikt/">Tilbake til kursoversikten</a>
+                    <a href="https://arbeidsgiver.nav.no/kursoversikt/" title="Tilbake til kursoversikten">Tilbake
+                        til
+                        kursoversikten</a>
                 </div>
             </lightning-layout-item>
 
 
             <!--============================INFROMATION BOX=================================================-->
             <lightning-layout-item padding="around-small" size="3">
-                <c-course-registration-information></c-course-registration-information>
+                <!-- <c-course-registration-information></c-course-registration-information> -->
             </lightning-layout-item>
             <!--============================================================================================-->
 
