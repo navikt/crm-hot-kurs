@@ -4,7 +4,7 @@ private without sharing class CourseRegistrationControllerTest {
 	@isTest
 	private static void testCreateRegistration() {
 
-		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10 );
+		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, Description__c = 'Testkurs' );
 		insert course;
 
 		String courseId = [SELECT Id FROM Course__c LIMIT 1].Id;
