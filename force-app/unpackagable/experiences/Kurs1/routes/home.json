@@ -2,7 +2,7 @@
   "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
   "id" : "45625a60-f646-4b06-addd-bb22fbd629e2",
   "label" : "Home",
-  "pageAccess" : "UseParent",
+  "pageAccess" : "Public",
   "routeType" : "home",
   "type" : "route",
   "urlPrefix" : ""
