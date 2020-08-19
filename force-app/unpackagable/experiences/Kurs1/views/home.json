@@ -4,6 +4,16 @@
   "id" : "12bdd159-18d0-465b-b6ee-c45803c13956",
   "label" : "Home",
   "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "NAVarea" : "Privatperson"
+      },
+      "componentName" : "c:employerCommunityHeader",
+      "id" : "f08448a5-07ce-4d80-8983-505f19eb9300",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
     "id" : "8814aee4-15a6-42c2-b945-631bed09c122",
     "regionName" : "header",
     "type" : "region"
@@ -20,6 +30,16 @@
     "regionName" : "content",
     "type" : "region"
   }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "NAVarea" : "Privatperson"
+      },
+      "componentName" : "c:employerCommunityFooter",
+      "id" : "dc02f21f-cc83-46c2-91f3-8f115b830655",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
     "id" : "3c2c2fba-ece2-42ca-97f1-7fbe7a5dcfc2",
     "regionName" : "footer",
     "type" : "region"
