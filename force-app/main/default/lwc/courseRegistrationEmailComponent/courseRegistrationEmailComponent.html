@@ -1,0 +1,24 @@
+<template>
+
+    <div class="slds-box slds-theme_default">
+
+        <br>
+
+        <h1 style="font-size:20px"><b>Send e-post med invitasjonskode</b></h1>
+
+        <br>
+
+        <lightning-pill-container items={items} onitemremove={handleItemRemove}></lightning-pill-container>
+        <form>
+
+            <lightning-input type="email" oncommit={addEmail} label="E-post adresse"></lightning-input>
+        </form>
+
+        <br>
+
+        <!-- Button for sending email -->
+        <lightning-button label="Send" onclick={sendEmail} class="slds-m-left_x-small"> </lightning-button>
+
+    </div>
+
+</template>
