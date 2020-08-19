@@ -9,7 +9,7 @@
         "NAVarea" : "Privatperson"
       },
       "componentName" : "c:employerCommunityHeader",
-      "id" : "f08448a5-07ce-4d80-8983-505f19eb9300",
+      "id" : "c4ef3b49-b2ef-41bb-8eec-285c587424f7",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -21,7 +21,7 @@
     "components" : [ {
       "componentAttributes" : { },
       "componentName" : "c:courseRegistrationForm",
-      "id" : "cd658f19-5935-4f95-8c45-90ff6ea9e5ea",
+      "id" : "83794518-f574-44ae-b148-2859ba76016a",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -35,7 +35,7 @@
         "NAVarea" : "Privatperson"
       },
       "componentName" : "c:employerCommunityFooter",
-      "id" : "dc02f21f-cc83-46c2-91f3-8f115b830655",
+      "id" : "f899b992-91c0-4c6c-8846-5ae6a8e82ff2",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -58,14 +58,6 @@
     } ],
     "id" : "2e51e639-5b46-4437-9e69-3de602ebf51a",
     "regionName" : "sfdcHiddenRegion",
-    "type" : "region"
-  }, {
-    "id" : "f04d654e-280e-4471-8a8d-87501a4bb5c0",
-    "regionName" : "sidebar",
-    "type" : "region"
-  }, {
-    "id" : "a4ac6130-a6b9-4c41-a703-71231bff0e24",
-    "regionName" : "sidebarAlt",
     "type" : "region"
   } ],
   "themeLayoutType" : "Inner",
