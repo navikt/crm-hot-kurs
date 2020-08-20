@@ -1,14 +1,16 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
+import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
+import EmailSenderAddress from '@salesforce/schema/Network.EmailSenderAddress';
 
 export default class CourseRegistrationEmailComponent extends LightningElement {
 
-    @track items = [];
-    emails = []; //Array for
+    @track items = []; //Tracks if new items are added
+    emails = []; //Array for storing email addresses
 
     // add pills
     addEmail(event) {
 
-        let email = event.target.value;
+        let email = event.target.value; // variable to hold the registered email address
 
         let emailIsValid = this.validateEmail(email); // variable to hold value of format-validation check result
         let emailIsUnique = !this.emails.includes(email); // variable to hold value of unique-validation check result
@@ -37,9 +39,14 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
 
     }
 
-    //test send button
+    //send emails method
     sendEmail() {
-        alert(JSON.stringify(this.items));
+        sendCourseEmail({
+            jsonStr: JSON.stringify(this.emails) //converting emails array to a string and sending it to Apex class CourseRegistrationEmailController
+        }).catch(error => {
+            console.log(JSON.stringify(error));
+        });
+
     }
 
     //Check if the email address has a valid format
