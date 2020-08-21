@@ -30,7 +30,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
             let items = this.items.push(pill);
 
             // reset input field
-            this.template.querySelector('form').reset();
+            event.target.value = '';
 
             //push email to array (emails)
             this.emails.push(email);
@@ -46,7 +46,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         }).catch(error => {
             console.log(JSON.stringify(error));
         });
-        this.items = [];
+        this.items = {};
         this.emails = [];
     }
 
