@@ -46,7 +46,8 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         }).catch(error => {
             console.log(JSON.stringify(error));
         });
-
+        this.items = [];
+        this.emails = [];
     }
 
     //Check if the email address has a valid format
@@ -60,7 +61,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
 
         const index = event.detail.index;
         this.items.splice(index, 1);
-
+        this.emails.splice(index, 1);
     }
 
 }
