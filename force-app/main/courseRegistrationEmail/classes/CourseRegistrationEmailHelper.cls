@@ -1,8 +1,20 @@
 public with sharing class CourseRegistrationEmailHelper {
-	public static List<Contact> fetchOrCreateContacts( List<CourseRegistrationEmailController.EmailRecipients> recipients ) {
-		List<Contact> contacts = new List<Contact>();
+	public static List<Contact> fetchOrCreateContacts( List<CourseRegistrationEmailModel> recipients ) {
 
-		return contacts;
+		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
+
+		for ( CourseRegistrationEmailModel recipient : recipients ) {
+			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
+			wrapper.firstName = recipient.firstName;
+			wrapper.lastName = recipient.lastName;
+			wrapper.email = recipient.email;
+			wrapper.source = 'Kurs';
+			wrapperList.add( wrapper );
+		}
+
+		Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, new Map<String, Account>() );
+
+		return contacts.values();
 	}
 
 	public static List<CourseRegistration__c> createCourseRegistrations( List<Contact> contacts ) {
