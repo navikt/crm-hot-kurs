@@ -1,53 +1,56 @@
 <template>
 
     <div class="slds-box slds-theme_default">
+        <div if:false={emailSent}>
+            <br>
 
-        <br>
-
-        <h1 style="font-size:20px"><b>Send e-post</b></h1>
-
-        <br>
-
-        <lightning-pill-container items={items} onitemremove={handleItemRemove}></lightning-pill-container>
-
-        <br>
-
-        <!-- Button for sending email -->
-        <lightning-button label="Send" onclick={sendEmail} class="slds-m-left_x-small"> </lightning-button>
-
-        <br>
-        <br>
-
-        <h1 style="font-size:20px"><b>Fyll inn detaljene</b></h1>
-
-        <br>
-
-        <lightning-layout>
-
-            <lightning-layout-item class="slds-p-around_xx-small" size="6">
-                <lightning-input name="firstName" type="text" label="Fornavn" required></lightning-input>
-            </lightning-layout-item>
-
-            <lightning-layout-item class="slds-p-around_xx-small" size="6">
-                <lightning-input name="lastName" type="text" label="Etternavn" required></lightning-input>
-            </lightning-layout-item>
-
-        </lightning-layout>
-
-        <div class="slds-p-around_xx-small">
-            <lightning-input name="email" type="text" label="E-post" required></lightning-input>
+            <h1 style="font-size:20px"><b>Send e-post</b></h1>
 
             <br>
 
-            <lightning-input name="email" type="checkbox"
-                label="Personen er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning."
-                required></lightning-input>
+            <lightning-pill-container items={items} onitemremove={handleItemRemove}></lightning-pill-container>
 
             <br>
 
-            <lightning-button label="Legg til" onclick={addEmail} class="slds-m-left_x-small"> </lightning-button>
+            <!-- Button for sending email -->
+            <lightning-button label="Send" onclick={sendEmail} class="slds-m-left_x-small"> </lightning-button>
 
+            <br>
+            <br>
+
+            <h1 style="font-size:20px"><b>Fyll inn detaljene</b></h1>
+
+            <lightning-layout>
+
+                <lightning-layout-item class="slds-p-around_xx-small" size="6">
+                    <lightning-input name="firstName" type="text" label="Fornavn" required></lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item class="slds-p-around_xx-small" size="6">
+                    <lightning-input name="lastName" type="text" label="Etternavn" required></lightning-input>
+                </lightning-layout-item>
+
+            </lightning-layout>
+
+            <div class="slds-p-around_xx-small">
+                <lightning-input name="email" type="text" oncommit={addEmail} label="E-post" required></lightning-input>
+
+                <br>
+
+                <lightning-input name="email" type="checkbox"
+                    label="Personen er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning."
+                    required></lightning-input>
+
+                <br>
+
+                <lightning-button label="Legg til" onclick={addEmail} class="slds-m-left_x-small"> </lightning-button>
+
+            </div>
         </div>
+    </div>
+
+    <div if:true={emailSent}>
+        <h1 style="font-size:26px"><b>Mailen ble sendt!</b></h1>
     </div>
 
 </template>

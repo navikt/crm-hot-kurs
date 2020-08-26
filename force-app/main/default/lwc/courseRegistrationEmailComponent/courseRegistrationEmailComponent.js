@@ -6,6 +6,8 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
 
     @track items = []; //Tracks if new items are added
     emails = []; //Array for storing email addresses
+    emailSent = false;
+
 
     // add pills
     addEmail(event) {
@@ -30,7 +32,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
             let items = this.items.push(pill);
 
             // reset input field
-            event.target.value = '';
+            //event.target.value = '';
 
             //push email to array (emails)
             this.emails.push(email);
@@ -48,6 +50,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         });
         this.items = {};
         this.emails = [];
+        this.emailSent = true;
     }
 
     //Check if the email address has a valid format
