@@ -42,16 +42,109 @@ private without sharing class CourseRegistrationEmailHelperTest {
 	@isTest
 	private static void testCreateCourseRegistrations() {
 
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+
+		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+
+		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
+
+
+		List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+		System.assertEquals( 0, registrations.size(), 'no registrations before test' );
+
 		Test.StartTest();
-		// CourseRegistrationEmailHelper.createCourseRegistrations();
+		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
 		Test.StopTest();
+
+		registrations = [SELECT Id FROM CourseRegistration__c];
+		System.assertEquals( 3, registrations.size(), 'three registrations after test' );
 	}
+
+	@isTest
+	private static void testCreateCourseRegistrations_alreadyExists() {
+
+		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
+		insert con;
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
+		insert reg;
+
+		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+
+		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
+
+		List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+		System.assertEquals( 1, registrations.size(), 'one registration before test' );
+
+		Test.StartTest();
+		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		Test.StopTest();
+
+		registrations = [SELECT Id FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
+		System.assertEquals( 2, registrations.size(), 'two invited registrations after test' );
+
+		registrations = [SELECT Id FROM CourseRegistration__c WHERE Status__c = 'Påmeldt'];
+		System.assertEquals( 1, registrations.size(), 'one attending registrations after test' );
+	}
+
+
+	@isTest
+	private static void testCreateCourseRegistrations_checkURL() {
+
+		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
+		insert con;
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
+		insert reg;
+
+		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+
+		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
+
+
+		Test.StartTest();
+		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		Test.StopTest();
+
+		List<Domain> domains = [SELECT Domain FROM Domain];
+		String url = 'https://' + domains[0].Domain + 'kurs/s/?id=' + course.Id;
+
+		List<CourseRegistration__c> registrations = [SELECT Id, RegistrationUrl__c FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
+		System.assertEquals( url, registrations[0].RegistrationUrl__c, 'should have added registration url' );
+		System.assertEquals( url, registrations[1].RegistrationUrl__c, 'should have added registration url' );
+		registrations = [SELECT Id, RegistrationUrl__c FROM CourseRegistration__c WHERE Status__c = 'Påmeldt'];
+		System.assertEquals( url, registrations[0].RegistrationUrl__c, 'should have updated registration url' );
+	}
+
 
 	@isTest
 	private static void testSendEmailToCourseRecipients() {
 
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+
+		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		List<CourseRegistration__c> registrations = CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+
+		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+		System.assertEquals( 0, emails.size(), 'No emails sent before' );
+
 		Test.StartTest();
-		// CourseRegistrationEmailHelper.sendEmailToCourseRecipients();
+		CourseRegistrationEmailHelper.sendEmailToCourseRecipients( registrations, contacts );
 		Test.StopTest();
+
+		emails = [SELECT Id FROM EmailMessage];
+		System.assertEquals( 3, emails.size(), 'three emailsm sent, only one EmailMessage created' );
 	}
 }

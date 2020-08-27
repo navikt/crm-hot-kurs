@@ -17,30 +17,52 @@ public with sharing class CourseRegistrationEmailHelper {
 		return contacts.values();
 	}
 
-	public static List<CourseRegistration__c> createCourseRegistrations( List<Contact> contacts ) {
-		List<CourseRegistration__c> courseRegistrations = new List<CourseRegistration__c>();
+	public static List<CourseRegistration__c> createCourseRegistrations( Id courseId, List<Contact> contacts ) {
 
-		return courseRegistrations;
+		List<Domain> domains = [SELECT Domain FROM Domain];
+		if ( domains.size() == 0 ) { throw new AuraException( 'Feil ved utsendelse. Kan ikke finne korrekt URL å sende til bruker.' ); }
+		String url = 'https://' + domains[0].Domain + 'kurs/s/?id=' + courseId;
+
+		// get contacts with an existing course registration
+		Set<Id> contactIds = new Map<Id, Contact> ( contacts ).keySet();
+		List<CourseRegistration__c> registrations = [SELECT Id, CourseParticipant__c FROM CourseRegistration__c WHERE Course__c = : courseId AND CourseParticipant__c IN : contactIds];
+		Set<Id> contactsWithRegistrations = new Set<Id>();
+		for ( CourseRegistration__c reg : registrations ) {
+			reg.RegistrationUrl__c = url;
+			contactsWithRegistrations.add( reg.CourseParticipant__c );
+		}
+
+		update registrations;
+
+		// create new course registrations for new contacts
+		List<CourseRegistration__c> newCourseRegistrations = new List<CourseRegistration__c>();
+		for ( Contact con : contacts ) {
+			if ( !contactsWithRegistrations.contains( con.Id ) ) {
+				newCourseRegistrations.add( new CourseRegistration__c( Course__c = courseId, CourseParticipant__c = con.Id, Status__c = 'Invitert', RegistrationUrl__c = url ) );
+			}
+		}
+
+		insert newCourseRegistrations;
+
+		registrations.addAll( newCourseRegistrations );
+
+		return newCourseRegistrations;
 	}
 
-	public static void sendEmailToCourseRecipients( List<Contact> contacts ) {
-		// Set<Id> contactIds = new Set<Id>();
-		// for ( TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records ) {
-		// 	contactIds.add( tl.Contact__c );
-		// }
+	public static void sendEmailToCourseRecipients( List<CourseRegistration__c> registrations, List<Contact> contacts ) {
 
-		// Map<Id, Contact> contacts = new Map<Id, Contact> ( [SELECT Id, Email FROM Contact WHERE Id IN: contactIds] );
+		Map<Id, Contact> contactMap = new Map<Id, Contact>( contacts );
 
-		// List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
-		// for ( TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records ) {
-		// 	Process_SendEmail.Request request = new Process_SendEmail.Request();
-		// 	request.emailTemplateName = 'tempLayoffReceiptSubsidiary';
-		// 	request.recipientContact = contacts.containsKey( tl.Contact__c ) ? contacts.get( tl.Contact__c ) : null;
-		// 	request.useDoNotReply = true;
-		// 	request.relatedToId = tl.Id;
-		// 	requests.add( request );
-		// }
+		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
+		for ( CourseRegistration__c reg : registrations ) {
+			Process_SendEmail.Request request = new Process_SendEmail.Request();
+			request.emailTemplateName = 'courseRegistrationInvitation';
+			request.recipientContact = contactMap.get( reg.CourseParticipant__c );
+			request.useDoNotReply = false; // TODO set to true
+			request.relatedToId = reg.Course__c;
+			requests.add( request );
+		}
 
-		// Process_SendEmail.sendEmail( requests );
+		Process_SendEmail.sendEmail( requests );
 	}
 }

@@ -3,7 +3,6 @@ private without sharing class CourseRegistrationEmailControllerTest {
 	@isTest
 	private static void testSendCourseEmail() {
 
-
 		DateTime d = Date.today().addDays( 1 );
 
 		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );

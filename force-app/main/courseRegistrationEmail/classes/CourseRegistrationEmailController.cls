@@ -7,8 +7,8 @@ public with sharing class CourseRegistrationEmailController {
 
 		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
 
-		List<CourseRegistration__c> courseRegistrations = CourseRegistrationEmailHelper.createCourseRegistrations( contacts );
+		List<CourseRegistration__c> registrations = CourseRegistrationEmailHelper.createCourseRegistrations( courseId, contacts );
 
-		CourseRegistrationEmailHelper.sendEmailToCourseRecipients( contacts );
+		CourseRegistrationEmailHelper.sendEmailToCourseRecipients( registrations, contacts );
 	}
 }

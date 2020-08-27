@@ -22,6 +22,7 @@ public without sharing class CourseRegistrationEmailModelTest {
 	                                '    }' +
 	                                ']';
 
+
 	@isTest
 	private static void testModel() {
 
