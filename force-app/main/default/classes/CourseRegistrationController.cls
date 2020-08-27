@@ -8,8 +8,7 @@ public with sharing class CourseRegistrationController {
 			   Boolean duplicate = checkForDuplicates( contactId, courseId );
 			   if ( duplicate ) { return 'Du er allerede påmeldt dette kurset'; }
 			   insertRegistration( contactId, courseId );*/
-
-			insertRegistration( fields, courseId );
+			if ( fields != null ) { insertRegistration( fields, courseId ); }
 
 			return 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost';
 
@@ -46,27 +45,26 @@ public with sharing class CourseRegistrationController {
 		return invitationCode;
 	}
 
-	/*public static Contact findOrCreateContact( String fields ) {
-	    Contact con;
+/*	public static Contact findOrCreateContact( String fields ) {
+        Contact con;
 
-	    if ( fields != null ) {
-	        CourseRegistrationModel model = CourseRegistrationModel.parse( fields );
-	        SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
-	        wrapper.firstName = model.firstName;
-	        wrapper.lastName = model.lastName;
-	        wrapper.email = model.email;
-	        wrapper.phone = model.phone;
-	        wrapper.source = 'Kurs';
-	        List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper> { wrapper };
+        CourseRegistrationModel model = CourseRegistrationModel.parse( fields );
 
-	        Map<String, Account> accountMap = new Map<String, Account>();
-	        Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
+        SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
+        wrapper.firstName = model.firstName;
+        wrapper.lastName = model.lastName;
+        wrapper.email = model.email;
+        wrapper.phone = model.phone;
+        wrapper.source = 'Kurs';
+        List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper> { wrapper };
 
-	        con = contacts.get( model.email );
-	    }
+        Map<String, Account> accountMap = new Map<String, Account>();
+        Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
 
-	    return con;
-	   }*/
+        con = contacts.get( model.email );
+
+        return con;
+    } */
 
 	/*public static void insertRegistration( Id contactId, Id courseId ) {
 	    CourseRegistration__c registration = new CourseRegistration__c( Course__c = courseId, CourseParticipant__c = contactId, Status__c = 'Påmeldt' );
