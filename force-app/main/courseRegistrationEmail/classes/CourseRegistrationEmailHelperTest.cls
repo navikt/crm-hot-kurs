@@ -1,5 +1,12 @@
 @isTest
 private without sharing class CourseRegistrationEmailHelperTest {
+
+	@testSetup
+	private static void setup() {
+		EmailTemplate et = new EmailTemplate( DeveloperName = 'courseRegistrationInvitation', Name = 'courseRegistrationInvitation', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		Database.insert( et, false );
+	}
+
 	@isTest
 	private static void testFetchOrCreateContacts() {
 
@@ -61,6 +68,37 @@ private without sharing class CourseRegistrationEmailHelperTest {
 
 		registrations = [SELECT Id FROM CourseRegistration__c];
 		System.assertEquals( 3, registrations.size(), 'three registrations after test' );
+	}
+
+	@isTest
+	private static void testCreateCourseRegistrations_allRegistrationsExists() {
+
+		Contact c1 = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
+		Contact c2 = new Contact( LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true );
+		Contact c3 = new Contact( LastName = 'test', email = 'per.nordmann@test.com', TAG_Informed__c = true );
+		insert new List<Contact> { c1, c2, c3 };
+
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+		CourseRegistration__c reg1 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
+		CourseRegistration__c reg2 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
+		CourseRegistration__c reg3 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c3.Id, Status__c = 'Påmeldt' );
+		insert new List<CourseRegistration__c> { reg1, reg2, reg3 };
+
+		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+
+		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
+
+		List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+		System.assertEquals( 3, registrations.size(), 'three registrations before test' );
+
+		Test.StartTest();
+		registrations = CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		Test.StopTest();
+
+		System.assertEquals( 3, registrations.size(), 'three registrations return in function' );
 	}
 
 	@isTest
@@ -145,6 +183,6 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Test.StopTest();
 
 		emails = [SELECT Id FROM EmailMessage];
-		System.assertEquals( 3, emails.size(), 'three emailsm sent, only one EmailMessage created' );
+		System.assertEquals( 3, emails.size(), 'three emails sent, three EmailMessage created' );
 	}
 }

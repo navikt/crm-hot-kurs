@@ -25,7 +25,7 @@ public with sharing class CourseRegistrationEmailHelper {
 
 		// get contacts with an existing course registration
 		Set<Id> contactIds = new Map<Id, Contact> ( contacts ).keySet();
-		List<CourseRegistration__c> registrations = [SELECT Id, CourseParticipant__c FROM CourseRegistration__c WHERE Course__c = : courseId AND CourseParticipant__c IN : contactIds];
+		List<CourseRegistration__c> registrations = [SELECT Id, CourseParticipant__c, Course__c FROM CourseRegistration__c WHERE Course__c = : courseId AND CourseParticipant__c IN : contactIds];
 		Set<Id> contactsWithRegistrations = new Set<Id>();
 		for ( CourseRegistration__c reg : registrations ) {
 			reg.RegistrationUrl__c = url;
@@ -46,12 +46,15 @@ public with sharing class CourseRegistrationEmailHelper {
 
 		registrations.addAll( newCourseRegistrations );
 
-		return newCourseRegistrations;
+		return registrations;
 	}
 
 	public static void sendEmailToCourseRecipients( List<CourseRegistration__c> registrations, List<Contact> contacts ) {
 
 		Map<Id, Contact> contactMap = new Map<Id, Contact>( contacts );
+
+		System.debug( 'registrations: ' + registrations );
+		System.debug( 'contacts: ' + contacts );
 
 		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
 		for ( CourseRegistration__c reg : registrations ) {
