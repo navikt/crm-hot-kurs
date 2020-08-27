@@ -15,7 +15,11 @@
                 "employerHeaderDesktopMenu/employerHeaderDesktopMenu.js"
             ],
             "c/employerCommunityFooter": [
-                "employerCommunityFooter/employerCommunityFooter.js"
+                "employerCommunityFooter/employerCommunityFooter.js",
+                "c/courseRegistrationEmailComponent"
+            ],
+            "c/courseRegistrationEmailComponent": [
+                "courseRegistrationEmailComponent/courseRegistrationEmailComponent.js"
             ]
         },
         "experimentalDecorators": true
