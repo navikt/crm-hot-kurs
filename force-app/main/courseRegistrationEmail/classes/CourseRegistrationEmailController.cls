@@ -1,6 +1,6 @@
 public with sharing class CourseRegistrationEmailController {
 
-
+	@AuraEnabled
 	public static void sendCourseEmail( Id courseId, String jsonData ) {
 
 		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( jsonData, List<CourseRegistrationEmailModel>.class );

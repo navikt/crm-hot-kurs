@@ -1,48 +1,42 @@
 import { LightningElement, track } from 'lwc';
 import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
-import EmailSenderAddress from '@salesforce/schema/Network.EmailSenderAddress';
+import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 
 export default class CourseRegistrationEmailComponent extends LightningElement {
 
-    @track items = []; //Tracks if new items are added
-    emails = []; //Array for storing email addresses
-    emailSent = false;
+    @track items = []; // pill container
+    @track emails = [];
+    @track emailSent = false;
+    @track checkboxChecked = false;
 
+    emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
 
     // add pills
     addEmail(event) {
 
-        let email = event.target.value; // variable to hold the registered email address
+        const validInputs = validateData(this.template.querySelectorAll("lightning-input"));
+        if (!validInputs) { return; }
 
-        let emailIsValid = this.validateEmail(email); // variable to hold value of format-validation check result
-        let emailIsUnique = !this.emails.includes(email); // variable to hold value of unique-validation check result
+        let pill = getDataFromInputFields(this.template.querySelectorAll("lightning-input"));
+        let emailIsUnique = !this.emails.includes(pill.email);
 
+        if (emailIsUnique) {
 
-        if (emailIsValid && emailIsUnique) {
-
-            // create new pill
-            let pill = {};
             pill.type = 'avatar';
-            pill.label = email;
-            pill.name = email;
+            pill.label = pill.firstName + ' ' + pill.lastName;
+            pill.name = pill.email;
             pill.fallbackIconName = 'standard:user';
             pill.variant = 'circle';
 
-            // add pill to container
-            let items = this.items.push(pill);
+            this.items.push(pill);
+            this.emails.push(pill.email);
 
-            // reset input field
-            //event.target.value = '';
-
-            //push email to array (emails)
-            this.emails.push(email);
-
+            emptyInputFields(this.template.querySelectorAll("lightning-input"));
         }
-
     }
 
     //send emails method
-    sendEmail() {
+    confirmation() {
         sendCourseEmail({
             jsonStr: JSON.stringify(this.emails) //converting emails array to a string and sending it to Apex class CourseRegistrationEmailController
         }).catch(error => {
@@ -53,15 +47,20 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         this.emailSent = true;
     }
 
-    //Check if the email address has a valid format
-    validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+    checkbox() {
+        this.checkboxChecked = !this.checkboxChecked;
+    }
+
+    get hasItems() {
+        return this.items.length > 0;
+    }
+
+    get canSend() {
+        return this.items.length > 0; // TODO and checkbox is checked
     }
 
     // remove pills
     handleItemRemove(event) {
-
         const index = event.detail.index;
         this.items.splice(index, 1);
         this.emails.splice(index, 1);
