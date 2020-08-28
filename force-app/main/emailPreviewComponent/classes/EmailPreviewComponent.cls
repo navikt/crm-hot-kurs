@@ -1,4 +1,4 @@
-public with sharing class CourseRegistrationEmailPreview {
+public with sharing class EmailPreviewComponent {
 
 	// TODO rename
 	@AuraEnabled

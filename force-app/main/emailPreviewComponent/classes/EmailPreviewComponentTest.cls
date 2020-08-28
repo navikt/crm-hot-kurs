@@ -1,5 +1,5 @@
 @isTest
-private without sharing class CourseRegistrationEmailPreviewTest {
+private without sharing class EmailPreviewComponentTest {
 
 	public static String html = 'this is {{{Course__c.Adjective__c}}}. Would you not agree, {{{Course__c.Person__c}}}? However, we don\'t want any {{{Account.BusinessPeople__c}}}';
 
