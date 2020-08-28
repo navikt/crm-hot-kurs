@@ -1,4 +1,10 @@
 <template>
+
+
+    <c-course-registration-email-confirmation if:true={sendEmail} record-id={recordId} recipients={items}
+        template-name="courseRegistrationInvitation" use-do-not-reply="false">
+    </c-course-registration-email-confirmation>
+
     <lightning-card variant="Narrow" title="Send invitasjon" icon-name="standard:email_chatter">
 
         <lightning-button-group slot="actions">

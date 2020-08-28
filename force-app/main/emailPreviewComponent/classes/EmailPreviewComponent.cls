@@ -1,14 +1,17 @@
 public with sharing class EmailPreviewComponent {
 
 	// TODO rename
-	@AuraEnabled
-	public static String getEmailPreview( Id recordId, String emailTemplate ) {
+	@AuraEnabled(cacheable = true)
+	public static String getEmailPreview( String recordId, String emailTemplate ) {
+
+		System.debug( 'fewffw' );
 
 		List<EmailTemplate> templates = [SELECT Id, HtmlValue FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
 		String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
 		List<String> sObjectFields = getSObjectFields( sObjectType, templates[0].HtmlValue );
 		Map<String, String> replacedMergeFields = replaceMergeFields( recordId, sObjectType, sObjectFields );
 		String mergedHtml = mergeHtml( templates[0].HtmlValue, replacedMergeFields );
+		System.debug( 'mergedHtml: ' + mergedHtml );
 
 		return mergedHtml;
 	}
@@ -27,7 +30,7 @@ public with sharing class EmailPreviewComponent {
 		return sObjectFields;
 	}
 
-	public static Map<String, String> replaceMergeFields( Id recordId, String sObjectType, List<String> sObjectFields ) {
+	public static Map<String, String> replaceMergeFields( String recordId, String sObjectType, List<String> sObjectFields ) {
 
 		String query = ' SELECT ' + String.join( sObjectFields, ', ' ) +
 		               ' FROM ' + sObjectType +
