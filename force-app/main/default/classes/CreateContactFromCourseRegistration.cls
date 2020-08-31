@@ -1,9 +1,12 @@
 public with sharing class CreateContactFromCourseRegistration {
 
 	public static void findOrCreateContact( List<CourseRegistration__c> registrations ) {
-		Contact con;
+
+
 		for ( CourseRegistration__c reg : registrations ) {
 
+			// ! to skip trigger and soql inside for loop set contact before insert
+			if ( reg.CourseParticipant__c != null ) { continue; }
 
 			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
 			wrapper.firstName = reg.ContactFirstName__c;
@@ -13,17 +16,18 @@ public with sharing class CreateContactFromCourseRegistration {
 			wrapper.source = 'Kurs';
 			List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper> { wrapper };
 
-			Map<String, Account> accountMap = new Map<String, Account>();
-			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
+			// ! need to use soql inside for loop because id doest exist in before insert
+			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, new Map<String, Account>() );
 
-			con = contacts.get( reg.ContactEmail__c );
-			reg.CourseParticipant__c = con.Id;
-			//update reg;
+			if ( contacts.containsKey( reg.ContactEmail__c ) ) {
+				reg.CourseParticipant__c = contacts.get( reg.ContactEmail__c ).Id;
+
+				reg.ContactFirstName__c = '';
+				reg.ContactLastName__c = '';
+				reg.ContactEmail__c = '';
+				reg.ContactPhone__c = '';
+
+			}
 		}
-
-
-		//insert con;
-		//return con;
-
 	}
 }
