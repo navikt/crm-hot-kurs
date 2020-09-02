@@ -17,7 +17,7 @@ private without sharing class EmailPreviewComponentTest {
 		insert course;
 
 		Test.StartTest();
-		String actual = CourseRegistrationEmailPreview.getEmailPreview( course.Id, 'MY_UNIQUE_NAME' );
+		String actual = EmailPreviewComponent.getEmailPreview( course.Id, 'MY_UNIQUE_NAME' );
 		Test.StopTest();
 
 		String expected = 'Hei {{{Recipient.Name}}}! Velkommen til mitt kurs.';
@@ -28,7 +28,7 @@ private without sharing class EmailPreviewComponentTest {
 	private static void testGetSObjectFields() {
 
 		Test.StartTest();
-		List<String> result = CourseRegistrationEmailPreview.getSObjectFields( 'Course__c', html );
+		List<String> result = EmailPreviewComponent.getSObjectFields( 'Course__c', html );
 		Test.StopTest();
 
 		System.assertEquals( 2, result.size(), 'Should contains two fields' );
@@ -44,7 +44,7 @@ private without sharing class EmailPreviewComponentTest {
 
 		List<String> sObjectFields = new List<String> { 'FirstName', 'LastName', 'Email' };
 		Test.StartTest();
-		Map<String, String> replacedMergeFields = CourseRegistrationEmailPreview.replaceMergeFields( con.Id, 'Contact', sObjectFields );
+		Map<String, String> replacedMergeFields = EmailPreviewComponent.replaceMergeFields( con.Id, 'Contact', sObjectFields );
 		Test.StopTest();
 
 		System.assertEquals( 3, replacedMergeFields.size(), 'Three fields, three values' );
@@ -61,7 +61,7 @@ private without sharing class EmailPreviewComponentTest {
 
 		List<String> sObjectFields = new List<String> { 'Email' };
 		Test.StartTest();
-		Map<String, String> replacedMergeFields = CourseRegistrationEmailPreview.replaceMergeFields( con.Id, 'Contact', sObjectFields );
+		Map<String, String> replacedMergeFields = EmailPreviewComponent.replaceMergeFields( con.Id, 'Contact', sObjectFields );
 		Test.StopTest();
 
 		System.assertEquals( 1, replacedMergeFields.size(), 'one field, one value' );
@@ -77,7 +77,7 @@ private without sharing class EmailPreviewComponentTest {
 
 		List<String> sObjectFields = new List<String> {'Birthdate'};
 		Test.StartTest();
-		Map<String, String> replacedMergeFields = CourseRegistrationEmailPreview.replaceMergeFields( con.Id, 'Contact', sObjectFields );
+		Map<String, String> replacedMergeFields = EmailPreviewComponent.replaceMergeFields( con.Id, 'Contact', sObjectFields );
 		Test.StopTest();
 
 		System.assertEquals( 1, replacedMergeFields.size(), 'one field, one value' );
@@ -92,7 +92,7 @@ private without sharing class EmailPreviewComponentTest {
 		replacedMergeFields.put( '\\{\\{\\{Course__c.Person__c\\}\\}\\}', 'Kari' );
 
 		Test.StartTest();
-		String actual = CourseRegistrationEmailPreview.mergeHtml( html, replacedMergeFields );
+		String actual = EmailPreviewComponent.mergeHtml( html, replacedMergeFields );
 		Test.StopTest();
 
 		String expected = 'this is nice. Would you not agree, Kari? However, we don\'t want any {{{Account.BusinessPeople__c}}}';

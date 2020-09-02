@@ -1,4 +1,5 @@
 public with sharing class CourseRegistrationEmailHelper {
+
 	public static List<Contact> fetchOrCreateContacts( List<CourseRegistrationEmailModel> recipients ) {
 
 		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
@@ -61,7 +62,7 @@ public with sharing class CourseRegistrationEmailHelper {
 			Process_SendEmail.Request request = new Process_SendEmail.Request();
 			request.emailTemplateName = 'courseRegistrationInvitation';
 			request.recipientContact = contactMap.get( reg.CourseParticipant__c );
-			request.useDoNotReply = false; // TODO set to true
+			request.useDoNotReply = false;                                                      // TODO set to true
 			request.relatedToId = reg.Course__c;
 			requests.add( request );
 		}
