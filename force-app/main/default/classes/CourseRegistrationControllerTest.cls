@@ -8,8 +8,7 @@ private with sharing class CourseRegistrationControllerTest {
 
 	@isTest
 	private static void testCreateRegistration() {
-		//Setup
-		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, Description__c = 'Testkurs' );
+		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, Description__c = 'Testkurs', Active__c = true );
 		insert course;
 
 		String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
@@ -27,8 +26,10 @@ private with sharing class CourseRegistrationControllerTest {
 
 		Test.StartTest();
 		String result = CourseRegistrationController.createRegistration( fields, courseId );
+		String result2 = CourseRegistrationController.createRegistration( fields, noCourseId );
 		Test.StopTest();
-		//System.assertEquals( 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost', result, 'Registration successfull' );
+		System.assertEquals( 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost', result, 'Registration successfull' );
+		System.assertEquals( 'Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing' );
 	}
 	@isTest
 	private static void testGetInvitationCode() {
