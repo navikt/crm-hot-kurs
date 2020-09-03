@@ -4,7 +4,7 @@ private without sharing class Course_AddUrlTest {
 	@isTest
 	private static void testAddUrlToCourse() {
 
-		Course__c c = new Course__c( Name = 'Mitt kurs', Description__c = 'test', MaxNumberOfParticipants__c = 10 );
+		Course__c c = new Course__c( Name = 'Mitt kurs', DescriptionFormatted__c = 'test', MaxNumberOfParticipants__c = 10 );
 
 		Test.StartTest();
 		insert c;
