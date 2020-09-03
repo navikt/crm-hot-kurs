@@ -23,8 +23,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-
+    <siteAdmin>test-z1fdusnrpk7j@example.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>navdialog</subdomain>
-    <urlPathPrefix>kurs</urlPathPrefix>
+    <subdomain>dream-flow-288-1744e73b26d</subdomain>
 </CustomSite>
