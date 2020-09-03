@@ -13,7 +13,7 @@ private without sharing class EmailPreviewComponentTest {
 	private static void testGetEmailPreview() {
 
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, Name = 'mitt kurs', MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, Name = 'mitt kurs', MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 
 		Test.StartTest();

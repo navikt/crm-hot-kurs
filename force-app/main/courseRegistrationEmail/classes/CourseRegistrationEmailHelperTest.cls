@@ -50,7 +50,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 	private static void testCreateCourseRegistrations() {
 
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 
 		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
@@ -79,7 +79,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		insert new List<Contact> { c1, c2, c3 };
 
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 		CourseRegistration__c reg1 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
 		CourseRegistration__c reg2 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
@@ -107,7 +107,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
 		insert con;
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
 		insert reg;
@@ -138,7 +138,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
 		insert con;
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
 		insert reg;
@@ -156,11 +156,11 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		List<Domain> domains = [SELECT Domain FROM Domain];
 		String url = 'https://' + domains[0].Domain + 'kurs/s/?id=' + course.Id;
 
-		List<CourseRegistration__c> registrations = [SELECT Id, RegistrationUrl__c FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
-		System.assertEquals( url, registrations[0].RegistrationUrl__c, 'should have added registration url' );
-		System.assertEquals( url, registrations[1].RegistrationUrl__c, 'should have added registration url' );
-		registrations = [SELECT Id, RegistrationUrl__c FROM CourseRegistration__c WHERE Status__c = 'Påmeldt'];
-		System.assertEquals( url, registrations[0].RegistrationUrl__c, 'should have updated registration url' );
+		List<CourseRegistration__c> registrations = [SELECT Id, CommunityUrl__c FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
+		System.assertEquals( url, registrations[0].CommunityUrl__c, 'should have added registration url' );
+		System.assertEquals( url, registrations[1].CommunityUrl__c, 'should have added registration url' );
+		registrations = [SELECT Id, CommunityUrl__c FROM CourseRegistration__c WHERE Status__c = 'Påmeldt'];
+		System.assertEquals( url, registrations[0].CommunityUrl__c, 'should have updated registration url' );
 	}
 
 
@@ -168,7 +168,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 	private static void testSendEmailToCourseRecipients() {
 
 		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, Description__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 
 		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
