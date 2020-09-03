@@ -15,7 +15,7 @@
         <value xsi:type="xsd:string">Course_AddUrl</value>
     </values>
     <values>
-        <field>Description__c</field>
+        <field>DescriptionFormatted__c</field>
         <value xsi:type="xsd:string">When creating a course, add a URL for signups</value>
     </values>
     <values>
