@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "EmailTemplate",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "EmailTemplates.json"
+        ]
+    }
+]
