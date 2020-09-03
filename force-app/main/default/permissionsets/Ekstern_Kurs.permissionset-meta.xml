@@ -20,7 +20,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.FrontPageDescriptionFormatted__c</field>
+        <field>Course__c.DescriptionShort__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

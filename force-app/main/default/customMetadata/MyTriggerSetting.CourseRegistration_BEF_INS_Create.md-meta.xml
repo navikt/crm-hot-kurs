@@ -15,7 +15,7 @@
         <value xsi:type="xsd:string">Contact_Create</value>
     </values>
     <values>
-        <field>DescriptionFormatted__c</field>
+        <field>Description__c</field>
         <value xsi:type="xsd:string">When course registration form is filled out, a contact should be created</value>
     </values>
     <values>
