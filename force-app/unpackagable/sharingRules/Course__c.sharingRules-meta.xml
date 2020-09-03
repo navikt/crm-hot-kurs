@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>Give_external_users_access_to_courses</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Give external users access to courses</label>
+        <sharedTo>
+            <guestUser>Kurs</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingGuestRules>
+</SharingRules>
