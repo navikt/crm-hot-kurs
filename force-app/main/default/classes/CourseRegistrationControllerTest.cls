@@ -8,7 +8,7 @@ private with sharing class CourseRegistrationControllerTest {
 
 	@isTest
 	private static void testCreateRegistration() {
-		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, Description__c = 'Testkurs', Active__c = true );
+		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, Active__c = true );
 		insert course;
 
 		String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
@@ -34,10 +34,10 @@ private with sharing class CourseRegistrationControllerTest {
 	@isTest
 	private static void testGetInvitationCode() {
 
-		Course__c courseWithInvitationCode = new Course__c( Name = 'Test invitasjon', MaxNumberOfParticipants__c = 20, Description__c = 'Invitasjon', GenerateInvitationCode__c = true );
+		Course__c courseWithInvitationCode = new Course__c( Name = 'Test invitasjon', MaxNumberOfParticipants__c = 20, GenerateInvitationCode__c = true );
 		insert courseWithInvitationCode;
 
-		Course__c courseWithoutInvitationCode = new Course__c( Name = 'Test invitasjon uten kode', MaxNumberOfParticipants__c = 20, Description__c = 'Invitasjon', GenerateInvitationCode__c = false );
+		Course__c courseWithoutInvitationCode = new Course__c( Name = 'Test invitasjon uten kode', MaxNumberOfParticipants__c = 20, GenerateInvitationCode__c = false );
 		insert courseWithoutInvitationCode;
 
 		Course__c getCourseWithInvitationCode = [SELECT Id, InvitationCode__c FROM Course__c WHERE InvitationCode__c != null LIMIT 1];
