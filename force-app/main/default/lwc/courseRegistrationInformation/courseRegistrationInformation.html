@@ -1,32 +1,36 @@
 <template>
     <div class="kursPanel">
         <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
-            <div class="">
-                <img class="navno-dekorator alertstripe__ikon"
-                    src="/sfsites/c/resource/1599140241000/calendaricon"></img>
-                Når:
-                <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
-                </lightning-output-field>
+            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                <img class="metainfo__ikon" src={calendaricon}></img>
+                <p class="typo-element metainfo__infoTekst"> Når:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
+                    </lightning-output-field>
+                </p>
+            </div>
+            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                <img class="metainfo__ikon" src={flagicon}></img>
+                <p class="typo-element metainfo__infoTekst">Påmeldingsfrist:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
+                    </lightning-output-field>
+                </p>
             </div>
 
-            <div class="slds-text-title_bold slds-p-top_medium">
-                <img class="navno-dekorator alertstripe__ikon" src="/sfsites/c/resource/1599140622000/flagicon"></img>
-                Påmeldingsfrist:
-                <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
-                </lightning-output-field>
+            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                <img class="metainfo__ikon" src={mapicon}></img>
+                <p class="typo-element metainfo__infoTekst">
+                    Sted:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
+                    </lightning-output-field>
+                </p>
             </div>
-
-            <div class="slds-text-title_bold slds-p-top_medium">
-                <img class="navno-dekorator alertstripe__ikon" src="/sfsites/c/resource/1599140622000/mapicon"></img>
-                Sted:
-                <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
-                </lightning-output-field>
-            </div>
-            <div class="slds-text-title_bold slds-p-top_medium">
-                <img class="navno-dekorator alertstripe__ikon" src="/sfsites/c/resource/1599140622000/staricon"></img>
-                Type kurs:
-                <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
-                </lightning-output-field>
+            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                <img class="metainfo__ikon" src={staricon}></img>
+                <p class="typo-element metainfo__infoTekst">
+                    Type kurs:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
+                    </lightning-output-field>
+                </p>
             </div>
         </lightning-record-view-form>
     </div>
