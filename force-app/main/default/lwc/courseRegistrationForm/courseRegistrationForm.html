@@ -19,17 +19,21 @@
 
                         <!--===========================VALIDERING===============================-->
                         <form if:true={showValidationInput}>
-                            <h2>Kun inviterte kan melde seg på aktiviteten</h2>
+                            <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">Kun inviterte kan melde
+                                seg på aktiviteten</h2>
 
-                            <lightning-input type="text" class="tolk-skjema-input" name={inputValCode}
-                                value={inputValCode} onchange={handleChange2} label="Tast inn din tilgangskode"
-                                required>
-                            </lightning-input>
+                            <!-- <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"> -->
+                            <div class="inline">
+                                <lightning-input type="text" class="tolk-skjema-input slds-p-around_medium"
+                                    name={inputValCode} value={inputValCode} onchange={handleChange2}
+                                    label="Tast inn din tilgangskode" required>
+                                </lightning-input>
 
-                            <br></br>
-                            <lightning-button title="Vis aktivitet" class="" type="submit" variant="brand"
-                                label="Vis aktivitet" onclick={validateCode}>
-                            </lightning-button>
+                                <lightning-button title="Vis aktivitet" class="slds-p-around_x-large" type="submit"
+                                    variant="brand" label="Vis aktivitet" onclick={validateCode}>
+                                </lightning-button>
+
+                            </div>
                         </form>
                         <!--======================================================================================-->
 
