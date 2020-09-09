@@ -1,0 +1,192 @@
+template {
+    margin: 0;
+}
+
+.decorator-wrapper .sticky-placeholder {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.decorator-wrapper .sticky-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .decorator-wrapper .header-linje {
+        height: 106px;
+    }
+}
+
+.decorator-wrapper .header-linje {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px #C6C2BF solid;
+    background-color: white;
+    position: relative;
+}
+
+.decorator-wrapper .header-linje__elementer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /*denne fucker opp*/
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.decorator-wrapper * {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .decorator-wrapper .media-tablet-desktop {
+        display: initial !important;
+    }
+}
+
+/*MENYLINJE*/
+
+@media (min-width: 768px) {
+    .decorator-wrapper .header-linje .nav-logo-lenke, .decorator-wrapper .header-linje .hovedmeny__knapp, .decorator-wrapper .header-linje .desktop-sok-dropdown__knapp {
+        margin-left: 2rem;
+    }
+}
+
+.decorator-wrapper .menylinje-knapp {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    text-decoration: none;
+    border-radius: 2px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    color: #0067C5;
+    padding: 4px 12px;
+}
+
+.decorator-wrapper .menylinje-knapp__tekst {
+    margin: 0;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .decorator-wrapper .header-linje__elementer {
+        max-width: 1440px;
+    }
+}
+
+/*NAV LOGO */
+
+@media (min-width: 768px) {
+    .decorator-wrapper .header-linje .nav-logo-lenke {
+        width: 100px;
+        padding: 8px;
+        margin-left: calc(3rem - 8px);
+        margin-right: -8px;
+    }
+}
+
+.decorator-wrapper .nav-logo-lenke {
+    display: flex;
+}
+
+/* HAMBURGER */
+
+.decorator-wrapper .hamburger-ikon {
+    width: 28px;
+    height: 24px;
+    padding: 0;
+    position: relative;
+    margin-right: 0.5em;
+    display: block;
+}
+
+.decorator-wrapper .hamburger-ikon__topp {
+    width: 28px;
+    height: 3px;
+    background-color: #0067C5;
+    position: absolute;
+    left: 0;
+    transition: all 0.35s ease-in-out;
+    top: 2px;
+}
+
+.decorator-wrapper .hamburger-ikon__midt {
+    width: 28px;
+    height: 3px;
+    background-color: #0067C5;
+    position: absolute;
+    left: 0;
+    transition: all 0.35s ease-in-out;
+    top: 10px;
+}
+
+.decorator-wrapper .hamburger-ikon__bunn {
+    width: 28px;
+    height: 3px;
+    background-color: #0067C5;
+    position: absolute;
+    left: 0;
+    transition: all 0.35s ease-in-out;
+    top: 18px;
+}
+
+/*---------------------------------------------------------*/
+
+/*SØK KNAPP*/
+
+.decorator-wrapper .sok-ikon {
+    width: 32px;
+    height: 24px;
+    padding: 0;
+    position: relative;
+    display: block;
+    margin-right: 0.25rem;
+}
+
+.decorator-wrapper .sok-ikon__circle {
+    border-radius: 50%;
+    border: #0067C5 3px solid;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    transition: 0.3s all ease-out;
+    display: block;
+}
+
+.decorator-wrapper .sok-ikon__line, .decorator-wrapper .sok-ikon__line-x {
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    -webkit-transform: translate(17.66044443px, 13.96369468px) rotate(40deg);
+    transform: translate(17.66044443px, 13.96369468px) rotate(40deg);
+    width: 12px;
+    height: 3px;
+    border: 0;
+    background-color: #0067C5;
+    position: absolute;
+    transition: 0.3s all ease-out;
+    border-radius: 1px;
+    display: block;
+}
+
+.decorator-wrapper .sok-ikon__line-x {
+    visibility: hidden;
+}
+
+.decorator-wrapper .header-linje__spacer {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
