@@ -7,10 +7,12 @@ import FIRST_NAME from '@salesforce/schema/User.FirstName';
 import MIDDLE_NAME from '@salesforce/schema/User.MiddleName';
 import LAST_NAME from '@salesforce/schema/User.LastName';
 import isProdFunction from '@salesforce/apex/GlobalCommunityHeaderFooterController.isProd';
+import navlogo from '@salesforce/resourceUrl/nylogo';
 
 
 //const fields = [FIRST_NAME, MIDDLE_NAME, LAST_NAME];
 export default class EmployerHeaderDesktopMenu extends LightningElement {
+    navlogo = navlogo;
 	/*//@track isProd = window.location.toString().includes("tolkebestilling.nav.no/");
 	//@track isProd;
 	@track error;

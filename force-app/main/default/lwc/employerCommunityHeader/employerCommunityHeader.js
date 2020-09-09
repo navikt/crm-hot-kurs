@@ -1,6 +1,6 @@
 import { LightningElement, track, wire, api } from 'lwc';
 
-const screenWidth = screen.width;
+/*const screenWidth = screen.width;
 const headerHeight = screenWidth > 576 ? 91 : 88;
 const headerStartPosition = screenWidth > 576 ? 44 : 0;
 var headerPosition = headerStartPosition;
@@ -46,7 +46,7 @@ window.addEventListener('scroll', () => {
     prevScrolled = scrolled;
 
 });
-
+*/
 
 export default class EmployerCommunityHeader extends LightningElement {
 
