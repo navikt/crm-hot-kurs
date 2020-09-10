@@ -83,3 +83,8 @@ template {
     flex-grow: 1;
     flex-shrink: 0;
 }
+
+.decorator-wrapper .menylinje-knapp:hover {
+    outline: 1px black solid;
+    cursor: pointer;
+}
