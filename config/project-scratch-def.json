@@ -28,6 +28,9 @@
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
         },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
+        },
         "omniChannelSettings": {
             "enableOmniChannel": true
         },

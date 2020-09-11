@@ -1,7 +1,7 @@
 <template>
 
 
-    <c-course-registration-email-confirmation if:true={sendEmail} record-id={recordId} recipients={items}
+    <c-course-registration-email-confirmation if:true={sendEmail} course-id={recordId} recipients={items}
         template-name="courseRegistrationInvitation" use-do-not-reply="false">
     </c-course-registration-email-confirmation>
 

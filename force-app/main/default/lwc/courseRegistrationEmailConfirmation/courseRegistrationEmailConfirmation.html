@@ -37,9 +37,15 @@
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <lightning-formatted-rich-text if:false={loading} value={htmlEmail}>
                 </lightning-formatted-rich-text>
-                <div if:true={loading}>
-                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                <div if:true={error} class="slds-m-top_large">
+                    <div class="slds-text-heading_large slds-align_absolute-center">{labels.errorTitle}
+                    </div>
+                    <div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}
+                    </div>
                 </div>
+                <!-- <div if:true={loading}>
+                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                </div> -->
             </div>
 
         </div>

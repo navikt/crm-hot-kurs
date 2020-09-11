@@ -1,8 +1,10 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 
 export default class CourseRegistrationEmailComponent extends LightningElement {
+
+    @api recordId;
 
     @track items = []; // pill container
     @track emails = [];

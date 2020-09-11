@@ -32,21 +32,30 @@ public with sharing class EmailPreviewComponent {
 
 	public static Map<String, String> replaceMergeFields( String recordId, String sObjectType, List<String> sObjectFields ) {
 
+		System.debug( 'recordId: ' + recordId );
+		System.debug( 'sObjectType: ' + sObjectType );
+		System.debug( 'sObjectFields: ' + sObjectFields );
+
 		String query = ' SELECT ' + String.join( sObjectFields, ', ' ) +
 		               ' FROM ' + sObjectType +
 		               ' WHERE Id = : recordId' +
 		               ' LIMIT 1';
 
+		System.debug( 'query: ' + query );
 		List<SObject> data = Database.query( query );
-
+		System.debug( 'data: ' + data );
 		if ( data.size() != 1 ) {
 			return null;
 		}
 
 		Map<String, String> replacingMap = new Map<String, String>();
 		for ( String sObjectField : sObjectFields ) {
+			System.debug( 'sObjectField: ' + sObjectField );
 			String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
+			System.debug( 'key: ' + key );
 			String value = String.valueOf( data[0].get( sObjectField ) );
+
+			System.debug( 'value: ' + value );
 			replacingMap.put( key, value );
 		}
 
