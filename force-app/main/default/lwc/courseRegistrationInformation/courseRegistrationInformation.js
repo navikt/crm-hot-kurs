@@ -1,8 +1,18 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
+import calendaricon from '@salesforce/resourceUrl/calendaricon';
+import flagicon from '@salesforce/resourceUrl/flagicon';
+import mapicon from '@salesforce/resourceUrl/mapicon';
+import staricon from '@salesforce/resourceUrl/staricon';
 
 export default class courseRegistrationInformation extends LightningElement {
 
-    @track courseId;
+    //icons
+    calendaricon = calendaricon;
+    flagicon = flagicon;
+    mapicon = mapicon;
+    staricon = staricon;
+
+    @api courseId;
     parameters = {};
 
     connectedCallback() {
