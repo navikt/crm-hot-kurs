@@ -23,7 +23,8 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>test-z1fdusnrpk7j@example.com</siteAdmin>
+    <siteAdmin>test-j8kkujqorin1@example.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>dream-flow-288-1744e73b26d</subdomain>
+    <subdomain>saas-ability-8551-17453e8e669</subdomain>
+    <urlPathPrefix>pamelding</urlPathPrefix>
 </CustomSite>

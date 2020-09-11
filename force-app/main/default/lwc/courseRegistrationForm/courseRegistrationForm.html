@@ -1,124 +1,139 @@
 <template>
-    <header>
-        <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
-            <h1 class="navno-dekorator typo-sidetittel midtstill">
-                <lightning-output-field field-name="Name" variant="label-hidden"
-                    field-class="navno-dekorator typo-sidetittel">
-                </lightning-output-field>
-            </h1>
-        </lightning-record-view-form>
-    </header>
-    <br></br>
+    <div class="app">
+        <header>
+            <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
+                <h1 class="navno-dekorator typo-sidetittel midtstill">
+                    <lightning-output-field field-name="Name" variant="label-hidden"
+                        field-class="navno-dekorator typo-sidetittel">
+                    </lightning-output-field>
+                </h1>
+            </lightning-record-view-form>
+        </header>
+        <br></br>
 
-    <div class="c-container">
-        <lightning-layout multiple-rows="true">
-            <lightning-layout-item padding="around-small" size="2"></lightning-layout-item>
-            <lightning-layout-item padding="around-small" size="6">
-                <div class="kursPanel">
+        <div class="c-container">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="1" flexibility="grow"></lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="7" flexibility="grow">
+                    <div class="kursPanel">
 
-                    <!--===========================VALIDERING===============================-->
-                    <form if:true={showValidationInput}>
-                        <h2>Kun inviterte kan melde seg på aktiviteten</h2>
+                        <!--===========================VALIDERING===============================-->
+                        <form if:true={showValidationInput}>
+                            <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">Kun inviterte kan melde
+                                seg på aktiviteten</h2>
 
-                        <lightning-input type="text" class="tolk-skjema-input" name={inputValCode} value={inputValCode}
-                            onchange={handleChange2} label="Tast inn din tilgangskode" required>
-                        </lightning-input>
-
-                        <br></br>
-                        <lightning-button title="Vis aktivitet" class="" type="submit" variant="brand"
-                            label="Vis aktivitet" onclick={validateCode}>
-                        </lightning-button>
-                    </form>
-                    <!--======================================================================================-->
-
-                    <!--======== COURSEID DOES NOT EXIST ===========-->
-                    <div if:false={courseId} class="">
-                        <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                            <img class="navno-dekorator alertstripe__ikon"
-                                src="/sfsites/c/resource/1597414613000/warningicon"></img>
-                            <div class="typo-normal alertstripe__tekst">En feil har oppstått, prøv igjen senere
-                            </div>
-                        </div>
-                    </div>
-                    <!--===================================================================================-->
-
-                    <!--============================REGISTRATION FORM=========================================-->
-                    <form if:true={showForm}>
-                        <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
-                            Påmeldingsskjema
-                        </h2>
-
-                        <lightning-layout-item padding="around-small" size="3">
-                            <lightning-input type="text" class="tolk-skjema-input" name="firstName" value={firstName}
-                                onchange={handleChange} label="Fornavn" required>
-                            </lightning-input>
-
-
-                            <div class="">
-                                <lightning-input type="text" class="tolk-skjema-input" name="lastName" value={lastName}
-                                    onchange={handleChange} label="Etternavn" required>
+                            <!-- <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"> -->
+                            <div class="inline">
+                                <lightning-input type="text" class="tolk-skjema-input slds-p-around_medium"
+                                    name={inputValCode} value={inputValCode} onchange={handleChange2}
+                                    label="Tast inn din tilgangskode" required>
                                 </lightning-input>
-                            </div>
 
-                            <div class="">
-                                <lightning-input type="email" class="tolk-skjema-input" name="email" value={email}
-                                    onchange={handleChange} label="E-post" required>
-                                </lightning-input>
-                            </div>
-                            <div class="">
-                                <lightning-input type="phone" class="tolk-skjema-input" name="phone" value={phone}
-                                    onchange={handleChange} label="Mobil" required>
-                                </lightning-input>
-                            </div>
-
-                        </lightning-layout-item>
-                        <div class="navno-dekorator alertstripe">
-                            <img class="navno-dekorator alertstripe__ikon"
-                                src="/sfsites/c/resource/1597414345000/informationcircle" alt="informasjon-ikon"></img>
-                            <div class="typo-normal">NAV bruker disse opplysningene når vi kontakter deg. Vi lagrer
-                                disse
-                                opplysningene
-                                om
-                                deg, slik at vi kan kontakte deg om kurset du er meldt på. Opplysningene blir
-                                ikke delt eller brukt til andre formål.
+                                <lightning-button title="Vis aktivitet" class="slds-p-around_x-large" type="submit"
+                                    variant="brand" label="Vis aktivitet" onclick={validateCode}>
+                                </lightning-button>
 
                             </div>
-                        </div>
-                        <div if:true={showError}>
+                        </form>
+                        <!--======================================================================================-->
+
+                        <!--======== COURSEID DOES NOT EXIST ===========-->
+                        <div if:false={courseId} class="">
                             <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                <img class="navno-dekorator alertstripe__ikon"
-                                    src="/sfsites/c/resource/1597414613000/warningicon"></img>
-                                <div class="typo-normal alertstripe__tekst">Du må fylle ut alle feltene for å melde deg
-                                    på
+                                <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="advarsel-ikon">
+                                <div class="typo-normal alertstripe__tekst">En feil har oppstått, prøv igjen senere
                                 </div>
                             </div>
-                            <br></br>
                         </div>
-                        <div class="midtstill">
-                            <lightning-button title="Meld på" class="" type="submit" variant="brand" label="Meld på"
-                                onclick={handleSubmit}>
-                            </lightning-button>
+                        <!--===================================================================================-->
+                        <!--======== ERROR MESSAGE ===========-->
+                        <div if:true={displayErrorMessage} class="">
+                            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="advarsel-ikon">
+                                <div class="typo-normal alertstripe__tekst">{errorMessage}
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                        <!--===================================================================================-->
 
-                    <!--======================== CONFIRMATION PAGE =============================================-->
-                    <div if:true={showConfirmation} class="midtstill">
-                        </br>
-                        <h1>{message}</h1>
+                        <!--============================REGISTRATION FORM=========================================-->
+                        <form if:true={showForm}>
+                            <h2 class="navno-dekorator typo-innholdstittel slds-p-around_medium">
+                                Påmeldingsskjema
+                            </h2>
+
+                            <lightning-layout-item padding="around-small" size="2">
+                                <lightning-input type="text" class="tolk-skjema-input" name="firstName"
+                                    value={firstName} onchange={handleChange} label="Fornavn" required>
+                                </lightning-input>
+
+
+                                <div class="">
+                                    <lightning-input type="text" class="tolk-skjema-input" name="lastName"
+                                        value={lastName} onchange={handleChange} label="Etternavn" required>
+                                    </lightning-input>
+                                </div>
+
+                                <div class="">
+                                    <lightning-input type="email" class="tolk-skjema-input" name="email" value={email}
+                                        onchange={handleChange} label="E-post" required>
+                                    </lightning-input>
+                                </div>
+                                <div class="">
+                                    <lightning-input type="phone" class="tolk-skjema-input" name="phone" value={phone}
+                                        onchange={handleChange} label="Mobil" required>
+                                    </lightning-input>
+                                </div>
+
+                            </lightning-layout-item>
+                            <div class="navno-dekorator alertstripe">
+                                <img class="navno-dekorator alertstripe__ikon" src={informationicon}
+                                    alt="informasjon-ikon">
+                                <div class="typo-normal">NAV bruker disse opplysningene når vi kontakter deg. Vi lagrer
+                                    disse
+                                    opplysningene
+                                    om
+                                    deg, slik at vi kan kontakte deg om kurset du er meldt på. Opplysningene blir
+                                    ikke delt eller brukt til andre formål.
+
+                                </div>
+                            </div>
+                            <div if:true={showError}>
+                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                    <img class="navno-dekorator alertstripe__ikon" src={warningicon}
+                                        alt="advarsel-ikon">
+                                    <div class="typo-normal alertstripe__tekst">Du må fylle ut alle feltene for å melde
+                                        deg
+                                        på
+                                    </div>
+                                </div>
+                                <br></br>
+                            </div>
+                            <div class="midtstill">
+                                <lightning-button title="Meld på" class="" type="submit" variant="brand" label="Meld på"
+                                    onclick={handleSubmit}>
+                                </lightning-button>
+                            </div>
+                        </form>
+
+                        <!--======================== CONFIRMATION PAGE =============================================-->
+                        <div if:true={showConfirmation} class="midtstill">
+                            </br>
+                            <h1>{message}</h1>
+                        </div>
+                        <!--=========================================================================================-->
+                        <div class="omKurset__tilbakelenke">
+                            <a class="lenke" href="https://arbeidsgiver.nav.no/kursoversikt/"
+                                title="Tilbake til kursoversikten">
+                                <i class="nav-frontend-chevron chevronboks chevron--venstre"></i>
+                                <img src={chevronleft}>
+                                Tilbake
+                                til
+                                kursoversikten</a>
+                        </div>
                     </div>
-                    <!--=========================================================================================-->
-                    <a href="https://arbeidsgiver.nav.no/kursoversikt/" title="Tilbake til kursoversikten">Tilbake
-                        til
-                        kursoversikten</a>
-                </div>
-            </lightning-layout-item>
+                </lightning-layout-item>
 
-
-            <!--============================INFROMATION BOX=================================================-->
-            <lightning-layout-item padding="around-small" size="3">
-                <c-course-registration-information></c-course-registration-information>
-            </lightning-layout-item>
-            <!--============================================================================================-->
 
             <!--============================INFROMATION BOX=================================================-->
             <!--<lightning-layout-item padding="around-small" size="3" flexibility="grow">-->
