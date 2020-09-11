@@ -1,0 +1,48 @@
+.metainfo__ikon {
+    height: 20px;
+    width: 20px;
+}
+
+.metainfo__infoTekst {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    font-weight: 400;
+}
+
+.typo-element, .typo-feilmelding {
+    font-family: Source Sans Pro, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    /* font-weight: 600;*/
+}
+
+@media (min-width: 992px) {
+    .metainfo__panel {
+        padding: 2.5rem 1.5rem .75rem;
+    }
+    .metainfo {
+        width: 20rem;
+        margin: 0 1rem 1rem;
+    }
+    .metainfo__infoTekst, .metainfo__pamelding {
+        margin-bottom: 2rem;
+    }
+}
+
+.metainfo__panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel, .panel--stor {
+    background-color: #fff;
+    display: block;
+    border-radius: 4px;
+}
+
+.metainfo__egenskap {
+    display: flex;
+    flex-direction: row;
+    /*margin-bottom: 1rem;*/
+}
