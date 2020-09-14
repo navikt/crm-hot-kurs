@@ -1,80 +1,116 @@
 <template>
+  <c-course-registration-email-confirmation
+    if:true={sendEmail}
+    course-id={recordId}
+    recipients={items}
+    template-name="courseRegistrationInvitation"
+    use-do-not-reply="false"
+  >
+  </c-course-registration-email-confirmation>
 
+  <lightning-card
+    variant="Narrow"
+    title="Send invitasjon"
+    icon-name="standard:email_chatter"
+  >
+    <lightning-button-group slot="actions">
+      <lightning-button label="Importer"> </lightning-button>
+      <!-- TODO add disabled={} -->
+      <!-- TODO fix button not working on only one or two recipients -->
+      <lightning-button
+        label="Gå til bekreftelse"
+        onclick={confirmation}
+        variant="brand"
+      >
+      </lightning-button>
+    </lightning-button-group>
 
-    <c-course-registration-email-confirmation if:true={sendEmail} course-id={recordId} recipients={items}
-        template-name="courseRegistrationInvitation" use-do-not-reply="false">
-    </c-course-registration-email-confirmation>
+    <div class="slds-p-horizontal_small" if:false={emailSent}>
+      <!-- LIST OF ADDED USERS -->
 
-    <lightning-card variant="Narrow" title="Send invitasjon" icon-name="standard:email_chatter">
+      <div class="slds-p-bottom_small" if:true={hasItems}>
+        <lightning-pill-container
+          variant="bare"
+          items={items}
+          onitemremove={handleItemRemove}
+        >
+        </lightning-pill-container>
+      </div>
+      <!-- TODO fix padding -->
 
-        <lightning-button-group slot="actions">
-            <lightning-button label="Importer"> </lightning-button>
-            <!-- TODO add disabled={} -->
-            <lightning-button label="Gå til bekreftelse" onclick={confirmation} variant="brand"> </lightning-button>
-        </lightning-button-group>
+      <!-- NAME -->
+      <lightning-layout>
+        <lightning-layout-item class="slds-p-right_x-small" size="6">
+          <lightning-input
+            name="firstName"
+            type="text"
+            label="Fornavn"
+            required
+          ></lightning-input>
+        </lightning-layout-item>
 
-        <div class="slds-p-horizontal_small" if:false={emailSent}>
+        <lightning-layout-item class="slds-p-left_x-small" size="6">
+          <lightning-input
+            name="lastName"
+            type="text"
+            label="Etternavn"
+            required
+          ></lightning-input>
+        </lightning-layout-item>
+      </lightning-layout>
 
-            <!-- LIST OF ADDED USERS -->
+      <!-- EMAIL -->
+      <lightning-input
+        class="slds-p-vertical_small"
+        name="email"
+        type="text"
+        pattern={emailRegex}
+        label="E-post"
+        required
+      >
+      </lightning-input>
 
-            <div class="slds-p-bottom_small" if:true={hasItems}>
-                <lightning-pill-container variant="bare" items={items} onitemremove={handleItemRemove}>
-                </lightning-pill-container>
-            </div>
-            <!-- TODO fix padding -->
+      <!-- GDPR AND ADD -->
+      <lightning-layout class="slds-p-vertical_small" vertical-align="center">
+        <!-- GDPR CHECKBOX -->
+        <lightning-layout-item class="slds-p-right_x-small" flexibility="grow">
+          <lightning-layout vertical-align="center" if:true={hasItems}>
+            <lightning-layout-item flexibility="auto">
+              <lightning-input
+                name="checkbox"
+                type="checkbox-button"
+                onchange={checkbox}
+                label="Kontaktpersoner er informert om at de lagres som kontakter"
+              >
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item
+              flexibility="auto"
+              padding="horizontal-small"
+              class="slds-p-bottom_xx-small"
+            >
+              <span
+                >Kontaktpersoner er informert om at de lagres som kontakter
+              </span>
+            </lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
 
-            <!-- NAME -->
-            <lightning-layout>
-                <lightning-layout-item class="slds-p-right_x-small" size="6">
-                    <lightning-input name="firstName" type="text" label="Fornavn" required></lightning-input>
-                </lightning-layout-item>
+        <!-- ADD PERSON -->
+        <lightning-layout-item flexibility="no-shrink">
+          <lightning-button
+            variant="brand-outline"
+            label="Legg til"
+            class="slds-p-bottom_xx-small"
+            onclick={addEmail}
+          >
+          </lightning-button>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
 
-                <lightning-layout-item class="slds-p-left_x-small" size="6">
-                    <lightning-input name="lastName" type="text" label="Etternavn" required></lightning-input>
-                </lightning-layout-item>
-            </lightning-layout>
-
-            <!-- EMAIL -->
-            <lightning-input class="slds-p-vertical_small" name="email" type="text" pattern={emailRegex} label="E-post"
-                required>
-            </lightning-input>
-
-
-            <!-- GDPR AND ADD -->
-            <lightning-layout class="slds-p-vertical_small" vertical-align="center">
-
-                <!-- GDPR CHECKBOX -->
-                <lightning-layout-item class="slds-p-right_x-small" flexibility="grow">
-                    <lightning-layout vertical-align="center" if:true={hasItems}>
-                        <lightning-layout-item flexibility="auto">
-                            <lightning-input name="checkbox" type="checkbox-button" onchange={checkbox}
-                                label="Kontaktpersoner er informert om at de lagres som kontakter">
-                            </lightning-input>
-                        </lightning-layout-item>
-                        <lightning-layout-item flexibility="auto" padding="horizontal-small"
-                            class="slds-p-bottom_xx-small">
-                            <span>Kontaktpersoner er informert om at de lagres som
-                                kontakter
-                            </span>
-                        </lightning-layout-item>
-                    </lightning-layout>
-                </lightning-layout-item>
-
-                <!-- ADD PERSON -->
-                <lightning-layout-item flexibility="no-shrink">
-                    <lightning-button variant="brand-outline" label="Legg til" class="slds-p-bottom_xx-small"
-                        onclick={addEmail}>
-                    </lightning-button>
-                </lightning-layout-item>
-            </lightning-layout>
-
-
-        </div>
-
-        <div if:true={emailSent}>
-            <h1 class="slds-align_absolute-center"><b>Mailen ble sendt!</b></h1>
-        </div>
-
-    </lightning-card>
-
+    <div if:true={emailSent}>
+      <h1 class="slds-align_absolute-center"><b>Mailen ble sendt!</b></h1>
+    </div>
+  </lightning-card>
 </template>

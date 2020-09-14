@@ -1,0 +1,35 @@
+<template>
+  <lightning-layout multiple-rows vertical-align="left">
+    <lightning-layout-item size="12" flexibility="no-flex">
+      <lightning-button
+        variant="base"
+        class="slds-m-left_x-small slds-text-body_small slds-float--left"
+        label={amountToLoad}
+        title={loadMoreRecipients}
+        onmouseover={viewPopover}
+        onmouseout={hidePopover}
+      ></lightning-button>
+    </lightning-layout-item>
+    <lightning-layout-item if:true={showPopover} size="12">
+      <section
+        aria-label="Dialog title"
+        aria-describedby="popover-body-id"
+        class="slds-popover slds-popover_walkthrough slds-popover_walkthrough-alt slds-popover_full-width slds-nubbin_top-left slds-m-top_x-small slds-p-top_medium"
+        role="dialog"
+      >
+        <div id="popover-body-id" class="slds-popover__body">
+          <template
+            if:true={recipients}
+            for:each={recipients}
+            for:item="recipient"
+            for:index="index"
+          >
+            <div class="slds-p-bottom--xxx-small" key={recipient.name}>
+              {recipient.label}
+            </div>
+          </template>
+        </div>
+      </section>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

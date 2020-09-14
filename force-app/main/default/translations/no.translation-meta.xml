@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Til</label>
+        <name>EmailPreview_toField</name>
+    </customLabels>
+    <customLabels>
+        <label>Emne</label>
+        <name>EmailPreview_subjectField</name>
+    </customLabels>
+    <customLabels>
+        <label>Send</label>
+        <name>EmailPreview_sendEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Avbryt</label>
+        <name>EmailPreview_cancelEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Se flere mottakere</label>
+        <name>EmailPreview_loadMoreRecipients</name>
+    </customLabels>
+</Translations>

@@ -1,20 +1,105 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getEmailPreview from '@salesforce/apex/EmailPreviewComponent.getEmailPreview';
+import labels from "./labels";
 
 export default class CourseRegistrationEmailConfirmation extends LightningElement {
 
-    @api courseId = 'a0A1X00000344NxUAI';
+    @api courseId = 'a0A1j000003Z3aEEAS';
     @api recipients = [
         {
             "type": 'avatar',
-            "label": "Ola Nordmann",
+            "label": "Johnnie O'Brien",
             "name": "john.foreland@me.com",
             "fallbackIconName": 'standard:user',
             "variant": 'circle'
         },
         {
             "type": 'avatar',
-            "label": "Kari Nordmann",
+            "label": "Rosalie Clayton",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Donte Briggs",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Yasmeen Stout",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Meghan Brown",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Louisa Howells",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Azaan Mac",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Jawad Rubio",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Aarron Carson",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Yasmin Kay",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Andrew Zuniga",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Parker Muir",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Greta Bull",
+            "name": "john.foreland@icloud.com",
+            "fallbackIconName": 'standard:user',
+            "variant": 'circle'
+        },
+        {
+            "type": 'avatar',
+            "label": "Alexa Frank",
             "name": "john.foreland@icloud.com",
             "fallbackIconName": 'standard:user',
             "variant": 'circle'
@@ -28,24 +113,28 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
 
     @track loading = true;
     @track error = false;
+    @track labels = labels;
     @track errorMsg;
 
+    @track amountToLoad;
+
     connectedCallback() {
-        console.log('courseId: ' + this.courseId);
-        // console.log('recipients: ' + this.recipients);
-        // console.log('templateName: ' + this.templateName);
-        // console.log('useDoNotReply: ' + this.useDoNotReply);
-        this.recipients.forEach(recipient => {
+        console.log('t');
+
+        for (var i = 0; i < 3; i++) {
+            let recipient = this.recipients[i];
             this.recipientBadges.push({ "id": recipient.name, "label": recipient.label });
-        });
+        }
+
+        if (this.recipients.length > 3) {
+            this.amountToLoad = '+' + (this.recipients.length - 3).toString();
+        }
+
     }
 
     @wire(getEmailPreview, { recordId: '$courseId', emailTemplate: '$templateName' })
     deWire(result) {
-        console.log("before");
-        console.log('templateName: ' + this.templateName);
         if (result.data) {
-            console.log("success");
             this.htmlEmail = result.data;
             this.loading = false;
         } else if (result.error) {

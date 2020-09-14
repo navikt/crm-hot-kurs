@@ -1,54 +1,120 @@
 <template>
-    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
-        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
-        <div class="slds-modal__container">
-            <header class="slds-modal__header">
-                <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+  <section
+    role="dialog"
+    tabindex="-1"
+    aria-labelledby="modal-heading-01"
+    aria-modal="true"
+    aria-describedby="modal-content-id-1"
+    class="slds-modal slds-fade-in-open slds-modal_large"
+  >
+    <div class="slds-modal__container">
+      <header class="slds-modal__header">
+        <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
                         <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
                     </svg>
                     <span class="slds-assistive-text">Close</span>
                 </button> -->
 
-                <lightning-layout>
+        <lightning-layout>
+          <!-- RECIPIENT -->
+          <lightning-layout-item class="slds-p-left_small">
+            <!-- SUBJECT FIELD -->
+            <lightning-layout>
+              <lightning-layout-item>
+                <span class="slds-p-right_small">{labels.subjectField}:</span>
+              </lightning-layout-item>
+            </lightning-layout>
 
-                    <!-- RECIPIENT -->
-                    <lightning-layout-item class="slds-p-left_small">
-                        <template if:true={recipientBadges} for:each={recipientBadges} for:item="recipient"
-                            for:index="index">
-                            <lightning-badge key={recipient.id} label={recipient.label}></lightning-badge>
-                        </template>
-                    </lightning-layout-item>
+            <!-- TO FIELD -->
+            <lightning-layout class="slds-p-top_x-small">
+              <lightning-layout-item class="slds-p-top_small">
+                <span class="">{labels.toField}:</span>
+              </lightning-layout-item>
+              <lightning-layout-item alignment-bump="left" flexibility="grow">
+                <template
+                  if:true={recipientBadges}
+                  iterator:it={recipientBadges}
+                >
+                  <lightning-badge
+                    if:true={it.first}
+                    class="slds-m-left_x-small slds-m-top_x-small slds-float_left"
+                    key={it.value.id}
+                    label={it.value.label}
+                  ></lightning-badge>
+                  <lightning-badge
+                    if:false={it.first}
+                    class="slds-m-top_x-small slds-float_left"
+                    key={it.value.id}
+                    label={it.value.label}
+                  ></lightning-badge>
+                </template>
+                <!-- LOAD MORE  -->
+                <c-email-confirmation-view-more
+                  class="slds-is-absolute"
+                  recipients={recipients}
+                  amount-to-load={amountToLoad}
+                  if:true={amountToLoad}
+                ></c-email-confirmation-view-more>
+              </lightning-layout-item>
+            </lightning-layout>
 
-                    <!-- BUTTONS -->
-                    <lightning-layout-item class="slds-p-right_small" alignment-bump="left">
-                        <lightning-button-group>
-                            <lightning-button variant="neutral" label="Avbryt" title="Avbryt" onclick={handleClick}>
-                            </lightning-button>
-                            <lightning-button variant="brand" label="Send" title="Send" onclick={handleClick}>
-                            </lightning-button>
-                        </lightning-button-group>
-                    </lightning-layout-item>
-                </lightning-layout>
-            </header>
+            <!-- RECIPIENT END -->
+          </lightning-layout-item>
 
+          <!-- BUTTONS -->
+          <lightning-layout-item
+            class="slds-p-right_small"
+            alignment-bump="left"
+          >
+            <lightning-button-group>
+              <lightning-button
+                variant="neutral"
+                label={labels.cancelEmail}
+                title={labels.cancelEmail}
+                onclick={handleClick}
+              >
+              </lightning-button>
+              <lightning-button
+                variant="brand"
+                label={labels.sendEmail}
+                icon-name="utility:send"
+                title={labels.sendEmail}
+                onclick={handleClick}
+              >
+              </lightning-button>
+            </lightning-button-group>
+          </lightning-layout-item>
+        </lightning-layout>
+      </header>
 
-            <!-- HTML -->
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                <lightning-formatted-rich-text if:false={loading} value={htmlEmail}>
-                </lightning-formatted-rich-text>
-                <div if:true={error} class="slds-m-top_large">
-                    <div class="slds-text-heading_large slds-align_absolute-center">{labels.errorTitle}
-                    </div>
-                    <div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}
-                    </div>
-                </div>
-                <!-- <div if:true={loading}>
-                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-                </div> -->
-            </div>
-
+      <!-- HTML -->
+      <div
+        class="slds-modal__content slds-p-around_medium"
+        id="modal-content-id-1"
+      >
+        <lightning-formatted-rich-text if:false={loading} value={htmlEmail}>
+        </lightning-formatted-rich-text>
+        <div if:true={error} class="slds-m-top_large">
+          <div class="slds-text-heading_large slds-align_absolute-center">
+            {labels.errorTitle}
+          </div>
+          <div
+            class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large"
+          >
+            {errorMsg}
+          </div>
         </div>
-    </section>
-    <div class="slds-backdrop slds-backdrop_open"></div>
+        <div if:true={loading} style="position: relative; min-height: 10em">
+          <lightning-spinner
+            alternative-text="Loading"
+            size="large"
+            style="position: absolute"
+          >
+          </lightning-spinner>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
 </template>

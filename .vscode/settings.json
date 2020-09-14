@@ -24,7 +24,7 @@
   },
   "apexPMD.rulesets": ["ruleset.xml"],
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[apex]": {
     "editor.defaultFormatter": "LaurentTreguier.uncrustify"
@@ -38,10 +38,19 @@
   "[python]": {
     "editor.defaultFormatter": "LaurentTreguier.uncrustify"
   },
+  "[css]": {
+    "editor.defaultFormatter": "aeschli.vscode-css-formatter"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "diffEditor.ignoreTrimWhitespace": true,
   "files.exclude": {
     "**/*.cls-meta.xml": true,
     "**/*.trigger-meta.xml": true
-},
+  },
   "eslint.nodePath": "./node_modules"
 }

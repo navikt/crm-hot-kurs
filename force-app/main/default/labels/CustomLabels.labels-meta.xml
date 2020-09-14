@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>EmailPreview_toField</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] To Field</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_subjectField</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_sendEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Send Email</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_cancelEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Cancel Email</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_loadMoreRecipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Load More Recipients</shortDescription>
+        <value>View more recipients</value>
+    </labels>
+</CustomLabels>
