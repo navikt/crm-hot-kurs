@@ -35,4 +35,18 @@
         <shortDescription>[EmailPreview] Load More Recipients</shortDescription>
         <value>View more recipients</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_hide</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Hide</shortDescription>
+        <value>Hide</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_hideAria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Hide Aria</shortDescription>
+        <value>Hide recipients</value>
+    </labels>
 </CustomLabels>

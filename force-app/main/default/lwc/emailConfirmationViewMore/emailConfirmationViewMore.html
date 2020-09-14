@@ -1,20 +1,43 @@
 <template>
+  <lightning-button
+    variant="base"
+    if:false={showPopoverButton}
+    label={hide}
+    title={hideAria}
+    onclick={collapseRecipients}
+    class="slds-m-left_x-small slds-m-top_xx-small slds-text-body_small slds-float_left"
+  ></lightning-button>
   <lightning-layout multiple-rows vertical-align="left">
-    <lightning-layout-item size="12" flexibility="no-flex">
+    <lightning-layout-item size="12">
+      <!-- <lightning-badge
+        class="slds-m-left_x-small slds-m-top_x-small slds-float_left recipientPopoverButton"
+        label={amountToLoad}
+        if:true={showPopoverButton}
+        onmouseover={viewPopover}
+        onmouseout={hidePopover}
+        onclick={expandRecipients}
+      ></lightning-badge> -->
       <lightning-button
         variant="base"
-        class="slds-m-left_x-small slds-text-body_small slds-float--left"
+        if:true={showPopoverButton}
         label={amountToLoad}
         title={loadMoreRecipients}
         onmouseover={viewPopover}
         onmouseout={hidePopover}
+        onclick={expandRecipients}
+        class="slds-m-left_x-small slds-m-top_xx-small slds-text-body_small slds-float_left"
       ></lightning-button>
     </lightning-layout-item>
-    <lightning-layout-item if:true={showPopover} size="12">
+    <lightning-layout-item
+      if:true={showPopover}
+      size="12"
+      onmouseover={viewPopover}
+      onmouseout={hidePopover}
+    >
       <section
         aria-label="Dialog title"
         aria-describedby="popover-body-id"
-        class="slds-popover slds-popover_walkthrough slds-popover_walkthrough-alt slds-popover_full-width slds-nubbin_top-left slds-m-top_x-small slds-p-top_medium"
+        class="slds-popover slds-popover_walkthrough slds-popover_walkthrough-alt slds-popover_small slds-nubbin_top-left slds-m-top_x-small slds-p-top_medium recipientPopover"
         role="dialog"
       >
         <div id="popover-body-id" class="slds-popover__body">

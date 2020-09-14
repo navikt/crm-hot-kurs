@@ -20,4 +20,12 @@
         <label>Se flere mottakere</label>
         <name>EmailPreview_loadMoreRecipients</name>
     </customLabels>
+    <customLabels>
+        <label>Skjul</label>
+        <name>EmailPreview_hide</name>
+    </customLabels>
+    <customLabels>
+        <label>Skjul mottakere</label>
+        <name>EmailPreview_hideAria</name>
+    </customLabels>
 </Translations>

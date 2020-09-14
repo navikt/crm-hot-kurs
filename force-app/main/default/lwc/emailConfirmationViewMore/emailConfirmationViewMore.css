@@ -1,0 +1,7 @@
+.recipientPopover {
+    transform: translate(-20px, 5px);
+}
+
+.recipientPopoverButton:hover {
+    cursor: pointer;
+}

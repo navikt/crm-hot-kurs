@@ -4,14 +4,11 @@ public with sharing class EmailPreviewComponent {
 	@AuraEnabled(cacheable = true)
 	public static String getEmailPreview( String recordId, String emailTemplate ) {
 
-		System.debug( 'fewffw' );
-
 		List<EmailTemplate> templates = [SELECT Id, HtmlValue FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
 		String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
 		List<String> sObjectFields = getSObjectFields( sObjectType, templates[0].HtmlValue );
 		Map<String, String> replacedMergeFields = replaceMergeFields( recordId, sObjectType, sObjectFields );
 		String mergedHtml = mergeHtml( templates[0].HtmlValue, replacedMergeFields );
-		System.debug( 'mergedHtml: ' + mergedHtml );
 
 		return mergedHtml;
 	}

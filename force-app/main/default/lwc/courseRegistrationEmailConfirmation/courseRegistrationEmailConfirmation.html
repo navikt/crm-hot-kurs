@@ -9,13 +9,7 @@
   >
     <div class="slds-modal__container">
       <header class="slds-modal__header">
-        <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
-                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                    </svg>
-                    <span class="slds-assistive-text">Close</span>
-                </button> -->
-
+        <!-- HEADER LAYOUT -->
         <lightning-layout>
           <!-- RECIPIENT -->
           <lightning-layout-item class="slds-p-left_small">
@@ -55,6 +49,8 @@
                   recipients={recipients}
                   amount-to-load={amountToLoad}
                   if:true={amountToLoad}
+                  onexpandrecipients={expandRecipients}
+                  oncollapserecipients={collapseRecipients}
                 ></c-email-confirmation-view-more>
               </lightning-layout-item>
             </lightning-layout>
@@ -106,11 +102,7 @@
           </div>
         </div>
         <div if:true={loading} style="position: relative; min-height: 10em">
-          <lightning-spinner
-            alternative-text="Loading"
-            size="large"
-            style="position: absolute"
-          >
+          <lightning-spinner alternative-text="Loading" size="large">
           </lightning-spinner>
         </div>
       </div>

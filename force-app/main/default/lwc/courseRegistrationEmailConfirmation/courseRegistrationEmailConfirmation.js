@@ -119,12 +119,8 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
     @track amountToLoad;
 
     connectedCallback() {
-        console.log('t');
 
-        for (var i = 0; i < 3; i++) {
-            let recipient = this.recipients[i];
-            this.recipientBadges.push({ "id": recipient.name, "label": recipient.label });
-        }
+        this.loadRecipientsToBadges(3);
 
         if (this.recipients.length > 3) {
             this.amountToLoad = '+' + (this.recipients.length - 3).toString();
@@ -144,7 +140,21 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
         }
     }
 
+    loadRecipientsToBadges(amount) {
+        this.recipientBadges = [];
+        for (var i = 0; i < amount; i++) {
+            let recipient = this.recipients[i];
+            this.recipientBadges.push({ "id": recipient.name, "label": recipient.label });
+        }
+    }
 
+    expandRecipients(event) {
+        console.log('test');
+        this.loadRecipientsToBadges(this.recipients.length);
+    }
+    collapseRecipients(event) {
+        this.loadRecipientsToBadges(3);
+    }
 
     setError(error) {
         this.loading = false;
