@@ -8,9 +8,6 @@ import warningicon from '@salesforce/resourceUrl/warningicon';
 import informationicon from '@salesforce/resourceUrl/informationcircle';
 import chevronleft from '@salesforce/resourceUrl/chevronleft';
 
-import { validateData } from "./helper";
-
-
 export default class CourseRegistrationForm extends NavigationMixin(
     LightningElement
 ) {
@@ -23,6 +20,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
     @track displayErrorMessage = false;
     @track errorMessage;
     @track message;
+
 
     @track inputValCode;
     @track code;
@@ -43,7 +41,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
         this.parameters = this.getQueryParameters();
         this.courseId = this.parameters.id;
 
-
+        //this.querySelector('.tst').classList.remove('slds-form-element__static');
         //this.checkValidationCode();
 
         getCourseFields({ courseId: this.courseId }).then(
@@ -65,6 +63,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
                     if (this.code != undefined) {
                         this.showForm = false;
                         this.showValidationInput = true;
+
                     }
 
                 } else {
