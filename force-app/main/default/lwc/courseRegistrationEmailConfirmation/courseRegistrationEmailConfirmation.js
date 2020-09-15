@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getEmailPreview from '@salesforce/apex/EmailPreviewComponent.getEmailPreview';
+import getEmailSubject from '@salesforce/apex/EmailPreviewComponent.getEmailSubject';
 import labels from "./labels";
 
 export default class CourseRegistrationEmailConfirmation extends LightningElement {
@@ -106,9 +107,10 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
         }
     ];
     @api templateName = 'courseRegistrationInvitation';
-    @api useDoNotReply;
+    @api useDoNotReply = false;
 
     @track htmlEmail;
+    @track subject = labels.subjectField;
     @track recipientBadges = [];
 
     @track loading = true;
@@ -118,26 +120,34 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
 
     @track amountToLoad;
 
+    amountToView = 3;
+
     connectedCallback() {
+        getEmailPreview({ recordId: this.courseId, emailTemplate: this.templateName }).then(data => {
+            this.htmlEmail = data;
+            this.loading = false;
+        }).catch(error => {
+            this.setError(error);
+        });
 
-        this.loadRecipientsToBadges(3);
+        getEmailSubject({ emailTemplate: this.templateName }).then(data => {
+            this.subject = data;
+        });
 
-        if (this.recipients.length > 3) {
-            this.amountToLoad = '+' + (this.recipients.length - 3).toString();
+        let amount = this.recipients.length < this.amountToView ? this.recipients.length : this.amountToView; // if recipient length is less than viewable recipients, use recipient length
+
+        this.loadRecipientsToBadges(amount);
+        if (this.recipients.length > this.amountToView) {
+            this.amountToLoad = '+' + (this.recipients.length - this.amountToView).toString();
         }
-
     }
 
-    @wire(getEmailPreview, { recordId: '$courseId', emailTemplate: '$templateName' })
-    deWire(result) {
-        if (result.data) {
-            this.htmlEmail = result.data;
-            this.loading = false;
-        } else if (result.error) {
-            console.log("error");
-            console.log(JSON.stringify(result.error));
-            this.setError(result.error);
-        }
+    cancel(event) {
+        this.dispatchEvent(new CustomEvent('cancel'));
+    }
+
+    send(event) {
+
     }
 
     loadRecipientsToBadges(amount) {
@@ -148,12 +158,16 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
         }
     }
 
+    get hiddenRecipients() {
+        let recipientCopy = [...this.recipients];
+        return recipientCopy.splice(this.amountToView, this.recipients.length);
+    }
+
     expandRecipients(event) {
-        console.log('test');
         this.loadRecipientsToBadges(this.recipients.length);
     }
     collapseRecipients(event) {
-        this.loadRecipientsToBadges(3);
+        this.loadRecipientsToBadges(this.amountToView);
     }
 
     setError(error) {

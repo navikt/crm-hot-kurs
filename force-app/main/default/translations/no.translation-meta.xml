@@ -28,4 +28,16 @@
         <label>Skjul mottakere</label>
         <name>EmailPreview_hideAria</name>
     </customLabels>
+    <customLabels>
+        <label>Resterende mottakere</label>
+        <name>EmailPreview_listOfRecipients</name>
+    </customLabels>
+    <customLabels>
+        <label>Feil</label>
+        <name>EmailPreview_error</name>
+    </customLabels>
+    <customLabels>
+        <label>Kunne ikke finne nødvendig data.</label>
+        <name>EmailPreview_queryNoResults</name>
+    </customLabels>
 </Translations>

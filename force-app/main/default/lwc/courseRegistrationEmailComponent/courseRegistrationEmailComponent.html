@@ -1,10 +1,11 @@
 <template>
   <c-course-registration-email-confirmation
-    if:true={sendEmail}
+    if:true={viewConfirmationWindow}
     course-id={recordId}
-    recipients={items}
+    recipients={recipients}
     template-name="courseRegistrationInvitation"
     use-do-not-reply="false"
+    oncancel={closeConfirmation}
   >
   </c-course-registration-email-confirmation>
 
@@ -19,7 +20,7 @@
       <!-- TODO fix button not working on only one or two recipients -->
       <lightning-button
         label="Gå til bekreftelse"
-        onclick={confirmation}
+        onclick={openConfirmation}
         variant="brand"
       >
       </lightning-button>
@@ -28,10 +29,10 @@
     <div class="slds-p-horizontal_small" if:false={emailSent}>
       <!-- LIST OF ADDED USERS -->
 
-      <div class="slds-p-bottom_small" if:true={hasItems}>
+      <div class="slds-p-bottom_small" if:true={hasRecipients}>
         <lightning-pill-container
           variant="bare"
-          items={items}
+          items={recipients}
           onitemremove={handleItemRemove}
         >
         </lightning-pill-container>
@@ -74,7 +75,7 @@
       <lightning-layout class="slds-p-vertical_small" vertical-align="center">
         <!-- GDPR CHECKBOX -->
         <lightning-layout-item class="slds-p-right_x-small" flexibility="grow">
-          <lightning-layout vertical-align="center" if:true={hasItems}>
+          <lightning-layout vertical-align="center" if:true={hasRecipients}>
             <lightning-layout-item flexibility="auto">
               <lightning-input
                 name="checkbox"

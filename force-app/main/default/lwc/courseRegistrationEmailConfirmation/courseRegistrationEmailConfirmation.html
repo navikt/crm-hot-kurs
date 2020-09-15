@@ -16,7 +16,7 @@
             <!-- SUBJECT FIELD -->
             <lightning-layout>
               <lightning-layout-item>
-                <span class="slds-p-right_small">{labels.subjectField}:</span>
+                <div class="slds-text-heading_medium">{subject}</div>
               </lightning-layout-item>
             </lightning-layout>
 
@@ -45,8 +45,7 @@
                 </template>
                 <!-- LOAD MORE  -->
                 <c-email-confirmation-view-more
-                  class="slds-is-absolute"
-                  recipients={recipients}
+                  recipients={hiddenRecipients}
                   amount-to-load={amountToLoad}
                   if:true={amountToLoad}
                   onexpandrecipients={expandRecipients}
@@ -66,17 +65,19 @@
             <lightning-button-group>
               <lightning-button
                 variant="neutral"
+                name="cancel"
                 label={labels.cancelEmail}
                 title={labels.cancelEmail}
-                onclick={handleClick}
+                onclick={cancel}
               >
               </lightning-button>
               <lightning-button
                 variant="brand"
+                name="send"
                 label={labels.sendEmail}
                 icon-name="utility:send"
                 title={labels.sendEmail}
-                onclick={handleClick}
+                onclick={send}
               >
               </lightning-button>
             </lightning-button-group>
@@ -93,7 +94,7 @@
         </lightning-formatted-rich-text>
         <div if:true={error} class="slds-m-top_large">
           <div class="slds-text-heading_large slds-align_absolute-center">
-            {labels.errorTitle}
+            {labels.error}
           </div>
           <div
             class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large"

@@ -13,8 +13,18 @@ public with sharing class EmailPreviewComponent {
 		return mergedHtml;
 	}
 
+	@AuraEnabled(cacheable = true)
+	public static String getEmailSubject( String emailTemplate ) {
+
+		List<EmailTemplate> templates = [SELECT Subject FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
+
+		return templates[0].Subject;
+	}
+
+
 	public static List<String> getSObjectFields( String sObjectType, String html ) {
 
+		// find merge fields {{{field}}}
 		Pattern p = Pattern.compile( '(\\{\\{\\{' + sObjectType + '\\..*?\\}\\}\\})' );
 		Matcher m = p.matcher( html );
 
@@ -29,20 +39,14 @@ public with sharing class EmailPreviewComponent {
 
 	public static Map<String, String> replaceMergeFields( String recordId, String sObjectType, List<String> sObjectFields ) {
 
-		System.debug( 'recordId: ' + recordId );
-		System.debug( 'sObjectType: ' + sObjectType );
-		System.debug( 'sObjectFields: ' + sObjectFields );
-
 		String query = ' SELECT ' + String.join( sObjectFields, ', ' ) +
 		               ' FROM ' + sObjectType +
 		               ' WHERE Id = : recordId' +
 		               ' LIMIT 1';
-
-		System.debug( 'query: ' + query );
 		List<SObject> data = Database.query( query );
-		System.debug( 'data: ' + data );
+
 		if ( data.size() != 1 ) {
-			return null;
+			throw new AuraException( Label.EmailPreview_queryNoResults );
 		}
 
 		Map<String, String> replacingMap = new Map<String, String>();

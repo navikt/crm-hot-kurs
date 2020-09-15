@@ -49,4 +49,25 @@
         <shortDescription>[EmailPreview] Hide Aria</shortDescription>
         <value>Hide recipients</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_listOfRecipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] List of recipients</shortDescription>
+        <value>Remaining recipients</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_queryNoResults</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Query no results</shortDescription>
+        <value>Could not query data.</value>
+    </labels>
 </CustomLabels>
