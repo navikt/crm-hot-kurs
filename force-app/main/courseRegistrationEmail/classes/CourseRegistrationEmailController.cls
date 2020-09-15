@@ -1,5 +1,5 @@
 public with sharing class CourseRegistrationEmailController {
-
+// TODO rename
 	@AuraEnabled
 	public static void sendCourseEmail( Id courseId, String jsonData ) {
 

@@ -16,12 +16,11 @@
   >
     <lightning-button-group slot="actions">
       <lightning-button label="Importer"> </lightning-button>
-      <!-- TODO add disabled={} -->
-      <!-- TODO fix button not working on only one or two recipients -->
       <lightning-button
         label="Gå til bekreftelse"
         onclick={openConfirmation}
         variant="brand"
+        disabled={isConfirmDisabled}
       >
       </lightning-button>
     </lightning-button-group>
@@ -81,6 +80,7 @@
                 name="checkbox"
                 type="checkbox-button"
                 onchange={checkbox}
+                data-target-id="gdprCheckbox"
                 label="Kontaktpersoner er informert om at de lagres som kontakter"
               >
               </lightning-input>

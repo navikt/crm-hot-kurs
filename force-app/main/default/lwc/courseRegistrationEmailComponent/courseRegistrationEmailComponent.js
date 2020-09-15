@@ -1,5 +1,4 @@
 import { LightningElement, track, api } from 'lwc';
-import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 
 export default class CourseRegistrationEmailComponent extends LightningElement {
@@ -44,8 +43,9 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
 
     //send emails method
     openConfirmation() {
-        console.log('test');
-        this.viewConfirmationWindow = true;
+        if (this.recipients.length > 0) {
+            this.viewConfirmationWindow = true;
+        }
     }
 
     checkbox() {
@@ -56,8 +56,8 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         return this.recipients.length > 0;
     }
 
-    get canSend() {
-        return this.recipients.length > 0; // TODO and checkbox is checked
+    get isConfirmDisabled() {
+        return this.recipients.length === 0;
     }
 
     // remove pills

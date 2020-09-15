@@ -1,6 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getEmailPreview from '@salesforce/apex/EmailPreviewComponent.getEmailPreview';
 import getEmailSubject from '@salesforce/apex/EmailPreviewComponent.getEmailSubject';
+import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
 import labels from "./labels";
 
 export default class CourseRegistrationEmailConfirmation extends LightningElement {
