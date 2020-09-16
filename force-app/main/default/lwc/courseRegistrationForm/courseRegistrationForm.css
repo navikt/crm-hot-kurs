@@ -175,6 +175,11 @@
     background-color: #cde7d8;
 }
 
+.alertstripe--feil {
+    border: 1px solid #BA3A26;
+    background-color: #f1d8d4;
+}
+
 .navno-dekorator.alertstripe__ikon {
     margin-right: 0.75rem;
     margin-left: 0.75rem;
