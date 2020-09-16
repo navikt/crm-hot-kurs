@@ -8,6 +8,7 @@ import warningicon from '@salesforce/resourceUrl/warningicon';
 import informationicon from '@salesforce/resourceUrl/informationcircle';
 import chevrondown from '@salesforce/resourceUrl/chevrondown';
 import successicon from '@salesforce/resourceUrl/successicon';
+import erroricon from '@salesforce/resourceUrl/erroricon';
 
 export default class CourseRegistrationForm extends NavigationMixin(
     LightningElement
@@ -25,7 +26,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
     @track message;
 
 
-    @track inputValCode;
+    @track inputValCode = '';
     @track code;
 
     @track dueDate;
@@ -38,6 +39,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
     warningicon = warningicon;
     informationicon = informationicon;
     successicon = successicon;
+    erroricon = erroricon;
     chevrondown = chevrondown;
 
     connectedCallback() {

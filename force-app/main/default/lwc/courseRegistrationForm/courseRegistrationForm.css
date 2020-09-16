@@ -63,6 +63,7 @@
     width: 100vw;
     /*størrelse justert grunnet padding fra elementet over som blokkerer*/
     padding-top: .875rem;
+    /*endrer all tekst*/
     font-size: 1rem;
     line-height: 1.375rem;
     font-weight: 400;
@@ -175,6 +176,11 @@
     background-color: #cde7d8;
 }
 
+.alertstripe--feil {
+    border: 1px solid #BA3A26;
+    background-color: #f1d8d4;
+}
+
 .navno-dekorator.alertstripe__ikon {
     margin-right: 0.75rem;
     margin-left: 0.75rem;
@@ -219,6 +225,17 @@
     color: #fff;
     border-color: #0074df;
     background-color: #0074df;
+}
+
+.btn2 {
+    background-color: #0067c5;
+    border-color: #0067c5;
+    border: 2px solid #0067c5;
+    color: #fff;
+    margin-left: 1em;
+    padding: .5rem;
+    box-shadow: 0 2px 0 #c6c2bf;
+    border-radius: .125em;
 }
 
 .padding-small {
