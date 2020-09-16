@@ -8,7 +8,7 @@ public with sharing class CourseRegistrationController {
 			   insertRegistration( contactId, courseId );*/
 			if ( fields != null ) { insertRegistration( fields, courseId ); }
 
-			return 'Du er påmeldt kurset. Du vil om kort tid motta en bekreftelse på epost';
+			return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
 
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
@@ -45,7 +45,7 @@ public with sharing class CourseRegistrationController {
 
 	@AuraEnabled
 	public static Course__c getCourseFields( String courseId ) {
-		return [SELECT RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c FROM Course__c WHERE Id = : courseId];
+		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c FROM Course__c WHERE Id = : courseId];
 	}
 
 /*
