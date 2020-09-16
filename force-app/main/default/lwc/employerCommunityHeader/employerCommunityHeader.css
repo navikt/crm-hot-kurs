@@ -1,0 +1,145 @@
+.decorator-wrapper .header-z-wrapper {
+    z-index: 1000;
+    position: relative;
+    background-color: white;
+}
+
+.siteheader, .navno-dekorator .head-wrapper {
+    position: relative;
+}
+
+.siteheader, .navno-dekorator .head-wrapper, .navno-dekorator .head-container {
+    z-index: 1000;
+    width: 100%;
+}
+
+.navno-dekorator .site-skiplinks ul {
+    margin: 0;
+}
+
+.navno-dekorator .site-skiplinks li>.visuallyhidden.focusable:focus, .navno-dekorator .site-skiplinks li>.visuallyhidden.focusable:active {
+    height: 2.625rem;
+}
+
+.navno-dekorator .site-skiplinks .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    z-index: 1001;
+}
+
+.navno-dekorator .site-skiplinks .visuallyhidden.focusable:focus, .navno-dekorator .site-skiplinks .visuallyhidden.focusable:active {
+    clip: auto;
+    height: auto;
+    width: auto;
+    padding: 0.8rem;
+    margin: 0;
+    overflow: visible;
+    position: absolute;
+}
+
+.navno-dekorator .site-skiplinks .visuallyhidden.focusable:focus {
+    outline: none;
+    color: white;
+    text-decoration: none;
+    background-color: #254b6d;
+    box-shadow: 0 0 0 2px #254b6d;
+}
+
+.navno-dekorator .siteheader .arbeidsflate {
+    width: 100%;
+    background-color: white;
+    height: 2.75rem;
+    border-bottom: #c6c2bf 1px solid;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__topp-liste-rad {
+    white-space: nowrap;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__liste-element {
+    display: inline-block;
+    outline: 0;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke {
+    display: inline-block;
+    padding: 0.75rem 1rem 0;
+    text-decoration: none;
+    color: black;
+}
+
+.decorator-wrapper .siteheader .arbeidsflate__lenke-inner {
+    height: 100%;
+    display: flex;
+    margin: 0 1rem;
+    align-items: center;
+    border-bottom: transparent 3px solid;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke:focus, .navno-dekorator .siteheader .arbeidsflate__lenke:active {
+    outline: 3px solid #254b6d;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke-inner {
+    padding-bottom: 0.4rem;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke-inner:hover {
+    border-bottom: #0067c5 3px solid;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke-inner--active {
+    border-bottom: #0067c5 3px solid;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke-inner--active p {
+    text-shadow: 0 0 0.5px black;
+}
+
+.navno-dekorator .siteheader .arbeidsflate__lenke-inner--active:hover {
+    border-bottom: #0067c5 3px solid;
+}
+
+.decorator-wrapper .typo-normal {
+    margin: 0;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    font-weight: 400;
+}
+
+.typo-normal {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+template {
+    margin: 0;
+}
+
+.decorator-wrapper .meny-bakgrunn--active {
+    visibility: visible;
+    background-color: rgba(50, 65, 79, 0.8);
+}
+
+.decorator-wrapper .meny-bakgrunn {
+    visibility: hidden;
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition-duration: 0.35s;
+    transition-timing-function: ease-in;
+    transition-property: background-color, visibility;
+}

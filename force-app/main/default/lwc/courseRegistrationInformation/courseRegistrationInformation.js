@@ -1,5 +1,4 @@
 import { LightningElement, api } from 'lwc';
-
 import calendaricon from '@salesforce/resourceUrl/calendaricon';
 import flagicon from '@salesforce/resourceUrl/flagicon';
 import mapicon from '@salesforce/resourceUrl/mapicon';

@@ -6,14 +6,14 @@ import getCourseFields from "@salesforce/apex/CourseRegistrationController.getCo
 
 import warningicon from '@salesforce/resourceUrl/warningicon';
 import informationicon from '@salesforce/resourceUrl/informationcircle';
-import chevronleft from '@salesforce/resourceUrl/chevronleft';
-
-import { validateData } from "./helper";
-
+import chevrondown from '@salesforce/resourceUrl/chevrondown';
+import successicon from '@salesforce/resourceUrl/successicon';
 
 export default class CourseRegistrationForm extends NavigationMixin(
     LightningElement
 ) {
+    @track courseId;
+
     @track theRecord = {};
     @track output;
 
@@ -24,12 +24,12 @@ export default class CourseRegistrationForm extends NavigationMixin(
     @track errorMessage;
     @track message;
 
+
     @track inputValCode;
     @track code;
 
     @track dueDate;
-
-    @track courseId;
+    @track title;
 
     @track showValidationInput = false;
     parameters = {};
@@ -37,19 +37,19 @@ export default class CourseRegistrationForm extends NavigationMixin(
     //icons
     warningicon = warningicon;
     informationicon = informationicon;
-    chevronleft = chevronleft;
+    successicon = successicon;
+    chevrondown = chevrondown;
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
         this.courseId = this.parameters.id;
 
 
-        //this.checkValidationCode();
-
         getCourseFields({ courseId: this.courseId }).then(
             result => {
                 if (result) {
                     this.code = result.InvitationCode__c;
+                    this.title = result.Name;
 
                     this.dueDate = result.RegistrationDeadline__c;
                     var registrationDeadline = new Date(this.dueDate);
@@ -65,6 +65,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
                     if (this.code != undefined) {
                         this.showForm = false;
                         this.showValidationInput = true;
+
                     }
 
                 } else {
@@ -74,19 +75,6 @@ export default class CourseRegistrationForm extends NavigationMixin(
         );
 
     }
-
-    /* checkValidationCode() {
-         getInvitationCode({ courseId: this.courseId }).then(
-             result => {
-                 if (result) {
-                     this.showValidationInput = true;
-                     this.code = result;
-                 } else {
-                     //this.showForm = true;
-                 }
-             }
-         );
-     }*/
 
     getQueryParameters() {
         var params = {};
@@ -106,11 +94,6 @@ export default class CourseRegistrationForm extends NavigationMixin(
     handleChange(event) {
         this.theRecord[event.target.name] = event.target.value;
         this.showError = false;
-
-        /*  if (event.target.checkValidity()) {
-              event.target.reportValidity();
-          }*/
-
     }
 
     handleChange2(event) {
