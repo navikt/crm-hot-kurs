@@ -1,39 +1,39 @@
 <template>
-    <span class="metainfo">
-        <div class="panel metainfo__panel">
-            <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
-                <div class="metainfo__egenskap">
-                    <img class="metainfo__ikon" src={calendaricon}></img>
-                    <p class="typo-element metainfo__infoTekst"> Når:
-                        <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
-                        </lightning-output-field>
-                    </p>
-                </div>
-                <div class="metainfo__egenskap">
-                    <img class="metainfo__ikon" src={flagicon}></img>
-                    <p class="typo-element metainfo__infoTekst">Påmeldingsfrist:
-                        <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
-                        </lightning-output-field>
-                    </p>
-                </div>
+    <!--<span class="metainfo"> -->
+    <div class="panel metainfo__panel">
+        <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
+            <div class="metainfo__egenskap">
+                <img class="metainfo__ikon" src={calendaricon}></img>
+                <p class="typo-element metainfo__infoTekst"> Når:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
+                    </lightning-output-field>
+                </p>
+            </div>
+            <div class="metainfo__egenskap">
+                <img class="metainfo__ikon" src={flagicon}></img>
+                <p class="typo-element metainfo__infoTekst">Påmeldingsfrist:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
+                    </lightning-output-field>
+                </p>
+            </div>
 
-                <div class="metainfo__egenskap">
-                    <img class="metainfo__ikon" src={mapicon}></img>
-                    <p class="typo-element metainfo__infoTekst">
-                        Sted:
-                        <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
-                        </lightning-output-field>
-                    </p>
-                </div>
-                <div class="metainfo__egenskap">
-                    <img class="metainfo__ikon" src={staricon}></img>
-                    <p class="typo-element metainfo__infoTekst">
-                        Type kurs:
-                        <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
-                        </lightning-output-field>
-                    </p>
-                </div>
-            </lightning-record-view-form>
-        </div>
-    </span>
+            <div class="metainfo__egenskap">
+                <img class="metainfo__ikon" src={mapicon}></img>
+                <p class="typo-element metainfo__infoTekst">
+                    Sted:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
+                    </lightning-output-field>
+                </p>
+            </div>
+            <div class="metainfo__egenskap">
+                <img class="metainfo__ikon" src={staricon}></img>
+                <p class="typo-element metainfo__infoTekst">
+                    Type kurs:
+                    <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
+                    </lightning-output-field>
+                </p>
+            </div>
+        </lightning-record-view-form>
+    </div>
+    <!-- </span> -->
 </template>

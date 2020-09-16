@@ -2,24 +2,20 @@
     <div class="app">
         <div class="detaljside">
             <header class="detaljside__overskrift">
-                <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
-                    <h1 class="typo-sidetittel detaljside__kurstittel">Veien til jobb - Aktiv ungdom
-                        <!--<lightning-output-field field-name="Name" variant="label-hidden"
-                            field-class="typo-sidetittel detaljside__kurstittel tst">
-                        </lightning-output-field>-->
-                    </h1>
-                </lightning-record-view-form>
+                <h1 class="typo-sidetittel detaljside__kurstittel"> {title} </h1>
             </header>
 
             <main class="detaljside__innhold">
+
+                <!--============================INFROMATION BOX====================================-->
                 <span class="metainfo">
                     <c-course-registration-information course-id={courseId} class="">
                     </c-course-registration-information>
                 </span>
+                <!--========================================================-->
+
                 <span class="omKurset">
-
                     <div class="panel omKurset__panel">
-
                         <!--===========================VALIDERING===============================-->
                         <form if:true={showValidationInput}>
                             <h2 class="omKurset__overskrift">Kun inviterte
@@ -27,7 +23,6 @@
                                 melde
                                 seg på aktiviteten</h2>
 
-                            <!-- <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"> -->
                             <div class="inline">
                                 <lightning-input type="text" class="tolk-skjema-input slds-p-around_medium"
                                     name={inputValCode} value={inputValCode} onchange={handleChange2}
@@ -115,8 +110,8 @@
                                         <p class="typo-element">Fylke</p>
                                     </label>
                                     <div class="selectContainer input--fullbredde">
-                                        <select class="skjemaelement__input input--fullbredde" id="placeholder"
-                                            name="placeholder" onchange={handleChange}>
+                                        <select class="skjemaelement__input" id="placeholder" name="placeholder"
+                                            onchange={handleChange}><img src={chevrondown}>
                                             <option value></option>
                                             <option value="Oslo">Oslo</option>
                                         </select>
@@ -137,8 +132,7 @@
                                 </p>
                             </div>
                             <div if:true={showError}>
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                                    style="padding:1rem;">
+                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel" style="">
                                     <img class="navno-dekorator alertstripe__ikon" src={warningicon}
                                         alt="advarsel-ikon">
                                     <p class="typo-normal">Du må fylle ut alle feltene for
@@ -158,29 +152,23 @@
 
                         <!--======================== CONFIRMATION PAGE =============================================-->
                         <div if:true={showConfirmation} class="midtstill">
-                            </br>
-                            <h1>{message}</h1>
+
+                            <div class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess">
+                                <img class="navno-dekorator alertstripe__ikon" src={successicon} alt="suksess-ikon">
+                                <p class="typo-normal">{message}
+                                </p>
+                            </div>
                         </div>
                         <!--=========================================================================================-->
                         <div class="omKurset__tilbakelenke">
                             <a class="lenke" href="https://arbeidsgiver.nav.no/kursoversikt/"
                                 title="Tilbake til kursoversikten">
-                                <i class="chevronboks chevron--venstre">&lt;</i>
+                                <i class="chevronboks chevron--venstre"><img class="tst" src={chevrondown}></i>
                                 Tilbake
                                 til
                                 kursoversikten</a>
                         </div>
                     </div>
-
-
-
-                    <!--============================INFROMATION BOX=================================================-->
-                    <!--<lightning-layout-item padding="around-small" size="3" flexibility="grow">
-                    <c-course-registration-information course-id={courseId} class="">
-                    </c-course-registration-information>
-                    </lightning-layout-item>-->
-                    <!--============================================================================================-->
-
                 </span>
             </main>
         </div>
