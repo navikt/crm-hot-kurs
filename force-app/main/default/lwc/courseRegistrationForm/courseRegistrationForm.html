@@ -9,7 +9,7 @@
 
                 <!--============================INFROMATION BOX====================================-->
                 <span class="metainfo">
-                    <c-course-registration-information course-id={courseId} class="">
+                    <c-course-registration-information course-id={courseId}>
                     </c-course-registration-information>
                 </span>
                 <!--========================================================-->
@@ -18,29 +18,28 @@
                     <div class="panel omKurset__panel">
                         <!--===========================VALIDERING===============================-->
                         <form if:true={showValidationInput}>
-                            <h2 class="omKurset__overskrift">Kun inviterte
+                            <h2 style="font-size: 1.2rem;" class="omKurset__overskrift">Kun inviterte
                                 kan
                                 melde
                                 seg på aktiviteten</h2>
 
                             <div class="inline">
-                                <lightning-input type="text" class="tolk-skjema-input slds-p-around_medium"
-                                    name={inputValCode} value={inputValCode} onchange={handleChange2}
-                                    label="Tast inn din tilgangskode" required>
-                                </lightning-input>
+                                <label for="invCode" class="skjemaelement__label">Tast inn din tilgangskode</label>
+                                <input type="text" class="skjemaelement__input" id="invCode" name={inputValCode}
+                                    value={inputValCode} onchange={handleChange2} required>
 
-                                <lightning-button title="Vis aktivitet" class="slds-p-around_x-large" type="submit"
-                                    variant="brand" label="Vis aktivitet" onclick={validateCode}>
-                                </lightning-button>
-
+                                <button title="Vis aktivitet" class="btn2" type="submit" onclick={validateCode}>Vis
+                                    aktivitet
+                                </button>
                             </div>
+                            <br>
                         </form>
                         <!--======================================================================================-->
 
                         <!--======== COURSEID DOES NOT EXIST ===========-->
                         <div if:false={courseId} class="">
                             <div class="navno-dekorator alertstripe navno-dekorator alertstripe--feil">
-                                <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="advarsel-ikon">
+                                <img class="navno-dekorator alertstripe__ikon" src={erroricon} alt="advarsel-ikon">
                                 <div class="typo-normal alertstripe__tekst">Dette kurset er ikke tilgjengelig for
                                     øyeblikket, vennligst prøv igjen senere
                                 </div>
@@ -152,7 +151,6 @@
 
                         <!--======================== CONFIRMATION PAGE =============================================-->
                         <div if:true={showConfirmation} class="midtstill">
-
                             <div class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess">
                                 <img class="navno-dekorator alertstripe__ikon" src={successicon} alt="suksess-ikon">
                                 <p class="typo-normal">{message}
