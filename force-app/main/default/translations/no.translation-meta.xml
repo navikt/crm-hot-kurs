@@ -40,4 +40,32 @@
         <label>Kunne ikke finne nødvendig data.</label>
         <name>EmailPreview_queryNoResults</name>
     </customLabels>
+    <customLabels>
+        <label>Navn</label>
+        <name>EmailPreview_name</name>
+    </customLabels>
+    <customLabels>
+        <label>E-post</label>
+        <name>EmailPreview_email</name>
+    </customLabels>
+    <customLabels>
+        <label>Vennligst skriv en gyldig e-post</label>
+        <name>EmailPreview_emailValidation</name>
+    </customLabels>
+    <customLabels>
+        <label>Legg til</label>
+        <name>EmailPreview_addRecipient</name>
+    </customLabels>
+    <customLabels>
+        <label>Bekreft</label>
+        <name>EmailPreview_goToConfirmation</name>
+    </customLabels>
+    <customLabels>
+        <label>Importer</label>
+        <name>EmailPreview_import</name>
+    </customLabels>
+    <customLabels>
+        <label>Send Invitasjon</label>
+        <name>EmailPreview_title</name>
+    </customLabels>
 </Translations>

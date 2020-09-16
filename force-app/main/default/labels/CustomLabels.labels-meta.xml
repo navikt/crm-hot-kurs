@@ -70,4 +70,53 @@
         <shortDescription>[EmailPreview] Query no results</shortDescription>
         <value>Could not query data.</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_emailValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Email Validation</shortDescription>
+        <value>Please type a valid email</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_addRecipient</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Add Recipient</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_goToConfirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Go to confirmation</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_import</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Import</shortDescription>
+        <value>Import</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Title</shortDescription>
+        <value>Send Invitation</value>
+    </labels>
 </CustomLabels>

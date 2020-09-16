@@ -11,13 +11,13 @@
 
   <lightning-card
     variant="Narrow"
-    title="Send invitasjon"
+    title={labels.title}
     icon-name="standard:email_chatter"
   >
     <lightning-button-group slot="actions">
-      <lightning-button label="Importer"> </lightning-button>
+      <lightning-button label={labels.importBtn}> </lightning-button>
       <lightning-button
-        label="Gå til bekreftelse"
+        label={labels.goToConfirmation}
         onclick={openConfirmation}
         variant="brand"
         disabled={isConfirmDisabled}
@@ -38,74 +38,40 @@
       </div>
       <!-- TODO fix padding -->
 
-      <!-- NAME -->
-      <lightning-layout>
+      <lightning-layout multiple-rows>
+        <!-- NAME -->
         <lightning-layout-item class="slds-p-right_x-small" size="6">
           <lightning-input
             name="firstName"
             type="text"
-            label="Fornavn"
+            label={labels.name}
             required
           ></lightning-input>
         </lightning-layout-item>
 
         <lightning-layout-item class="slds-p-left_x-small" size="6">
+          <!-- EMAIL -->
           <lightning-input
-            name="lastName"
+            name="email"
             type="text"
-            label="Etternavn"
+            pattern={emailRegex}
+            message-when-pattern-mismatch={labels.emailValidation}
+            label={labels.email}
             required
-          ></lightning-input>
+          >
+          </lightning-input>
         </lightning-layout-item>
-      </lightning-layout>
-
-      <!-- EMAIL -->
-      <lightning-input
-        class="slds-p-vertical_small"
-        name="email"
-        type="text"
-        pattern={emailRegex}
-        label="E-post"
-        required
-      >
-      </lightning-input>
-
-      <!-- GDPR AND ADD -->
-      <lightning-layout class="slds-p-vertical_small" vertical-align="center">
-        <!-- GDPR CHECKBOX -->
-        <lightning-layout-item class="slds-p-right_x-small" flexibility="grow">
-          <lightning-layout vertical-align="center" if:true={hasRecipients}>
-            <lightning-layout-item flexibility="auto">
-              <lightning-input
-                name="checkbox"
-                type="checkbox-button"
-                onchange={checkbox}
-                data-target-id="gdprCheckbox"
-                label="Kontaktpersoner er informert om at de lagres som kontakter"
-              >
-              </lightning-input>
-            </lightning-layout-item>
-            <lightning-layout-item
-              flexibility="auto"
-              padding="horizontal-small"
-              class="slds-p-bottom_xx-small"
-            >
-              <span
-                >Kontaktpersoner er informert om at de lagres som kontakter
-              </span>
-            </lightning-layout-item>
-          </lightning-layout>
-        </lightning-layout-item>
-
-        <!-- ADD PERSON -->
-        <lightning-layout-item flexibility="no-shrink">
-          <lightning-button
-            variant="brand-outline"
-            label="Legg til"
-            class="slds-p-bottom_xx-small"
+        <lightning-layout-item
+          class="slds-p-vertical_large"
+          flexibility="grow"
+          size="12"
+        >
+          <button
+            class="slds-button slds-button_neutral slds-button_stretch"
             onclick={addEmail}
           >
-          </lightning-button>
+            {labels.addRecipient}
+          </button>
         </lightning-layout-item>
       </lightning-layout>
     </div>
