@@ -184,5 +184,4 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
             this.errorMsg = JSON.stringify(error);
         }
     }
-
 }

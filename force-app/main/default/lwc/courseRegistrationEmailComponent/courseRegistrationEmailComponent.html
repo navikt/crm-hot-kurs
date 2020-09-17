@@ -63,6 +63,8 @@
           <lightning-input
             name="email"
             type="text"
+            data-target-id="email"
+            oncommit={makeLowerCase}
             pattern={emailRegex}
             message-when-pattern-mismatch={labels.emailValidation}
             label={labels.email}
