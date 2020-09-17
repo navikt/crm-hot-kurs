@@ -27,7 +27,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         if (emailIsUnique) {
 
             pill.type = 'avatar';
-            pill.label = pill.firstName + ' ' + pill.lastName;
+            pill.label = pill.firstName;
             pill.name = pill.email;
             pill.fallbackIconName = 'standard:user';
             pill.variant = 'circle';
@@ -36,6 +36,12 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
             this.emails.push(pill.email);
 
             emptyInputFields(this.template.querySelectorAll("lightning-input"));
+        }
+    }
+
+    inputData(event) {
+        if (event.keyCode === 13) {
+            this.addEmail(undefined);
         }
     }
 

@@ -68,4 +68,8 @@
         <label>Send Invitasjon</label>
         <name>EmailPreview_title</name>
     </customLabels>
+    <customLabels>
+        <label>Trykk enter for å legge</label>
+        <name>EmailPreview_pressEnterToAdd</name>
+    </customLabels>
 </Translations>

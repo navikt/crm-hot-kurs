@@ -99,6 +99,13 @@
         <value>Add</value>
     </labels>
     <labels>
+        <fullName>EmailPreview_pressEnterToAdd</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Press enter to add</shortDescription>
+        <value>Press enter to add</value>
+    </labels>
+    <labels>
         <fullName>EmailPreview_goToConfirmation</fullName>
         <language>en_US</language>
         <protected>false</protected>
