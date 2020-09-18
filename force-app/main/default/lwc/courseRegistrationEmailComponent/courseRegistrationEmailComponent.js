@@ -4,7 +4,7 @@ import labels from "./labels";
 
 export default class CourseRegistrationEmailComponent extends LightningElement {
 
-    @api recordId;
+    @api recordId = 'a0A1j000003dIDEEA2';
 
     @track recipients = []; // pill container
     @track emails = [];
