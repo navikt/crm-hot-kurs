@@ -1,7 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 
-import getEmailPreview from '@salesforce/apex/EmailPreviewComponent.getEmailPreview';
-import getEmailSubject from '@salesforce/apex/EmailPreviewComponent.getEmailSubject';
+import getEmailPreview from '@salesforce/apex/EmailConfirmationModalController.getEmailPreview';
+import getEmailSubject from '@salesforce/apex/EmailConfirmationModalController.getEmailSubject';
 import sendCourseEmail from "@salesforce/apex/EmailConfirmationModalController.sendCourseEmail";
 
 import labels from "./labels";

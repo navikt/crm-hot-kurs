@@ -1,9 +1,12 @@
 @isTest
 private without sharing class EmailConfirmationModalControllerTest {
 
+	@testSetup
 	private static void setup() {
 		EmailTemplate et = new EmailTemplate( DeveloperName = 'courseRegistrationInvitation', Name = 'courseRegistrationInvitation', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		EmailTemplate et2 = new EmailTemplate( DeveloperName = 'MY_UNIQUE_TEMPLATE', Name = 'MY_UNIQUE_TEMPLATE', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
 		Database.insert( et, false );
+		Database.insert( et2, false );
 	}
 
 	@isTest
@@ -69,4 +72,21 @@ private without sharing class EmailConfirmationModalControllerTest {
 		emails = [SELECT Id FROM EmailMessage];
 		System.assertEquals( 6, emails.size(), 'six emails sent, six EmailMessages created' );
 	}
+
+	@isTest
+	private static void testGetEmailPreview() {
+
+		DateTime d = Date.today().addDays( 1 );
+		Course__c course = new Course__c( Active__c = true, Name = 'mitt kurs', MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
+		insert course;
+
+		Test.StartTest();
+		String actual = EmailConfirmationModalController.getEmailPreview( course.Id, 'MY_UNIQUE_TEMPLATE' );
+		Test.StopTest();
+
+		String expected = 'Hei {{{Recipient.Name}}}! Velkommen til mitt kurs.';
+		System.assertEquals( expected, actual.stripHtmlTags(), 'should have merged fields and given email template' );
+	}
+
+	// TODO test get subject
 }

@@ -1,27 +1,4 @@
-public with sharing class EmailPreviewComponent {
-
-	// TODO rename
-	@AuraEnabled(cacheable = true)
-	public static String getEmailPreview( String recordId, String emailTemplate ) {
-
-		List<EmailTemplate> templates = [SELECT Id, HtmlValue FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
-		String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<String> sObjectFields = getSObjectFields( sObjectType, templates[0].HtmlValue );
-		Map<String, String> replacedMergeFields = replaceMergeFields( recordId, sObjectType, sObjectFields );
-		String mergedHtml = mergeHtml( templates[0].HtmlValue, replacedMergeFields );
-
-		return mergedHtml;
-	}
-
-	@AuraEnabled(cacheable = true)
-	public static String getEmailSubject( String emailTemplate ) {
-
-		List<EmailTemplate> templates = [SELECT Subject FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
-
-		return templates[0].Subject;
-	}
-
-
+public with sharing class EmailConfirmationModalHelperPreview {
 	public static List<String> getSObjectFields( String sObjectType, String html ) {
 
 		// find merge fields {{{field}}}
