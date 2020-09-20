@@ -64,7 +64,6 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
     }
 
     toast(title, message, messageData, variant, mode) {
-
         const evt = new ShowToastEvent({
             title: title,
             message: message,
@@ -77,7 +76,6 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
 
     openContact(event) {
         let contactId = event.target.dataset.targetId;
-        console.log('contactId: ' + contactId);
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
@@ -92,6 +90,7 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
         if (this.recipients.length > 0) {
             this.viewConfirmationWindow = true;
         }
+        // todo add gdpr
     }
 
     restart() {
@@ -99,7 +98,6 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
         this.recipients = [];
         this.emails = [];
         this.contacts = [];
-
     }
 
     makeLowerCase(event) {
