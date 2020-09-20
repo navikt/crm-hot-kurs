@@ -8,6 +8,7 @@ import title from "@salesforce/label/c.EmailPreview_title";
 import pressEnterToAdd from "@salesforce/label/c.EmailPreview_pressEnterToAdd";
 import emailSent from "@salesforce/label/c.EmailPreview_emailSent";
 import contactsCreated from "@salesforce/label/c.EmailPreview_contactsCreated";
+import close from "@salesforce/label/c.EmailPreview_close";
 
 export default {
     name,
@@ -20,4 +21,5 @@ export default {
     pressEnterToAdd,
     emailSent,
     contactsCreated,
+    close,
 }

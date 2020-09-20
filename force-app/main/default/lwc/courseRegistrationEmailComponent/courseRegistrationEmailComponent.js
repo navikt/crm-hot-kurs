@@ -57,20 +57,20 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
     emailSuccess(event) {
         this.emailSent = true;
         this.viewConfirmationWindow = false;
-        this.contacts = this.updateContacts(event.detail);
-        // TODO fix contacts
+        this.contacts = event.detail;
 
     }
 
-    updateContacts(contacts) {
-        contacts.forEach(con => {
-            con.href = '/' + con.Id;
-            con.type = 'avatar';
-            con.fallbackIconName = 'standard:user';
-            con.variant = 'circle';
-            con.label = con.FirstName + ' ' + con.LastName;
+    openContact(event) {
+        let contactId = event.target.dataset.targetId;
+        console.log('contactId: ' + contactId);
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: contactId,
+                actionName: 'view'
+            },
         });
-        return contacts;
     }
 
     //send emails method
@@ -78,6 +78,14 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
         if (this.recipients.length > 0) {
             this.viewConfirmationWindow = true;
         }
+    }
+
+    restart() {
+        this.emailSent = false;
+        this.recipients = [];
+        this.emails = [];
+        this.contacts = [];
+
     }
 
     makeLowerCase(event) {
@@ -101,19 +109,5 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
         const index = event.detail.index;
         this.recipients.splice(index, 1);
         this.emails.splice(index, 1);
-    }
-
-    generateUrl(contactId) {
-        // let contactId = event.target.dataset.targetId;
-
-        this[NavigationMixin.GenerateUrl]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: contactId,
-                actionName: 'view',
-            }
-        }).then(url => {
-            return url;
-        });
     }
 }

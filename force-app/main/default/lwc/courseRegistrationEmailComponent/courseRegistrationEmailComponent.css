@@ -3,3 +3,7 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+.contact:hover {
+    background-color: #ebebeb;
+}

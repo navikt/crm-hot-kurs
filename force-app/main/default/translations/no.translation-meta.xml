@@ -80,4 +80,8 @@
         <label>Invitasjoner sendt</label>
         <name>EmailPreview_contactsCreated</name>
     </customLabels>
+    <customLabels>
+        <label>Lukk</label>
+        <name>EmailPreview_close</name>
+    </customLabels>
 </Translations>

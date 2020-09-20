@@ -16,7 +16,7 @@
     title={labels.title}
     icon-name="standard:email_chatter"
   >
-    <lightning-button-group slot="actions">
+    <lightning-button-group slot="actions" if:false={emailSent}>
       <!-- ############## IMPORT ############## -->
       <!-- #################################### -->
       <lightning-button label={labels.importBtn}> </lightning-button>
@@ -29,6 +29,12 @@
         variant="brand"
         disabled={isConfirmDisabled}
       >
+      </lightning-button>
+    </lightning-button-group>
+    <lightning-button-group slot="actions" if:true={emailSent}>
+      <!-- ############## CONFIRM ############# -->
+      <!-- #################################### -->
+      <lightning-button label={labels.close} onclick={restart}>
       </lightning-button>
     </lightning-button-group>
 
@@ -100,27 +106,45 @@
     <!-- ############## SUCCESS ############# -->
     <!-- #################################### -->
     <div
-      class="slds-var-p-top_xx-small slds-var-p-bottom_medium slds-p-horizontal_medium"
+      class="slds-var-p-top_x-small slds-var-p-bottom_medium slds-p-horizontal_medium"
       if:true={emailSent}
     >
-      <span>
+      <span class="slds-align_absolute-center slds-m-bottom_small">
         <lightning-icon
           icon-name="utility:success"
           alternative-text={labels.emailSent}
-          class="slds-float_left slds-p-top_xx-small"
+          class="slds-float_left"
           size="x-small"
           title={labels.emailSent}
         ></lightning-icon>
-        <div class="slds-p-left_large slds-text-heading_medium">
+        <div class="slds-p-left_small slds-text-heading_medium">
           {labels.contactsCreated}
         </div>
       </span>
 
-      <div class="slds-var-p-top_small">
-        <lightning-pill-container variant="bare" items={contacts}>
-        </lightning-pill-container>
-      </div>
-      <!-- TODO remove X -->
+      <lightning-layout horizontal-align="center" multiple-rows>
+        <template
+          if:true={contacts}
+          for:each={contacts}
+          for:item="con"
+          for:index="index"
+        >
+          <lightning-layout-item
+            class="slds-m-right_xx-small slds-m-top_medium"
+            key={con.Id}
+            flexibility="no-shrink"
+          >
+            <span
+              class="border contact slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-link slds-p-around_xx-small"
+              key={con.Id}
+              data-target-id={con.Id}
+              onclick={openContact}
+            >
+              {con.FirstName} {con.LastName}
+            </span>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
     </div>
   </lightning-card>
 </template>

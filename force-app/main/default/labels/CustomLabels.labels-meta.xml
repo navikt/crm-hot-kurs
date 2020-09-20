@@ -140,4 +140,11 @@
         <shortDescription>[EmailPreview] Contacts created</shortDescription>
         <value>Invitations sent</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Close</shortDescription>
+        <value>Close</value>
+    </labels>
 </CustomLabels>
