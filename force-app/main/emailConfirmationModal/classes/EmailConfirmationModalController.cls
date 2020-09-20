@@ -1,6 +1,5 @@
 public with sharing class EmailConfirmationModalController {
 
-	// TODO rename
 	@AuraEnabled
 	public static List<Contact> sendEmail( String recordId, String recipientsJson, String template, Boolean useDoNotReply ) {
 
