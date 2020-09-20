@@ -2,7 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 
 import getEmailPreview from '@salesforce/apex/EmailConfirmationModalController.getEmailPreview';
 import getEmailSubject from '@salesforce/apex/EmailConfirmationModalController.getEmailSubject';
-import sendCourseEmail from "@salesforce/apex/EmailConfirmationModalController.sendCourseEmail";
+import sendEmail from "@salesforce/apex/EmailConfirmationModalController.sendEmail";
 
 import labels from "./labels";
 
@@ -55,7 +55,7 @@ export default class EmailConfirmationModal extends LightningElement {
     send(event) {
         this.loading = true;
         this.sendingEmail = true;
-        sendCourseEmail({
+        sendEmail({
             recordId: this.courseId,
             recipientsJson: JSON.stringify(this.recipients),
             template: this.templateName,

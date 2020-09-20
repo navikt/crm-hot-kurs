@@ -2,7 +2,7 @@ public with sharing class EmailConfirmationModalController {
 
 	// TODO rename
 	@AuraEnabled
-	public static List<Contact> sendCourseEmail( Id recordId, String recipientsJson, String template, Boolean useDoNotReply ) {
+	public static List<Contact> sendEmail( String recordId, String recipientsJson, String template, Boolean useDoNotReply ) {
 
 		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( recipientsJson, List<EmailConfirmationModalModel>.class );
 
