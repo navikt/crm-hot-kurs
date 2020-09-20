@@ -56,8 +56,10 @@ export default class EmailConfirmationModal extends LightningElement {
         this.loading = true;
         this.sendingEmail = true;
         sendCourseEmail({
-            courseId: this.courseId,
-            recipientsJson: JSON.stringify(this.recipients)
+            recordId: this.courseId,
+            recipientsJson: JSON.stringify(this.recipients),
+            template: this.templateName,
+            useDoNotReply: this.useDoNotReply
         }).then(result => {
             this.dispatchEvent(new CustomEvent('success', { detail: result }));
             this.sendingEmail = false;

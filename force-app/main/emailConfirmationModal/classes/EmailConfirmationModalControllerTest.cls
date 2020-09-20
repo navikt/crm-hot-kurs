@@ -27,7 +27,7 @@ private without sharing class EmailConfirmationModalControllerTest {
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
 		Test.StartTest();
-		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c];
@@ -57,10 +57,10 @@ private without sharing class EmailConfirmationModalControllerTest {
 		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
-		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
 
 		Test.StartTest();
-		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c];

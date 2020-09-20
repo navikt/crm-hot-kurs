@@ -179,7 +179,7 @@ private without sharing class EmailConfirmationModalHelperTest {
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
 		Test.StartTest();
-		EmailConfirmationModalHelper.sendEmailToCourseRecipients( registrations, contacts );
+		EmailConfirmationModalHelper.sendEmailToCourseRecipients( registrations, contacts, 'courseRegistrationInvitation', true );
 		Test.StopTest();
 
 		emails = [SELECT Id FROM EmailMessage];
