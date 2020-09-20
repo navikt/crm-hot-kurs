@@ -5,7 +5,6 @@ public with sharing class EmailConfirmationModalHelper {
 		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
 
 		for ( EmailConfirmationModalModel recipient : recipients ) {
-			System.debug( 'recipient: ' + recipient );
 			List<String> name = recipient.fullName.split( ' ' );
 			String lastName = name[name.size() - 1];
 			String firstName;

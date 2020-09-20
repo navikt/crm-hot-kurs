@@ -28,12 +28,9 @@ public with sharing class EmailConfirmationModalHelperPreview {
 
 		Map<String, String> replacingMap = new Map<String, String>();
 		for ( String sObjectField : sObjectFields ) {
-			System.debug( 'sObjectField: ' + sObjectField );
 			String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
-			System.debug( 'key: ' + key );
 			String value = String.valueOf( data[0].get( sObjectField ) );
 
-			System.debug( 'value: ' + value );
 			replacingMap.put( key, value );
 		}
 
