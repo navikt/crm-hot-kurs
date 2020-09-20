@@ -6,6 +6,8 @@ import goToConfirmation from "@salesforce/label/c.EmailPreview_goToConfirmation"
 import importBtn from "@salesforce/label/c.EmailPreview_import";
 import title from "@salesforce/label/c.EmailPreview_title";
 import pressEnterToAdd from "@salesforce/label/c.EmailPreview_pressEnterToAdd";
+import emailSent from "@salesforce/label/c.EmailPreview_emailSent";
+import contactsCreated from "@salesforce/label/c.EmailPreview_contactsCreated";
 
 export default {
     name,
@@ -16,4 +18,6 @@ export default {
     importBtn,
     title,
     pressEnterToAdd,
+    emailSent,
+    contactsCreated,
 }

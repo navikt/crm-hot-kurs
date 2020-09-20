@@ -72,4 +72,12 @@
         <label>Trykk enter for å legge</label>
         <name>EmailPreview_pressEnterToAdd</name>
     </customLabels>
+    <customLabels>
+        <label>Suksess</label>
+        <name>EmailPreview_emailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Invitasjoner sendt</label>
+        <name>EmailPreview_contactsCreated</name>
+    </customLabels>
 </Translations>

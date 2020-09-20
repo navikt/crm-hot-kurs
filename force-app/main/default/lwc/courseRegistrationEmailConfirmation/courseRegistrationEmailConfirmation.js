@@ -7,21 +7,21 @@ import labels from "./labels";
 export default class CourseRegistrationEmailConfirmation extends LightningElement {
 
     @api courseId;
-    @api recipients = [];
     @api templateName;
     @api useDoNotReply;
 
+    @api recipients = [];
+    @track recipientBadges = [];
+
     @track htmlEmail;
     @track subject = labels.subjectField;
-    @track recipientBadges = [];
 
     @track loading = true;
     @track error = false;
-    @track labels = labels;
     @track errorMsg;
+    @track labels = labels;
 
     @track amountToLoad;
-
     amountToView = 3;
 
     connectedCallback() {
@@ -29,7 +29,6 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
             this.htmlEmail = data;
             this.loading = false;
         }).catch(error => {
-            console.log('JSON.stringify(error): ' + JSON.stringify(error));
             this.setError(error);
         });
 
@@ -50,14 +49,26 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
     }
 
     send(event) {
-
+        this.loading = true;
+        sendCourseEmail({
+            courseId: this.courseId,
+            recipientsJson: JSON.stringify(this.recipients)
+        }).then(result => {
+            this.dispatchEvent(new CustomEvent('success', { detail: result }));
+        }).catch(error => {
+            this.loading = false;
+            this.htmlEmail = '';
+            this.error = true;
+            this.setError(error);
+            this.dispatchEvent(new CustomEvent('error'), { error: error });
+        });
     }
 
     loadRecipientsToBadges(amount) {
         this.recipientBadges = [];
         for (var i = 0; i < amount; i++) {
             let recipient = this.recipients[i];
-            this.recipientBadges.push({ "id": recipient.name, "label": recipient.label });
+            this.recipientBadges.push({ "id": recipient.email, "label": recipient.fullName });
         }
     }
 

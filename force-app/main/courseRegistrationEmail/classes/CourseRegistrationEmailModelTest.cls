@@ -4,20 +4,17 @@ public without sharing class CourseRegistrationEmailModelTest {
 	public static String jsonData = '[' +
 
 	                                '    {' +
-	                                '        "firstName": "Ola",' +
-	                                '        "lastName": "Nordmann",' +
+	                                '        "fullName": "Ola Nordmann",' +
 	                                '        "email": "ola.nordmann@test.com"' +
 	                                '    },' +
 
 	                                '    {' +
-	                                '        "firstName": "Kari",' +
-	                                '        "lastName": "Nordmann",' +
+	                                '        "fullName": "Kari Nordmann",' +
 	                                '        "email": "kari.nordmann@test.com"' +
 	                                '    },' +
 
 	                                '    {' +
-	                                '        "firstName": "Per",' +
-	                                '        "lastName": "Nordmann",' +
+	                                '        "fullName": "Per Nordmann",' +
 	                                '        "email": "per.nordmann@test.com"' +
 	                                '    }' +
 	                                ']';
@@ -31,16 +28,13 @@ public without sharing class CourseRegistrationEmailModelTest {
 
 		System.assertEquals( 3, recipients.size(), 'three persons in json' );
 
-		System.assertEquals( 'Ola', recipients[0].firstName, 'firstName is Ola' );
-		System.assertEquals( 'Nordmann', recipients[0].lastName, 'lastName is Nordmann' );
+		System.assertEquals( 'Ola Nordmann', recipients[0].fullName, 'fullName is Ola Nordmann' );
 		System.assertEquals( 'ola.nordmann@test.com', recipients[0].email, 'email is ola.nordmann@test.com' );
 
-		System.assertEquals( 'Kari', recipients[1].firstName, 'firstName is Kari' );
-		System.assertEquals( 'Nordmann', recipients[1].lastName, 'lastName is Nordmann' );
+		System.assertEquals( 'Kari Nordmann', recipients[1].fullName, 'fullName is Kari Nordmann' );
 		System.assertEquals( 'kari.nordmann@test.com', recipients[1].email, 'email is kari.nordmann@test.com' );
 
-		System.assertEquals( 'Per', recipients[2].firstName, 'firstName is Per' );
-		System.assertEquals( 'Nordmann', recipients[2].lastName, 'lastName is Nordmann' );
+		System.assertEquals( 'Per Nordmann', recipients[2].fullName, 'fullName is Per Nordmann' );
 		System.assertEquals( 'per.nordmann@test.com', recipients[2].email, 'email is per.nordmann@test.com' );
 	}
 }

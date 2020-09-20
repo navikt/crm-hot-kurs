@@ -1,19 +1,25 @@
 import { LightningElement, track, api } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 import labels from "./labels";
 
-export default class CourseRegistrationEmailComponent extends LightningElement {
+export default class CourseRegistrationEmailComponent extends NavigationMixin(LightningElement) {
 
     @api recordId = 'a0A1j000003dIDEEA2';
 
     @track recipients = []; // pill container
     @track emails = [];
-    @track emailSent = false;
+
+    @track contacts = [];
     @track checkboxChecked = false;
     @track viewConfirmationWindow = false;
 
+    @track emailSent = false;
+    @track error;
+
     labels = labels;
     emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
+
     // add pills
     addEmail(event) {
 
@@ -26,7 +32,7 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         if (emailIsUnique) {
 
             pill.type = 'avatar';
-            pill.label = pill.firstName;
+            pill.label = pill.fullName;
             pill.name = pill.email;
             pill.fallbackIconName = 'standard:user';
             pill.variant = 'circle';
@@ -44,8 +50,27 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         }
     }
 
-    closeConfirmation(event) {
+    emailCancel(event) {
         this.viewConfirmationWindow = false;
+    }
+
+    emailSuccess(event) {
+        this.emailSent = true;
+        this.viewConfirmationWindow = false;
+        this.contacts = this.updateContacts(event.detail);
+        // TODO fix contacts
+
+    }
+
+    updateContacts(contacts) {
+        contacts.forEach(con => {
+            con.href = '/' + con.Id;
+            con.type = 'avatar';
+            con.fallbackIconName = 'standard:user';
+            con.variant = 'circle';
+            con.label = con.FirstName + ' ' + con.LastName;
+        });
+        return contacts;
     }
 
     //send emails method
@@ -78,4 +103,17 @@ export default class CourseRegistrationEmailComponent extends LightningElement {
         this.emails.splice(index, 1);
     }
 
+    generateUrl(contactId) {
+        // let contactId = event.target.dataset.targetId;
+
+        this[NavigationMixin.GenerateUrl]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: contactId,
+                actionName: 'view',
+            }
+        }).then(url => {
+            return url;
+        });
+    }
 }

@@ -5,9 +5,17 @@ public with sharing class CourseRegistrationEmailHelper {
 		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
 
 		for ( CourseRegistrationEmailModel recipient : recipients ) {
+			System.debug( 'recipient: ' + recipient );
+			List<String> name = recipient.fullName.split( ' ' );
+			String lastName = name[name.size() - 1];
+			String firstName;
+			if ( name.size() > 1 ) {
+				firstName = recipient.fullName.removeEnd( ' ' + lastName );
+			}
+
 			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
-			wrapper.firstName = recipient.firstName;
-			wrapper.lastName = recipient.lastName;
+			wrapper.firstName = firstName;
+			wrapper.lastName = lastName;
 			wrapper.email = recipient.email;
 			wrapper.source = 'Kurs';
 			wrapperList.add( wrapper );
@@ -53,9 +61,6 @@ public with sharing class CourseRegistrationEmailHelper {
 	public static void sendEmailToCourseRecipients( List<CourseRegistration__c> registrations, List<Contact> contacts ) {
 
 		Map<Id, Contact> contactMap = new Map<Id, Contact>( contacts );
-
-		System.debug( 'registrations: ' + registrations );
-		System.debug( 'contacts: ' + contacts );
 
 		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
 		for ( CourseRegistration__c reg : registrations ) {

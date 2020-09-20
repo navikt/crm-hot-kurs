@@ -5,8 +5,10 @@
     recipients={recipients}
     template-name="courseRegistrationInvitation"
     use-do-not-reply="false"
-    oncancel={closeConfirmation}
+    oncancel={emailCancel}
+    onsuccess={emailSuccess}
   >
+    <!-- TODO change do-not-reply to true -->
   </c-course-registration-email-confirmation>
 
   <lightning-card
@@ -50,7 +52,7 @@
           <!-- ############### NAME ############### -->
           <!-- #################################### -->
           <lightning-input
-            name="firstName"
+            name="fullName"
             type="text"
             label={labels.name}
             onkeyup={inputData}
@@ -63,7 +65,6 @@
           <lightning-input
             name="email"
             type="text"
-            data-target-id="email"
             oncommit={makeLowerCase}
             pattern={emailRegex}
             message-when-pattern-mismatch={labels.emailValidation}
@@ -98,8 +99,28 @@
 
     <!-- ############## SUCCESS ############# -->
     <!-- #################################### -->
-    <div if:true={emailSent}>
-      <h1 class="slds-align_absolute-center"><b>Mailen ble sendt!</b></h1>
+    <div
+      class="slds-var-p-top_xx-small slds-var-p-bottom_medium slds-p-horizontal_medium"
+      if:true={emailSent}
+    >
+      <span>
+        <lightning-icon
+          icon-name="utility:success"
+          alternative-text={labels.emailSent}
+          class="slds-float_left slds-p-top_xx-small"
+          size="x-small"
+          title={labels.emailSent}
+        ></lightning-icon>
+        <div class="slds-p-left_large slds-text-heading_medium">
+          {labels.contactsCreated}
+        </div>
+      </span>
+
+      <div class="slds-var-p-top_small">
+        <lightning-pill-container variant="bare" items={contacts}>
+        </lightning-pill-container>
+      </div>
+      <!-- TODO remove X -->
     </div>
   </lightning-card>
 </template>

@@ -126,4 +126,18 @@
         <shortDescription>[EmailPreview] Title</shortDescription>
         <value>Send Invitation</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_emailSent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Email Sent</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_contactsCreated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Contacts created</shortDescription>
+        <value>Invitations sent</value>
+    </labels>
 </CustomLabels>
