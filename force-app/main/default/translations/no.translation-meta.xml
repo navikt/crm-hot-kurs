@@ -84,4 +84,8 @@
         <label>Lukk</label>
         <name>EmailPreview_close</name>
     </customLabels>
+    <customLabels>
+        <label>Invitasjoner sendt</label>
+        <name>EmailPreview_success</name>
+    </customLabels>
 </Translations>

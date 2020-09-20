@@ -1,7 +1,9 @@
 import { LightningElement, api, wire, track } from 'lwc';
+
 import getEmailPreview from '@salesforce/apex/EmailPreviewComponent.getEmailPreview';
 import getEmailSubject from '@salesforce/apex/EmailPreviewComponent.getEmailSubject';
 import sendCourseEmail from "@salesforce/apex/CourseRegistrationEmailController.sendCourseEmail";
+
 import labels from "./labels";
 
 export default class CourseRegistrationEmailConfirmation extends LightningElement {
@@ -17,6 +19,7 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
     @track subject = labels.subjectField;
 
     @track loading = true;
+    @track sendingEmail = true;
     @track error = false;
     @track errorMsg;
     @track labels = labels;
@@ -28,6 +31,7 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
         getEmailPreview({ recordId: this.courseId, emailTemplate: this.templateName }).then(data => {
             this.htmlEmail = data;
             this.loading = false;
+            this.sendingEmail = false;
         }).catch(error => {
             this.setError(error);
         });
@@ -50,13 +54,17 @@ export default class CourseRegistrationEmailConfirmation extends LightningElemen
 
     send(event) {
         this.loading = true;
+        this.sendingEmail = true;
         sendCourseEmail({
             courseId: this.courseId,
             recipientsJson: JSON.stringify(this.recipients)
         }).then(result => {
             this.dispatchEvent(new CustomEvent('success', { detail: result }));
+            this.sendingEmail = false;
+
         }).catch(error => {
             this.loading = false;
+            this.sendingEmail = false;
             this.htmlEmail = '';
             this.error = true;
             this.setError(error);

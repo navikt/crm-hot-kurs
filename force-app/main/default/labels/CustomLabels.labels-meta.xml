@@ -147,4 +147,11 @@
         <shortDescription>[EmailPreview] Close</shortDescription>
         <value>Close</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Successfully sent invitations</shortDescription>
+        <value>Successfully sent invitations</value>
+    </labels>
 </CustomLabels>

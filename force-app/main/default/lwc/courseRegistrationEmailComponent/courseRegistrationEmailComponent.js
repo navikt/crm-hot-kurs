@@ -1,5 +1,7 @@
 import { LightningElement, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 import labels from "./labels";
 
@@ -58,7 +60,19 @@ export default class CourseRegistrationEmailComponent extends NavigationMixin(Li
         this.emailSent = true;
         this.viewConfirmationWindow = false;
         this.contacts = event.detail;
+        this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
+    }
 
+    toast(title, message, messageData, variant, mode) {
+
+        const evt = new ShowToastEvent({
+            title: title,
+            message: message,
+            messageData: messageData,
+            variant: variant,
+            mode: mode
+        });
+        this.dispatchEvent(evt);
     }
 
     openContact(event) {

@@ -69,6 +69,7 @@
                 label={labels.cancelEmail}
                 title={labels.cancelEmail}
                 onclick={cancel}
+                disabled={sendingEmail}
               >
               </lightning-button>
               <!-- TODO disable when sending -->
@@ -79,6 +80,7 @@
                 icon-name="utility:send"
                 title={labels.sendEmail}
                 onclick={send}
+                disabled={sendingEmail}
               >
               </lightning-button>
             </lightning-button-group>
