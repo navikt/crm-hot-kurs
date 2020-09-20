@@ -1,4 +1,4 @@
-public with sharing class CourseRegistrationEmailModel {
+public with sharing class EmailConfirmationModalModel {
 
 	@AuraEnabled public String fullName;
 	@AuraEnabled public String firstName;

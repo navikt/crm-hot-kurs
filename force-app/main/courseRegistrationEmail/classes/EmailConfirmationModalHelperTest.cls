@@ -1,5 +1,5 @@
 @isTest
-private without sharing class CourseRegistrationEmailHelperTest {
+private without sharing class EmailConfirmationModalHelperTest {
 
 	@testSetup
 	private static void setup() {
@@ -10,13 +10,13 @@ private without sharing class CourseRegistrationEmailHelperTest {
 	@isTest
 	private static void testFetchOrCreateContacts() {
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
 
 		List<Contact> contacts = [SELECT Id FROM Contact];
 		System.assertEquals( 0, contacts.size(), 'no contacts before test' );
 
 		Test.StartTest();
-		CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 		Test.StopTest();
 
 		contacts = [SELECT Id FROM Contact];
@@ -31,13 +31,13 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Contact c3 = new Contact( LastName = 'test', email = 'per.nordmann@test.com', TAG_Informed__c = true );
 		insert new List<Contact> { c1, c2, c3 };
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
 
 		List<Contact> contacts = [SELECT Id FROM Contact];
 		System.assertEquals( 3, contacts.size(), 'three contacts before test' );
 
 		Test.StartTest();
-		contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 		Test.StopTest();
 
 		System.assertEquals( 3, contacts.size(), 'three contacts returned from function' );
@@ -53,8 +53,8 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
-		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
+		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 
 		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
 
@@ -63,7 +63,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		System.assertEquals( 0, registrations.size(), 'no registrations before test' );
 
 		Test.StartTest();
-		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		EmailConfirmationModalHelper.createCourseRegistrations( course.Id, contacts );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c];
@@ -86,8 +86,8 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		CourseRegistration__c reg3 = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = c3.Id, Status__c = 'Påmeldt' );
 		insert new List<CourseRegistration__c> { reg1, reg2, reg3 };
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
-		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
+		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 
 		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
 
@@ -95,7 +95,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		System.assertEquals( 3, registrations.size(), 'three registrations before test' );
 
 		Test.StartTest();
-		registrations = CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		registrations = EmailConfirmationModalHelper.createCourseRegistrations( course.Id, contacts );
 		Test.StopTest();
 
 		System.assertEquals( 3, registrations.size(), 'three registrations return in function' );
@@ -112,8 +112,8 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
 		insert reg;
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
-		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
+		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 
 		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
 
@@ -121,7 +121,7 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		System.assertEquals( 1, registrations.size(), 'one registration before test' );
 
 		Test.StartTest();
-		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		EmailConfirmationModalHelper.createCourseRegistrations( course.Id, contacts );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
@@ -143,14 +143,14 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		CourseRegistration__c reg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
 		insert reg;
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
-		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
+		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
 
 		System.assertEquals( 3, contacts.size(), 'three contacts should exist' );
 
 
 		Test.StartTest();
-		CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		EmailConfirmationModalHelper.createCourseRegistrations( course.Id, contacts );
 		Test.StopTest();
 
 		List<Domain> domains = [SELECT Domain FROM Domain];
@@ -171,15 +171,15 @@ private without sharing class CourseRegistrationEmailHelperTest {
 		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
 		insert course;
 
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( CourseRegistrationEmailModelTest.jsonData, List<CourseRegistrationEmailModel>.class );
-		List<Contact> contacts = CourseRegistrationEmailHelper.fetchOrCreateContacts( recipients );
-		List<CourseRegistration__c> registrations = CourseRegistrationEmailHelper.createCourseRegistrations( course.Id, contacts );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( EmailConfirmationModalModelTest.jsonData, List<EmailConfirmationModalModel>.class );
+		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
+		List<CourseRegistration__c> registrations = EmailConfirmationModalHelper.createCourseRegistrations( course.Id, contacts );
 
 		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
 		Test.StartTest();
-		CourseRegistrationEmailHelper.sendEmailToCourseRecipients( registrations, contacts );
+		EmailConfirmationModalHelper.sendEmailToCourseRecipients( registrations, contacts );
 		Test.StopTest();
 
 		emails = [SELECT Id FROM EmailMessage];

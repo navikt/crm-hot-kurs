@@ -1,5 +1,5 @@
 @isTest
-private without sharing class CourseRegistrationEmailControllerTest {
+private without sharing class EmailConfirmationModalControllerTest {
 
 	private static void setup() {
 		EmailTemplate et = new EmailTemplate( DeveloperName = 'courseRegistrationInvitation', Name = 'courseRegistrationInvitation', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
@@ -24,7 +24,7 @@ private without sharing class CourseRegistrationEmailControllerTest {
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
 		Test.StartTest();
-		CourseRegistrationEmailController.sendCourseEmail( course.Id, CourseRegistrationEmailModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c];
@@ -54,10 +54,10 @@ private without sharing class CourseRegistrationEmailControllerTest {
 		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
-		CourseRegistrationEmailController.sendCourseEmail( course.Id, CourseRegistrationEmailModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
 
 		Test.StartTest();
-		CourseRegistrationEmailController.sendCourseEmail( course.Id, CourseRegistrationEmailModelTest.jsonData );
+		EmailConfirmationModalController.sendCourseEmail( course.Id, EmailConfirmationModalModelTest.jsonData );
 		Test.StopTest();
 
 		registrations = [SELECT Id FROM CourseRegistration__c];

@@ -1,5 +1,5 @@
 <template>
-  <c-course-registration-email-confirmation
+  <c-email-confirmation-modal
     if:true={viewConfirmationWindow}
     course-id={recordId}
     recipients={recipients}
@@ -9,7 +9,7 @@
     onsuccess={emailSuccess}
   >
     <!-- TODO change do-not-reply to true -->
-  </c-course-registration-email-confirmation>
+  </c-email-confirmation-modal>
 
   <lightning-card
     variant="Narrow"

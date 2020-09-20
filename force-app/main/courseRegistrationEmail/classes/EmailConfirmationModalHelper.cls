@@ -1,10 +1,10 @@
-public with sharing class CourseRegistrationEmailHelper {
+public with sharing class EmailConfirmationModalHelper {
 
-	public static List<Contact> fetchOrCreateContacts( List<CourseRegistrationEmailModel> recipients ) {
+	public static List<Contact> fetchOrCreateContacts( List<EmailConfirmationModalModel> recipients ) {
 
 		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
 
-		for ( CourseRegistrationEmailModel recipient : recipients ) {
+		for ( EmailConfirmationModalModel recipient : recipients ) {
 			System.debug( 'recipient: ' + recipient );
 			List<String> name = recipient.fullName.split( ' ' );
 			String lastName = name[name.size() - 1];

@@ -1,5 +1,5 @@
 @isTest
-public without sharing class CourseRegistrationEmailModelTest {
+public without sharing class EmailConfirmationModalModelTest {
 
 	public static String jsonData = '[' +
 
@@ -23,7 +23,7 @@ public without sharing class CourseRegistrationEmailModelTest {
 	private static void testModel() {
 
 		Test.StartTest();
-		List<CourseRegistrationEmailModel> recipients = (List<CourseRegistrationEmailModel>) System.JSON.deserialize( jsonData, List<CourseRegistrationEmailModel>.class );
+		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( jsonData, List<EmailConfirmationModalModel>.class );
 		Test.StopTest();
 
 		System.assertEquals( 3, recipients.size(), 'three persons in json' );
