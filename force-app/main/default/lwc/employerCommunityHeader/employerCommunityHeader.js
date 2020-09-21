@@ -47,15 +47,23 @@ window.addEventListener('scroll', () => {
 
 });
 */
+import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
+import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
 
 export default class EmployerCommunityHeader extends LightningElement {
-
+    dekoratoren = dekoratoren;
     @api NAVarea;
     @track isPrivatPerson = true;
+    renderedCallback() {
+        loadStyle(this, dekoratoren);
+    }
+
     connectedCallback() {
         //this.isPrivatPerson = this.NAVarea == 'Privatperson';
         //console.log(this.NAVarea);
         //console.log(this.isPrivatPerson);
     }
+
+
 
 }
