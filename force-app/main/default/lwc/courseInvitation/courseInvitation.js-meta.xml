@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
-    <masterLabel>Course Registration Email Component</masterLabel>
+    <masterLabel>Course Invitation Component</masterLabel>
     <description>Send course invitations to users via email</description>
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__RecordPage</target>
         <target>lightningCommunity__Page</target>
     </targets>
+    <targetConfig>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Course__c</object>
+            </objects>
+        </targetConfig>
+    </targetConfig>
 </LightningComponentBundle>

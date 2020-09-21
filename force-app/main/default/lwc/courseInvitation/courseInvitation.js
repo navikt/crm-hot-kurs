@@ -5,7 +5,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 import labels from "./labels";
 
-export default class CourseRegistrationEmailComponent extends NavigationMixin(LightningElement) {
+export default class CourseInvitation extends NavigationMixin(LightningElement) {
 
     @api recordId = 'a0A1j000003dIDEEA2';
 
