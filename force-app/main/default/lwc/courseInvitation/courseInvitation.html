@@ -38,6 +38,13 @@
       </lightning-button>
     </lightning-button-group>
 
+    <!-- ############## SPINNER ############# -->
+    <!-- #################################### -->
+    <div if:true={loading} style="position: relative; min-height: 10em">
+      <lightning-spinner alternative-text="Loading" size="large">
+      </lightning-spinner>
+    </div>
+
     <div class="slds-p-horizontal_medium" if:false={emailSent}>
       <div
         class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-theme_shade slds-m-vertical_small slds-p-left_xxx-small slds-p-top_xxx-small"
@@ -122,6 +129,8 @@
         </div>
       </span>
 
+      <!-- ############# INVITEES ############# -->
+      <!-- #################################### -->
       <lightning-layout horizontal-align="center" multiple-rows>
         <template
           if:true={contacts}
@@ -140,6 +149,11 @@
               data-target-id={con.Id}
               onclick={openContact}
             >
+              <lightning-icon
+                icon-name="utility:user"
+                size="x-small"
+                class="slds-p-right_xx-small"
+              ></lightning-icon>
               {con.FirstName} {con.LastName}
             </span>
           </lightning-layout-item>
