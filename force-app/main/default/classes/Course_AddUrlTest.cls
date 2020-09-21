@@ -16,7 +16,7 @@ private without sharing class Course_AddUrlTest {
 		if ( domains.size() == 0 ) {
 			domains = [SELECT Domain FROM Domain LIMIT 1];
 		}
-		String url = 'https://' + domains[0].Domain;
+		String url = 'https://' + domains[0].Domain + '/';
 
 		System.assertEquals( 1, courses.size(), 'One course added, one returned' );
 		System.assertEquals( url, courses[0].CommunityUrl__c, 'should have added url' );
