@@ -4,11 +4,8 @@ public with sharing class EmailConfirmationModalController {
 	public static List<Contact> sendEmail( String recordId, String recipientsJson, String template, Boolean useDoNotReply ) {
 
 		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( recipientsJson, List<EmailConfirmationModalModel>.class );
-
 		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
-
 		List<CourseRegistration__c> registrations = EmailConfirmationModalHelper.createCourseRegistrations( recordId, contacts );
-
 		EmailConfirmationModalHelper.sendEmailToCourseRecipients( registrations, contacts, template, useDoNotReply );
 
 		return contacts;
