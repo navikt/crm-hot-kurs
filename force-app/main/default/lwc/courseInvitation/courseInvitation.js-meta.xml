@@ -6,7 +6,6 @@
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__RecordPage</target>
-        <target>lightningCommunity__Page</target>
     </targets>
     <targetConfig>
         <targetConfig targets="lightning__RecordPage">
