@@ -4,11 +4,10 @@
     record-id={recordId}
     recipients={recipients}
     template-name="courseRegistrationInvitation"
-    use-do-not-reply="false"
+    use-do-not-reply="true"
     oncancel={emailCancel}
     onsuccess={emailSuccess}
   >
-    <!-- TODO change do-not-reply to true -->
   </c-email-confirmation-modal>
 
   <lightning-card
@@ -19,7 +18,7 @@
     <lightning-button-group slot="actions" if:false={emailSent}>
       <!-- ############## IMPORT ############## -->
       <!-- #################################### -->
-      <lightning-button label={labels.importBtn}> </lightning-button>
+      <!-- <lightning-button label={labels.importBtn}> </lightning-button> -->
 
       <!-- ############## CONFIRM ############# -->
       <!-- #################################### -->
