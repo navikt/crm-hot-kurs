@@ -2,6 +2,8 @@ import { LightningElement, track, wire, api } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
 //import isProdFunction from '@salesforce/apex/GlobalCommunityHeaderFooterController.isProd';
+import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
+import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
 
 export default class EmployerCommunityFooter extends LightningElement {
 
@@ -16,6 +18,9 @@ export default class EmployerCommunityFooter extends LightningElement {
     //	this.isProd = data;
     //console.log("isProd: " + this.isProd);
     //}
+    renderedCallback() {
+        loadStyle(this, dekoratoren);
+    }
 
     scrollToTop() {
         window.scroll(0, 0, 'smooth');

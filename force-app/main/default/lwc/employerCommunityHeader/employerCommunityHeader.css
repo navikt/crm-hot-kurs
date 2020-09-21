@@ -1,4 +1,4 @@
-.decorator-wrapper .header-z-wrapper {
+/*.decorator-wrapper .header-z-wrapper {
     z-index: 1000;
     position: relative;
     background-color: white;
@@ -142,4 +142,4 @@ template {
     transition-duration: 0.35s;
     transition-timing-function: ease-in;
     transition-property: background-color, visibility;
-}
+} */
