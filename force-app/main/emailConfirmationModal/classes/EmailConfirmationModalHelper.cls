@@ -27,20 +27,14 @@ public with sharing class EmailConfirmationModalHelper {
 
 	public static List<CourseRegistration__c> createCourseRegistrations( Id courseId, List<Contact> contacts ) {
 
-		List<Domain> domains = [SELECT Domain FROM Domain];
-		if ( domains.size() == 0 ) { throw new AuraException( 'Feil ved utsendelse. Kan ikke finne korrekt URL å sende til bruker.' ); }
-		String url = 'https://' + domains[0].Domain + 'kurs/s/?id=' + courseId;
-
 		// get contacts with an existing course registration
 		Set<Id> contactIds = new Map<Id, Contact> ( contacts ).keySet();
 		List<CourseRegistration__c> registrations = [SELECT Id, CourseParticipant__c, Course__c FROM CourseRegistration__c WHERE Course__c = : courseId AND CourseParticipant__c IN : contactIds];
+
 		Set<Id> contactsWithRegistrations = new Set<Id>();
 		for ( CourseRegistration__c reg : registrations ) {
-			// reg.CommunityUrl__c = url;
 			contactsWithRegistrations.add( reg.CourseParticipant__c );
 		}
-
-		update registrations;
 
 		// create new course registrations for new contacts
 		List<CourseRegistration__c> newCourseRegistrations = new List<CourseRegistration__c>();
