@@ -109,7 +109,6 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         if (this.recipients.length > 0) {
             this.viewConfirmationWindow = true;
         }
-        // todo add gdpr
     }
 
     restart() {
