@@ -8,7 +8,7 @@ import labels from "./labels";
 
 export default class EmailConfirmationModal extends LightningElement {
 
-    @api courseId;
+    @api recordId;
     @api templateName;
     @api useDoNotReply;
 
@@ -28,7 +28,8 @@ export default class EmailConfirmationModal extends LightningElement {
     amountToView = 3;
 
     connectedCallback() {
-        getEmailPreview({ recordId: this.courseId, emailTemplate: this.templateName }).then(data => {
+
+        getEmailPreview({ recordId: this.recordId, emailTemplate: this.templateName }).then(data => {
             this.htmlEmail = data;
             this.loading = false;
             this.sendingEmail = false;
@@ -40,8 +41,8 @@ export default class EmailConfirmationModal extends LightningElement {
             this.subject = data;
         });
 
+        // recipient badges
         let amount = this.recipients.length < this.amountToView ? this.recipients.length : this.amountToView; // if recipient length is less than viewable recipients, use recipient length
-
         this.loadRecipientsToBadges(amount);
         if (this.recipients.length > this.amountToView) {
             this.amountToLoad = '+' + (this.recipients.length - this.amountToView).toString();
@@ -56,14 +57,13 @@ export default class EmailConfirmationModal extends LightningElement {
         this.loading = true;
         this.sendingEmail = true;
         sendEmail({
-            recordId: this.courseId,
+            recordId: this.recordId,
             recipientsJson: JSON.stringify(this.recipients),
             template: this.templateName,
             useDoNotReply: this.useDoNotReply
         }).then(result => {
             this.dispatchEvent(new CustomEvent('success', { detail: result }));
             this.sendingEmail = false;
-
         }).catch(error => {
             this.loading = false;
             this.sendingEmail = false;
@@ -90,6 +90,7 @@ export default class EmailConfirmationModal extends LightningElement {
     expandRecipients(event) {
         this.loadRecipientsToBadges(this.recipients.length);
     }
+
     collapseRecipients(event) {
         this.loadRecipientsToBadges(this.amountToView);
     }

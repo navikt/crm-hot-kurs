@@ -51,17 +51,17 @@ public with sharing class EmailConfirmationModalHelper {
 		return registrations;
 	}
 
-	public static void sendEmailToCourseRecipients( List<CourseRegistration__c> registrations, List<Contact> contacts, String template, Boolean useDoNotReply ) {
+	public static void sendEmailToCourseRecipients( Id recordId, List<Contact> contacts, String template, Boolean useDoNotReply ) {
 
 		Map<Id, Contact> contactMap = new Map<Id, Contact>( contacts );
 
 		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
-		for ( CourseRegistration__c reg : registrations ) {
+		for ( Contact con : contacts ) {
 			Process_SendEmail.Request request = new Process_SendEmail.Request();
 			request.emailTemplateName = template;
-			request.recipientContact = contactMap.get( reg.CourseParticipant__c );
+			request.recipientContactId = con.Id;
 			request.useDoNotReply = useDoNotReply;
-			request.relatedToId = reg.Course__c;
+			request.relatedToId = recordId;
 			requests.add( request );
 		}
 
