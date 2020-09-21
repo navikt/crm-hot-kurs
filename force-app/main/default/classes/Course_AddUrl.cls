@@ -11,7 +11,7 @@ global class Course_AddUrl extends MyTriggers {
 			domains = [SELECT Domain FROM Domain LIMIT 1];
 		} if ( domains.size() == 1 ) {
 
-			String url = 'https://' + domains[0].Domain;
+			String url = 'https://' + domains[0].Domain + '/';
 			for ( Course__c c : courses ) {
 				c.CommunityUrl__c = url;
 			}
