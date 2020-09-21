@@ -88,5 +88,14 @@ private without sharing class EmailConfirmationModalControllerTest {
 		System.assertEquals( expected, actual.stripHtmlTags(), 'should have merged fields and given email template' );
 	}
 
-	// TODO test get subject
+	@isTest
+	private static void testGetEmailSubject() {
+
+		Test.StartTest();
+		String actual = EmailConfirmationModalController.getEmailSubject( 'MY_UNIQUE_TEMPLATE' );
+		Test.StopTest();
+
+		String expected = 'Invitasjon til kurs';
+		System.assertEquals( expected, actual, 'should have fetched correct subject' );
+	}
 }
