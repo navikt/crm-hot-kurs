@@ -31,7 +31,7 @@
       </lightning-button>
     </lightning-button-group>
     <lightning-button-group slot="actions" if:true={emailSent}>
-      <!-- ############## CONFIRM ############# -->
+      <!-- ########### CLOSE CONFIRM ########## -->
       <!-- #################################### -->
       <lightning-button label={labels.close} onclick={restart}>
       </lightning-button>
@@ -49,7 +49,7 @@
         class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-theme_shade slds-m-vertical_small slds-p-left_xxx-small slds-p-top_xxx-small"
         if:true={hasRecipients}
       >
-        <!-- ############ RECIPIENTS ############ -->
+        <!-- ######### RECIPIENTS LIST ########## -->
         <!-- #################################### -->
         <lightning-pill-container
           variant="bare"
@@ -61,7 +61,7 @@
 
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_6-of-12 slds-p-right_x-small">
-          <!-- ############### NAME ############### -->
+          <!-- ############ NAME FIELD ############ -->
           <!-- #################################### -->
           <lightning-input
             name="fullName"
@@ -72,7 +72,7 @@
           ></lightning-input>
         </div>
         <div class="slds-col slds-size_6-of-12 slds-p-left_x-small">
-          <!-- ############### EMAIL ############## -->
+          <!-- ############ EMAIL FIELD ########### -->
           <!-- #################################### -->
           <lightning-input
             name="email"
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <!-- ########## ADD RECIPIENT ########### -->
+      <!-- ####### ADD RECIPIENT BUTTON ####### -->
       <!-- #################################### -->
       <lightning-layout vertical-align="center">
         <lightning-layout-item flexibility="grow">
@@ -158,6 +158,16 @@
           </lightning-layout-item>
         </template>
       </lightning-layout>
+    </div>
+
+    <!-- ############# ERROR ############# -->
+    <!-- #################################### -->
+    <div
+      class="slds-box slds-theme_shade slds-theme_error slds-var-m-horizontal_small slds-var-m-bottom_x-small"
+      if:true={error}
+      style="border-color: pink"
+    >
+      <p class="slds-text-font_monospace">{labels.errorMsg}</p>
     </div>
   </lightning-card>
 </template>

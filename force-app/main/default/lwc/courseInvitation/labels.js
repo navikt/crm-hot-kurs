@@ -10,6 +10,8 @@ import emailSent from "@salesforce/label/c.EmailPreview_emailSent";
 import contactsCreated from "@salesforce/label/c.EmailPreview_contactsCreated";
 import close from "@salesforce/label/c.EmailPreview_close";
 import success from "@salesforce/label/c.EmailPreview_success";
+import error from "@salesforce/label/c.EmailPreview_error";
+import errorMsg from "@salesforce/label/c.EmailPreview_errorMsg";
 
 export default {
     name,
@@ -24,4 +26,6 @@ export default {
     contactsCreated,
     close,
     success,
+    error,
+    errorMsg,
 }

@@ -23,6 +23,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
 
     @track emailSent = false;
     @track error;
+    @track errorMsg;
     @track loading;
 
     labels = labels;
@@ -75,8 +76,9 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
             this.loading = false;
             this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
         }).catch(error => {
-            console.log('error');
-            // todo add error
+            this.loading = false;
+            this.error = true;
+            this.toast(this.labels.error, this.labels.errorMsg, undefined, 'error', 'sticky');
         });
     }
 

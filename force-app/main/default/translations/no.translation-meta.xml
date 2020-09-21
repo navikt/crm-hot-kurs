@@ -52,4 +52,12 @@
         <label>Invitasjoner sendt</label>
         <name>EmailPreview_success</name>
     </customLabels>
+    <customLabels>
+        <label>Feil</label>
+        <name>EmailPreview_error</name>
+    </customLabels>
+    <customLabels>
+        <label>E-post invitasjoner ble sendt, men kursregisteringen feilet. Brukerne vil fortsatt kunne registrere seg og de vil da være synlige i Salesforce. Vennligst kontakt en administrator om dette problemet.</label>
+        <name>EmailPreview_errorMsg</name>
+    </customLabels>
 </Translations>

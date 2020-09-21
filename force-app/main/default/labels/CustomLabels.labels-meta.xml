@@ -92,4 +92,18 @@
         <shortDescription>[EmailPreview] Successfully sent invitations</shortDescription>
         <value>Successfully sent invitations</value>
     </labels>
+    <labels>
+        <fullName>EmailPreview_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Successfully sent invitations</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>EmailPreview_errorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailPreview] Error msg</shortDescription>
+        <value>Email invitations were sent, but the course registration failed. The users will still be able to sign up correctly and will then appear inside Salesforce. Please contact an administrator regarding this issue.</value>
+    </labels>
 </CustomLabels>
