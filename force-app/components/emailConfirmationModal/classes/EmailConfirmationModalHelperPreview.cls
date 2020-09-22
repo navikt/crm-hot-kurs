@@ -23,7 +23,7 @@ public with sharing class EmailConfirmationModalHelperPreview {
 		List<SObject> data = Database.query( query );
 
 		if ( data.size() != 1 ) {
-			throw new AuraException( Label.EmailPreview_queryNoResults );
+			throw new AuraException( Label.CourseInvitation_queryNoResults );
 		}
 
 		Map<String, String> replacingMap = new Map<String, String>();

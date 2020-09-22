@@ -2,38 +2,38 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Se flere mottakere</label>
-        <name>EmailPreview_loadMoreRecipients</name>
+        <name>EmailConfirmation_loadMoreRecipients</name>
     </customLabels>
     <customLabels>
         <label>Skjul</label>
-        <name>EmailPreview_hide</name>
+        <name>EmailConfirmation_hide</name>
     </customLabels>
     <customLabels>
         <label>Skjul mottakere</label>
-        <name>EmailPreview_hideAria</name>
+        <name>EmailConfirmation_hideAria</name>
     </customLabels>
     <customLabels>
         <label>Resterende mottakere</label>
-        <name>EmailPreview_listOfRecipients</name>
+        <name>EmailConfirmation_listOfRecipients</name>
     </customLabels>
     <customLabels>
         <label>Feil</label>
-        <name>EmailPreview_error</name>
+        <name>EmailConfirmation_error</name>
     </customLabels>
     <customLabels>
         <label>Til</label>
-        <name>EmailPreview_toField</name>
+        <name>EmailConfirmation_toField</name>
     </customLabels>
     <customLabels>
         <label>Emne</label>
-        <name>EmailPreview_subjectField</name>
+        <name>EmailConfirmation_subjectField</name>
     </customLabels>
     <customLabels>
         <label>Send</label>
-        <name>EmailPreview_sendEmail</name>
+        <name>EmailConfirmation_sendEmail</name>
     </customLabels>
     <customLabels>
         <label>Avbryt</label>
-        <name>EmailPreview_cancelEmail</name>
+        <name>EmailConfirmation_cancelEmail</name>
     </customLabels>
 </Translations>

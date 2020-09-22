@@ -1,109 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-
     <labels>
-        <fullName>EmailPreview_queryNoResults</fullName>
+        <fullName>CourseInvitation_queryNoResults</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Query no results</shortDescription>
+        <shortDescription>[CourseInvitation] Query no results</shortDescription>
         <value>Could not query data.</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_name</fullName>
+        <fullName>CourseInvitation_name</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Name</shortDescription>
+        <shortDescription>[CourseInvitation] Name</shortDescription>
         <value>Name</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_email</fullName>
+        <fullName>CourseInvitation_email</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Email</shortDescription>
+        <shortDescription>[CourseInvitation] Email</shortDescription>
         <value>Email</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_emailValidation</fullName>
+        <fullName>CourseInvitation_emailValidation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Email Validation</shortDescription>
+        <shortDescription>[CourseInvitation] Email Validation</shortDescription>
         <value>Please type a valid email</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_addRecipient</fullName>
+        <fullName>CourseInvitation_addRecipient</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Add Recipient</shortDescription>
+        <shortDescription>[CourseInvitation] Add Recipient</shortDescription>
         <value>Add</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_pressEnterToAdd</fullName>
+        <fullName>CourseInvitation_pressEnterToAdd</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Press enter to add</shortDescription>
+        <shortDescription>[CourseInvitation] Press enter to add</shortDescription>
         <value>Press enter to add</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_goToConfirmation</fullName>
+        <fullName>CourseInvitation_goToConfirmation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Go to confirmation</shortDescription>
+        <shortDescription>[CourseInvitation] Go to confirmation</shortDescription>
         <value>Confirm</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_import</fullName>
+        <fullName>CourseInvitation_import</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Import</shortDescription>
+        <shortDescription>[CourseInvitation] Import</shortDescription>
         <value>Import</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_title</fullName>
+        <fullName>CourseInvitation_title</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Title</shortDescription>
+        <shortDescription>[CourseInvitation] Title</shortDescription>
         <value>Send Invitation</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_emailSent</fullName>
+        <fullName>CourseInvitation_emailSent</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Email Sent</shortDescription>
+        <shortDescription>[CourseInvitation] Email Sent</shortDescription>
         <value>Success</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_contactsCreated</fullName>
+        <fullName>CourseInvitation_contactsCreated</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Contacts created</shortDescription>
+        <shortDescription>[CourseInvitation] Contacts created</shortDescription>
         <value>Invitations sent</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_close</fullName>
+        <fullName>CourseInvitation_close</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Close</shortDescription>
+        <shortDescription>[CourseInvitation] Close</shortDescription>
         <value>Close</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_success</fullName>
+        <fullName>CourseInvitation_success</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Successfully sent invitations</shortDescription>
+        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Successfully sent invitations</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_error</fullName>
+        <fullName>CourseInvitation_error</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Successfully sent invitations</shortDescription>
+        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Error</value>
     </labels>
     <labels>
-        <fullName>EmailPreview_errorMsg</fullName>
+        <fullName>CourseInvitation_errorMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailPreview] Error msg</shortDescription>
+        <shortDescription>[CourseInvitation] Error msg</shortDescription>
         <value>Email invitations were sent, but the course registration failed. The users will still be able to sign up correctly and will then appear inside Salesforce. Please contact an administrator regarding this issue.</value>
     </labels>
 </CustomLabels>

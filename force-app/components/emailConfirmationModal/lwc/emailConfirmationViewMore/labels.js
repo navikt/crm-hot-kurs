@@ -1,7 +1,7 @@
-import loadMoreRecipients from "@salesforce/label/c.EmailPreview_loadMoreRecipients";
-import hide from "@salesforce/label/c.EmailPreview_hide";
-import hideAria from "@salesforce/label/c.EmailPreview_hideAria";
-import listOfRecipients from "@salesforce/label/c.EmailPreview_listOfRecipients";
+import loadMoreRecipients from "@salesforce/label/c.EmailConfirmation_loadMoreRecipients";
+import hide from "@salesforce/label/c.EmailConfirmation_hide";
+import hideAria from "@salesforce/label/c.EmailConfirmation_hideAria";
+import listOfRecipients from "@salesforce/label/c.EmailConfirmation_listOfRecipients";
 
 export default {
     loadMoreRecipients,
