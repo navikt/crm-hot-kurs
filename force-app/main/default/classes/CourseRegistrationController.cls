@@ -45,7 +45,7 @@ public with sharing class CourseRegistrationController {
 
 	@AuraEnabled
 	public static Course__c getCourseFields( String courseId ) {
-		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c FROM Course__c WHERE Id = : courseId];
+		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c FROM Course__c WHERE Id = : courseId];
 	}
 
 /*
