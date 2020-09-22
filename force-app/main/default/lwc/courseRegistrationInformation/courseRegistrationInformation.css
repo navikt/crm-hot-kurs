@@ -33,6 +33,7 @@
 .metainfo__panel {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .panel, .panel--stor {
@@ -45,4 +46,14 @@
     display: flex;
     flex-direction: row;
     /*margin-bottom: 1rem;*/
+}
+
+@media (max-width: 500px) {
+    .detaljside__overskrift {
+        padding-top: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    .metainfo__panel {
+        padding: 1rem;
+    }
 }
