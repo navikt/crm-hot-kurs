@@ -2,7 +2,8 @@
     <div class="decorator-wrapper">
 
         <div class="sticky-placeholder" style="height: 106px;">
-            <div class="sticky-container" style="position: absolute; top: 0px;">
+            <!--når mobilen meny er åpen: sticky-container--mobil-fixed-->
+            <div class="sticky-container sticky-container--mobil-fixed" style="position: absolute; top: 0px;">
 
                 <nav class="header-linje" id="hovedmeny" aria-label="Hovedmeny">
                     <div class="header-linje__elementer">
@@ -11,16 +12,21 @@
                             <img src={navlogo} alt="NAV-logo"></img>
                         </a>
                         <!--HAMBURGERMENY-->
-                        <c-header-dropdown-menu class="hovedmeny__knapp menylinje-knapp"></c-header-dropdown-menu>
+                        <div class="media-tablet-desktop">
+                            <c-header-dropdown-menu></c-header-dropdown-menu>
+                        </div>
                         <!-- SØKEKNAPP -->
-                        <c-header-search-button class="desktop-sok-dropdown__knapp menylinje-knapp">
-                        </c-header-search-button>
-
+                        <div class="media-tablet-desktop">
+                            <c-header-search-button></c-header-search-button>
+                        </div>
                         <span class="header-linje__spacer"></span>
+                        <!--<div class="media-sm-mobil">-->
+                        <c-header-dropdown-menu-mobile class="media-sm-mobil"></c-header-dropdown-menu-mobile>
+
+                        <!--</div>-->
                     </div>
                 </nav>
             </div>
         </div>
-
     </div>
 </template>
