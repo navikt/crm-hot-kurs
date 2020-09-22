@@ -4,9 +4,10 @@ import { registerListener, unregisterAllListeners } from 'c/pubsub';
 //import isProdFunction from '@salesforce/apex/GlobalCommunityHeaderFooterController.isProd';
 import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
 import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
+import arrowupicon from '@salesforce/resourceUrl/arrowupicon';
 
 export default class EmployerCommunityFooter extends LightningElement {
-
+    arrowupicon = arrowupicon;
     @api NAVarea;
 
     //@track isProd = window.location.toString().includes("tolkebestilling.nav.no/");
