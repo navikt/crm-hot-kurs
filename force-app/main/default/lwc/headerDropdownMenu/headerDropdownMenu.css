@@ -1,4 +1,13 @@
-/*.decorator-wrapper .menylinje-knapp {
+ .lenkeseksjon__lenker .lenke {
+     padding: 0.5rem 0;
+     font-size: 1rem;
+ }
+
+ .lenke {
+     font-size: 1rem;
+ }
+
+ /*.decorator-wrapper .menylinje-knapp {
     background-color: white;
     border: none;
     box-shadow: none;
@@ -81,9 +90,9 @@
     transform: translateY(-8px) rotateZ(-225deg) scale(0.8);
 } */
 
-/************************************************/
+ /************************************************/
 
-/*.decorator-wrapper .ekspanderbar__container {
+ /*.decorator-wrapper .ekspanderbar__container {
     position: absolute;
     width: 100%;
 }
@@ -436,7 +445,7 @@
     font-weight: 600;
 }*/
 
-/*
+ /*
 .decorator-wrapper .typo-systemtittel {
     margin: 0;
     font-family: 'Source Sans Pro', Arial, sans-serif;
