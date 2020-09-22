@@ -8,7 +8,7 @@ export default class EmailConfirmationViewMore extends LightningElement {
 
     @track showPopover = false;
     @track showPopoverButton = true;
-    labels = labels;
+    @track labels = labels;
 
     viewPopover() {
         console.log('viewPopover');
