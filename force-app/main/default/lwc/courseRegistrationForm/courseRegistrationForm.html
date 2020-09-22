@@ -64,49 +64,56 @@
                                     Påmeldingsskjema
                                 </h2>
 
-                                <lightning-layout size="12">
-                                    <lightning-layout-item class="padding-small" size="6">
-
+                                <!--<lightning-layout size="12">
+                                    <lightning-layout-item class="padding-small" size="6"> -->
+                                <div class="kontaktskjema-felter__bolk">
+                                    <div class="felt">
                                         <label class="skjemaelement__label" for="firstName">
                                             <p class="typo-element">Fornavn</p>
                                         </label>
                                         <input type="text" class="skjemaelement__input input--fullbredde" id="firstName"
                                             name="firstName" onchange={handleChange} required>
+                                    </div>
+                                    <!-- </lightning-layout-item>
 
-                                    </lightning-layout-item>
-
-                                    <lightning-layout-item padding="around-small" size="6">
+                                    <lightning-layout-item padding="around-small" size="6"> -->
+                                    <div class="felt">
                                         <label class="skjemaelement__label" for="lastName">
                                             <p class="typo-element">Etternavn</p>
                                         </label>
 
                                         <input type="text" class="skjemaelement__input input--fullbredde" id="lastName"
                                             name="lastName" onchange={handleChange} required>
+                                    </div>
 
-                                    </lightning-layout-item>
+                                    <!-- </lightning-layout-item>
                                 </lightning-layout>
 
                                 <lightning-layout size="12">
-                                    <lightning-layout-item class="padding-small" size="6">
+                                    <lightning-layout-item class="padding-small" size="6"> -->
+                                    <div class="felt">
                                         <label class="skjemaelement__label" for="email">
                                             <p class="typo-element">E-post</p>
                                         </label>
                                         <input type="email" class="skjemaelement__input input--fullbredde" id="email"
                                             name="email" onchange={handleChange} required>
+                                    </div>
 
-
-                                    </lightning-layout-item>
-                                    <lightning-layout-item padding="around-small" size="6">
+                                    <!-- </lightning-layout-item>
+                                    <lightning-layout-item padding="around-small" size="6"> -->
+                                    <div class="felt">
                                         <label class="skjemaelement__label" for="phone">
                                             <p class="typo-element">Telefonnummer</p>
                                         </label>
                                         <input type="phone" class="skjemaelement__input input--fullbredde" name="phone"
                                             id="phone" onchange={handleChange} required>
-                                    </lightning-layout-item>
+                                    </div>
+                                    <!--    </lightning-layout-item>
                                 </lightning-layout>
 
-                                <lightning-layout size="12">
-                                    <lightning-layout-item class="padding-small" size="6">
+                                <lightning-layout size="12"> 
+                                    <lightning-layout-item class="padding-small" size="6"> -->
+                                    <div class="felt">
                                         <label class="skjemaelement__label" for="placeholer">
                                             <p class="typo-element">Fylke</p>
                                         </label>
@@ -117,10 +124,12 @@
                                                 <option value="Oslo">Oslo</option>
                                             </select>
                                         </div>
-                                    </lightning-layout-item>
+                                    </div>
+                                </div>
+                                <!-- </lightning-layout-item>
                                     <lightning-layout-item padding="around-small" size="6">
                                     </lightning-layout-item>
-                                </lightning-layout>
+                                </lightning-layout> -->
 
                                 <div class="navno-dekorator alertstripe">
                                     <img class="navno-dekorator alertstripe__ikon" src={informationicon}

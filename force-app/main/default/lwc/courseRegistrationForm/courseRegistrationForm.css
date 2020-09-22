@@ -392,3 +392,18 @@
         padding: 1rem;
     }
 }
+
+@media (min-width: 768px) {
+    .kontaktskjema-felter__bolk {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .felt {
+        /* max-width: calc(50% - 1rem); */
+        width: 330px;
+        margin-bottom: 2rem;
+    }
+}
