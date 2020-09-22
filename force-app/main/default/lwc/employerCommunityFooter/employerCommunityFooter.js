@@ -5,9 +5,11 @@ import { registerListener, unregisterAllListeners } from 'c/pubsub';
 import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
 import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
 import arrowupicon from '@salesforce/resourceUrl/arrowupicon';
+import nylogosvart from '@salesforce/resourceUrl/nylogosvart';
 
 export default class EmployerCommunityFooter extends LightningElement {
     arrowupicon = arrowupicon;
+    nylogosvart = nylogosvart;
     @api NAVarea;
 
     //@track isProd = window.location.toString().includes("tolkebestilling.nav.no/");
