@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>EmailConfirmation_loadMoreRecipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Load More Recipients</shortDescription>
+        <value>View more recipients</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_subjectField</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_sendEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Send Email</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_cancelEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Cancel Email</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_hide</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Hide</shortDescription>
+        <value>Hide</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_hideAria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Hide Aria</shortDescription>
+        <value>Hide recipients</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_listOfRecipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] List of recipients</shortDescription>
+        <value>Remaining recipients</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_toField</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] To Field</shortDescription>
+        <value>To</value>
+    </labels>
+</CustomLabels>

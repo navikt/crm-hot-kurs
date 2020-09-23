@@ -1,0 +1,173 @@
+<template>
+  <c-email-confirmation-modal
+    if:true={viewConfirmationWindow}
+    record-id={recordId}
+    recipients={recipients}
+    template-name="courseRegistrationInvitation"
+    use-do-not-reply="true"
+    oncancel={emailCancel}
+    onsuccess={emailSuccess}
+  >
+  </c-email-confirmation-modal>
+
+  <lightning-card
+    variant="Narrow"
+    title={labels.title}
+    icon-name="standard:email_chatter"
+  >
+    <lightning-button-group slot="actions" if:false={emailSent}>
+      <!-- ############## IMPORT ############## -->
+      <!-- #################################### -->
+      <!-- <lightning-button label={labels.importBtn}> </lightning-button> -->
+
+      <!-- ############## CONFIRM ############# -->
+      <!-- #################################### -->
+      <lightning-button
+        label={labels.goToConfirmation}
+        onclick={openConfirmation}
+        variant="brand"
+        disabled={isConfirmDisabled}
+      >
+      </lightning-button>
+    </lightning-button-group>
+    <lightning-button-group slot="actions" if:true={emailSent}>
+      <!-- ########### CLOSE CONFIRM ########## -->
+      <!-- #################################### -->
+      <lightning-button label={labels.close} onclick={restart}>
+      </lightning-button>
+    </lightning-button-group>
+
+    <!-- ############## SPINNER ############# -->
+    <!-- #################################### -->
+    <div if:true={loading} style="position: relative; min-height: 10em">
+      <lightning-spinner alternative-text="Loading" size="large">
+      </lightning-spinner>
+    </div>
+
+    <div class="slds-p-horizontal_medium" if:false={emailSent}>
+      <div
+        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-theme_shade slds-m-vertical_small slds-p-left_xxx-small slds-p-top_xxx-small"
+        if:true={hasRecipients}
+      >
+        <!-- ######### RECIPIENTS LIST ########## -->
+        <!-- #################################### -->
+        <lightning-pill-container
+          variant="bare"
+          items={recipients}
+          onitemremove={handleItemRemove}
+        >
+        </lightning-pill-container>
+      </div>
+
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12 slds-p-right_x-small">
+          <!-- ############ NAME FIELD ############ -->
+          <!-- #################################### -->
+          <lightning-input
+            name="fullName"
+            type="text"
+            label={labels.name}
+            onkeyup={inputData}
+            required
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-p-left_x-small">
+          <!-- ############ EMAIL FIELD ########### -->
+          <!-- #################################### -->
+          <lightning-input
+            name="email"
+            type="text"
+            oncommit={makeLowerCase}
+            pattern={emailRegex}
+            message-when-pattern-mismatch={labels.emailValidation}
+            label={labels.email}
+            onkeyup={inputData}
+            required
+          >
+          </lightning-input>
+        </div>
+      </div>
+
+      <!-- ####### ADD RECIPIENT BUTTON ####### -->
+      <!-- #################################### -->
+      <lightning-layout vertical-align="center">
+        <lightning-layout-item flexibility="grow">
+          <div
+            class="slds-text-color_weak slds-text-body_small slds-p-bottom_x-small slds-p-right_small slds-float_right"
+          >
+            {labels.pressEnterToAdd}
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <button
+            class="slds-button slds-button_outline-brand slds-float_right slds-m-top_small slds-m-bottom_large"
+            onclick={addEmail}
+          >
+            {labels.addRecipient}
+          </button>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+
+    <!-- ############## SUCCESS ############# -->
+    <!-- #################################### -->
+    <div
+      class="slds-var-p-top_x-small slds-var-p-bottom_medium slds-p-horizontal_medium"
+      if:true={emailSent}
+    >
+      <span class="slds-align_absolute-center slds-m-bottom_small">
+        <lightning-icon
+          icon-name="utility:success"
+          alternative-text={labels.emailSent}
+          class="slds-float_left"
+          size="x-small"
+          title={labels.emailSent}
+        ></lightning-icon>
+        <div class="slds-p-left_small slds-text-heading_medium">
+          {labels.contactsCreated}
+        </div>
+      </span>
+
+      <!-- ############# INVITEES ############# -->
+      <!-- #################################### -->
+      <lightning-layout horizontal-align="center" multiple-rows>
+        <template
+          if:true={contacts}
+          for:each={contacts}
+          for:item="con"
+          for:index="index"
+        >
+          <lightning-layout-item
+            class="slds-m-right_xx-small slds-m-top_medium"
+            key={con.Id}
+            flexibility="no-shrink"
+          >
+            <span
+              class="border contact slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-link slds-p-around_xx-small"
+              key={con.Id}
+              data-target-id={con.Id}
+              onclick={openContact}
+            >
+              <lightning-icon
+                icon-name="utility:user"
+                size="x-small"
+                class="slds-p-right_xx-small"
+              ></lightning-icon>
+              {con.FirstName} {con.LastName}
+            </span>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
+    </div>
+
+    <!-- ############# ERROR ############# -->
+    <!-- #################################### -->
+    <div
+      class="slds-box slds-theme_shade slds-theme_error slds-var-m-horizontal_small slds-var-m-bottom_x-small"
+      if:true={error}
+      style="border-color: pink"
+    >
+      <p class="slds-text-font_monospace">{labels.errorMsg}</p>
+    </div>
+  </lightning-card>
+</template>

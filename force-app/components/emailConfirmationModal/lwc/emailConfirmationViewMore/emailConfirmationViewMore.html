@@ -1,0 +1,43 @@
+<template>
+  <lightning-button
+    variant="base"
+    if:false={showPopoverButton}
+    label={labels.hide}
+    title={labels.hideAria}
+    onclick={collapseRecipients}
+    class="slds-m-left_x-small slds-m-top_xx-small slds-text-body_small slds-float_left"
+  ></lightning-button>
+
+  <lightning-button
+    variant="base"
+    if:true={showPopoverButton}
+    label={amountToLoad}
+    title={labels.loadMoreRecipients}
+    onmouseover={viewPopover}
+    onfocus={viewPopover}
+    onmouseout={hidePopover}
+    onclick={expandRecipients}
+    class="slds-m-left_x-small slds-m-top_xx-small slds-text-body_small slds-float_left"
+  ></lightning-button>
+
+  <section
+    if:true={showPopover}
+    aria-label={labels.EmailPreview_listOfRecipients}
+    aria-describedby="popover-body-id"
+    class="slds-popover slds-popover_small slds-nubbin_top-left slds-popover_walkthrough slds-popover_walkthrough-alt slds-m-top_x-small slds-p-top_medium recipientPopover slds-is-absolute"
+    role="dialog"
+  >
+    <div id="popover-body-id" class="slds-popover__body">
+      <template
+        if:true={recipients}
+        for:each={recipients}
+        for:item="recipient"
+        for:index="index"
+      >
+        <div class="slds-p-bottom--xxx-small" key={recipient.name}>
+          {recipient.label}
+        </div>
+      </template>
+    </div>
+  </section>
+</template>

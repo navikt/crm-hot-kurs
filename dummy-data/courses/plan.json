@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Course__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "Course__cs.json"
+        ]
+    }
+]
