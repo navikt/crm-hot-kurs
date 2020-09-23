@@ -1,4 +1,4 @@
-.decorator-wrapper .menylinje-knapp {
+/*.decorator-wrapper .menylinje-knapp {
     background-color: white;
     border: none;
     box-shadow: none;
@@ -81,9 +81,11 @@
     -webkit-transform: translate(-3px, 10.5px) rotate(-225deg) scale(0.8);
     transform: translate(-3px, 10.5px) rotate(-225deg) scale(0.8);
 }
+*/
 
 /******************************************************/
 
+/*
 .decorator-wrapper .ekspanderbar__container {
     position: absolute;
     width: 100%;
@@ -468,4 +470,4 @@
 .decorator-wrapper .desktop-sok-dropdown .ekspanderbar__innhold-wrapper {
     width: 700px;
     transition-duration: 0.2s;
-}
+}*/

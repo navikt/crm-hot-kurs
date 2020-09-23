@@ -116,17 +116,6 @@
     font-weight: 600;
 }
 
-@media (min-width: 30em) {
-    .typo-sidetittel {
-        font-size: 2.5rem;
-        line-height: 2.75rem;
-    }
-    .typo-systemtittel {
-        font-size: 1.5rem;
-        line-height: 1.75rem;
-    }
-}
-
 .omKurset__panel {
     /*margin-top: 1rem;*/
     padding-bottom: 2.5rem;
@@ -142,6 +131,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .typo-systemtittel {
@@ -364,4 +354,56 @@
     margin: 0;
     font-family: "Source Sans Pro", Arial, sans-serif;
     font-weight: 400;
+}
+
+@media (min-width: 992px) {
+    .omKurset {
+        width: 48.5rem;
+    }
+    .omKurset__panel {
+        margin: 0 1rem 0.5rem;
+        padding: 2.75rem 2rem 2.75rem 2rem;
+    }
+    .omKurset__overskrift {
+        margin-bottom: 2rem;
+    }
+    .omKurset__tilbakelenke {
+        margin-top: 2.5rem;
+    }
+}
+
+@media (min-width: 30em) {
+    .typo-sidetittel {
+        font-size: 2.5rem;
+        line-height: 2.75rem;
+    }
+    .typo-systemtittel {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .detaljside__overskrift {
+        padding-top: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    .panel {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .kontaktskjema-felter__bolk {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .felt {
+        /* max-width: calc(50% - 1rem); */
+        width: 330px;
+        margin-bottom: 2rem;
+    }
 }

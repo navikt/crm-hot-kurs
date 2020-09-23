@@ -1,4 +1,4 @@
-template {
+/*template {
     margin: 0;
 }
 
@@ -49,9 +49,11 @@ template {
         display: initial !important;
     }
 }
+*/
 
 /*MENYLINJE*/
 
+/*
 @media (min-width: 768px) {
     .decorator-wrapper .header-linje .nav-logo-lenke, .decorator-wrapper .header-linje .hovedmeny__knapp, .decorator-wrapper .header-linje .desktop-sok-dropdown__knapp {
         margin-left: 2rem;
@@ -63,9 +65,11 @@ template {
         max-width: 1440px;
     }
 }
+*/
 
 /*NAV LOGO */
 
+/*
 @media (min-width: 768px) {
     .decorator-wrapper .header-linje .nav-logo-lenke {
         width: 100px;
@@ -88,3 +92,4 @@ template {
     outline: 1px black solid;
     cursor: pointer;
 }
+*/

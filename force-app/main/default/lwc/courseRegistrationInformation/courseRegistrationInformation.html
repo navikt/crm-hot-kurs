@@ -5,15 +5,13 @@
             <div class="metainfo__egenskap">
                 <img class="metainfo__ikon" src={calendaricon}></img>
                 <p class="typo-element metainfo__infoTekst"> Når:
-                    <lightning-output-field variant="label-hidden" field-name="RegistrationFromDateTime__c">
-                    </lightning-output-field>
+                    {courseStart}
                 </p>
             </div>
             <div class="metainfo__egenskap">
                 <img class="metainfo__ikon" src={flagicon}></img>
                 <p class="typo-element metainfo__infoTekst">Påmeldingsfrist:
-                    <lightning-output-field variant="label-hidden" field-name="RegistrationDeadline__c">
-                    </lightning-output-field>
+                    {registrationDeadline}
                 </p>
             </div>
 
@@ -21,16 +19,14 @@
                 <img class="metainfo__ikon" src={mapicon}></img>
                 <p class="typo-element metainfo__infoTekst">
                     Sted:
-                    <lightning-output-field variant="label-hidden" field-name="RegistrationPlaceName__c">
-                    </lightning-output-field>
+                    {place}
                 </p>
             </div>
             <div class="metainfo__egenskap">
                 <img class="metainfo__ikon" src={staricon}></img>
                 <p class="typo-element metainfo__infoTekst">
                     Type kurs:
-                    <lightning-output-field variant="label-hidden" field-name="RegistrationToDateTime__c">
-                    </lightning-output-field>
+                    {type}
                 </p>
             </div>
         </lightning-record-view-form>
