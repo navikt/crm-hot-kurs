@@ -10,6 +10,13 @@
   >
   </c-email-confirmation-modal>
 
+  <c-gdpr-checkbox-modal
+    if:true={showGdpr}
+    oncancel={gdprCancel}
+    onaccept={gdprAccept}
+  >
+  </c-gdpr-checkbox-modal>
+
   <lightning-card
     variant="Narrow"
     title={labels.title}

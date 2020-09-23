@@ -18,9 +18,9 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     @track emails = [];
 
     @track contacts = [];
-    @track checkboxChecked = false;
     @track viewConfirmationWindow = false;
 
+    @track showGdpr = false;
     @track emailSent = false;
     @track error;
     @track errorMsg;
@@ -59,28 +59,6 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         }
     }
 
-    emailCancel(event) {
-        this.viewConfirmationWindow = false;
-    }
-
-    emailSuccess(event) {
-        this.contacts = event.detail;
-        this.emailSent = true;
-        this.viewConfirmationWindow = false;
-        this.loading = true;
-
-        createCourseRegistrations({
-            courseId: this.recordId,
-            contacts: this.contacts
-        }).then(result => {
-            this.loading = false;
-            this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
-        }).catch(error => {
-            this.loading = false;
-            this.error = true;
-            this.toast(this.labels.error, this.labels.errorMsg, undefined, 'error', 'sticky');
-        });
-    }
 
     toast(title, message, messageData, variant, mode) {
         const evt = new ShowToastEvent({
@@ -104,12 +82,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         });
     }
 
-    //send emails method
-    openConfirmation() {
-        if (this.recipients.length > 0) {
-            this.viewConfirmationWindow = true;
-        }
-    }
+
 
     restart() {
         this.emailSent = false;
@@ -122,9 +95,9 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         event.target.value = event.target.value.toLowerCase();
     }
 
-    checkbox() {
-        this.checkboxChecked = !this.checkboxChecked;
-    }
+    // #########################################
+    // ################ GETTERS ################
+    // #########################################
 
     get hasRecipients() {
         return this.recipients.length > 0;
@@ -140,4 +113,55 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         this.recipients.splice(index, 1);
         this.emails.splice(index, 1);
     }
+
+    // #########################################
+    // ############ CLICK LISTENERS ############
+    // #########################################
+
+    // click confirm
+    openConfirmation() {
+        this.showGdpr = true;
+    }
+
+    // #########################################
+    // ############ EVENT LISTENERS ############
+    // #########################################
+
+    // cancelled gdpr
+    gdprCancel(event) {
+        this.showGdpr = false;
+    }
+
+    // accepted gdpr
+    gdprAccept(event) {
+        this.showGdpr = false;
+
+        if (this.recipients.length > 0) {
+            this.viewConfirmationWindow = true;
+        }
+    }
+
+    emailCancel(event) {
+        this.viewConfirmationWindow = false;
+    }
+
+    emailSuccess(event) {
+        this.contacts = event.detail;
+        this.emailSent = true;
+        this.viewConfirmationWindow = false;
+        this.loading = true;
+
+        createCourseRegistrations({
+            courseId: this.recordId,
+            contacts: this.contacts
+        }).then(result => {
+            this.loading = false;
+            this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
+        }).catch(error => {
+            this.loading = false;
+            this.error = true;
+            this.toast(this.labels.error, this.labels.errorMsg, undefined, 'error', 'sticky');
+        });
+    }
+
 }
