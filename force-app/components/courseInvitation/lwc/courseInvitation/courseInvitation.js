@@ -1,35 +1,38 @@
-// native
+// NATIVE
 import { LightningElement, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-// controllers
+// CONTROLLERS
 import createCourseRegistrations from '@salesforce/apex/CourseInvitationController.createCourseRegistrations';
 
-// local files
+// LOCAL IMPORTS
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 import labels from "./labels";
 
 export default class CourseInvitation extends NavigationMixin(LightningElement) {
 
     @api recordId = 'a0A1j000003dIDEEA2';
+    emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
 
+    // DATA
     @track recipients = []; // pill container
     @track emails = [];
-
     @track contacts = [];
-    @track viewConfirmationWindow = false;
+    labels = labels;
 
+    // STATES
+    @track viewConfirmationWindow = false;
     @track showGdpr = false;
     @track emailSent = false;
     @track error;
     @track errorMsg;
     @track loading;
 
-    labels = labels;
-    emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
+    // #########################################
+    // ################# EVENTS ################
+    // #########################################
 
-    // add pills
     addEmail(event) {
 
         const validInputs = validateData(this.template.querySelectorAll("lightning-input"));
@@ -59,41 +62,17 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         }
     }
 
-
-    toast(title, message, messageData, variant, mode) {
-        const evt = new ShowToastEvent({
-            title: title,
-            message: message,
-            messageData: messageData,
-            variant: variant,
-            mode: mode
-        });
-        this.dispatchEvent(evt);
-    }
-
-    openContact(event) {
-        let contactId = event.target.dataset.targetId;
-        this[NavigationMixin.Navigate]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: contactId,
-                actionName: 'view'
-            },
-        });
-    }
-
-
-
-    restart() {
-        this.emailSent = false;
-        this.recipients = [];
-        this.emails = [];
-        this.contacts = [];
-    }
-
     makeLowerCase(event) {
         event.target.value = event.target.value.toLowerCase();
     }
+
+
+    removePill(event) {
+        const index = event.detail.index;
+        this.recipients.splice(index, 1);
+        this.emails.splice(index, 1);
+    }
+
 
     // #########################################
     // ################ GETTERS ################
@@ -107,13 +86,6 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         return this.recipients.length === 0;
     }
 
-    // remove pills
-    handleItemRemove(event) {
-        const index = event.detail.index;
-        this.recipients.splice(index, 1);
-        this.emails.splice(index, 1);
-    }
-
     // #########################################
     // ############ CLICK LISTENERS ############
     // #########################################
@@ -123,16 +95,21 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         this.showGdpr = true;
     }
 
+    restart() {
+        this.emailSent = false;
+        this.recipients = [];
+        this.emails = [];
+        this.contacts = [];
+    }
+
     // #########################################
-    // ############ EVENT LISTENERS ############
+    // ######## CUSTOM EVENT LISTENERS #########
     // #########################################
 
-    // cancelled gdpr
     gdprCancel(event) {
         this.showGdpr = false;
     }
 
-    // accepted gdpr
     gdprAccept(event) {
         this.showGdpr = false;
 
@@ -164,4 +141,29 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         });
     }
 
+    // #########################################
+    // ################# OTHER #################
+    // #########################################
+
+    toast(title, message, messageData, variant, mode) {
+        const evt = new ShowToastEvent({
+            title: title,
+            message: message,
+            messageData: messageData,
+            variant: variant,
+            mode: mode
+        });
+        this.dispatchEvent(evt);
+    }
+
+    openContact(event) {
+        let contactId = event.target.dataset.targetId;
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: contactId,
+                actionName: 'view'
+            },
+        });
+    }
 }
