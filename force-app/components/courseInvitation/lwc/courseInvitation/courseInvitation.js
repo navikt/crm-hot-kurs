@@ -1,35 +1,40 @@
-// native
+// NATIVE
 import { LightningElement, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-// controllers
+// CONTROLLERS
 import createCourseRegistrations from '@salesforce/apex/CourseInvitationController.createCourseRegistrations';
 
-// local files
+// LOCAL IMPORTS
 import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
 import labels from "./labels";
 
 export default class CourseInvitation extends NavigationMixin(LightningElement) {
 
     @api recordId = 'a0A1j000003dIDEEA2';
+    emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
 
+    // DATA
     @track recipients = []; // pill container
     @track emails = [];
-
     @track contacts = [];
-    @track checkboxChecked = false;
-    @track viewConfirmationWindow = false;
+    labels = labels;
 
+    // STATES
+    @track viewConfirmationWindow = false;
+    @track showGdpr = false;
     @track emailSent = false;
     @track error;
     @track errorMsg;
     @track loading;
 
-    labels = labels;
-    emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
+    // #########################################
+    // ################# EVENTS ################
+    // #########################################
 
-    // add pills
+    icons = ['standard:user', 'standard:bot', 'standard:customers', 'standard:employee_organization', 'standard:opportunity_contact_role'];
+
     addEmail(event) {
 
         const validInputs = validateData(this.template.querySelectorAll("lightning-input"));
@@ -40,15 +45,18 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
 
         if (emailIsUnique) {
 
+            let iconIndex = this.recipients.length % this.icons.length;
+
             pill.type = 'avatar';
             pill.label = pill.fullName;
             pill.name = pill.email;
-            pill.fallbackIconName = 'standard:user';
+            pill.fallbackIconName = this.icons[iconIndex];
             pill.variant = 'circle';
 
             this.recipients.push(pill);
             this.emails.push(pill.email);
 
+            this.template.querySelector('[data-id="fullName"]').focus();
             emptyInputFields(this.template.querySelectorAll("lightning-input"));
         }
     }
@@ -56,6 +64,62 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     inputData(event) {
         if (event.keyCode === 13) {
             this.addEmail(undefined);
+        }
+    }
+
+    makeLowerCase(event) {
+        event.target.value = event.target.value.toLowerCase();
+    }
+
+
+    removePill(event) {
+        const index = event.detail.index;
+        this.recipients.splice(index, 1);
+        this.emails.splice(index, 1);
+    }
+
+
+    // #########################################
+    // ################ GETTERS ################
+    // #########################################
+
+    get hasRecipients() {
+        return this.recipients.length > 0;
+    }
+
+    get isConfirmDisabled() {
+        return this.recipients.length === 0;
+    }
+
+    // #########################################
+    // ############ CLICK LISTENERS ############
+    // #########################################
+
+    // click confirm
+    openConfirmation() {
+        this.showGdpr = true;
+    }
+
+    restart() {
+        this.emailSent = false;
+        this.recipients = [];
+        this.emails = [];
+        this.contacts = [];
+    }
+
+    // #########################################
+    // ######## CUSTOM EVENT LISTENERS #########
+    // #########################################
+
+    gdprCancel(event) {
+        this.showGdpr = false;
+    }
+
+    gdprAccept(event) {
+        this.showGdpr = false;
+
+        if (this.recipients.length > 0) {
+            this.viewConfirmationWindow = true;
         }
     }
 
@@ -82,6 +146,10 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         });
     }
 
+    // #########################################
+    // ################# OTHER #################
+    // #########################################
+
     toast(title, message, messageData, variant, mode) {
         const evt = new ShowToastEvent({
             title: title,
@@ -102,42 +170,5 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
                 actionName: 'view'
             },
         });
-    }
-
-    //send emails method
-    openConfirmation() {
-        if (this.recipients.length > 0) {
-            this.viewConfirmationWindow = true;
-        }
-    }
-
-    restart() {
-        this.emailSent = false;
-        this.recipients = [];
-        this.emails = [];
-        this.contacts = [];
-    }
-
-    makeLowerCase(event) {
-        event.target.value = event.target.value.toLowerCase();
-    }
-
-    checkbox() {
-        this.checkboxChecked = !this.checkboxChecked;
-    }
-
-    get hasRecipients() {
-        return this.recipients.length > 0;
-    }
-
-    get isConfirmDisabled() {
-        return this.recipients.length === 0;
-    }
-
-    // remove pills
-    handleItemRemove(event) {
-        const index = event.detail.index;
-        this.recipients.splice(index, 1);
-        this.emails.splice(index, 1);
     }
 }

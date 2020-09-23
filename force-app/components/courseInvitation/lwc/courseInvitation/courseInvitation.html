@@ -10,15 +10,22 @@
   >
   </c-email-confirmation-modal>
 
+  <c-gdpr-checkbox-modal
+    if:true={showGdpr}
+    oncancel={gdprCancel}
+    onaccept={gdprAccept}
+  >
+  </c-gdpr-checkbox-modal>
+
   <lightning-card
     variant="Narrow"
     title={labels.title}
     icon-name="standard:email_chatter"
   >
-    <lightning-button-group slot="actions" if:false={emailSent}>
+    <lightning-button-group slot="actions">
       <!-- ############## IMPORT ############## -->
       <!-- #################################### -->
-      <!-- <lightning-button label={labels.importBtn}> </lightning-button> -->
+      <!-- <lightning-button label={labels.importBtn} if:false={emailSent}> </lightning-button> -->
 
       <!-- ############## CONFIRM ############# -->
       <!-- #################################### -->
@@ -26,14 +33,17 @@
         label={labels.goToConfirmation}
         onclick={openConfirmation}
         variant="brand"
+        if:false={emailSent}
         disabled={isConfirmDisabled}
       >
       </lightning-button>
-    </lightning-button-group>
-    <lightning-button-group slot="actions" if:true={emailSent}>
       <!-- ########### CLOSE CONFIRM ########## -->
       <!-- #################################### -->
-      <lightning-button label={labels.close} onclick={restart}>
+      <lightning-button
+        label={labels.close}
+        onclick={restart}
+        if:true={emailSent}
+      >
       </lightning-button>
     </lightning-button-group>
 
@@ -45,16 +55,16 @@
     </div>
 
     <div class="slds-p-horizontal_medium" if:false={emailSent}>
+      <!-- #################################### -->
+      <!-- ######### RECIPIENTS LIST ########## -->
       <div
-        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-theme_shade slds-m-vertical_small slds-p-left_xxx-small slds-p-top_xxx-small"
+        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
         if:true={hasRecipients}
       >
-        <!-- ######### RECIPIENTS LIST ########## -->
-        <!-- #################################### -->
         <lightning-pill-container
           variant="bare"
           items={recipients}
-          onitemremove={handleItemRemove}
+          onitemremove={removePill}
         >
         </lightning-pill-container>
       </div>
@@ -65,9 +75,11 @@
           <!-- #################################### -->
           <lightning-input
             name="fullName"
+            data-id="fullName"
             type="text"
             label={labels.name}
             onkeyup={inputData}
+            message-when-value-missing=" "
             required
           ></lightning-input>
         </div>
@@ -80,6 +92,7 @@
             oncommit={makeLowerCase}
             pattern={emailRegex}
             message-when-pattern-mismatch={labels.emailValidation}
+            message-when-value-missing=" "
             label={labels.email}
             onkeyup={inputData}
             required
