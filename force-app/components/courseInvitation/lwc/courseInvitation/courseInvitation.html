@@ -55,12 +55,12 @@
     </div>
 
     <div class="slds-p-horizontal_medium" if:false={emailSent}>
+      <!-- #################################### -->
+      <!-- ######### RECIPIENTS LIST ########## -->
       <div
-        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-theme_shade slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
+        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
         if:true={hasRecipients}
       >
-        <!-- ######### RECIPIENTS LIST ########## -->
-        <!-- #################################### -->
         <lightning-pill-container
           variant="bare"
           items={recipients}
