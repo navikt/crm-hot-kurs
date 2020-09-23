@@ -5,7 +5,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[GdprConfirmation] Title</shortDescription>
-        <value>I've read the terms below</value>
+        <value>I've read the terms</value>
     </labels>
     <labels>
         <fullName>GdprConfirmation_subtitle</fullName>
