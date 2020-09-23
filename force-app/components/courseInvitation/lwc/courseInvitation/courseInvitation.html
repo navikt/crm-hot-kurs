@@ -75,9 +75,11 @@
           <!-- #################################### -->
           <lightning-input
             name="fullName"
+            data-id="fullName"
             type="text"
             label={labels.name}
             onkeyup={inputData}
+            message-when-value-missing=" "
             required
           ></lightning-input>
         </div>
@@ -90,6 +92,7 @@
             oncommit={makeLowerCase}
             pattern={emailRegex}
             message-when-pattern-mismatch={labels.emailValidation}
+            message-when-value-missing=" "
             label={labels.email}
             onkeyup={inputData}
             required

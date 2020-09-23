@@ -56,9 +56,8 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
             this.recipients.push(pill);
             this.emails.push(pill.email);
 
-            emptyInputFields(this.template.querySelectorAll("lightning-input"));
-
             this.template.querySelector('[data-id="fullName"]').focus();
+            emptyInputFields(this.template.querySelectorAll("lightning-input"));
         }
     }
 
