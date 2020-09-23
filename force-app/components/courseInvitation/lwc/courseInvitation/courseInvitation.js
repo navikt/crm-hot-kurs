@@ -33,6 +33,8 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     // ################# EVENTS ################
     // #########################################
 
+    icons = ['standard:user', 'standard:bot', 'standard:customers', 'standard:employee_organization', 'standard:opportunity_contact_role'];
+
     addEmail(event) {
 
         const validInputs = validateData(this.template.querySelectorAll("lightning-input"));
@@ -43,10 +45,12 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
 
         if (emailIsUnique) {
 
+            let iconIndex = this.recipients.length % this.icons.length;
+
             pill.type = 'avatar';
             pill.label = pill.fullName;
             pill.name = pill.email;
-            pill.fallbackIconName = 'standard:user';
+            pill.fallbackIconName = this.icons[iconIndex];
             pill.variant = 'circle';
 
             this.recipients.push(pill);
