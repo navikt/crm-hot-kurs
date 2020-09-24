@@ -20,4 +20,12 @@
         <label>Hver bruker må være på hver sin linje, og navn og e-post kan være komma- eller semikolon-separert</label>
         <name>ImportUsers_pasteFromExcelHelp</name>
     </customLabels>
+    <customLabels>
+        <label>Prosesser</label>
+        <name>ImportUsers_process</name>
+    </customLabels>
+    <customLabels>
+        <label>Importer</label>
+        <name>ImportUsers_importUsers</name>
+    </customLabels>
 </Translations>

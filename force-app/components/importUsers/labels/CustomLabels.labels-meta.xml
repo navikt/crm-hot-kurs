@@ -36,4 +36,18 @@
         <shortDescription>[ImportUsers] Paste from Excel (help text)</shortDescription>
         <value>Each user should be on its own row, and the name and email can be comma- or semicolon-separated</value>
     </labels>
+    <labels>
+        <fullName>ImportUsers_process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Process</shortDescription>
+        <value>Process</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_importUsers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Import</shortDescription>
+        <value>Import</value>
+    </labels>
 </CustomLabels>

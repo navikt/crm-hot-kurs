@@ -19,8 +19,8 @@
           icon-name="utility:close"
           size="large"
           onclick={cancel}
-          alternative-text="Add user"
-          title="Add user"
+          alternative-text={labels.close}
+          title={labels.close}
         ></lightning-button-icon>
         <!-- TITLE 1 -->
         <h2
@@ -130,7 +130,7 @@
       <footer class="slds-modal__footer">
         <!-- ADD BUTTON -->
         <lightning-button
-          label="Add"
+          label={labels.process}
           if:false={imported}
           onclick={addUsers}
         ></lightning-button>
@@ -138,7 +138,7 @@
         <lightning-button
           variant="brand"
           if:true={imported}
-          label="Import"
+          label={labels.importUsers}
           onclick={startImport}
         ></lightning-button>
       </footer>
