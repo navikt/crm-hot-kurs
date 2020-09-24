@@ -12,13 +12,14 @@ export default class ImportUsersModal extends LightningElement {
     addUsers() {
         const users = this.template.querySelector('[data-id="importTextField"]').value.split(/\r?\n/);
 
-
         users.forEach(function (user, index) {
-            let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g;
-            let email = user.match(regex); // TODO lowercase
-            let fullName = user.replaceAll(email, '').replaceAll(',', '').replaceAll(';', '').replaceAll('"', '').trim();
-
-            this.push({ id: index, fullName: fullName, email: email });
+            if (user) {
+                let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g;
+                let email = user.toLowerCase().match(regex)[0];
+                var emailPattern = new RegExp(email, 'gi');
+                let fullName = user.replace(emailPattern, '').replaceAll(',', '').replaceAll(';', '').replaceAll('"', '').trim();
+                this.push({ id: index, fullName: fullName, email: email });
+            }
         }, this.contacts);
 
         this.imported = true;
@@ -33,7 +34,6 @@ export default class ImportUsersModal extends LightningElement {
 
         let targetId = event.target.dataset.targetId;
         this.contacts.splice(targetId, 1);
-
     }
 
     // #########################################

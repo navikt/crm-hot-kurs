@@ -129,7 +129,10 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         this.showImport = false;
 
         event.detail.forEach(con => {
-            this.createPill(con);
+            let emailIsUnique = !this.emails.includes(con.email);
+            if (emailIsUnique) {
+                this.createPill(con);
+            }
         });
     }
 
