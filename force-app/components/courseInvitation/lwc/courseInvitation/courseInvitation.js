@@ -141,8 +141,6 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     }
 
     emailSuccess(event) {
-        this.contacts = event.detail;
-        this.emailSent = true;
         this.viewConfirmationWindow = false;
         this.loading = true;
 
@@ -151,6 +149,8 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
             contacts: this.contacts
         }).then(result => {
             this.loading = false;
+            this.contacts = event.detail;
+            this.emailSent = true;
             this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
         }).catch(error => {
             this.loading = false;
