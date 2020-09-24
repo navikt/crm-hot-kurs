@@ -1,4 +1,4 @@
-export { getDataFromInputFields, validateData, emptyInputFields };
+export { getDataFromInputFields, validateData, emptyInputFields, contactToPill };
 
 
 const getDataFromInputFields = (array) => {
@@ -23,4 +23,15 @@ const emptyInputFields = (array) => {
         element.value = '';
         element.setCustomValidity("");
     });
+};
+
+const contactToPill = (pill) => {
+
+    pill.type = 'avatar';
+    pill.label = pill.fullName;
+    pill.name = pill.email;
+    pill.fallbackIconName = 'standard:user';
+    pill.variant = 'circle';
+
+    return pill;
 };

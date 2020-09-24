@@ -1,0 +1,148 @@
+<template>
+  <section
+    role="dialog"
+    tabindex="-1"
+    aria-label="Meaningful description of the modal content"
+    aria-modal="true"
+    aria-describedby="modal-content-id-1"
+    class="slds-modal slds-fade-in-open"
+  >
+    <div class="slds-modal__container">
+      <!-- ########################################## -->
+      <!-- ################# HEADER ################# -->
+      <!-- ########################################## -->
+      <header class="slds-modal__header">
+        <!-- CLOSE MODAL -->
+        <lightning-button-icon
+          class="slds-modal__close"
+          variant="bare-inverse"
+          icon-name="utility:close"
+          size="large"
+          onclick={cancel}
+          alternative-text="Add user"
+          title="Add user"
+        ></lightning-button-icon>
+        <!-- TITLE 1 -->
+        <h2
+          id="modal-heading-01"
+          if:false={imported}
+          class="slds-modal__title slds-hyphenate"
+        >
+          {labels.title}
+        </h2>
+        <!-- TITLE 2 -->
+        <h2
+          id="modal-heading-02"
+          if:true={imported}
+          class="slds-modal__title slds-hyphenate"
+        >
+          {labels.titleConfirm}
+        </h2>
+      </header>
+      <!-- ########################################## -->
+      <!-- ################## BODY ################## -->
+      <!-- ########################################## -->
+      <div
+        class="slds-modal__content slds-p-around_medium"
+        id="modal-content-id-1"
+      >
+        <!-- ########################################## -->
+        <!-- ############# IMPORT TEXTAREA ############ -->
+        <!-- ########################################## -->
+
+        <div class="slds-form-element" if:false={imported}>
+          <label class="slds-form-element__label" for="textarea-id-01"
+            >{labels.textAreaTitle}</label
+          >
+          <lightning-helptext
+            content={labels.pasteFromExcelHelp}
+          ></lightning-helptext>
+
+          <div class="slds-form-element__control">
+            <textarea
+              data-id="importTextField"
+              id="textarea-id-01"
+              rows="8"
+              class="slds-textarea"
+              placeholder={labels.placeholder}
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- ########################################## -->
+        <!-- ############# IMPORTED USERS ############# -->
+        <!-- ########################################## -->
+        <div if:true={imported}>
+          <lightning-layout
+            horizontal-align="space"
+            vertical-align="center"
+            multiple-rows
+          >
+            <template
+              if:true={contacts}
+              for:each={contacts}
+              for:item="con"
+              for:index="index"
+            >
+              <lightning-layout-item
+                size="5"
+                class="slds-p-bottom_xx-small"
+                key={con.id}
+              >
+                <lightning-input
+                  variant="label-hidden"
+                  label="fullName"
+                  class="slds-p-bottom_xx-small"
+                  name="fullName"
+                  value={con.fullName}
+                ></lightning-input>
+              </lightning-layout-item>
+              <lightning-layout-item
+                size="6"
+                class="slds-p-bottom_xx-small"
+                key={con.id}
+              >
+                <lightning-input
+                  variant="label-hidden"
+                  class="slds-p-bottom_xx-small"
+                  label="email"
+                  name="email"
+                  value={con.email}
+                ></lightning-input>
+              </lightning-layout-item>
+              <lightning-layout-item
+                class="slds-p-bottom_xx-small"
+                key={con.id}
+              >
+                <lightning-button-icon
+                  icon-name="utility:delete"
+                  class="slds-p-bottom_xx-small"
+                  onclick={removeContact}
+                  data-target-id={con.id}
+                  alternative-text="Delete"
+                  title="Delete"
+                ></lightning-button-icon>
+              </lightning-layout-item>
+            </template>
+          </lightning-layout>
+        </div>
+      </div>
+      <footer class="slds-modal__footer">
+        <!-- ADD BUTTON -->
+        <lightning-button
+          label="Add"
+          if:false={imported}
+          onclick={addUsers}
+        ></lightning-button>
+        <!-- IMPORT BUTTON -->
+        <lightning-button
+          variant="brand"
+          if:true={imported}
+          label="Import"
+          onclick={startImport}
+        ></lightning-button>
+      </footer>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

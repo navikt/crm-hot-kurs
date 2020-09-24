@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Importer</label>
+        <name>ImportUsers_title</name>
+    </customLabels>
+    <customLabels>
+        <label>Bekreft Import</label>
+        <name>ImportUsers_titleConfirm</name>
+    </customLabels>
+    <customLabels>
+        <label>Kari Nordmann, kari.nordmann@nav.no</label>
+        <name>ImportUsers_placeholder</name>
+    </customLabels>
+    <customLabels>
+        <label>Lim inn liste over brukere fra Excel</label>
+        <name>ImportUsers_textAreaTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Hver bruker må være på hver sin linje, og navn og e-post kan være komma- eller semikolon-separert</label>
+        <name>ImportUsers_pasteFromExcelHelp</name>
+    </customLabels>
+</Translations>

@@ -7,7 +7,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import createCourseRegistrations from '@salesforce/apex/CourseInvitationController.createCourseRegistrations';
 
 // LOCAL IMPORTS
-import { getDataFromInputFields, validateData, emptyInputFields } from "./helper";
+import { getDataFromInputFields, validateData, emptyInputFields, contactToPill } from "./helper";
 import labels from "./labels";
 
 export default class CourseInvitation extends NavigationMixin(LightningElement) {
@@ -24,6 +24,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     // STATES
     @track viewConfirmationWindow = false;
     @track showGdpr = false;
+    @track showImport = false;
     @track emailSent = false;
     @track error;
     @track errorMsg;
@@ -33,7 +34,6 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     // ################# EVENTS ################
     // #########################################
 
-    icons = ['standard:user', 'standard:bot', 'standard:customers', 'standard:employee_organization', 'standard:opportunity_contact_role'];
 
     addEmail(event) {
 
@@ -44,21 +44,16 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         let emailIsUnique = !this.emails.includes(pill.email);
 
         if (emailIsUnique) {
-
-            let iconIndex = this.recipients.length % this.icons.length;
-
-            pill.type = 'avatar';
-            pill.label = pill.fullName;
-            pill.name = pill.email;
-            pill.fallbackIconName = this.icons[iconIndex];
-            pill.variant = 'circle';
-
-            this.recipients.push(pill);
-            this.emails.push(pill.email);
-
+            this.createPill(pill);
             this.template.querySelector('[data-id="fullName"]').focus();
             emptyInputFields(this.template.querySelectorAll("lightning-input"));
         }
+    }
+
+    createPill(pill) {
+        pill = contactToPill(pill);
+        this.recipients.unshift(pill);
+        this.emails.unshift(pill.email);
     }
 
     inputData(event) {
@@ -71,13 +66,11 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         event.target.value = event.target.value.toLowerCase();
     }
 
-
     removePill(event) {
         const index = event.detail.index;
         this.recipients.splice(index, 1);
         this.emails.splice(index, 1);
     }
-
 
     // #########################################
     // ################ GETTERS ################
@@ -98,6 +91,11 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     // click confirm
     openConfirmation() {
         this.showGdpr = true;
+
+    }
+
+    startImport() {
+        this.showImport = true;
     }
 
     restart() {
@@ -121,6 +119,18 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         if (this.recipients.length > 0) {
             this.viewConfirmationWindow = true;
         }
+    }
+
+    importCancel(event) {
+        this.showImport = false;
+    }
+
+    importSuccess(event) {
+        this.showImport = false;
+
+        event.detail.forEach(con => {
+            this.createPill(con);
+        });
     }
 
     emailCancel(event) {
