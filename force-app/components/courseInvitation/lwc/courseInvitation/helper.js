@@ -21,5 +21,6 @@ const validateData = (array) => {
 const emptyInputFields = (array) => {
     array.forEach(element => {
         element.value = '';
+        element.setCustomValidity("");
     });
 };
