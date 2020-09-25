@@ -1,18 +1,10 @@
 import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import createRegistration from "@salesforce/apex/CourseRegistrationController.createRegistration";
-import getInvitationCode from "@salesforce/apex/CourseRegistrationController.getInvitationCode";
 import getCourseFields from "@salesforce/apex/CourseRegistrationController.getCourseFields";
+import icons from '@salesforce/resourceUrl/icons';
 
-import warningicon from '@salesforce/resourceUrl/warningicon';
-import informationicon from '@salesforce/resourceUrl/informationcircle';
-import chevrondown from '@salesforce/resourceUrl/chevrondown';
-import successicon from '@salesforce/resourceUrl/successicon';
-import erroricon from '@salesforce/resourceUrl/erroricon';
-
-export default class CourseRegistrationForm extends NavigationMixin(
-    LightningElement
-) {
+export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
 
     @track theRecord = {};
@@ -36,11 +28,11 @@ export default class CourseRegistrationForm extends NavigationMixin(
     parameters = {};
 
     //icons
-    warningicon = warningicon;
-    informationicon = informationicon;
-    successicon = successicon;
-    erroricon = erroricon;
-    chevrondown = chevrondown;
+    warningicon = icons + '/warningicon.svg';
+    informationicon = icons + '/informationicon.svg';
+    successicon = icons + '/successicon.svg';
+    erroricon = icons + '/erroricon.svg';
+    chevrondown = icons + '/chevrondown.svg';
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
