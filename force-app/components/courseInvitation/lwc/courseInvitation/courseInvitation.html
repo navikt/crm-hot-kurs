@@ -1,4 +1,7 @@
 <template>
+  <!-- ############## MODALS ############## -->
+  <!-- #################################### -->
+  <!-- CONFIRMATION MODAL -->
   <c-email-confirmation-modal
     if:true={viewConfirmationWindow}
     record-id={recordId}
@@ -9,26 +12,41 @@
     onsuccess={emailSuccess}
   >
   </c-email-confirmation-modal>
-
+  <!-- GDPR CHECKBOX -->
   <c-gdpr-checkbox-modal
     if:true={showGdpr}
     oncancel={gdprCancel}
     onaccept={gdprAccept}
   >
   </c-gdpr-checkbox-modal>
-
+  <!-- IMPORT USER -->
+  <c-import-users-modal
+    if:true={showImport}
+    oncancel={importCancel}
+    onsuccess={importSuccess}
+  >
+  </c-import-users-modal>
+  <!-- #################################### -->
+  <!-- ############### CARD ############### -->
+  <!-- #################################### -->
   <lightning-card
     variant="Narrow"
     title={labels.title}
     icon-name="standard:email_chatter"
   >
+    <!-- #################################### -->
+    <!-- ########## ACTION BUTTONS ########## -->
+    <!-- #################################### -->
     <lightning-button-group slot="actions">
-      <!-- ############## IMPORT ############## -->
-      <!-- #################################### -->
-      <!-- <lightning-button label={labels.importBtn} if:false={emailSent}> </lightning-button> -->
+      <!-- IMPORT -->
+      <lightning-button
+        label={labels.importBtn}
+        onclick={startImport}
+        if:false={emailSent}
+      >
+      </lightning-button>
 
-      <!-- ############## CONFIRM ############# -->
-      <!-- #################################### -->
+      <!-- CONFIRM -->
       <lightning-button
         label={labels.goToConfirmation}
         onclick={openConfirmation}
@@ -37,8 +55,7 @@
         disabled={isConfirmDisabled}
       >
       </lightning-button>
-      <!-- ########### CLOSE CONFIRM ########## -->
-      <!-- #################################### -->
+      <!-- CLOSE CONFIRM -->
       <lightning-button
         label={labels.close}
         onclick={restart}
@@ -46,8 +63,8 @@
       >
       </lightning-button>
     </lightning-button-group>
-
-    <!-- ############## SPINNER ############# -->
+    <!-- #################################### -->
+    <!-- ############# SPINNER ############## -->
     <!-- #################################### -->
     <div if:true={loading} style="position: relative; min-height: 10em">
       <lightning-spinner alternative-text="Loading" size="large">
@@ -57,8 +74,10 @@
     <div class="slds-p-horizontal_medium" if:false={emailSent}>
       <!-- #################################### -->
       <!-- ######### RECIPIENTS LIST ########## -->
+      <!-- #################################### -->
       <div
-        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
+        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small slds-scrollable"
+        style="max-height: 4.5rem"
         if:true={hasRecipients}
       >
         <lightning-pill-container
@@ -69,10 +88,12 @@
         </lightning-pill-container>
       </div>
 
-      <div class="slds-grid slds-wrap">
+      <!-- #################################### -->
+      <!-- ######### ADD RECIPIENTS ########### -->
+      <!-- #################################### -->
+      <div class="slds-grid slds-wrap slds-p-top_x-small">
         <div class="slds-col slds-size_6-of-12 slds-p-right_x-small">
-          <!-- ############ NAME FIELD ############ -->
-          <!-- #################################### -->
+          <!-- NAME FIELD -->
           <lightning-input
             name="fullName"
             data-id="fullName"
@@ -84,8 +105,7 @@
           ></lightning-input>
         </div>
         <div class="slds-col slds-size_6-of-12 slds-p-left_x-small">
-          <!-- ############ EMAIL FIELD ########### -->
-          <!-- #################################### -->
+          <!-- EMAIL FIELD -->
           <lightning-input
             name="email"
             type="text"
@@ -101,19 +121,23 @@
         </div>
       </div>
 
+      <!-- #################################### -->
       <!-- ####### ADD RECIPIENT BUTTON ####### -->
       <!-- #################################### -->
-      <lightning-layout vertical-align="center">
+      <lightning-layout
+        vertical-align="center"
+        class="slds-p-top_small slds-p-bottom_x-small"
+      >
         <lightning-layout-item flexibility="grow">
           <div
-            class="slds-text-color_weak slds-text-body_small slds-p-bottom_x-small slds-p-right_small slds-float_right"
+            class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
           >
             {labels.pressEnterToAdd}
           </div>
         </lightning-layout-item>
         <lightning-layout-item>
           <button
-            class="slds-button slds-button_outline-brand slds-float_right slds-m-top_small slds-m-bottom_large"
+            class="slds-button slds-button_outline-brand slds-float_right"
             onclick={addEmail}
           >
             {labels.addRecipient}
@@ -122,6 +146,7 @@
       </lightning-layout>
     </div>
 
+    <!-- #################################### -->
     <!-- ############## SUCCESS ############# -->
     <!-- #################################### -->
     <div
@@ -141,6 +166,7 @@
         </div>
       </span>
 
+      <!-- #################################### -->
       <!-- ############# INVITEES ############# -->
       <!-- #################################### -->
       <lightning-layout horizontal-align="center" multiple-rows>
@@ -173,7 +199,8 @@
       </lightning-layout>
     </div>
 
-    <!-- ############# ERROR ############# -->
+    <!-- #################################### -->
+    <!-- ############### ERROR ############## -->
     <!-- #################################### -->
     <div
       class="slds-box slds-theme_shade slds-theme_error slds-var-m-horizontal_small slds-var-m-bottom_x-small"

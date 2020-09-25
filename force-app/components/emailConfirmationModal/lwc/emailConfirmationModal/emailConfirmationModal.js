@@ -70,7 +70,7 @@ export default class EmailConfirmationModal extends LightningElement {
             this.htmlEmail = '';
             this.error = true;
             this.setError(error);
-            this.dispatchEvent(new CustomEvent('error'), { error: error });
+            this.dispatchEvent(new CustomEvent('error', { detail: error }));
         });
     }
 

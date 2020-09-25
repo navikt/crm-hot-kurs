@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ImportUsers_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Title</shortDescription>
+        <value>Import</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_titleConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] titleConfirm</shortDescription>
+        <value>Confirm Import</value>
+    </labels>
+
+    <labels>
+        <fullName>ImportUsers_placeholder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Placeholder</shortDescription>
+        <value>Kari Nordmann, kari.nordmann@nav.no</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_textAreaTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] TextAreaTitle</shortDescription>
+        <value>Paste list of users from Excel</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_pasteFromExcelHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Paste from Excel (help text)</shortDescription>
+        <value>Each user should be on its own row, and the name and email can be comma- or semicolon-separated</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Process</shortDescription>
+        <value>Process</value>
+    </labels>
+    <labels>
+        <fullName>ImportUsers_importUsers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[ImportUsers] Import</shortDescription>
+        <value>Import</value>
+    </labels>
+</CustomLabels>
