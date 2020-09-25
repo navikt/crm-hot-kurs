@@ -9,6 +9,7 @@ import icons from '@salesforce/resourceUrl/icons';
 import nylogosvart from '@salesforce/resourceUrl/nylogosvart';
 
 export default class EmployerCommunityFooter extends LightningElement {
+  
     arrowupicon = icons + '/arrowupicon.svg';
     nylogosvart = nylogosvart;
     @api NAVarea;

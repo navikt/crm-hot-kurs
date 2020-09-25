@@ -1,7 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import getCourseFields from "@salesforce/apex/CourseRegistrationController.getCourseFields";
 import icons from '@salesforce/resourceUrl/icons'
-import YearType from '@salesforce/schema/FiscalYearSettings.YearType';
 
 export default class courseRegistrationInformation extends LightningElement {
     @api courseId;
