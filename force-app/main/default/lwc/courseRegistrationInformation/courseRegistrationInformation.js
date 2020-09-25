@@ -14,6 +14,7 @@ export default class courseRegistrationInformation extends LightningElement {
     @track registrationDeadline;
     @track place;
     @track type;
+    @track courseStart;
 
 
     connectedCallback() {
@@ -21,7 +22,7 @@ export default class courseRegistrationInformation extends LightningElement {
         getCourseFields({ courseId: this.courseId }).then(
             result => {
                 if (result) {
-                    let courseStart = result.RegistrationFromDateTime__c;
+                    this.courseStart = result.RegistrationFromDateTime__c;
                     let courseEnd = result.RegistrationToDateTime__c;
                     this.registrationDeadline = result.RegistrationDeadline__c;
                     this.place = result.RegistrationPlaceName__c;
