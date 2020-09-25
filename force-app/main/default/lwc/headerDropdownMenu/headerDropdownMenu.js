@@ -11,9 +11,6 @@ export default class HeaderDropdownMenu extends LightningElement {
     }
 
     handleOnClickMenu(event) {
-        console.log('test');
         this.menuPressed = !this.menuPressed;
-
-        //this.sendMenuSelectedEvent();
     }
 }
