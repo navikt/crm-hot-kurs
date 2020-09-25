@@ -4,11 +4,13 @@ import { registerListener, unregisterAllListeners } from 'c/pubsub';
 //import isProdFunction from '@salesforce/apex/GlobalCommunityHeaderFooterController.isProd';
 import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
 import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
-import arrowupicon from '@salesforce/resourceUrl/arrowupicon';
+//import arrowupicon from '@salesforce/resourceUrl/arrowupicon';
+import icons from '@salesforce/resourceUrl/icons';
 import nylogosvart from '@salesforce/resourceUrl/nylogosvart';
 
 export default class EmployerCommunityFooter extends LightningElement {
-    arrowupicon = arrowupicon;
+  
+    arrowupicon = icons + '/arrowupicon.svg';
     nylogosvart = nylogosvart;
     @api NAVarea;
 
