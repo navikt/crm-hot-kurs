@@ -15,5 +15,4 @@
     <navType>Standard</navType>
     <tabs>Course__c</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Kurs_UtilityBar</utilityBar>
 </CustomApplication>
