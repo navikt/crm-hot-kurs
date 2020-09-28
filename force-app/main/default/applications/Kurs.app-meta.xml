@@ -20,6 +20,8 @@
     </actionOverrides>
     <brand>
         <headerColor>#71C29E</headerColor>
+        <logo>X1841844986_studentsfirstexperience</logo>
+        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
     <description>Opprett nye kurs, og se kursdeltakere</description>
