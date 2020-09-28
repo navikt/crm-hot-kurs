@@ -3,6 +3,8 @@ public with sharing class CourseInvitationController {
 	@AuraEnabled
 	public static List<CourseRegistration__c> createCourseRegistrations( Id courseId, List<Contact> contacts ) {
 
+		if ( contacts.size() == 0 || courseId == null ) { throw new AuraException( '' ); }
+
 		// get contacts with an existing course registration
 		Set<Id> contactIds = new Map<Id, Contact> ( contacts ).keySet();
 		List<CourseRegistration__c> registrations = [SELECT Id, CourseParticipant__c, Course__c FROM CourseRegistration__c WHERE Course__c = : courseId AND CourseParticipant__c IN : contactIds];
