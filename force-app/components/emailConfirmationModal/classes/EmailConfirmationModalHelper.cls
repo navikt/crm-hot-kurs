@@ -2,7 +2,7 @@ public with sharing class EmailConfirmationModalHelper {
 
 	public static List<Contact> fetchOrCreateContacts( List<EmailConfirmationModalModel> recipients ) {
 
-		List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
+		List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>();
 
 		for ( EmailConfirmationModalModel recipient : recipients ) {
 			List<String> name = recipient.fullName.split( ' ' );
@@ -12,7 +12,7 @@ public with sharing class EmailConfirmationModalHelper {
 				firstName = recipient.fullName.removeEnd( ' ' + lastName );
 			}
 
-			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
+			SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel();
 			wrapper.firstName = firstName;
 			wrapper.lastName = lastName;
 			wrapper.email = recipient.email;
