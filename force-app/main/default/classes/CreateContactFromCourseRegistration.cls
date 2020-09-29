@@ -8,13 +8,13 @@ public with sharing class CreateContactFromCourseRegistration {
 			// ! to skip trigger and soql inside for loop set contact before insert
 			if ( reg.CourseParticipant__c != null ) { continue; }
 
-			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
+			SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel();
 			wrapper.firstName = reg.ContactFirstName__c;
 			wrapper.lastName = reg.ContactLastName__c;
 			wrapper.email = reg.ContactEmail__c;
 			wrapper.phone = reg.ContactPhone__c;
 			wrapper.source = 'Kurs';
-			List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper> { wrapper };
+			List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel> { wrapper };
 
 			// ! need to use soql inside for loop because id doest exist in before insert
 			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, new Map<String, Account>() );
