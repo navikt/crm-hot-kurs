@@ -33,17 +33,6 @@ public with sharing class CourseRegistrationController {
 	}
 
 	@AuraEnabled
-	public static String getInvitationCode( Id courseId ) {
-		String invitationCode = [SELECT InvitationCode__c FROM Course__c WHERE Id =:courseId LIMIT 1].InvitationCode__c;
-
-		if ( String.isBlank( invitationCode ) ) {
-			invitationCode = '';
-		}
-
-		return invitationCode;
-	}
-
-	@AuraEnabled
 	public static Course__c getCourseFields( String courseId ) {
 		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c FROM Course__c WHERE Id = : courseId];
 	}
