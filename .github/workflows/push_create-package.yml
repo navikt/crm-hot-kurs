@@ -44,7 +44,6 @@ jobs:
           rm -f ./INTEGRATION_SANDBOX_SFDX_URL.txt
 
       # Create package version
-      # TODO throw error on below 75% code coverage
       - name: "Create package version"
         id: package-version-create
         run: |
@@ -273,13 +272,6 @@ jobs:
       # Deploy source to scratch org
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
-
-      # Sleep for 1 minute while permset groups are updating
-      # TODO replace with soql checker
-      - name: Sleep for 1 minute while permset groups are updating
-        uses: jakejarvis/wait-action@master
-        with:
-          time: "1m"
 
       # Get all test classes from current repo
       - name: Get all test classes from currentrepo
