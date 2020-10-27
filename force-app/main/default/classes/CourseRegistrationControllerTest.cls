@@ -31,24 +31,4 @@ private with sharing class CourseRegistrationControllerTest {
 		System.assertEquals( 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost', result, 'Registration successfull' );
 		System.assertEquals( 'Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing' );
 	}
-	@isTest
-	private static void testGetInvitationCode() {
-
-		Course__c courseWithInvitationCode = new Course__c( Name = 'Test invitasjon', MaxNumberOfParticipants__c = 20, DescriptionFormatted__c = 'Invitasjon', GenerateInvitationCode__c = true );
-		insert courseWithInvitationCode;
-
-		Course__c courseWithoutInvitationCode = new Course__c( Name = 'Test invitasjon uten kode', MaxNumberOfParticipants__c = 20, DescriptionFormatted__c = 'Invitasjon', GenerateInvitationCode__c = false );
-		insert courseWithoutInvitationCode;
-
-		Course__c getCourseWithInvitationCode = [SELECT Id, InvitationCode__c FROM Course__c WHERE InvitationCode__c != null LIMIT 1];
-		Course__c getCourseWithoutInvitationCode = [SELECT Id, InvitationCode__c FROM Course__c WHERE GenerateInvitationCode__c = false LIMIT 1];
-
-		Test.startTest();
-		String result = CourseRegistrationController.getInvitationCode( getCourseWithInvitationCode.Id );
-		String result2 = CourseRegistrationController.getInvitationCode( getCourseWithoutInvitationCode.Id );
-		Test.stopTest();
-		System.assertNotEquals( result, null, 'InvitationCode is not null' );
-		System.assertEquals( result2, '', 'InvitationCode is null' );
-	}
-
 }

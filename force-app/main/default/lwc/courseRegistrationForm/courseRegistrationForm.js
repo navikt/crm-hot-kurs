@@ -27,12 +27,15 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track showValidationInput = false;
     parameters = {};
 
+    @track url;
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
     successicon = icons + '/successicon.svg';
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
+    houseicon = icons + '/houseicon.svg';
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
@@ -48,6 +51,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.dueDate = result.RegistrationDeadline__c;
                     var registrationDeadline = new Date(this.dueDate);
                     var dateNow = new Date(Date.now());
+                    this.url = "https://arbeidsgiver.nav.no/kursoversikt/" + this.courseId;
 
                     if (registrationDeadline > dateNow) {
                         this.showForm = true;
