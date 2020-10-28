@@ -121,7 +121,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     validateCode(event) {
         event.preventDefault();
-        console.log('codes', this.inputValCode, this.code);
         if (this.inputValCode === this.code) {
             this.showValidationInput = false;
             this.showForm = true;
