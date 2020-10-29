@@ -1,188 +1,312 @@
 <template>
-    <div class="root">
-        <div class="app">
-            <div class="detaljside">
-                <header class="detaljside__overskrift">
-                    <h1 class="typo-sidetittel detaljside__kurstittel"> {title} </h1>
-                </header>
+  <div class="decorator-header">
+    <div class="decorator-wrapper">
+      <div class="decorator-utils-container">
+        <div class="decorator-utils-content">
+          <nav
+            class="brodsmulesti"
+            aria-label="Brødsmulesti"
+            itemprop="breadcrumb"
+          >
+            <ol>
+              <li class="typo-normal">
+                <a href="https://www.nav.no" class="lenke brodsmulesti__home"
+                  ><img src={houseicon} alt="" class="brodsmulesti__icon" />
+                  <span>nav.no</span
+                  ><i
+                    class="nav-frontend-chevron chevronboks chevron--hoyre"
+                  ></i
+                ></a>
+              </li>
+              <li class="typo-normal">
+                <a href="https://www.nav.no/no/bedrift" class="lenke"
+                  ><span>Arbeidsgiver</span
+                  ><i
+                    class="nav-frontend-chevron chevronboks chevron--hoyre"
+                  ></i
+                ></a>
+              </li>
+              <li class="typo-normal" aria-current="false">
+                <a
+                  href="https://arbeidsgiver.nav.no/kursoversikt/"
+                  class="lenke brodsmulesti__transform"
+                  ><span>Kurskalender</span
+                  ><i
+                    class="nav-frontend-chevron chevronboks chevron--hoyre"
+                  ></i
+                ></a>
+              </li>
+              <li class="typo-normal" aria-current="false">
+                <a href={url} class="lenke brodsmulesti__transform"
+                  ><span>Om kurset</span
+                  ><i
+                    class="nav-frontend-chevron chevronboks chevron--hoyre"
+                  ></i
+                ></a>
+              </li>
+              <li class="typo-normal" aria-current="page">
+                <span class="brodsmulesti__transform">Påmeldingsskjema</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="root">
+    <div class="app">
+      <div class="detaljside">
+        <header class="detaljside__overskrift">
+          <h1 class="typo-sidetittel detaljside__kurstittel">{title}</h1>
+        </header>
+        <main class="detaljside__innhold">
+          <!--============================INFROMATION BOX====================================-->
+          <span class="metainfo">
+            <c-course-registration-information course-id={courseId}>
+            </c-course-registration-information>
+          </span>
+          <!--========================================================-->
 
-                <main class="detaljside__innhold">
+          <span class="omKurset">
+            <div class="panel omKurset__panel">
+              <!--===========================VALIDERING===============================-->
+              <form if:true={showValidationInput}>
+                <h2 style="font-size: 1.2rem" class="omKurset__overskrift">
+                  Kun inviterte kan melde seg på aktiviteten
+                </h2>
 
-                    <!--============================INFROMATION BOX====================================-->
-                    <span class="metainfo">
-                        <c-course-registration-information course-id={courseId}>
-                        </c-course-registration-information>
-                    </span>
-                    <!--========================================================-->
+                <div class="inline">
+                  <label for="invCode" class="skjemaelement__label"
+                    >Tast inn din tilgangskode</label
+                  >
+                  <input
+                    type="text"
+                    class="skjemaelement__input"
+                    id="invCode"
+                    name={inputValCode}
+                    value={inputValCode}
+                    onchange={handleChange2}
+                    required
+                  />
 
-                    <span class="omKurset">
-                        <div class="panel omKurset__panel">
-                            <!--===========================VALIDERING===============================-->
-                            <form if:true={showValidationInput}>
-                                <h2 style="font-size: 1.2rem;" class="omKurset__overskrift">Kun inviterte
-                                    kan
-                                    melde
-                                    seg på aktiviteten</h2>
+                  <button
+                    title="Vis aktivitet"
+                    class="btn2"
+                    type="submit"
+                    onclick={validateCode}
+                  >
+                    Vis aktivitet
+                  </button>
+                </div>
+                <br />
+              </form>
+              <!--======================================================================================-->
 
-                                <div class="inline">
-                                    <label for="invCode" class="skjemaelement__label">Tast inn din tilgangskode</label>
-                                    <input type="text" class="skjemaelement__input" id="invCode" name={inputValCode}
-                                        value={inputValCode} onchange={handleChange2} required>
+              <!--======== COURSEID DOES NOT EXIST ===========-->
+              <div if:false={courseId} class="">
+                <div
+                  class="navno-dekorator alertstripe navno-dekorator alertstripe--feil"
+                >
+                  <img
+                    class="navno-dekorator alertstripe__ikon"
+                    src={erroricon}
+                    alt="advarsel-ikon"
+                  />
+                  <div class="typo-normal alertstripe__tekst">
+                    Dette kurset er ikke tilgjengelig for øyeblikket, vennligst
+                    prøv igjen senere
+                  </div>
+                </div>
+              </div>
+              <!--===================================================================================-->
+              <!--======== ERROR MESSAGE ===========-->
+              <div if:true={displayErrorMessage} class="">
+                <div
+                  class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                >
+                  <img
+                    class="navno-dekorator alertstripe__ikon"
+                    src={warningicon}
+                    alt="advarsel-ikon"
+                  />
+                  <div class="typo-normal alertstripe__tekst">
+                    {errorMessage}
+                  </div>
+                </div>
+              </div>
+              <!--===================================================================================-->
 
-                                    <button title="Vis aktivitet" class="btn2" type="submit" onclick={validateCode}>Vis
-                                        aktivitet
-                                    </button>
-                                </div>
-                                <br>
-                            </form>
-                            <!--======================================================================================-->
+              <!--============================REGISTRATION FORM=========================================-->
+              <form if:true={showForm}>
+                <h2 class="omKurset__overskrift typo-systemtittel">
+                  Påmeldingsskjema
+                </h2>
 
-                            <!--======== COURSEID DOES NOT EXIST ===========-->
-                            <div if:false={courseId} class="">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--feil">
-                                    <img class="navno-dekorator alertstripe__ikon" src={erroricon} alt="advarsel-ikon">
-                                    <div class="typo-normal alertstripe__tekst">Dette kurset er ikke tilgjengelig for
-                                        øyeblikket, vennligst prøv igjen senere
-                                    </div>
-                                </div>
-                            </div>
-                            <!--===================================================================================-->
-                            <!--======== ERROR MESSAGE ===========-->
-                            <div if:true={displayErrorMessage} class="">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                    <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                        alt="advarsel-ikon">
-                                    <div class="typo-normal alertstripe__tekst">{errorMessage}
-                                    </div>
-                                </div>
-                            </div>
-                            <!--===================================================================================-->
-
-                            <!--============================REGISTRATION FORM=========================================-->
-                            <form if:true={showForm}>
-                                <h2 class="omKurset__overskrift typo-systemtittel">
-                                    Påmeldingsskjema
-                                </h2>
-
-                                <!--<lightning-layout size="12">
+                <!--<lightning-layout size="12">
                                     <lightning-layout-item class="padding-small" size="6"> -->
-                                <div class="kontaktskjema-felter__bolk">
-                                    <div class="felt">
-                                        <label class="skjemaelement__label" for="firstName">
-                                            <p class="typo-element">Fornavn</p>
-                                        </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde" id="firstName"
-                                            name="firstName" onchange={handleChange} required>
-                                    </div>
-                                    <!-- </lightning-layout-item>
+                <div class="kontaktskjema-felter__bolk">
+                  <div class="felt">
+                    <label class="skjemaelement__label" for="firstName">
+                      <p class="typo-element">Fornavn</p>
+                    </label>
+                    <input
+                      type="text"
+                      class="skjemaelement__input input--fullbredde"
+                      id="firstName"
+                      name="firstName"
+                      onchange={handleChange}
+                      required
+                    />
+                  </div>
+                  <!-- </lightning-layout-item>
 
                                     <lightning-layout-item padding="around-small" size="6"> -->
-                                    <div class="felt">
-                                        <label class="skjemaelement__label" for="lastName">
-                                            <p class="typo-element">Etternavn</p>
-                                        </label>
+                  <div class="felt">
+                    <label class="skjemaelement__label" for="lastName">
+                      <p class="typo-element">Etternavn</p>
+                    </label>
 
-                                        <input type="text" class="skjemaelement__input input--fullbredde" id="lastName"
-                                            name="lastName" onchange={handleChange} required>
-                                    </div>
+                    <input
+                      type="text"
+                      class="skjemaelement__input input--fullbredde"
+                      id="lastName"
+                      name="lastName"
+                      onchange={handleChange}
+                      required
+                    />
+                  </div>
 
-                                    <!-- </lightning-layout-item>
+                  <!-- </lightning-layout-item>
                                 </lightning-layout>
 
                                 <lightning-layout size="12">
                                     <lightning-layout-item class="padding-small" size="6"> -->
-                                    <div class="felt">
-                                        <label class="skjemaelement__label" for="email">
-                                            <p class="typo-element">E-post</p>
-                                        </label>
-                                        <input type="email" class="skjemaelement__input input--fullbredde" id="email"
-                                            name="email" onchange={handleChange} required>
-                                    </div>
+                  <div class="felt">
+                    <label class="skjemaelement__label" for="email">
+                      <p class="typo-element">E-post</p>
+                    </label>
+                    <input
+                      type="email"
+                      class="skjemaelement__input input--fullbredde"
+                      id="email"
+                      name="email"
+                      onchange={handleChange}
+                      required
+                    />
+                  </div>
 
-                                    <!-- </lightning-layout-item>
+                  <!-- </lightning-layout-item>
                                     <lightning-layout-item padding="around-small" size="6"> -->
-                                    <div class="felt">
-                                        <label class="skjemaelement__label" for="phone">
-                                            <p class="typo-element">Telefonnummer</p>
-                                        </label>
-                                        <input type="phone" class="skjemaelement__input input--fullbredde" name="phone"
-                                            id="phone" onchange={handleChange} required>
-                                    </div>
-                                    <!--    </lightning-layout-item>
+                  <div class="felt">
+                    <label class="skjemaelement__label" for="phone">
+                      <p class="typo-element">Telefonnummer</p>
+                    </label>
+                    <input
+                      type="phone"
+                      class="skjemaelement__input input--fullbredde"
+                      name="phone"
+                      id="phone"
+                      onchange={handleChange}
+                      required
+                    />
+                  </div>
+                  <!--    </lightning-layout-item>
                                 </lightning-layout>
 
                                 <lightning-layout size="12"> 
                                     <lightning-layout-item class="padding-small" size="6"> -->
-                                    <div class="felt">
-                                        <label class="skjemaelement__label" for="placeholer">
-                                            <p class="typo-element">Fylke</p>
-                                        </label>
-                                        <div class="selectContainer input--fullbredde">
-                                            <select class="skjemaelement__input" id="placeholder" name="placeholder"
-                                                onchange={handleChange}><img src={chevrondown}>
-                                                <option value></option>
-                                                <option value="Oslo">Oslo</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- </lightning-layout-item>
+                  <div class="felt">
+                    <label class="skjemaelement__label" for="placeholer">
+                      <p class="typo-element">Fylke</p>
+                    </label>
+                    <div class="selectContainer input--fullbredde">
+                      <select
+                        class="skjemaelement__input"
+                        id="placeholder"
+                        name="placeholder"
+                        onchange={handleChange}
+                      >
+                        <img src={chevrondown} />
+                        <option value></option>
+                        <option value="Oslo">Oslo</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- </lightning-layout-item>
                                     <lightning-layout-item padding="around-small" size="6">
                                     </lightning-layout-item>
                                 </lightning-layout> -->
 
-                                <div class="navno-dekorator alertstripe">
-                                    <img class="navno-dekorator alertstripe__ikon" src={informationicon}
-                                        alt="informasjon-ikon">
-                                    <p class="typo-normal">NAV bruker disse opplysningene for å kontakte deg ang dette
-                                        kurset. <br> Opplysningene
-                                        blir
-                                        ikke delt eller brukt til andre formål.
+                <div class="navno-dekorator alertstripe">
+                  <img
+                    class="navno-dekorator alertstripe__ikon"
+                    src={informationicon}
+                    alt="informasjon-ikon"
+                  />
+                  <p class="typo-normal">
+                    NAV bruker disse opplysningene for å kontakte deg ang dette
+                    kurset. <br />
+                    Opplysningene blir ikke delt eller brukt til andre formål.
+                  </p>
+                </div>
+                <div if:true={showError}>
+                  <div
+                    class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                    style=""
+                  >
+                    <img
+                      class="navno-dekorator alertstripe__ikon"
+                      src={warningicon}
+                      alt="advarsel-ikon"
+                    />
+                    <p class="typo-normal">
+                      Du må fylle ut alle feltene for å melde deg på
+                    </p>
+                  </div>
+                </div>
+                <div class="">
+                  <button
+                    title="Meld på"
+                    class="btn-submit"
+                    type="submit"
+                    onclick={handleSubmit}
+                  >
+                    Meld deg på
+                  </button>
+                </div>
+              </form>
 
-                                    </p>
-                                </div>
-                                <div if:true={showError}>
-                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                                        style="">
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                            alt="advarsel-ikon">
-                                        <p class="typo-normal">Du må fylle ut alle feltene for
-                                            å
-                                            melde
-                                            deg
-                                            på
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <button title="Meld på" class="btn-submit" type="submit" onclick={handleSubmit}>Meld
-                                        deg
-                                        på
-                                    </button>
-                                </div>
-                            </form>
-
-                            <!--======================== CONFIRMATION PAGE =============================================-->
-                            <div if:true={showConfirmation} class="midtstill">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess">
-                                    <img class="navno-dekorator alertstripe__ikon" src={successicon} alt="suksess-ikon">
-                                    <p class="typo-normal">{message}
-                                    </p>
-                                </div>
-                            </div>
-                            <!--=========================================================================================-->
-                            <div class="omKurset__tilbakelenke">
-                                <a class="lenke" href="https://arbeidsgiver.nav.no/kursoversikt/"
-                                    title="Tilbake til kursoversikten">
-                                    <i class="chevronboks chevron--venstre"><img class="tst" src={chevrondown}></i>
-                                    Tilbake
-                                    til
-                                    kursoversikten</a>
-                            </div>
-                        </div>
-                    </span>
-                </main>
+              <!--======================== CONFIRMATION PAGE =============================================-->
+              <div if:true={showConfirmation} class="midtstill">
+                <div
+                  class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess"
+                >
+                  <img
+                    class="navno-dekorator alertstripe__ikon"
+                    src={successicon}
+                    alt="suksess-ikon"
+                  />
+                  <p class="typo-normal">{message}</p>
+                </div>
+              </div>
+              <!--=========================================================================================-->
+              <div class="omKurset__tilbakelenke">
+                <a
+                  class="lenke"
+                  href="https://arbeidsgiver.nav.no/kursoversikt/"
+                  title="Tilbake til kursoversikten"
+                >
+                  <i class="chevronboks chevron--venstre"
+                    ><img class="tst" src={chevrondown}
+                  /></i>
+                  Tilbake til kursoversikten</a
+                >
+              </div>
             </div>
-        </div>
+          </span>
+        </main>
+      </div>
     </div>
+  </div>
 </template>

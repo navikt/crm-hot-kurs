@@ -1,6 +1,8 @@
 import { LightningElement, api, track } from 'lwc';
 import getCourseFields from "@salesforce/apex/CourseRegistrationController.getCourseFields";
-import icons from '@salesforce/resourceUrl/icons'
+import icons from '@salesforce/resourceUrl/icons';
+import { loadScript } from 'lightning/platformResourceLoader';
+import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 
 export default class courseRegistrationInformation extends LightningElement {
     @api courseId;
@@ -19,12 +21,18 @@ export default class courseRegistrationInformation extends LightningElement {
 
     connectedCallback() {
 
+        Promise.all([
+            loadScript(this, MOMENT_JS),
+        ]).then(() => {
+            moment.locale('nb-no');
+        });
+
         getCourseFields({ courseId: this.courseId }).then(
             result => {
                 if (result) {
-                    this.courseStart = result.RegistrationFromDateTime__c;
-                    let courseEnd = result.RegistrationToDateTime__c;
-                    this.registrationDeadline = result.RegistrationDeadline__c;
+                    let courseEnd = moment(result.RegistrationToDateTime__c).format('LT');
+                    this.courseStart = moment(result.RegistrationFromDateTime__c).format('DD MMM') + ' kl. ' + moment(result.RegistrationFromDateTime__c).format('LT') + ' - ' + courseEnd;
+                    this.registrationDeadline = moment(result.RegistrationDeadline__c).format('DD MMM') + ' kl. ' + moment(result.RegistrationDeadline__c).format('LT');
                     this.place = result.RegistrationPlaceName__c;
                     this.type = result.Type__c;
 
