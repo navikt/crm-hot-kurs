@@ -173,7 +173,7 @@ jobs:
         run: |
           rm -rf ./force-app/unpackagable
           rm -rf ./force-app/scratch-org
-
+          
       # Get code coverage
       - name: Get code coverage
         id: getCodeCoverage
