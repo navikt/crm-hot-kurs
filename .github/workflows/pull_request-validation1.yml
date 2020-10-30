@@ -202,7 +202,7 @@ jobs:
               covered=$(jq '.totalCovered' <<< $row)
               lines=$(jq '.totalLines' <<< $row)
               
-              if [ "$covered" != "null" && "$lines" != "null" ]; then
+              if [[ $covered != "null" && $lines != "null" && $lines != "0" ]]; then
                 let totalCovered+=covered
                 let totalLines+=lines
               fi
