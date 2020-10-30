@@ -201,8 +201,11 @@ jobs:
             if [[ " ${classes[@]} " =~ " ${name} " ]]; then
               covered=$(jq '.totalCovered' <<< $row)
               lines=$(jq '.totalLines' <<< $row)
-              let totalCovered+=covered
-              let totalLines+=lines
+              
+              if [ "$covered" != "null" && "$lines" != "null" ]; then
+                let totalCovered+=covered
+                let totalLines+=lines
+              fi
             fi
           done
 
