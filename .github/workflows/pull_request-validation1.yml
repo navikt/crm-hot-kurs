@@ -179,7 +179,7 @@ jobs:
         run: |
           rm -rf ./force-app/unpackagable
           rm -rf ./force-app/scratch-org
-
+          
       # Get code coverage
       - name: Get code coverage
         id: getCodeCoverage
@@ -199,6 +199,7 @@ jobs:
           for row in $(jq -c -r '.[]' <<< "$(cat tests/apex/test-result-codecoverage.json)"); do
             name=$(jq -r '.name' <<< $row)
             if [[ " ${classes[@]} " =~ " ${name} " ]]; then
+            
               covered=$(jq '.totalCovered' <<< $row)
               lines=$(jq '.totalLines' <<< $row)
               
