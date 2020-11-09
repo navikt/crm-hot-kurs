@@ -11,18 +11,18 @@ export default class EmployerCommunityFooter extends LightningElement {
     nylogosvart = nylogosvart;
     @api NAVarea;
 
-    @track arbeidsgiver;
-    @track privatperson;
-    @track samarbeidspartner;
+    @track isArbeidsgiver;
+    @track isPrivatperson;
+    @track isSamarbeidspartner;
 
     renderedCallback() {
         loadStyle(this, dekoratoren);
     }
 
     connectedCallback() {
-        this.privatperson = this.NAVarea == 'Privatperson';
-        this.arbeidsgiver = this.NAVarea == 'Arbeidsgiver';
-        this.samarbeidspartner = this.NAVarea == 'Samarbeidspartner';
+        this.isPrivatperson = this.NAVarea == 'Privatperson';
+        this.isArbeidsgiver = this.NAVarea == 'Arbeidsgiver';
+        this.isSamarbeidspartner = this.NAVarea == 'Samarbeidspartner';
     }
 
     scrollToTop() {
