@@ -1,37 +1,36 @@
-import { LightningElement, track, wire, api } from 'lwc';
-import { CurrentPageReference } from 'lightning/navigation';
-import { registerListener, unregisterAllListeners } from 'c/pubsub';
-//import isProdFunction from '@salesforce/apex/GlobalCommunityHeaderFooterController.isProd';
+import { LightningElement, track, api } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
+
 import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
-import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
-//import arrowupicon from '@salesforce/resourceUrl/arrowupicon';
 import icons from '@salesforce/resourceUrl/icons';
 import nylogosvart from '@salesforce/resourceUrl/nylogosvart';
 
 export default class EmployerCommunityFooter extends LightningElement {
-  
+
     arrowupicon = icons + '/arrowupicon.svg';
     nylogosvart = nylogosvart;
     @api NAVarea;
 
-    //@track isProd = window.location.toString().includes("tolkebestilling.nav.no/");
-    @track isPrivatPerson = true;
-    //@track isProd;
-    //@track error;
-    //@wire(isProdFunction)
-    //wiredIsProd({ error, data }) {
-    //	this.isProd = data;
-    //console.log("isProd: " + this.isProd);
-    //}
+    @track arbeidsgiver;
+    @track privatperson;
+    @track samarbeidspartner;
+
     renderedCallback() {
         loadStyle(this, dekoratoren);
     }
 
-    scrollToTop() {
-        window.scroll(0, 0, 'smooth');
-
+    connectedCallback() {
+        this.privatperson = this.NAVarea == 'Privatperson';
+        this.arbeidsgiver = this.NAVarea == 'Arbeidsgiver';
+        this.samarbeidspartner = this.NAVarea == 'Samarbeidspartner';
     }
 
+    scrollToTop() {
+        window.scroll(0, 0, 'smooth');
+    }
+
+
+    /* DEL SKJERM FUNKSJONER */
     @track isDelSkjerm = false;
     onHandleClickDelSkjerm() {
         this.isDelSkjerm = !this.isDelSkjerm;
@@ -45,29 +44,5 @@ export default class EmployerCommunityFooter extends LightningElement {
     functionalityNotSupported() {
         alert("Vi støtter dessverre ikke denne funksjonaliteten i dag.");
     }
-
-    @wire(CurrentPageReference) pageRef;
-    connectedCallback() {
-        registerListener('clienttypeselected', this.handleClientTypeSelected, this);
-        registerListener('menuSelectedEvent', this.handleMenuSelected, this);
-        //this.isPrivatPerson= this.NAVarea == 'Privatperson';
-    }
-    disconnectedCallback() {
-        unregisterAllListeners(this);
-    }
-
-    //@track isPrivatPerson = true;
-    @track isArbeidsgiver = false;
-    @track isSamarbeidspartner = false;
-    handleClientTypeSelected(data) {
-        this.isPrivatPerson = data.isPrivatPerson;
-        this.isArbeidsgiver = data.isArbeidsgiver;
-        this.isSamarbeidspartner = data.isSamarbeidspartner;
-    }
-
-    @track menuPressed = false;
-    handleMenuSelected(isSelected) {
-        this.menuPressed = isSelected;
-    }
-
+    /******************************************/
 }
