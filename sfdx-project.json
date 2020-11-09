@@ -9,7 +9,7 @@
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.34.0.LATEST"
+                    "versionNumber": "0.43.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
@@ -17,7 +17,7 @@
                 },
                 {
                     "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "1.9.0.LATEST"
+                    "versionNumber": "1.36.0.LATEST"
                 },
                 {
                     "package": "crm-community-base",

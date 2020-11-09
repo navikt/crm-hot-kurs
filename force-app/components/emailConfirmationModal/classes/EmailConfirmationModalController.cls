@@ -14,7 +14,7 @@ public with sharing class EmailConfirmationModalController {
 	public static String getEmailPreview( String recordId, String emailTemplate ) {
 
 		List<EmailTemplate> templates = [SELECT Id, HtmlValue FROM EmailTemplate WHERE DeveloperName = :emailTemplate LIMIT 1];
-		String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
+		String sObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
 		List<String> sObjectFields = EmailConfirmationModalHelperPreview.getSObjectFields( sObjectType, templates[0].HtmlValue );
 		Map<String, String> replacedMergeFields = EmailConfirmationModalHelperPreview.replaceMergeFields( recordId, sObjectType, sObjectFields );
 		String mergedHtml = EmailConfirmationModalHelperPreview.mergeHtml( templates[0].HtmlValue, replacedMergeFields );
