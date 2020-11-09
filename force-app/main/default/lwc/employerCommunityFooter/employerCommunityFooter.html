@@ -38,7 +38,7 @@
             <div class="menylenker-seksjon venstre">
               <h2 class="typo-undertittel menylenker-overskrift">Kontakt</h2>
               <!--===================== PRIVATPERSON ================================-->
-              <ul if:true={privatperson}>
+              <ul if:true={isPrivatperson}>
                 <li>
                   <p class="typo-normal">
                     <a
@@ -78,7 +78,7 @@
               </ul>
               <!-- ===================================================================== -->
               <!--===================== ARBEIDSGIVER ================================-->
-              <ul if:true={arbeidsgiver}>
+              <ul if:true={isArbeidsgiver}>
                 <li>
                   <p class="typo-normal">
                     <a
@@ -127,7 +127,7 @@
               </ul>
               <!-- ===================================================================== -->
               <!--===================== SAMARBEIDSPARTNER ================================-->
-              <ul if:true={samarbeidspartner}>
+              <ul if:true={isSamarbeidspartner}>
                 <li>
                   <p class="typo-normal">
                     <a
@@ -256,7 +256,7 @@
             </div>
             <div class="menylenker-seksjon arbeidsflate">
               <!-- =============== IF PRIVATPERSON ============================================ -->
-              <ul if:true={privatperson} class="arbeidsflatevalg">
+              <ul if:true={isPrivatperson} class="arbeidsflatevalg">
                 <li>
                   <a
                     href="https://www.nav.no/no/bedrift"
@@ -296,7 +296,7 @@
               </ul>
               <!-- =================================================== -->
               <!-- =================== IF ARBEIDSGIVER ==================== -->
-              <ul if:true={arbeidsgiver} class="arbeidsflatevalg">
+              <ul if:true={isArbeidsgiver} class="arbeidsflatevalg">
                 <li>
                   <a
                     href="https://www.nav.no"
@@ -337,7 +337,7 @@
               </ul>
               <!-- =================================================== -->
               <!-- ============== IF SAMARBEIDSPARTNER =================== -->
-              <ul if:true={samarbeidspartner} class="arbeidsflatevalg">
+              <ul if:true={isSamarbeidspartner} class="arbeidsflatevalg">
                 <li>
                   <a
                     href="https://www.nav.no"
@@ -416,7 +416,7 @@
 
               <!-- DEL SKJERM MED VEILEDER  -->
               <button
-                if:true={privatperson}
+                if:true={isPrivatperson}
                 style="border: 0"
                 onclick={onHandleClickDelSkjerm}
                 class="lenke footer-bottom-content__del-skjerm lenke-med-ikon"
