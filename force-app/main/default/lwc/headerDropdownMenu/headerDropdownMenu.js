@@ -1,10 +1,12 @@
 import { LightningElement, track } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
 import dekoratoren from '@salesforce/resourceUrl/dekoratoren';
-import { loadStyle, loadScript } from 'lightning/platformResourceLoader';
 
 export default class HeaderDropdownMenu extends LightningElement {
-    dekoratoren = dekoratoren;
     @track menuPressed = false;
+
+    @track isPrivatperson;
+    @track isArbeidsgiver = true;
 
     renderedCallback() {
         loadStyle(this, dekoratoren);

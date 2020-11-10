@@ -3,27 +3,7 @@
     <section id="decorator-header" class="decorator-wrapper" role="main">
       <div class="head-wrapper">
         <div class="head-container" id="stickyhead">
-          <!-- <nav id="site-skiplinks" class="site-skiplinks" aria-label="Hopp til innhold">
-                        <ul>
-                            <li>
-                                <a href="#desktop-hovedmeny-knapp-id" class="visuallyhidden focusable"
-                                    id="hovedmenylenke">Gå til hovedmeny</a>
-                            </li>
-                            <li>
-                                <a href="#maincontent" class="visuallyhidden focusable" id="hovedinnholdlenke">Gå til
-                                    hovedinnhold</a>
-                            </li>
-                            <li>
-                                <a href="#" class="visuallyhidden focusable" id="soklenke">Gå til søk</a>
-                            </li>
-                        </ul>
-                    </nav> -->
           <header class="siteheader">
-            <div class="media-sm-mobil mobil-meny">
-              <!-- <c-global-community-header-mobile-menu item-name="mobile-menu">
-                            </c-global-community-header-mobile-menu> -->
-              <!-- <c-header-dropdown-menu-mobile></c-header-dropdown-menu-mobile> -->
-            </div>
             <div class="decorator-wrapper">
               <div class="header-z-wrapper">
                 <nav
@@ -43,13 +23,13 @@
                         id="desktop-header-menylinje_0_0_0"
                       >
                         <div
-                          if:true={isPrivatPerson}
+                          if:true={isPrivatperson}
                           class="arbeidsflate__lenke-inner arbeidsflate__lenke-inner--active"
                         >
                           <p class="typo-normal">Privatperson</p>
                         </div>
                         <div
-                          if:false={isPrivatPerson}
+                          if:false={isPrivatperson}
                           class="arbeidsflate__lenke-inner"
                         >
                           <p class="typo-normal">Privatperson</p>
@@ -106,9 +86,7 @@
                     </li>
                   </ul>
                 </nav>
-                <!-- <c-employer-header-desktop-menu item-name="desktop-menu">
-                                </c-employer-header-desktop-menu> -->
-
+                <!-- BUTTONS -->
                 <c-header-menu-items></c-header-menu-items>
               </div>
             </div>
