@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Kunne ikke finne nødvendig data.</label>
+        <name>CourseInvitation_queryNoResults</name>
+    </customLabels>
+    <customLabels>
+        <label>Navn</label>
+        <name>CourseInvitation_name</name>
+    </customLabels>
+    <customLabels>
+        <label>E-post</label>
+        <name>CourseInvitation_email</name>
+    </customLabels>
+    <customLabels>
+        <label>Vennligst skriv en gyldig e-post</label>
+        <name>CourseInvitation_emailValidation</name>
+    </customLabels>
+    <customLabels>
+        <label>Legg til</label>
+        <name>CourseInvitation_addRecipient</name>
+    </customLabels>
+    <customLabels>
+        <label>Bekreft</label>
+        <name>CourseInvitation_goToConfirmation</name>
+    </customLabels>
+    <customLabels>
+        <label>Importer</label>
+        <name>CourseInvitation_import</name>
+    </customLabels>
+    <customLabels>
+        <label>Send Invitasjon</label>
+        <name>CourseInvitation_title</name>
+    </customLabels>
+    <customLabels>
+        <label>Trykk enter for å legge</label>
+        <name>CourseInvitation_pressEnterToAdd</name>
+    </customLabels>
+    <customLabels>
+        <label>Suksess</label>
+        <name>CourseInvitation_emailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Invitasjoner sendt</label>
+        <name>CourseInvitation_contactsCreated</name>
+    </customLabels>
+    <customLabels>
+        <label>Lukk</label>
+        <name>CourseInvitation_close</name>
+    </customLabels>
+    <customLabels>
+        <label>Invitasjoner sendt</label>
+        <name>CourseInvitation_success</name>
+    </customLabels>
+    <customLabels>
+        <label>Feil</label>
+        <name>CourseInvitation_error</name>
+    </customLabels>
+    <customLabels>
+        <label>E-post invitasjoner ble sendt, men kursregisteringen feilet. Brukerne vil fortsatt kunne registrere seg og de vil da være synlige i Salesforce. Vennligst kontakt en administrator om dette problemet.</label>
+        <name>CourseInvitation_errorMsg</name>
+    </customLabels>
+</Translations>
