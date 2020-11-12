@@ -4,6 +4,30 @@
         <application>Kurs</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>EmailConfirmationModalController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EmailConfirmationModalHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EmailConfirmationModalHelperPreview</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EmailConfirmationModalModel</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Process_SendEmail</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Process_SendEmailHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Kan se alle kurs og kursdeltakere</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -33,6 +57,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.DescriptionFormatted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.DescriptionInternal__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
