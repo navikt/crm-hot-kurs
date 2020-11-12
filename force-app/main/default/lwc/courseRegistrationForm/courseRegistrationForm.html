@@ -142,8 +142,6 @@
                   Påmeldingsskjema
                 </h2>
 
-                <!--<lightning-layout size="12">
-                                    <lightning-layout-item class="padding-small" size="6"> -->
                 <div class="kontaktskjema-felter__bolk">
                   <div class="felt">
                     <label class="skjemaelement__label" for="firstName">
@@ -158,9 +156,7 @@
                       required
                     />
                   </div>
-                  <!-- </lightning-layout-item>
 
-                                    <lightning-layout-item padding="around-small" size="6"> -->
                   <div class="felt">
                     <label class="skjemaelement__label" for="lastName">
                       <p class="typo-element">Etternavn</p>
@@ -176,11 +172,6 @@
                     />
                   </div>
 
-                  <!-- </lightning-layout-item>
-                                </lightning-layout>
-
-                                <lightning-layout size="12">
-                                    <lightning-layout-item class="padding-small" size="6"> -->
                   <div class="felt">
                     <label class="skjemaelement__label" for="email">
                       <p class="typo-element">E-post</p>
@@ -195,8 +186,6 @@
                     />
                   </div>
 
-                  <!-- </lightning-layout-item>
-                                    <lightning-layout-item padding="around-small" size="6"> -->
                   <div class="felt">
                     <label class="skjemaelement__label" for="phone">
                       <p class="typo-element">Telefonnummer</p>
@@ -210,11 +199,7 @@
                       required
                     />
                   </div>
-                  <!--    </lightning-layout-item>
-                                </lightning-layout>
 
-                                <lightning-layout size="12"> 
-                                    <lightning-layout-item class="padding-small" size="6"> -->
                   <div class="felt">
                     <label class="skjemaelement__label" for="placeholer">
                       <p class="typo-element">Fylke</p>
@@ -228,15 +213,24 @@
                       >
                         <img src={chevrondown} />
                         <option value></option>
+                        <option value="Agder">Agder</option>
+                        <option value="Innlandet">Innlandet</option>
+                        <option value="Møre og Romsdal">Møre og Romsdal</option>
+                        <option value="Nordland">Nordland</option>
                         <option value="Oslo">Oslo</option>
+                        <option value="Rogaland">Rogaland</option>
+                        <option value="Troms og Finnmark">
+                          Troms og Finnmark
+                        </option>
+                        <option value="Vestfold og Telemark">
+                          Vestfold og Telemark
+                        </option>
+                        <option value="Vestland">Vestland</option>
+                        <option value="Viken">Viken</option>
                       </select>
                     </div>
                   </div>
                 </div>
-                <!-- </lightning-layout-item>
-                                    <lightning-layout-item padding="around-small" size="6">
-                                    </lightning-layout-item>
-                                </lightning-layout> -->
 
                 <div class="navno-dekorator alertstripe">
                   <img
@@ -253,7 +247,6 @@
                 <div if:true={showError}>
                   <div
                     class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                    style=""
                   >
                     <img
                       class="navno-dekorator alertstripe__ikon"
