@@ -24,6 +24,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track dueDate;
     @track title;
 
+    @track courseIsFullWarning = false;
+    @track numberOnWaitinglist;
+
     @track showValidationInput = false;
     parameters = {};
 
@@ -49,8 +52,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.title = result.Name;
 
                     this.dueDate = result.RegistrationDeadline__c;
-                    var registrationDeadline = new Date(this.dueDate);
-                    var dateNow = new Date(Date.now());
+                    let registrationDeadline = new Date(this.dueDate);
+                    let dateNow = new Date(Date.now());
                     this.url = "https://arbeidsgiver.nav.no/kursoversikt/" + this.courseId;
 
                     if (registrationDeadline > dateNow) {
@@ -60,10 +63,17 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                         this.displayErrorMessage = true;
                     }
 
+                    let maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
+                    let numberOfParticipants = result.NumberOfParticipants__c;
+                    this.numberOnWaitinglist = result.Waitinglist__c;
+
+                    if (numberOfParticipants >= maxNumberOfParticipants) {
+                        this.courseIsFullWarning = true;
+                    }
+
                     if (this.code != undefined) {
                         this.showForm = false;
                         this.showValidationInput = true;
-
                     }
 
                 } else {

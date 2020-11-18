@@ -53,6 +53,7 @@
       </div>
     </div>
   </div>
+
   <div class="root">
     <div class="app">
       <div class="detaljside">
@@ -142,6 +143,27 @@
                   Påmeldingsskjema
                 </h2>
 
+                <!--================ COURSE IS FULL WARNING ============================-->
+                <div if:true={courseIsFullWarning}>
+                  <div
+                    class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                  >
+                    <img
+                      class="navno-dekorator alertstripe__ikon"
+                      src={warningicon}
+                      alt="advarsel-ikon"
+                    />
+                    <p class="typo-normal">
+                      Dette kurset er fulltegnet. Ved å fylle ut skjema blir du
+                      satt på venteliste, og automatisk tildelt en plass dersom
+                      det blir ledig. Det er for øyeblikket
+                      {numberOnWaitinglist} personer på venteliste før deg.
+                    </p>
+                  </div>
+                </div>
+
+                <!--=====================================================================-->
+
                 <div class="kontaktskjema-felter__bolk">
                   <div class="felt">
                     <label class="skjemaelement__label" for="firstName">
@@ -211,7 +233,7 @@
                         name="placeholder"
                         onchange={handleChange}
                       >
-                        <img src={chevrondown} />
+                        <img src={chevrondown} alt="pil ned ikon" />
                         <option value></option>
                         <option value="Agder">Agder</option>
                         <option value="Innlandet">Innlandet</option>
@@ -291,7 +313,7 @@
                   title="Tilbake til kursoversikten"
                 >
                   <i class="chevronboks chevron--venstre"
-                    ><img class="tst" src={chevrondown}
+                    ><img class="tst" src={chevrondown} alt="pil ned ikon"
                   /></i>
                   Tilbake til kursoversikten</a
                 >
