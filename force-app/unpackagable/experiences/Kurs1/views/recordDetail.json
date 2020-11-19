@@ -1,65 +1,57 @@
 {
-  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-  "componentName" : "siteforce:sldsOneColLayout",
-  "id" : "06242a11-0981-45b4-9286-23be27fca454",
-  "label" : "Record Detail",
-  "regions" : [ {
-    "id" : "fe6cb7e8-293d-48c0-b647-0b5727120375",
-    "regionName" : "header",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "recordId" : "{!recordId}"
-      },
-      "componentName" : "forceCommunity:recordHeadline",
-      "id" : "7851b2cf-0697-49af-9250-74206280b4b9",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "detailsTabLabel" : "Details",
-        "discussionsTabLabel" : "Feed",
-        "recordId" : "{!recordId}",
-        "relatedTabLabel" : "Related",
-        "tab1Type" : "details",
-        "tab2Type" : "related",
-        "tab3Type" : "chatter",
-        "tab4Type" : "none",
-        "timelineTabLabel" : "Activity"
-      },
-      "componentName" : "forceCommunity:recordHomeTabs",
-      "id" : "492aad27-7525-4bd0-8e83-8121510b6f3b",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "b48cc122-d3f4-443c-9b54-e6f7acb19806",
-    "regionName" : "content",
-    "type" : "region"
-  }, {
-    "id" : "cae61768-6a1c-4024-8f7b-fe40db3fc2b0",
-    "regionName" : "footer",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "description" : "",
-        "metaTags" : "",
-        "title" : "{!Record._Object}: {!Record._Title}"
-      },
-      "componentName" : "forceCommunity:seoAssistant",
-      "id" : "8d62d566-0b94-4e41-8a63-d5ee55cc1740",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "40e522f7-cf22-4f54-94b6-4d99b58a89c0",
-    "regionName" : "sfdcHiddenRegion",
-    "type" : "region"
-  } ],
-  "themeLayoutType" : "Inner",
-  "type" : "view",
-  "viewType" : "detail"
+    "appPageId": "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "06242a11-0981-45b4-9286-23be27fca454",
+    "label": "Record Detail",
+    "regions": [
+        {
+            "id": "fe6cb7e8-293d-48c0-b647-0b5727120375",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "richTextValue": "<h1>Finner ikke siden</h1><p><br></p><p>Vi kan ikke finne siden eller tjenesten du etterspør.</p><p><br></p><p><a href=\"https://www.nav.no/\" target=\"null\">Gå til forsiden av nav.no</a>&nbsp;-&nbsp;<a href=\"https://www.nav.no/person/kontakt-oss/tilbakemeldinger/feil-og-mangler\" target=\"null\">Melde feil og mangler</a></p><p><br></p><p>Feilkode 404</p>"
+                    },
+                    "componentName": "forceCommunity:richTextInline",
+                    "id": "7851b2cf-0697-49af-9250-74206280b4b9",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "b48cc122-d3f4-443c-9b54-e6f7acb19806",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "cae61768-6a1c-4024-8f7b-fe40db3fc2b0",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "description": "",
+                        "metaTags": "",
+                        "title": "Finnes ikke (404)"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "8d62d566-0b94-4e41-8a63-d5ee55cc1740",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "40e522f7-cf22-4f54-94b6-4d99b58a89c0",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "detail"
 }
