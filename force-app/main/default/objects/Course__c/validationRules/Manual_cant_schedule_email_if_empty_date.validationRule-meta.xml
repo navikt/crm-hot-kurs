@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Cant_schedule_email_if_empty_date</fullName>
+    <fullName>Manual_cant_schedule_email_if_empty_date</fullName>
     <active>true</active>
     <description>&apos;</description>
     <errorConditionFormula>EmailManualConfirmation__c &amp;&amp; ISBLANK(  EmailManualDate__c  )</errorConditionFormula>
