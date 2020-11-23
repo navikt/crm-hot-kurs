@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmailReminderConfirmation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marker boksen hvis innholdet er ferdig og klar til å sendes ved angitt dato</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marker boksen hvis innholdet er ferdig og klar til å sendes ved angitt dato</inlineHelpText>
+    <label>Ready to send</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
