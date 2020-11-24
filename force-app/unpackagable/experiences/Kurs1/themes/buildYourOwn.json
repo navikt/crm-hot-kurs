@@ -34,6 +34,10 @@
             "type": "view"
         },
         {
+            "componentAttributes": {
+                "fixedPageWidth": 1440,
+                "isPageWidthFixed": true
+            },
             "componentName": "siteforce:starterBody",
             "id": "589ed305-e288-4081-afc2-dc58fe43de89",
             "label": "Default",
