@@ -6,10 +6,10 @@
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
-        "NAVarea" : "Privatperson"
+        "NAVarea" : "Arbeidsgiver"
       },
-      "componentName" : "c:employerCommunityHeader",
-      "id" : "c4ef3b49-b2ef-41bb-8eec-285c587424f7",
+      "componentName" : "c:globalCommunityHeader",
+      "id" : "d8ba1a68-dc66-44e5-a632-50bbb6a46c8f",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -32,10 +32,10 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "NAVarea" : "Privatperson"
+        "NAVarea" : "Arbeidsgiver"
       },
-      "componentName" : "c:employerCommunityFooter",
-      "id" : "f87d47b6-0290-4252-ab5f-b32192672d16",
+      "componentName" : "c:globalCommunityFooter",
+      "id" : "92c14bf2-d0e0-405d-9582-a09482754ce1",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
