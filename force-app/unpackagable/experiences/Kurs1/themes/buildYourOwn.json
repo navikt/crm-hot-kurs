@@ -11,6 +11,7 @@
     "type": "theme",
     "views": [
         {
+            "componentAttributes": {},
             "componentName": "salesforceIdentity:loginBody2",
             "id": "f3b533cc-4052-44de-80b0-a3281e231524",
             "label": "Login",
