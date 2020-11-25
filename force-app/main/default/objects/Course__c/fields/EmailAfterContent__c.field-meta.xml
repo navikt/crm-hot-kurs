@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailAfterContent__c</fullName>
-    <description>Legg inn innholdet som skal vises i mailen som blir sendt ut</description>
     <externalId>false</externalId>
-    <inlineHelpText>Legg inn innholdet som skal vises i mailen som blir sendt ut</inlineHelpText>
-    <label>Content</label>
-    <length>32768</length>
+    <label>Survey URL</label>
     <trackTrending>false</trackTrending>
-    <type>Html</type>
-    <visibleLines>10</visibleLines>
+    <type>Url</type>
 </CustomField>
