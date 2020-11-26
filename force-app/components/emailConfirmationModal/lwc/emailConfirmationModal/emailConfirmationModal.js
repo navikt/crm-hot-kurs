@@ -13,7 +13,7 @@ export default class EmailConfirmationModal extends LightningElement {
     @api templateName;
     @api useDoNotReply;
     @api recipients = [];
-    @api previewMode;
+    @api isPreview;
 
     @track recipientBadges = [];
 
@@ -30,7 +30,7 @@ export default class EmailConfirmationModal extends LightningElement {
     amountToView = 3;
 
     connectedCallback() {
-
+        console.log('isPreview: ' + this.isPreview);
         getEmailPreview({ recordId: this.recordId, emailTemplate: this.templateName }).then(data => {
             this.htmlEmail = data;
             this.loading = false;
