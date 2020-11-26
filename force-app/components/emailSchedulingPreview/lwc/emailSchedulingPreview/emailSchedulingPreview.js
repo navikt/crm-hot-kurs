@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
+import participants from "@salesforce/label/c.EmailConfirmation_RegisteredParticipants";
 
 export default class EmailSchedulingPreview extends LightningElement {
 
@@ -11,6 +12,10 @@ export default class EmailSchedulingPreview extends LightningElement {
     @track disabled = true;
 
     @track showPreview = false;
+    @track recipients = [{
+        fullName: participants,
+        email: '1',
+    }];
 
     connectedCallback() {
         switch (this.period) {
