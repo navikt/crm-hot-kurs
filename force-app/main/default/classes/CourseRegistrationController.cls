@@ -6,18 +6,39 @@ public with sharing class CourseRegistrationController {
 			/*  Boolean duplicate = checkForDuplicates( contactId, courseId );
 			   if ( duplicate ) { return 'Du er allerede påmeldt dette kurset'; }
 			   insertRegistration( contactId, courseId );*/
-			if ( fields != null ) { insertRegistration( fields, courseId ); }
+			Boolean courseIsFull = checkIfCourseIsFull( courseId );
 
-			return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
+			if ( fields != null && !courseIsFull ) {
+				insertRegistration( fields, courseId );
+
+				return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
+			}
+
+			return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på epost dersom du blir tildelt en plass.';
 
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
 		}
 
 	}
+	@AuraEnabled
+	public static Course__c getCourseFields( String courseId ) {
+		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c, MaxNumberOfParticipants__c, NumberOfParticipants__c, Waitinglist__c FROM Course__c WHERE Id = : courseId];
+	}
+
+	public static Boolean checkIfCourseIsFull( String courseId ) {
+		Course__c c = getCourseFields( courseId );
+		Double maxNumber = c.MaxNumberOfParticipants__c;
+		Double numberOfParticipants = c.NumberOfParticipants__c;
+		Boolean courseIsFull = numberOfParticipants >= maxNumber ? true : false;
+
+		return courseIsFull;
+	}
 
 	public static void insertRegistration( String fields, Id courseId ) {
+
 		if ( fields != null ) {
+			Boolean courseIsFull = checkIfCourseIsFull( courseId );
 			CourseRegistrationModel model = CourseRegistrationModel.parse( fields );
 			CourseRegistration__c registration = new CourseRegistration__c();
 
@@ -25,16 +46,17 @@ public with sharing class CourseRegistrationController {
 			registration.ContactLastName__c = model.lastName;
 			registration.ContactEmail__c = model.email;
 			registration.ContactPhone__c = model.phone;
-			registration.Status__c = 'Påmeldt';
 			registration.Course__c = courseId;
+
+			if ( courseIsFull ) {
+				registration.Status__c = 'Venteliste';
+			} else {
+
+				registration.Status__c = 'Påmeldt';
+			}
 
 			insert registration;
 		}
-	}
-
-	@AuraEnabled
-	public static Course__c getCourseFields( String courseId ) {
-		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c, MaxNumberOfParticipants__c, NumberOfParticipants__c, Waitinglist__c FROM Course__c WHERE Id = : courseId];
 	}
 
 /*

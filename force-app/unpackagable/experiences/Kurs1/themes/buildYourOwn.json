@@ -1,6 +1,6 @@
 {
   "activeBrandingSetId" : "deff80f6-8705-412e-bd3d-035240b95270",
-  "customCSS" : ".cCenterPanel {\n    margin-top: 0;\n}\n\n\n.comm-content-header {\n    max-width: none;\n \tpadding-top: 0rem;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n.siteforceContentArea .comm-layout-column:not(:empty) {\n    padding-top: .75rem;\n    padding-left: 0;\n    padding-right: 0;\n    padding-bottom: 0!important;\n    background-color: #e9e7e7;\n}\n\n@media not all and (min-width: 768px) {\n    .siteforceContentArea .comm-layout-column:not(:empty) {\n         margin-top: -1.9rem;\n}\n}\n\n.siteforceContentArea .comm-layout-column:not(:empty) {\n    padding-top: 0!important;\n}",
+  "customCSS" : ".cCenterPanel {\n    margin-top: 0;\n}\n\n.siteforceContentArea .comm-layout-column:not(:empty) {\n    padding-top: 0!important;\n    padding-left: 0;\n    padding-right: 0;\n    padding-bottom: 0!important;\n}\n\n@media not all and (min-width: 768px) {\n    .siteforceContentArea .comm-layout-column:not(:empty) {\n    margin-top: -1.1rem;\n    margin-bottom: 1rem;\n}\n}",
   "developerName" : "starter",
   "id" : "559b379b-f947-48c5-b0db-c50c57db1d3e",
   "label" : "Build Your Own",
