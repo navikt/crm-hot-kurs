@@ -2,9 +2,9 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>courseEmailAfter</name>
+    <name>courseScheduledEmailReminder</name>
     <style>none</style>
-    <subject>Evaluering av kurs</subject>
+    <subject>Påminnelse om kurs</subject>
     <type>custom</type>
     <uiType>SFX</uiType>
 </EmailTemplate>

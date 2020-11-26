@@ -12,7 +12,8 @@
             <objects>
                 <object>Course__c</object>
             </objects>
-            <property name="period" type="String" label="Period" datasource="before,reminder,after,manual" default="before" />
+            <property name="period" type="String" label="Period" datasource="before,reminder,after,manual" />
+            <property name="emailTemplate" type="String" label="Period" datasource="courseScheduledEmailBefore,courseScheduledEmailReminder,courseScheduledEmailAfter,courseScheduledEmailManual" />
             <supportedFormFactors>
                 <supportedFormFactor type="Large" />
             </supportedFormFactors>

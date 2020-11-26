@@ -171,6 +171,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailBefore</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>period</name>
                     <value>before</value>
                 </componentInstanceProperties>
@@ -301,6 +305,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailReminder</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>period</name>
                     <value>reminder</value>
@@ -446,6 +454,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailAfter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>period</name>
                     <value>after</value>
                 </componentInstanceProperties>
@@ -576,6 +588,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailManual</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>period</name>
                     <value>manual</value>

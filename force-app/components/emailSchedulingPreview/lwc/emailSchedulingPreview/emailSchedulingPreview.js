@@ -4,8 +4,9 @@ import participants from "@salesforce/label/c.EmailConfirmation_RegisteredPartic
 
 export default class EmailSchedulingPreview extends LightningElement {
 
-    @api period;
     @api recordId;
+    @api period;
+    @api emailTemplate;
 
     @track fields = [];
     @track field;
