@@ -15,6 +15,13 @@
         <value>Subject</value>
     </labels>
     <labels>
+        <fullName>EmailConfirmation_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
         <fullName>EmailConfirmation_sendEmail</fullName>
         <language>en_US</language>
         <protected>false</protected>

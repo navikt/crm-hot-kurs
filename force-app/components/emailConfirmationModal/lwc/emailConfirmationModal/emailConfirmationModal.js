@@ -8,11 +8,13 @@ import labels from "./labels";
 
 export default class EmailConfirmationModal extends LightningElement {
 
+    // parameters
     @api recordId;
     @api templateName;
     @api useDoNotReply;
-
     @api recipients = [];
+    @api showSend;
+
     @track recipientBadges = [];
 
     @track htmlEmail;

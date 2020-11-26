@@ -9,6 +9,22 @@
   >
     <div class="slds-modal__container">
       <header class="slds-modal__header">
+        <!-- CLOSE BUTTON -->
+        <button
+          class="slds-button slds-button_icon slds-modal__close"
+          title={labels.close}
+          if:false={showSend}
+          onclick={cancel}
+        >
+          <lightning-icon
+            icon-name="utility:close"
+            alternative-text={labels.close}
+            title={labels.close}
+            variant="inverse"
+          ></lightning-icon>
+          <span class="slds-assistive-text">{labels.close}</span>
+        </button>
+
         <!-- HEADER LAYOUT -->
         <lightning-layout>
           <!-- RECIPIENT -->
@@ -62,7 +78,7 @@
             class="slds-p-right_small"
             alignment-bump="left"
           >
-            <lightning-button-group>
+            <lightning-button-group if:true={showSend}>
               <lightning-button
                 variant="neutral"
                 name="cancel"

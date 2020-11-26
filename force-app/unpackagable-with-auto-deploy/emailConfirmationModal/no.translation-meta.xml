@@ -25,6 +25,10 @@
         <name>EmailConfirmation_toField</name>
     </customLabels>
     <customLabels>
+        <label>Lukk</label>
+        <name>EmailConfirmation_close</name>
+    </customLabels>
+    <customLabels>
         <label>Emne</label>
         <name>EmailConfirmation_subjectField</name>
     </customLabels>
