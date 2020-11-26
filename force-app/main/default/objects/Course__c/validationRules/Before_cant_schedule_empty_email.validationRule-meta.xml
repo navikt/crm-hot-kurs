@@ -4,5 +4,5 @@
     <active>true</active>
     <errorConditionFormula>EmailBeforeConfirmation__c &amp;&amp; LEN( EmailBeforeContent__c ) == 0</errorConditionFormula>
     <errorDisplayField>EmailBeforeContent__c</errorDisplayField>
-    <errorMessage>Kan ikke planlegge å sende e-post hvis innholdet er tomt</errorMessage>
+    <errorMessage>Cannot schedule email if content is empty</errorMessage>
 </ValidationRule>

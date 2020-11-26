@@ -5,5 +5,5 @@
     <description>&apos;</description>
     <errorConditionFormula>EmailManualConfirmation__c &amp;&amp; ISBLANK(  EmailManualDate__c  )</errorConditionFormula>
     <errorDisplayField>EmailManualDate__c</errorDisplayField>
-    <errorMessage>Kan ikke planlegge å sende e-post hvis dato er tom</errorMessage>
+    <errorMessage>Cannot schedule email if date field is empty</errorMessage>
 </ValidationRule>
