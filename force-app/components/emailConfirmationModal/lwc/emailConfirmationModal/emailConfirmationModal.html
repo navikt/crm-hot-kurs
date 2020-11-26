@@ -13,7 +13,7 @@
         <button
           class="slds-button slds-button_icon slds-modal__close"
           title={labels.close}
-          if:false={showSend}
+          if:true={previewMode}
           onclick={cancel}
         >
           <lightning-icon
@@ -78,7 +78,7 @@
             class="slds-p-right_small"
             alignment-bump="left"
           >
-            <lightning-button-group if:true={showSend}>
+            <lightning-button-group if:true={previewMode}>
               <lightning-button
                 variant="neutral"
                 name="cancel"

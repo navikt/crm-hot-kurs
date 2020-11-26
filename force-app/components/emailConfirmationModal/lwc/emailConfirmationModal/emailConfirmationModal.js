@@ -13,7 +13,7 @@ export default class EmailConfirmationModal extends LightningElement {
     @api templateName;
     @api useDoNotReply;
     @api recipients = [];
-    @api showSend;
+    @api previewMode;
 
     @track recipientBadges = [];
 
