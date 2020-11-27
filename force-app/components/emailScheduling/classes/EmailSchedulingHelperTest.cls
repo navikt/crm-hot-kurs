@@ -1,4 +1,5 @@
-public with sharing class EmailSchedulingHelperTest {
+@isTest
+private without sharing class EmailSchedulingHelperTest {
 
 	@isTest
 	private static void testFindScheduledEmails() {
@@ -24,7 +25,7 @@ public with sharing class EmailSchedulingHelperTest {
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<ScheduleModel> results = EmailSchedulingHelper.getCourseRegistrations(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getCourseRegistrations(  courses,  courseRegistrations );
 		Test.StopTest();
 	}
 
@@ -32,7 +33,7 @@ public with sharing class EmailSchedulingHelperTest {
 	private static void testSendEmailToCourseRecipients() {
 		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<ScheduleModel> recipients = EmailSchedulingHelper.getCourseRegistrations(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getCourseRegistrations(  courses,  courseRegistrations );
 
 		Test.StartTest();
 		EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
