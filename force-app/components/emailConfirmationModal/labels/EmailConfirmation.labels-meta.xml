@@ -50,6 +50,13 @@
         <value>Hide</value>
     </labels>
     <labels>
+        <fullName>EmailConfirmation_missingTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Missing Template</shortDescription>
+        <value>Could not find the email template specified</value>
+    </labels>
+    <labels>
         <fullName>EmailConfirmation_hideAria</fullName>
         <language>en_US</language>
         <protected>false</protected>
