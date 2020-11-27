@@ -243,22 +243,6 @@
                         </p>
 
                         <!-- ************************ -->
-                        <!-- ********* NAME ********* -->
-                        <!-- ************************ -->
-                        <p
-                          style="
-                            font-family: 'Source Sans Pro', Tahoma, Verdana,
-                              Segoe, sans-serif;
-                            font-size: 18px;
-                            font-weight: normal;
-                            margin: 0;
-                            margin-bottom: 15px;
-                          "
-                        >
-                          Nå er det ikke lenge til kurset starter!
-                        </p>
-
-                        <!-- ************************ -->
                         <!-- ********* TEXT ********* -->
                         <!-- ************************ -->
                         <p
@@ -271,7 +255,7 @@
                             margin-bottom: 35px;
                           "
                         >
-                          {{{Course__c.EmailReminderContent__c}}}
+                          {{{Course__c.EmailBeforeContent__c}}}
                         </p>
 
                         <!-- ************************ -->

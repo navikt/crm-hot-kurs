@@ -243,22 +243,6 @@
                         </p>
 
                         <!-- ************************ -->
-                        <!-- ********* NAME ********* -->
-                        <!-- ************************ -->
-                        <p
-                          style="
-                            font-family: 'Source Sans Pro', Tahoma, Verdana,
-                              Segoe, sans-serif;
-                            font-size: 18px;
-                            font-weight: normal;
-                            margin: 0;
-                            margin-bottom: 15px;
-                          "
-                        >
-                          Nå er det ikke lenge til kurset starter!
-                        </p>
-
-                        <!-- ************************ -->
                         <!-- ********* TEXT ********* -->
                         <!-- ************************ -->
                         <p
@@ -271,40 +255,9 @@
                             margin-bottom: 35px;
                           "
                         >
-                          {{{Course__c.EmailReminderContent__c}}}
+                          {{{Course__c.EmailBeforeContent__c}}}
                         </p>
 
-                        <!-- ************************ -->
-                        <!-- ********* TEXT ********* -->
-                        <!-- ************************ -->
-                        <div
-                          style="
-                            border: solid 1px #d4d4d4;
-                            border-radius: 4px;
-                            background-color: rgb(236, 236, 236);
-                            margin-bottom: 35px;
-                          "
-                        >
-                          <p
-                            style="
-                              font-family: 'Source Sans Pro', Tahoma, Verdana,
-                                Segoe, sans-serif;
-                              font-size: 18px;
-                              font-weight: normal;
-                              margin: 0;
-                              margin: 10px 20px;
-                            "
-                          >
-                            <strong>Når:</strong>
-                            {{{Course__c.RegistrationFromDateTime__c}}}
-                            <br />
-                            <strong>Hvor:</strong>
-                            {{{Course__c.RegistrationPlaceName__c}}}
-                            <br />
-                            <br />
-                            {{{Course__c.DescriptionShort__c}}}
-                          </p>
-                        </div>
                       </td>
                     </tr>
                   </table>

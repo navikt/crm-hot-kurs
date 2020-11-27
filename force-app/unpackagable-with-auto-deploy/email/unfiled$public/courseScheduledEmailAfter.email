@@ -239,7 +239,7 @@
                             margin-bottom: 15px;
                           "
                         >
-                          Hei {{{Recipient.Name}}}
+                          Hei {{{Recipient.Name}}}.
                         </p>
 
                         <!-- ************************ -->
