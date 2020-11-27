@@ -255,7 +255,7 @@
                             margin-bottom: 35px;
                           "
                         >
-                          {{{Course__c.EmailBeforeContent__c}}}
+                          {{{Course__c.EmailManualContent__c}}}
                         </p>
 
                       </td>

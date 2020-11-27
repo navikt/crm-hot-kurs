@@ -242,6 +242,25 @@
                           Hei {{{Recipient.Name}}}.
                         </p>
 
+                        
+                        <!-- ************************ -->
+                        <!-- ********* TEXT ********* -->
+                        <!-- ************************ -->
+                        <p
+                          style="
+                            font-family: 'Source Sans Pro', Tahoma, Verdana,
+                              Segoe, sans-serif;
+                            font-size: 18px;
+                            font-weight: normal;
+                            margin: 0;
+                            margin-bottom: 15px;
+                          "
+                        >
+                          Om en uke begynner kurset &quot;<b
+                            ><strong>{{{Course__c.Name}}}</strong></b
+                          >&quot;.
+                        </p>
+
                         <!-- ************************ -->
                         <!-- ********* TEXT ********* -->
                         <!-- ************************ -->

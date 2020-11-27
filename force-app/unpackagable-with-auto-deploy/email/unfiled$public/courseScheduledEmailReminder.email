@@ -243,7 +243,7 @@
                         </p>
 
                         <!-- ************************ -->
-                        <!-- ********* NAME ********* -->
+                        <!-- ********* TEXT ********* -->
                         <!-- ************************ -->
                         <p
                           style="
@@ -255,7 +255,9 @@
                             margin-bottom: 15px;
                           "
                         >
-                          Nå er det ikke lenge til kurset starter!
+                          N&aring; er det ikke lenge til kurset &quot;<b
+                            ><strong>{{{Course__c.Name}}}</strong></b
+                          >&quot; starter.
                         </p>
 
                         <!-- ************************ -->
