@@ -8,13 +8,12 @@ public with sharing class CourseRegistrationController {
 			   insertRegistration( contactId, courseId );*/
 			Boolean courseIsFull = checkIfCourseIsFull( courseId );
 
-			if ( fields != null && !courseIsFull ) {
-				insertRegistration( fields, courseId );
-
-				return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
+			if ( fields != null ) {insertRegistration( fields, courseId );}
+			if ( courseIsFull ) {
+				return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på epost dersom du blir tildelt en plass.';
 			}
 
-			return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på epost dersom du blir tildelt en plass.';
+			return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
 
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
