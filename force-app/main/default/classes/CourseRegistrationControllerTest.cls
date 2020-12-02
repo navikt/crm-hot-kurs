@@ -28,7 +28,7 @@ private with sharing class CourseRegistrationControllerTest {
 		String result = CourseRegistrationController.createRegistration( fields, courseId );
 		String result2 = CourseRegistrationController.createRegistration( fields, noCourseId );
 		Test.StopTest();
-		System.assertEquals( 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost', result, 'Registration successfull' );
+		System.assertEquals( 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post', result, 'Registration successfull' );
 		System.assertEquals( 'Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing' );
 	}
 }
