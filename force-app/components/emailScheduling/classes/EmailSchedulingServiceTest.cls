@@ -1,9 +1,18 @@
 @isTest
 private without sharing class EmailSchedulingServiceTest {
 
+	@testSetup
+	private static void setup() {
+		EmailTemplate et1 = new EmailTemplate( DeveloperName = 'courseScheduledEmailBefore', Name = 'courseScheduledEmailBefore', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		EmailTemplate et2 = new EmailTemplate( DeveloperName = 'courseScheduledEmailReminder', Name = 'courseScheduledEmailReminder', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		EmailTemplate et3 = new EmailTemplate( DeveloperName = 'courseScheduledEmailAfter', Name = 'courseScheduledEmailAfter', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		EmailTemplate et4 = new EmailTemplate( DeveloperName = 'courseScheduledEmailManual', Name = 'courseScheduledEmailManual', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+		Database.insert( new List<EmailTemplate> { et1, et2, et3, et4 }, false );
+	}
 
-	@TestSetup
-	static void makeData() {
+	@isTest
+	private static void testExecute_success() {
+
 		Contact c1 = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
 		Contact c2 = new Contact( LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true );
 		insert new List<Contact> { c1, c2 };
@@ -36,10 +45,7 @@ private without sharing class EmailSchedulingServiceTest {
 		CourseRegistration__c manual1 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
 		CourseRegistration__c manual2 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
 		insert new List<CourseRegistration__c> { before1, before2, reminder1, reminder2, after1, after2, manual1, manual2 };
-	}
 
-	@isTest
-	private static void testExecute() {
 		String CRON_EXP = '0 0 0 3 9 ? 2022';
 
 		Test.StartTest();
@@ -49,5 +55,32 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 4, [SELECT Id FROM Course__c].size(), 'four courses should have scheduled emails for "today"' );
 		System.assertEquals( 8, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 		System.assertEquals( 16, [SELECT Id FROM EmailMessage].size(), '8 emails sent, 8 EmailMessages created' );
+	}
+
+
+	@isTest
+	private static void testExecute_noParticipants() {
+
+		DateTime manualDate = Date.today();
+		insert new Course__c( Name = 'manual', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
+		                      RegistrationDeadline__c = manualDate.addDays( -1 ), RegistrationFromDateTime__c = manualDate.addDays( -1 ), RegistrationToDateTime__c = Date.today(),
+		                      EmailManualContent__c = 'test', EmailManualDate__c = Date.today(), EmailManualConfirmation__c = true );
+
+		System.assertEquals( 1, EmailSchedulingHelper.findScheduledEmails().size(), 'verify one course have emails scheduled' );
+
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
+
+		Test.StartTest();
+		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		Test.StopTest();
+
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'four courses should have scheduled emails for "today"' );
+		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
+		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '8 emails sent, 8 EmailMessages created' );
+	}
+
+	@isTest
+	private static void testExecute_noTemplates() {
+
 	}
 }
