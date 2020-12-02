@@ -126,6 +126,29 @@ private without sharing class EmailSchedulingHelperTest {
 		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
 	}
 
+	// makes sure datetime field used is converted correctly to date to avoid any timing issues
+	@isTest
+	private static void testGetEmailsToSend_differentTime() {
+
+		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann2@test.com', TAG_Informed__c = true );
+		insert con;
+		DateTime d = Datetime.now().addDays( +7 );
+		Course__c course = new Course__c( Name = 'unique', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ), EmailBeforeContent__c = 'test', EmailBeforeConfirmation__c = true );
+		insert course;
+		CourseRegistration__c courseReg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
+		insert courseReg;
+
+		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'unique' LIMIT 1];
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 1, results.size(), 'only one reg' );
+		System.assertEquals( 'courseScheduledEmailBefore', results[0].emailTemplate, 'Should have the "before" template' );
+	}
+
 	@isTest
 	private static void testGetEmailsToSend_reminder() {
 		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
