@@ -18,10 +18,12 @@ public with sharing class EmailSchedulingHelper {
 	public static List<CourseRegistration__c> getCourseRegistrations( List<Course__c> courses ) {
 		Set<Id> courseIds = new Map<Id, Course__c> ( courses ).keySet();
 
+		// TODO attendance = true for after
 		return [SELECT Id, Course__c, CourseParticipant__c, Attendance__c FROM CourseRegistration__c
 		        WHERE
 		        Course__c IN : courseIds AND
 		        Status__c = 'Påmeldt'];
+
 	}
 
 	public static List<ScheduleModel> getEmailsToSend( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
@@ -39,14 +41,17 @@ public with sharing class EmailSchedulingHelper {
 
 			if ( Date.today() == course.EmailAfterDate__c ) {
 				recipient.emailTemplate = 'courseScheduledEmailAfter';
-			} if ( Date.today() == course.EmailBeforeDate__c ) {
+			} else if ( Date.today() == course.EmailBeforeDate__c ) {
 				recipient.emailTemplate = 'courseScheduledEmailBefore';
-			} if ( Date.today() == course.EmailManualDate__c ) {
+			} else if ( Date.today() == course.EmailManualDate__c ) { // TODO fix if manual is same day as other dates
 				recipient.emailTemplate = 'courseScheduledEmailManual';
-			} if ( Date.today() == course.EmailReminderDate__c ) {
+			} else if ( Date.today() == course.EmailReminderDate__c ) {
 				recipient.emailTemplate = 'courseScheduledEmailReminder';
 			}
-			recipients.add( recipient );
+
+			if ( recipient.emailTemplate != null ) {
+				recipients.add( recipient );
+			}
 		}
 
 		return recipients;
@@ -63,6 +68,9 @@ public with sharing class EmailSchedulingHelper {
 			request.useDoNotReply = true;
 			request.relatedToId = recipient.courseId;
 			requests.add( request );
+			System.debug( 'recipient.emailTemplate: ' + recipient.emailTemplate );
+			System.debug( 'recipient.contactId: ' + recipient.contactId );
+			System.debug( 'recipient.courseId: ' + recipient.courseId );
 		}
 
 		Process_SendEmail.sendEmail( requests );

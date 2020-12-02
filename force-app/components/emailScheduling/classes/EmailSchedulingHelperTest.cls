@@ -75,8 +75,71 @@ private without sharing class EmailSchedulingHelperTest {
 		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
 		Test.StopTest();
 
-		// TODO validate template and course ID's
 		System.assertEquals( 8, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+	}
+
+	@isTest
+	private static void testGetEmailsToSend_after() {
+		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+		System.assertEquals( 'courseScheduledEmailAfter', results[0].emailTemplate, 'Should have the "after" template' );
+		System.assertEquals( 'courseScheduledEmailAfter', results[1].emailTemplate, 'Should have the "after" template' );
+		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+	}
+
+	@isTest
+	private static void testGetEmailsToSend_before() {
+		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+		System.assertEquals( 'courseScheduledEmailBefore', results[0].emailTemplate, 'Should have the "before" template' );
+		System.assertEquals( 'courseScheduledEmailBefore', results[1].emailTemplate, 'Should have the "before" template' );
+		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+	}
+
+	@isTest
+	private static void testGetEmailsToSend_manual() {
+		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+		System.assertEquals( 'courseScheduledEmailManual', results[0].emailTemplate, 'Should have the "manual" template' );
+		System.assertEquals( 'courseScheduledEmailManual', results[1].emailTemplate, 'Should have the "manual" template' );
+		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+	}
+
+	@isTest
+	private static void testGetEmailsToSend_reminder() {
+		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+		System.assertEquals( 'courseScheduledEmailReminder', results[0].emailTemplate, 'Should have the "reminder" template' );
+		System.assertEquals( 'courseScheduledEmailReminder', results[1].emailTemplate, 'Should have the "reminder" template' );
+		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
 	}
 
 	@isTest
