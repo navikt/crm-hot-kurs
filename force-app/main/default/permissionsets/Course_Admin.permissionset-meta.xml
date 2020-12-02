@@ -184,6 +184,22 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <field>Course__c.EmailAfterSendDatePassed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailBeforeSendDatePassed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailManualSendDatePassed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailReminderSendDatePassed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.EmailManualContent__c</field>
         <readable>true</readable>
