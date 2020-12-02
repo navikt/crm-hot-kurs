@@ -31,11 +31,10 @@ export default class courseRegistrationInformation extends LightningElement {
             result => {
                 if (result) {
                     let courseEnd = moment(result.RegistrationToDateTime__c).format('LT');
-                    this.courseStart = moment(result.RegistrationFromDateTime__c).format('DD MMM') + ' kl. ' + moment(result.RegistrationFromDateTime__c).format('LT') + ' - ' + courseEnd;
-                    this.registrationDeadline = moment(result.RegistrationDeadline__c).format('DD MMM') + ' kl. ' + moment(result.RegistrationDeadline__c).format('LT');
+                    this.courseStart = moment(result.RegistrationFromDateTime__c).format('DD. MMM') + ' kl. ' + moment(result.RegistrationFromDateTime__c).format('LT') + ' - ' + courseEnd;
+                    this.registrationDeadline = moment(result.RegistrationDeadline__c).format('DD. MMM') + ' kl. ' + moment(result.RegistrationDeadline__c).format('LT');
                     this.place = result.RegistrationPlaceName__c;
                     this.type = result.Type__c;
-
 
                 } else {
 
