@@ -4,24 +4,14 @@
   "id" : "12bdd159-18d0-465b-b6ee-c45803c13956",
   "label" : "Home",
   "regions" : [ {
-    "components" : [ {
-      "componentAttributes" : {
-        "NAVarea" : "Arbeidsgiver"
-      },
-      "componentName" : "c:globalCommunityHeader",
-      "id" : "d8ba1a68-dc66-44e5-a632-50bbb6a46c8f",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
     "id" : "8814aee4-15a6-42c2-b945-631bed09c122",
     "regionName" : "header",
     "type" : "region"
   }, {
     "components" : [ {
       "componentAttributes" : { },
-      "componentName" : "c:courseRegistrationForm",
-      "id" : "6b5175ff-45e2-4882-a440-3cee5c6477bd",
+      "componentName" : "c:redirect",
+      "id" : "573e0d57-3792-4e98-8729-8fa506add4f5",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -30,16 +20,6 @@
     "regionName" : "content",
     "type" : "region"
   }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "NAVarea" : "Arbeidsgiver"
-      },
-      "componentName" : "c:globalCommunityFooter",
-      "id" : "92c14bf2-d0e0-405d-9582-a09482754ce1",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
     "id" : "3c2c2fba-ece2-42ca-97f1-7fbe7a5dcfc2",
     "regionName" : "footer",
     "type" : "region"

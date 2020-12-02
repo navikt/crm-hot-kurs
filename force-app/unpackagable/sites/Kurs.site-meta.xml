@@ -21,9 +21,8 @@
     <masterLabel>Kurs</masterLabel>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
     <requireHttps>true</requireHttps>
-    <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
+    <siteAdmin>test-8g4aci1fkg6t@example.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>navdialog</subdomain>
-    <urlPathPrefix>pamelding</urlPathPrefix>
+    <subdomain>energy-ruby-857-17622de35a3</subdomain>
 </CustomSite>

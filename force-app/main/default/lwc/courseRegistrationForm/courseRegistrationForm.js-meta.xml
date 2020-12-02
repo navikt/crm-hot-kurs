@@ -2,6 +2,8 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
     <isExposed>true</isExposed>
+    <description>Course Registration Form</description>
+    <masterLabel>Course Registration Form</masterLabel>
     <targets>
         <target>lightning__RecordPage</target>
         <target>lightning__AppPage</target>

@@ -1,0 +1,9 @@
+{
+  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "id" : "8503b408-7661-46a5-9b53-d7f07a161528",
+  "label" : "Pamelding",
+  "pageAccess" : "Public",
+  "routeType" : "custom-pamelding",
+  "type" : "route",
+  "urlPrefix" : "pamelding"
+}
