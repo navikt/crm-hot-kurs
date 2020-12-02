@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailReminderDate__c</fullName>
     <externalId>false</externalId>
-    <formula>RegistrationFromDateTime__c - 1</formula>
+    <formula>DATEVALUE(RegistrationFromDateTime__c) - 1</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Send Date</label>
     <required>false</required>
