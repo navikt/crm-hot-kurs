@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailManualSendDatePassed__c</fullName>
     <externalId>false</externalId>
-    <formula>TODAY() &gt;= EmailManualDate__c</formula>
+    <formula>TODAY() &gt;= DATE( YEAR(EmailManualDate__c), MONTH(EmailManualDate__c), DAY(EmailManualDate__c) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Send Date is Passed (Manual)</label>
     <trackTrending>false</trackTrending>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailBeforeSendDatePassed__c</fullName>
     <externalId>false</externalId>
-    <formula>TODAY() &gt;= EmailBeforeDate__c</formula>
+    <formula>TODAY() &gt;= DATE( YEAR(EmailBeforeDate__c), MONTH(EmailBeforeDate__c), DAY(EmailBeforeDate__c) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Send Date is Passed (Before)</label>
     <trackTrending>false</trackTrending>
