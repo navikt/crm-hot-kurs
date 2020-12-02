@@ -10,10 +10,10 @@ public with sharing class CourseRegistrationController {
 
 			if ( fields != null ) {insertRegistration( fields, courseId );}
 			if ( courseIsFull ) {
-				return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på epost dersom du blir tildelt en plass.';
+				return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på e-post dersom du blir tildelt en plass.';
 			}
 
-			return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på epost';
+			return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post';
 
 		} catch ( Exception e ) {
 			return 'Det oppsto en feil. Prøv igjen senere.';
