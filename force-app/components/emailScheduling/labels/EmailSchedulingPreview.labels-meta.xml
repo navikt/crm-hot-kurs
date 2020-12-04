@@ -7,4 +7,25 @@
         <shortDescription>[EmailSchedulingPreview] Registered participants</shortDescription>
         <value>Registered participants</value>
     </labels>
+    <labels>
+        <fullName>EmailConfirmation_Sent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Sent</shortDescription>
+        <value>Sent</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_Scheduled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Scheduled</shortDescription>
+        <value>Scheduled to be sent today at 9 am</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_SendError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] SendError</shortDescription>
+        <value>Error, one or more emails failed to send. Contact an administrator.</value>
+    </labels>
 </CustomLabels>

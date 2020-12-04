@@ -78,11 +78,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailBeforeSent__c</fieldItem>
+                <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
@@ -213,6 +209,18 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.EmailReminderStatus__c</fieldItem>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
@@ -223,22 +231,6 @@
                         <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailReminderSent__c</fieldItem>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -361,11 +353,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailAfterSent__c</fieldItem>
+                <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
@@ -496,11 +484,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailManualSent__c</fieldItem>
+                <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>

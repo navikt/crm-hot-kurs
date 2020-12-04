@@ -214,6 +214,22 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <field>Course__c.EmailAfterStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailBeforeStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailManualStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailReminderStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <field>Course__c.EmailManualDate__c</field>
         <readable>true</readable>
     </fieldPermissions>

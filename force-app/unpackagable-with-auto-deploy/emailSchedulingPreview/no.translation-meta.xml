@@ -4,4 +4,16 @@
         <label>Registrerte deltakere</label>
         <name>EmailConfirmation_RegisteredParticipants</name>
     </customLabels>
+    <customLabels>
+        <label>Sendt</label>
+        <name>EmailConfirmation_Sent</name>
+    </customLabels>
+    <customLabels>
+        <label>Planlagt for utsending idag kl. 9</label>
+        <name>EmailConfirmation_Scheduled</name>
+    </customLabels>
+    <customLabels>
+        <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
+        <name>EmailConfirmation_SendError</name>
+    </customLabels>
 </Translations>
