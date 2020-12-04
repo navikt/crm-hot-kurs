@@ -233,6 +233,22 @@
         <field>Course__c.EmailManualDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Kurs - Administrator</label>
     <objectPermissions>
