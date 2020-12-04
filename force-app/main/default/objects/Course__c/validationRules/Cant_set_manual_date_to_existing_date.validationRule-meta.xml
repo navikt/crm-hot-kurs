@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cant_set_manual_date_to_existing_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR (
+    EmailManualDate__c = EmailAfterDate__c,
+OR (
+    EmailManualDate__c = EmailBeforeDate__c,
+    EmailManualDate__c = EmailReminderDate__c)
+)</errorConditionFormula>
+    <errorDisplayField>EmailManualDate__c</errorDisplayField>
+    <errorMessage>Can&apos;t set manual email date to same date as an existing email schedule</errorMessage>
+</ValidationRule>
