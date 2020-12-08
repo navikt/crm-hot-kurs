@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reminder_cant_edit_sent_email</fullName>
+    <active>true</active>
+    <errorConditionFormula>EmailReminderSendDatePassed__c &amp;&amp; ISCHANGED( EmailReminderContent__c )</errorConditionFormula>
+    <errorDisplayField>EmailReminderContent__c</errorDisplayField>
+    <errorMessage>Cannot edit email after send date</errorMessage>
+</ValidationRule>
