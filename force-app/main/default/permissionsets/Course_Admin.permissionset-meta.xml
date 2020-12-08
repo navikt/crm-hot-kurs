@@ -171,6 +171,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.EmailAfterURL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <field>Course__c.EmailAfterSent__c</field>
         <readable>true</readable>
     </fieldPermissions>

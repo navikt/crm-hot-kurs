@@ -273,9 +273,7 @@
                             margin-bottom: 35px;
                           "
                         >
-                          Vi hadde satt veldig pris p&aring; om kunne ta deg 5
-                          minutter til &aring; svare p&aring; en kort
-                          unders&oslash;kelse om kurset.
+                          {{{Course__c.EmailAfterContent__c}}}
                         </p>
 
                         <!-- ************************ -->
@@ -330,7 +328,7 @@
                                         "
                                       >
                                         <a
-                                          href="{{{Course__c.EmailAfterContent__c}}}"
+                                          href="{{{Course__c.EmailAfterURL__c}}}"
                                           target="_blank"
                                           style="
                                             display: inline-block;
