@@ -27,7 +27,7 @@ private without sharing class EmailSchedulingHelperTest {
 		                                       EmailReminderContent__c = 'test', EmailReminderConfirmation__c = true );
 		Course__c after =       new Course__c( Name = 'after', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
 		                                       RegistrationDeadline__c = afterDate, RegistrationFromDateTime__c = afterDate.addDays( -2 ), RegistrationToDateTime__c = afterDate,
-		                                       EmailAfterContent__c = 'test', EmailAfterConfirmation__c = true );
+		                                       EmailAfterContent__c = 'test', EmailAfterConfirmation__c = true, EmailAfterURL__c = 'https://nav.no' );
 		Course__c manual =      new Course__c( Name = 'manual', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
 		                                       RegistrationDeadline__c = manualDate.addDays( -1 ), RegistrationFromDateTime__c = manualDate.addDays( -1 ), RegistrationToDateTime__c = Date.today(),
 		                                       EmailManualContent__c = 'test', EmailManualDate__c = Date.today(), EmailManualConfirmation__c = true );
@@ -42,6 +42,18 @@ private without sharing class EmailSchedulingHelperTest {
 		CourseRegistration__c manual1 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
 		CourseRegistration__c manual2 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
 		insert new List<CourseRegistration__c> { before1, before2, reminder1, reminder2, after1, after2, manual1, manual2 };
+	}
+
+	@isTest
+	private static void testcheckIfTemplatesMissing_exists() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+
+		Test.StartTest();
+		Boolean result = EmailSchedulingHelper.checkIfTemplatesMissing( courses );
+		Test.StopTest();
+
+		System.assertEquals( false, result, 'templates exists, so should return false' );
 	}
 
 	@isTest
@@ -177,5 +189,127 @@ private without sharing class EmailSchedulingHelperTest {
 
 		List<EmailMessage> emails = [SELECT Id FROM EmailMessage];
 		System.assertEquals( 16, emails.size(), '8 emails sent, 8 EmailMessages created' );
+	}
+
+	@isTest
+	private static void testGetCoursesWithEmailErrors() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
+		System.debug( 'emailResults: ' + emailResults );
+		System.assertEquals( 4, courses.size(), 'four courses' );
+
+		Test.StartTest();
+		Map<Id, String> results = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
+		Test.StopTest();
+
+		System.assertEquals( 4, results.size(), 'four courses with email issues' );
+
+		for ( Id key : results.keySet() ) {
+			System.assert ( results.get( key ).contains( 'Email limit exceeded' ), '"Email limit exceeded" should be in string' );
+		}
+	}
+
+	@isTest
+	private static void testUpdateCoursesWithEmailStatus() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		courses.remove( 3 );
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
+		Map<Id, String> cousesWithEmailErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
+
+		System.assertEquals( 3, courses.size(), 'four courses ready to have emails be sent' );
+
+		Test.StartTest();
+		EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, cousesWithEmailErrors );
+		Test.StopTest();
+
+		courses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 1, courses.size(), 'one course have emails that should be sent, but is now lower' );
+	}
+
+	@isTest
+	private static void testUpdateCoursesWithEmailStatus_errorOnAllEmails() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
+		Map<Id, String> cousesWithEmailErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
+
+		for ( EmailSchedulingHelper.ScheduleModel recipient : recipients ) {
+			recipient.contactId = null;
+		}
+
+		System.assertEquals( 4, courses.size(), 'four courses ready to have emails be sent' );
+
+		Test.StartTest();
+		EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, cousesWithEmailErrors );
+		Test.StopTest();
+
+		courses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 4, courses.size(), 'still four new courses have emails that should be sent because of emailing issues' );
+
+		for ( Course__c course : [SELECT EmailAfterErrorMessage__c, EmailBeforeErrorMessage__c, EmailManualErrorMessage__c, EmailReminderErrorMessage__c FROM Course__c] ) {
+			System.assert (
+				(course.EmailAfterErrorMessage__c != null) ||
+				(course.EmailBeforeErrorMessage__c != null) ||
+				(course.EmailManualErrorMessage__c != null) ||
+				(course.EmailReminderErrorMessage__c != null), 'at least one error message shoulds be set' );
+		}
+	}
+
+	@isTest
+	private static void testCreateTasks() {
+
+		Test.StartTest();
+		EmailSchedulingHelper.createTasks();
+		Test.StopTest();
+	}
+
+
+	// ------------------------------------------------
+	// ------------ HELPER FUNCTIONS TESTS ------------
+	// ------------------------------------------------
+
+	@isTest
+	private static void testGetMapOfCourseRegistrations() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		Map<Id, List<CourseRegistration__c> > results = EmailSchedulingHelper.getMapOfCourseRegistrations( courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 2, results.size(), 'should only be two contacts' );
+		for ( Id key : results.keySet() ) {
+			System.assertEquals( 4, results.get( key ).size(), 'should be four courses for each contact' );
+		}
+	}
+
+	@isTest
+	private static void testCheckEmailType() {
+
+		Course__c after = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+		Course__c before = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+		Course__c manual = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
+		Course__c reminder = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+
+		Test.StartTest();
+		EmailSchedulingHelper.EmailTypes afterResult = EmailSchedulingHelper.checkEmailType( after );
+		EmailSchedulingHelper.EmailTypes beforeResult = EmailSchedulingHelper.checkEmailType( before );
+		EmailSchedulingHelper.EmailTypes manualResult = EmailSchedulingHelper.checkEmailType( manual );
+		EmailSchedulingHelper.EmailTypes reminderResult = EmailSchedulingHelper.checkEmailType( reminder );
+		Test.StopTest();
+
+		System.assertEquals( EmailSchedulingHelper.EmailTypes.AFTER, afterResult, 'enum should be after' );
+		System.assertEquals( EmailSchedulingHelper.EmailTypes.BEFORE, beforeResult, 'enum should be before' );
+		System.assertEquals( EmailSchedulingHelper.EmailTypes.MANUAL, manualResult, 'enum should be manual' );
+		System.assertEquals( EmailSchedulingHelper.EmailTypes.REMINDER, reminderResult, 'enum should be reminder' );
 	}
 }

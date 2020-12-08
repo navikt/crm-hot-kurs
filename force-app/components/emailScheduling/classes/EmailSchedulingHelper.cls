@@ -1,9 +1,29 @@
 public with sharing class EmailSchedulingHelper {
 
+	public enum EmailTypes { AFTER, REMINDER, BEFORE, MANUAL }
+
 	public class ScheduleModel {
 		public Id courseId;
 		public Id contactId;
 		public String emailTemplate;
+	}
+
+	public static Boolean checkIfTemplatesMissing( List<Course__c> courses ) {
+		List<EmailTemplate> emailTemplates = [SELECT Id, DeveloperName FROM EmailTemplate WHERE DeveloperName IN ( 'courseScheduledEmailAfter', 'courseScheduledEmailBefore', 'courseScheduledEmailManual', 'courseScheduledEmailReminder' )];
+		if ( emailTemplates.size() == 4 ) { return false; }
+
+		for ( Course__c course : courses ) {
+			switch on checkEmailType( course ) {
+				when AFTER      { course.EmailAfterErrorMessage__c = 'Email template missing!'; }
+				when BEFORE     { course.EmailBeforeErrorMessage__c = 'Email template missing!'; }
+				when MANUAL     { course.EmailManualErrorMessage__c = 'Email template missing!'; }
+				when REMINDER   { course.EmailReminderErrorMessage__c = 'Email template missing!'; }
+			}
+		}
+		update courses;
+
+		return true;
+
 	}
 
 	public static List<Course__c> findScheduledEmails() {
@@ -18,12 +38,10 @@ public with sharing class EmailSchedulingHelper {
 	public static List<CourseRegistration__c> getCourseRegistrations( List<Course__c> courses ) {
 		Set<Id> courseIds = new Map<Id, Course__c> ( courses ).keySet();
 
-		// TODO attendance = true for after
 		return [SELECT Id, Course__c, CourseParticipant__c, Attendance__c FROM CourseRegistration__c
 		        WHERE
 		        Course__c IN : courseIds AND
 		        Status__c = 'Påmeldt'];
-
 	}
 
 	public static List<ScheduleModel> getEmailsToSend( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
@@ -37,16 +55,15 @@ public with sharing class EmailSchedulingHelper {
 			recipient.courseId = reg.Course__c;
 			recipient.contactId = reg.CourseParticipant__c;
 
-			Course__c course = courseMap.get( reg.Course__c ); // TODO check containsKey
+			if ( !courseMap.containsKey( reg.Course__c ) ) { continue; } // skip if course is not in map, but it should always be
 
-			if ( Date.today() == course.EmailAfterDate__c ) {
-				recipient.emailTemplate = 'courseScheduledEmailAfter';
-			} else if ( Date.today() == course.EmailBeforeDate__c ) {
-				recipient.emailTemplate = 'courseScheduledEmailBefore';
-			} else if ( Date.today() == course.EmailManualDate__c ) { // TODO fix if manual is same day as other dates
-				recipient.emailTemplate = 'courseScheduledEmailManual';
-			} else if ( Date.today() == course.EmailReminderDate__c ) {
-				recipient.emailTemplate = 'courseScheduledEmailReminder';
+			Course__c course = courseMap.get( reg.Course__c );
+
+			switch on checkEmailType( course ) {
+				when AFTER      { recipient.emailTemplate = 'courseScheduledEmailAfter'; }
+				when BEFORE     { recipient.emailTemplate = 'courseScheduledEmailBefore'; }
+				when MANUAL     { recipient.emailTemplate = 'courseScheduledEmailManual'; }
+				when REMINDER   { recipient.emailTemplate = 'courseScheduledEmailReminder'; }
 			}
 
 			if ( recipient.emailTemplate != null ) {
@@ -57,7 +74,7 @@ public with sharing class EmailSchedulingHelper {
 		return recipients;
 	}
 
-	public static void sendEmailToCourseRecipients( List<ScheduleModel> recipients ) {
+	public static List<Messaging.SendEmailResult> sendEmailToCourseRecipients( List<ScheduleModel> recipients ) {
 
 		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
 		for ( ScheduleModel recipient : recipients ) {
@@ -68,12 +85,102 @@ public with sharing class EmailSchedulingHelper {
 			request.useDoNotReply = true;
 			request.relatedToId = recipient.courseId;
 			requests.add( request );
-			System.debug( 'recipient.emailTemplate: ' + recipient.emailTemplate );
-			System.debug( 'recipient.contactId: ' + recipient.contactId );
-			System.debug( 'recipient.courseId: ' + recipient.courseId );
 		}
 
-		Process_SendEmail.sendEmail( requests );
+		return Process_SendEmail.sendEmailWithLogs( requests );
+	}
 
+	public static Map<Id, String> getCoursesWithEmailErrors( List<CourseRegistration__c> courseRegistrations, List<Messaging.SendEmailResult> emailResults ) {
+
+		Map<Id, List<String> > mapOfCoursesWithEmailErrors = new Map<Id, List<String> >();
+		Map<Id, List<CourseRegistration__c> > mapOfCourseRegistrations = getMapOfCourseRegistrations( courseRegistrations );
+
+		for ( Messaging.SendEmailResult emails : emailResults ) {
+
+			if ( !emails.isSuccess() ) {
+
+				for ( Messaging.SendEmailError error : emails.getErrors() ) {
+
+					Id contactId = error.getTargetObjectId();
+					if ( mapOfCourseRegistrations.containsKey( contactId ) ) {
+
+						for ( CourseRegistration__c courseRegistration : mapOfCourseRegistrations.get( contactId ) ) {
+
+							Id courseId = courseRegistration.Course__c;
+							String message = contactId + ': ' + error.getMessage();
+
+							if ( mapOfCoursesWithEmailErrors.containsKey( courseId ) ) {
+								mapOfCoursesWithEmailErrors.get( courseId ).add( message );
+							} else {
+								mapOfCoursesWithEmailErrors.put( courseId, new List<String> { message } );
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Map<Id, String> mapOfCoursesWithEmailErrorsAsString = new Map<Id, String>();
+		for ( Id key : mapOfCoursesWithEmailErrors.keySet() ) {
+			List<String> errors = mapOfCoursesWithEmailErrors.get( key );
+			mapOfCoursesWithEmailErrorsAsString.put( key, String.join( errors, '\n' ) );
+		}
+
+		return mapOfCoursesWithEmailErrorsAsString;
+	}
+
+	public static void updateCoursesWithEmailStatus( List<Course__c> courses, Map<Id, String> coursesWithErrors ) {
+
+		for ( Course__c course : courses ) {
+			if ( coursesWithErrors.containsKey( course.Id ) ) {
+				switch on checkEmailType( course ) {
+					when AFTER      { course.EmailAfterErrorMessage__c = coursesWithErrors.get( course.Id ); }
+					when BEFORE     { course.EmailBeforeErrorMessage__c = coursesWithErrors.get( course.Id ); }
+					when MANUAL     { course.EmailManualErrorMessage__c = coursesWithErrors.get( course.Id ); }
+					when REMINDER   { course.EmailReminderErrorMessage__c = coursesWithErrors.get( course.Id ); }
+				}
+			} else {
+				switch on checkEmailType( course ) {
+					when AFTER      { course.EmailAfterSent__c = true; }
+					when BEFORE     { course.EmailBeforeSent__c = true; }
+					when MANUAL     { course.EmailManualSent__c = true; }
+					when REMINDER   { course.EmailReminderSent__c = true; }
+				}
+			}
+		}
+
+		update courses;
+	}
+
+	public static void createTasks() {
+
+	}
+
+	// ------------------------------------------------
+	// --------------- HELPER FUNCTIONS ---------------
+	// ------------------------------------------------
+
+	public static Map<Id, List<CourseRegistration__c> > getMapOfCourseRegistrations( List<CourseRegistration__c> courseRegistrations ) {
+
+		Map<Id, List<CourseRegistration__c> > mapOfCourseRegistrations = new Map<Id, List<CourseRegistration__c> >();
+
+		for ( CourseRegistration__c courseRegistration : courseRegistrations ) {
+			if ( mapOfCourseRegistrations.containsKey( courseRegistration.CourseParticipant__c ) ) {
+				mapOfCourseRegistrations.get( courseRegistration.CourseParticipant__c ).add( courseRegistration );
+			} else {
+				mapOfCourseRegistrations.put( courseRegistration.CourseParticipant__c, new List<CourseRegistration__c> { courseRegistration } );
+			}
+		}
+
+		return mapOfCourseRegistrations;
+	}
+
+	public static EmailTypes checkEmailType( Course__c course ) {
+		if      ( Date.today() == course.EmailAfterDate__c )    { return EmailTypes.AFTER; }
+		else if ( Date.today() == course.EmailBeforeDate__c )   { return EmailTypes.BEFORE; }
+		else if ( Date.today() == course.EmailManualDate__c )   { return EmailTypes.MANUAL; }
+		else if ( Date.today() == course.EmailReminderDate__c ) { return EmailTypes.REMINDER; }
+
+		return null;
 	}
 }
