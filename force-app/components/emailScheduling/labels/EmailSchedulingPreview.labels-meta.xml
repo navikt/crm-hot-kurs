@@ -35,4 +35,11 @@
         <shortDescription>[EmailSchedulingPreview] SendError</shortDescription>
         <value>Error, one or more emails failed to send. Contact an administrator.</value>
     </labels>
+    <labels>
+        <fullName>EmailConfirmation_ImageUploadError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] ImageUploadError</shortDescription>
+        <value>Error! You cannot upload images.</value>
+    </labels>
 </CustomLabels>

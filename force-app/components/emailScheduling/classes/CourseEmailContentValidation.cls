@@ -19,7 +19,7 @@ global class CourseEmailContentValidation extends MyTriggers {
 				if ( !String.isBlank( (String) course.get( field ) ) ) {
 					for ( String illegalTag : ILLEGAL_TAG ) {
 						if ( ( (String) course.get( field ) ).contains( illegalTag ) ) {
-							course.addError( field, 'ERROR' );
+							course.addError( field, Label.EmailConfirmation_ImageUploadError );
 						}
 					}
 				}

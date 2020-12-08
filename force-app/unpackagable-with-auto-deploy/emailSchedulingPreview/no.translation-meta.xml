@@ -20,4 +20,8 @@
         <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
         <name>EmailConfirmation_SendError</name>
     </customLabels>
+    <customLabels>
+        <label>Feil! Du kan ikke laste opp bilder.</label>
+        <name>EmailConfirmation_ImageUploadError</name>
+    </customLabels>
 </Translations>
