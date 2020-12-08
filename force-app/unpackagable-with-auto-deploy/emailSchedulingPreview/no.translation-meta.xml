@@ -16,7 +16,6 @@
         <label>Ingen e-post var planlagt utsendt</label>
         <name>EmailConfirmation_NotScheduled</name>
     </customLabels>
-    EmailConfirmation_NotScheduled
     <customLabels>
         <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
         <name>EmailConfirmation_SendError</name>
