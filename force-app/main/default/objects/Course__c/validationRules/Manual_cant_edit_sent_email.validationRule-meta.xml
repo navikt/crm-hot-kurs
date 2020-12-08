@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Manual_cant_edit_sent_email</fullName>
-    <active>true</active>
-    <errorConditionFormula>EmailManualSendDatePassed__c &amp;&amp; ISCHANGED( EmailManualContent__c )</errorConditionFormula>
-    <errorDisplayField>EmailManualContent__c</errorDisplayField>
-    <errorMessage>Cannot edit email after send date</errorMessage>
-</ValidationRule>
