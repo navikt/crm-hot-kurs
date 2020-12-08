@@ -34,43 +34,35 @@
     <layouts>
         <layout>Course Layout</layout>
         <sections>
-            <label>
-                <!-- Custom Links -->
-            </label>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label>
-                <!-- Invitasjonskode -->
-            </label>
+            <label><!-- Invitasjonskode --></label>
             <section>Invitasjonskode</section>
         </sections>
         <sections>
-            <label>
-                <!-- Kursbeskrivelse -->
-            </label>
+            <label><!-- Kursbeskrivelse --></label>
             <section>Kursbeskrivelse</section>
         </sections>
         <sections>
-            <label>
-                <!-- New Section -->
-            </label>
+            <label><!-- New Section --></label>
             <section>New Section</section>
         </sections>
         <sections>
-            <label>
-                <!-- Sted -->
-            </label>
+            <label><!-- Sted --></label>
             <section>Sted</section>
         </sections>
         <sections>
-            <label>
-                <!-- Tidspunkt -->
-            </label>
+            <label><!-- Tidspunkt --></label>
             <section>Tidspunkt</section>
         </sections>
     </layouts>
     <nameFieldLabel>Tittel</nameFieldLabel>
+    <validationRules>
+        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
+        <name>After_cant_edit_sent_email</name>
+    </validationRules>
     <validationRules>
         <errorMessage>Kan ikke planlegge å sende e-post hvis innholdet er tomt</errorMessage>
         <name>After_cant_schedule_empty_email</name>
@@ -81,19 +73,7 @@
     </validationRules>
     <validationRules>
         <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
-        <name>After_cant_edit_sent_email</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
         <name>Before_cant_edit_sent_email</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
-        <name>Manual_cant_edit_sent_email</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
-        <name>Reminder_cant_edit_sent_email</name>
     </validationRules>
     <validationRules>
         <errorMessage>Kan ikke planlegge å sende e-post hvis innholdet er tomt</errorMessage>
@@ -104,6 +84,10 @@
         <name>Cant_set_manual_date_to_existing_date</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
+        <name>Manual_cant_edit_sent_email</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Kan ikke planlegge å sende e-post hvis dato er tom</errorMessage>
         <name>Manual_cant_schedule_email_if_empty_date</name>
     </validationRules>
@@ -112,13 +96,15 @@
         <name>Manual_cant_schedule_empty_email</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Kan ikke endre e-post etter utsendingsdato</errorMessage>
+        <name>Reminder_cant_edit_sent_email</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Kan ikke planlegge å sende e-post hvis innholdet er tomt</errorMessage>
         <name>Reminder_cant_schedule_empty_email</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-            <!-- Starttid kan ikke være senere enn sluttid -->
-        </errorMessage>
+        <errorMessage><!-- Starttid kan ikke være senere enn sluttid --></errorMessage>
         <name>Start_time_not_later_than_end_time</name>
     </validationRules>
 </CustomObjectTranslation>
