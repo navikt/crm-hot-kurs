@@ -255,6 +255,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.EmailManualDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
