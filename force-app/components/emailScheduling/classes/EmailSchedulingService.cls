@@ -8,9 +8,7 @@ global class EmailSchedulingService implements Schedulable {
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
-		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
-		Map<Id, String> coursesWithErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
-		// EmailSchedulingHelper.createTask( recipients );
-		EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, coursesWithErrors );
+
+		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
 	}
 }
