@@ -135,6 +135,22 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailBeforeErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailManualErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Course__c.EmailReminderErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <field>Course__c.EmailBeforeSent__c</field>
         <readable>true</readable>
     </fieldPermissions>
