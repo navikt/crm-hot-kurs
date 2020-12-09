@@ -105,6 +105,7 @@ public with sharing class EmailSchedulingHelper {
 			request.recipientContactId = recipient.contactId;
 			request.useDoNotReply = true;
 			request.relatedToId = recipient.courseId;
+			// request.saveAsActivity = false; TODO add
 			requests.add( request );
 		}
 

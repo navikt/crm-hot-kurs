@@ -1,5 +1,5 @@
 @isTest
-private without sharing class EmailSchedulingHelperTest {
+public without sharing class EmailSchedulingHelperTest {
 
 	@TestSetup
 	static void makeData() {
