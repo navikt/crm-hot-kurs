@@ -9,11 +9,12 @@ public with sharing class EmailSchedulingJob implements Queueable, Database.Allo
 	}
 
 	public void execute( QueueableContext context ) {
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<Course__c> filteredCourses = EmailSchedulingHelper.removeCourses( this.courses, this.courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( filteredCourses, courseRegistrations );
 		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
 		Map<Id, String> coursesWithErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( this.courseRegistrations, emailResults );
 		// EmailSchedulingHelper.createTask( recipients );
-		EmailSchedulingHelper.updateCoursesWithEmailStatus( this.courses, coursesWithErrors );
+		EmailSchedulingHelper.updateCoursesWithEmailStatus( filteredCourses, coursesWithErrors );
 
 	}
 }

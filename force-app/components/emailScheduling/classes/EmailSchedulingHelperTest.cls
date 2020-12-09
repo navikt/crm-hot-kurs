@@ -159,6 +159,35 @@ public without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
+	private static void testRemoveCourses_noChanges() {
+
+		addCoursesAndRegistrations( 1, 'unique' );
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<Course__c> changedCourses = EmailSchedulingHelper.removeCourses( courses, courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 8, changedCourses.size(), 'should have the same courses' );
+	}
+
+	@isTest
+	private static void testRemoveCourses_removeHalf() {
+
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		addCoursesAndRegistrations( 1, 'unique' );
+		courses = EmailSchedulingHelper.findScheduledEmails();
+
+		Test.StartTest();
+		List<Course__c> changedCourses = EmailSchedulingHelper.removeCourses( courses, courseRegistrations );
+		Test.StopTest();
+
+		System.assertEquals( 4, changedCourses.size(), 'should have the same courses' );
+	}
+
+	@isTest
 	private static void testSendEmailToCourseRecipients() {
 		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );

@@ -66,9 +66,24 @@ public with sharing class EmailSchedulingHelper {
 		return recipientsAsBulks;
 	}
 
-	// // TODO remove after new email scheduling system is in place
-	// public static List<List<ScheduleModel> > removeCourses( List<ScheduleModel> recipients ) {
-	// }
+	// TODO remove after new email scheduling system is in place
+	public static List<Course__c> removeCourses( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
+
+		List<Course__c> filteredCourses = new List<Course__c>();
+		Set<Id> courseRegistrationIds = new Set<Id>();
+
+		for ( CourseRegistration__c courseRegistration : courseRegistrations ) {
+			courseRegistrationIds.add( courseRegistration.Course__c );
+		}
+
+		for ( Course__c course : courses ) {
+			if ( courseRegistrationIds.contains( course.Id ) ) {
+				filteredCourses.add( course );
+			}
+		}
+
+		return filteredCourses;
+	}
 
 	public static List<ScheduleModel> getEmailsToSend( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
 
