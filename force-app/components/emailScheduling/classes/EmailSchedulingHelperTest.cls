@@ -3,45 +3,7 @@ private without sharing class EmailSchedulingHelperTest {
 
 	@TestSetup
 	static void makeData() {
-
-		EmailTemplate et1 = new EmailTemplate( DeveloperName = 'courseScheduledEmailBefore', Name = 'courseScheduledEmailBefore', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		EmailTemplate et2 = new EmailTemplate( DeveloperName = 'courseScheduledEmailReminder', Name = 'courseScheduledEmailReminder', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		EmailTemplate et3 = new EmailTemplate( DeveloperName = 'courseScheduledEmailAfter', Name = 'courseScheduledEmailAfter', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		EmailTemplate et4 = new EmailTemplate( DeveloperName = 'courseScheduledEmailManual', Name = 'courseScheduledEmailManual', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		Database.insert( new List<EmailTemplate> { et1, et2, et3, et4 }, false );
-
-		Contact c1 = new Contact( LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true );
-		Contact c2 = new Contact( LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true );
-		insert new List<Contact> { c1, c2 };
-
-		DateTime beforeDate = Date.today().addDays( +7 );
-		DateTime reminderDate = Date.today().addDays( +1 );
-		DateTime afterDate = Date.today().addDays( -1 );
-		DateTime manualDate = Date.today();
-
-		Course__c before =      new Course__c( Name = 'before', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
-		                                       RegistrationDeadline__c = beforeDate, RegistrationFromDateTime__c = beforeDate, RegistrationToDateTime__c = beforeDate.addDays( 1 ),
-		                                       EmailBeforeContent__c = 'test', EmailBeforeConfirmation__c = true );
-		Course__c reminder =    new Course__c( Name = 'reminder', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
-		                                       RegistrationDeadline__c = reminderDate, RegistrationFromDateTime__c = reminderDate, RegistrationToDateTime__c = reminderDate.addDays( 1 ),
-		                                       EmailReminderContent__c = 'test', EmailReminderConfirmation__c = true );
-		Course__c after =       new Course__c( Name = 'after', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
-		                                       RegistrationDeadline__c = afterDate, RegistrationFromDateTime__c = afterDate.addDays( -2 ), RegistrationToDateTime__c = afterDate,
-		                                       EmailAfterContent__c = 'test', EmailAfterConfirmation__c = true, EmailAfterURL__c = 'https://nav.no' );
-		Course__c manual =      new Course__c( Name = 'manual', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
-		                                       RegistrationDeadline__c = manualDate.addDays( -1 ), RegistrationFromDateTime__c = manualDate.addDays( -1 ), RegistrationToDateTime__c = Date.today(),
-		                                       EmailManualContent__c = 'test', EmailManualDate__c = Date.today(), EmailManualConfirmation__c = true );
-		insert new List<Course__c> { before, reminder, after, manual };
-
-		CourseRegistration__c before1 = new CourseRegistration__c( Course__c = before.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c before2 = new CourseRegistration__c( Course__c = before.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c reminder1 = new CourseRegistration__c( Course__c = reminder.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c reminder2 = new CourseRegistration__c( Course__c = reminder.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c after1 = new CourseRegistration__c( Course__c = after.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c after2 = new CourseRegistration__c( Course__c = after.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c manual1 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
-		CourseRegistration__c manual2 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
-		insert new List<CourseRegistration__c> { before1, before2, reminder1, reminder2, after1, after2, manual1, manual2 };
+		addCoursesAndRegistrations( 1, '' );
 	}
 
 	@isTest
@@ -178,6 +140,27 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
+	private static void testSeprateEmailsIntoBulks() {
+
+		addCoursesAndRegistrations( 1, 'unique' ); // doubled with makeData()
+		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+
+		System.assertEquals( 8, courses.size(), 'should have 8 courses due to doubled courses' );
+		System.assertEquals( 16, courseRegistrations.size(), 'should have 16 registrations due to doubled courses' );
+		System.assertEquals( 16, recipients.size(), 'should have 16 recipients due to doubled courses' );
+
+		Test.StartTest();
+		List<List<EmailSchedulingHelper.ScheduleModel> > sepratedEmailBulks = EmailSchedulingHelper.seprateEmailsIntoBulks( recipients );
+		Test.StopTest();
+
+		System.assertEquals( 2, sepratedEmailBulks.size(), '10 is max emails, thus the 16 emails are separated into two bulks' );
+		System.assertEquals( 10, sepratedEmailBulks[0].size(), '10 is max emails, and with 16 total the first batch are 10 emails' );
+		System.assertEquals( 6, sepratedEmailBulks[1].size(), '10 is max emails, and with 16 total the second batch are 6 emails' );
+	}
+
+	@isTest
 	private static void testSendEmailToCourseRecipients() {
 		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
@@ -311,5 +294,55 @@ private without sharing class EmailSchedulingHelperTest {
 		System.assertEquals( EmailSchedulingHelper.EmailTypes.BEFORE, beforeResult, 'enum should be before' );
 		System.assertEquals( EmailSchedulingHelper.EmailTypes.MANUAL, manualResult, 'enum should be manual' );
 		System.assertEquals( EmailSchedulingHelper.EmailTypes.REMINDER, reminderResult, 'enum should be reminder' );
+	}
+
+
+
+	// ------------------------------------------------
+	// --------------- HELPER FUNCTIONS ---------------
+	// ------------------------------------------------
+
+
+	public static void addCoursesAndRegistrations( Integer amountOfEach, String unique ) {
+		for ( Integer i = 0; i < amountOfEach; i++ ) {
+			EmailTemplate et1 = new EmailTemplate( DeveloperName = 'courseScheduledEmailBefore', Name = 'courseScheduledEmailBefore', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+			EmailTemplate et2 = new EmailTemplate( DeveloperName = 'courseScheduledEmailReminder', Name = 'courseScheduledEmailReminder', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+			EmailTemplate et3 = new EmailTemplate( DeveloperName = 'courseScheduledEmailAfter', Name = 'courseScheduledEmailAfter', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+			EmailTemplate et4 = new EmailTemplate( DeveloperName = 'courseScheduledEmailManual', Name = 'courseScheduledEmailManual', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
+			Database.insert( new List<EmailTemplate> { et1, et2, et3, et4 }, false );
+
+			Contact c1 = new Contact( LastName = 'test' + unique + i, email = unique + i + 'ola.nordmann@test.com', TAG_Informed__c = true );
+			Contact c2 = new Contact( LastName = 'test' + unique + i, email = unique + i + 'kari.nordmann@test.com', TAG_Informed__c = true );
+			insert new List<Contact> { c1, c2 };
+
+			DateTime beforeDate = Date.today().addDays( +7 );
+			DateTime reminderDate = Date.today().addDays( +1 );
+			DateTime afterDate = Date.today().addDays( -1 );
+			DateTime manualDate = Date.today();
+
+			Course__c before =      new Course__c( Name = 'before', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
+			                                       RegistrationDeadline__c = beforeDate, RegistrationFromDateTime__c = beforeDate, RegistrationToDateTime__c = beforeDate.addDays( 1 ),
+			                                       EmailBeforeContent__c = 'test', EmailBeforeConfirmation__c = true );
+			Course__c reminder =    new Course__c( Name = 'reminder', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
+			                                       RegistrationDeadline__c = reminderDate, RegistrationFromDateTime__c = reminderDate, RegistrationToDateTime__c = reminderDate.addDays( 1 ),
+			                                       EmailReminderContent__c = 'test', EmailReminderConfirmation__c = true );
+			Course__c after =       new Course__c( Name = 'after', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
+			                                       RegistrationDeadline__c = afterDate, RegistrationFromDateTime__c = afterDate.addDays( -2 ), RegistrationToDateTime__c = afterDate,
+			                                       EmailAfterContent__c = 'test', EmailAfterConfirmation__c = true, EmailAfterURL__c = 'https://nav.no' );
+			Course__c manual =      new Course__c( Name = 'manual', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
+			                                       RegistrationDeadline__c = manualDate.addDays( -1 ), RegistrationFromDateTime__c = manualDate.addDays( -1 ), RegistrationToDateTime__c = Date.today(),
+			                                       EmailManualContent__c = 'test', EmailManualDate__c = Date.today(), EmailManualConfirmation__c = true );
+			insert new List<Course__c> { before, reminder, after, manual };
+
+			CourseRegistration__c before1 = new CourseRegistration__c( Course__c = before.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c before2 = new CourseRegistration__c( Course__c = before.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c reminder1 = new CourseRegistration__c( Course__c = reminder.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c reminder2 = new CourseRegistration__c( Course__c = reminder.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c after1 = new CourseRegistration__c( Course__c = after.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c after2 = new CourseRegistration__c( Course__c = after.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c manual1 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c1.Id, Status__c = 'Påmeldt' );
+			CourseRegistration__c manual2 = new CourseRegistration__c( Course__c = manual.Id, CourseParticipant__c = c2.Id, Status__c = 'Påmeldt' );
+			insert new List<CourseRegistration__c> { before1, before2, reminder1, reminder2, after1, after2, manual1, manual2 };
+		}
 	}
 }

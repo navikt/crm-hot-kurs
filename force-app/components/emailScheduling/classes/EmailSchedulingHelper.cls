@@ -74,6 +74,27 @@ public with sharing class EmailSchedulingHelper {
 		return recipients;
 	}
 
+	public static List<List<ScheduleModel> > seprateEmailsIntoBulks( List<ScheduleModel> recipients ) {
+
+		List<List<ScheduleModel> > recipientsAsBulks = new List<List<ScheduleModel> >();
+		List<ScheduleModel> bulkedRecipients = new List<ScheduleModel>();
+
+		for ( Integer i = 0; i < recipients.size(); i++ ) {
+			bulkedRecipients.add( recipients[i] );
+
+			if ( Math.mod( i, 10 ) == 9 ) {
+				recipientsAsBulks.add( bulkedRecipients );
+				bulkedRecipients = new List<ScheduleModel>();
+			}
+		}
+
+		if ( bulkedRecipients.size() > 0 ) {
+			recipientsAsBulks.add( bulkedRecipients );
+		}
+
+		return recipientsAsBulks;
+	}
+
 	public static List<Messaging.SendEmailResult> sendEmailToCourseRecipients( List<ScheduleModel> recipients ) {
 
 		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
