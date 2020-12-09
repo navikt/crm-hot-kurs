@@ -15,6 +15,13 @@
         <value>Subject</value>
     </labels>
     <labels>
+        <fullName>EmailConfirmation_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
         <fullName>EmailConfirmation_sendEmail</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -41,6 +48,13 @@
         <protected>false</protected>
         <shortDescription>[EmailConfirmation] Hide</shortDescription>
         <value>Hide</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_missingTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] Missing Template</shortDescription>
+        <value>Could not find the email template specified</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_hideAria</fullName>

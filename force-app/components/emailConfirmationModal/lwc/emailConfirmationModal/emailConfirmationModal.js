@@ -8,11 +8,13 @@ import labels from "./labels";
 
 export default class EmailConfirmationModal extends LightningElement {
 
+    // parameters
     @api recordId;
     @api templateName;
     @api useDoNotReply;
-
     @api recipients = [];
+    @api isPreview;
+
     @track recipientBadges = [];
 
     @track htmlEmail;
@@ -28,7 +30,6 @@ export default class EmailConfirmationModal extends LightningElement {
     amountToView = 3;
 
     connectedCallback() {
-
         getEmailPreview({ recordId: this.recordId, emailTemplate: this.templateName }).then(data => {
             this.htmlEmail = data;
             this.loading = false;

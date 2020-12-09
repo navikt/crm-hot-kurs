@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Registrerte deltakere</label>
+        <name>EmailConfirmation_RegisteredParticipants</name>
+    </customLabels>
+    <customLabels>
+        <label>Sendt</label>
+        <name>EmailConfirmation_Sent</name>
+    </customLabels>
+    <customLabels>
+        <label>Planlagt for utsending idag kl. 9</label>
+        <name>EmailConfirmation_Scheduled</name>
+    </customLabels>
+    <customLabels>
+        <label>Ingen e-post var planlagt utsendt</label>
+        <name>EmailConfirmation_NotScheduled</name>
+    </customLabels>
+    <customLabels>
+        <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
+        <name>EmailConfirmation_SendError</name>
+    </customLabels>
+    <customLabels>
+        <label>Feil! Du kan ikke laste opp bilder.</label>
+        <name>EmailConfirmation_ImageUploadError</name>
+    </customLabels>
+</Translations>

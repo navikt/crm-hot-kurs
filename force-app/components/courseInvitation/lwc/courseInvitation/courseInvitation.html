@@ -75,16 +75,16 @@
       <!-- #################################### -->
       <!-- ######### RECIPIENTS LIST ########## -->
       <!-- #################################### -->
+
+      <!-- should have these classes and variant="bare", but slds bug causes no newline so it had to be removed -->
+      <!-- and style="max-height: 4.5rem" -->
+      <!-- border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small slds-scrollable -->
+
       <div
-        class="border slds-border_top slds-border_right slds-border_bottom slds-border_left slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small slds-scrollable"
-        style="max-height: 4.5rem"
+        class="slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
         if:true={hasRecipients}
       >
-        <lightning-pill-container
-          variant="bare"
-          items={recipients}
-          onitemremove={removePill}
-        >
+        <lightning-pill-container items={recipients} onitemremove={removePill}>
         </lightning-pill-container>
       </div>
 

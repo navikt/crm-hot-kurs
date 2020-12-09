@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>EmailConfirmation_RegisteredParticipants</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Registered participants</shortDescription>
+        <value>Registered participants</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_Sent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Sent</shortDescription>
+        <value>Sent</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_Scheduled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Scheduled</shortDescription>
+        <value>Scheduled to be sent today at 9 am</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_NotScheduled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] Not Scheduled</shortDescription>
+        <value>No email was scheduled</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_SendError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] SendError</shortDescription>
+        <value>Error, one or more emails failed to send. Contact an administrator.</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_ImageUploadError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailSchedulingPreview] ImageUploadError</shortDescription>
+        <value>Error! You cannot upload images.</value>
+    </labels>
+</CustomLabels>

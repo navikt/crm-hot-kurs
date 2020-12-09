@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manual_cant_schedule_empty_email</fullName>
+    <active>true</active>
+    <errorConditionFormula>EmailManualConfirmation__c &amp;&amp; LEN( EmailManualContent__c ) == 0</errorConditionFormula>
+    <errorDisplayField>EmailManualContent__c</errorDisplayField>
+    <errorMessage>Cannot schedule email if content is empty</errorMessage>
+</ValidationRule>

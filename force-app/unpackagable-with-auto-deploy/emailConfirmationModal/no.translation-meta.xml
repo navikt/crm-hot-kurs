@@ -21,8 +21,16 @@
         <name>EmailConfirmation_error</name>
     </customLabels>
     <customLabels>
+        <label>Kunne ikke finne e-post malen som ble oppgitt</label>
+        <name>EmailConfirmation_missingTemplate</name>
+    </customLabels>
+    <customLabels>
         <label>Til</label>
         <name>EmailConfirmation_toField</name>
+    </customLabels>
+    <customLabels>
+        <label>Lukk</label>
+        <name>EmailConfirmation_close</name>
     </customLabels>
     <customLabels>
         <label>Emne</label>
