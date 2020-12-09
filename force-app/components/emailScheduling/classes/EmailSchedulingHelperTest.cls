@@ -140,19 +140,17 @@ public without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testSeprateEmailsIntoBulks() {
+	private static void testSeprateRegistrationsIntoBulks() {
 
 		addCoursesAndRegistrations( 1, 'unique' ); // doubled with makeData()
 		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
 
 		System.assertEquals( 8, courses.size(), 'should have 8 courses due to doubled courses' );
 		System.assertEquals( 16, courseRegistrations.size(), 'should have 16 registrations due to doubled courses' );
-		System.assertEquals( 16, recipients.size(), 'should have 16 recipients due to doubled courses' );
 
 		Test.StartTest();
-		List<List<EmailSchedulingHelper.ScheduleModel> > sepratedEmailBulks = EmailSchedulingHelper.seprateEmailsIntoBulks( recipients );
+		List<List<CourseRegistration__c> > sepratedEmailBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 		Test.StopTest();
 
 		System.assertEquals( 2, sepratedEmailBulks.size(), '10 is max emails, thus the 16 emails are separated into two bulks' );

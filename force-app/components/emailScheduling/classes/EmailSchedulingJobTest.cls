@@ -33,10 +33,12 @@ private without sharing class EmailSchedulingJobTest {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
 		Test.StartTest();
-		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
+		}
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
@@ -69,10 +71,12 @@ private without sharing class EmailSchedulingJobTest {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
 		Test.StartTest();
-		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
+		}
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
@@ -105,10 +109,12 @@ private without sharing class EmailSchedulingJobTest {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
 		Test.StartTest();
-		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
+		}
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
@@ -141,10 +147,12 @@ private without sharing class EmailSchedulingJobTest {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
 		Test.StartTest();
-		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
+		}
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
@@ -169,10 +177,12 @@ private without sharing class EmailSchedulingJobTest {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
 		Test.StartTest();
-		System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, recipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
+		}
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one course should have scheduled emails for "today"' );

@@ -7,11 +7,10 @@ global class EmailSchedulingService implements Schedulable {
 		if ( templatesAreMissing ) { return; }
 
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( courses, courseRegistrations );
-		List<List<EmailSchedulingHelper.ScheduleModel> > sepratedEmailBulks = EmailSchedulingHelper.seprateEmailsIntoBulks( recipients );
+		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
 
-		for ( List<EmailSchedulingHelper.ScheduleModel> bulkedRecipients : sepratedEmailBulks ) {
-			System.enqueueJob( new EmailSchedulingJob( courses, courseRegistrations, bulkedRecipients ) );
+		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
+			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
 		}
 	}
 }
