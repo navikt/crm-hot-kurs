@@ -14,7 +14,6 @@ global class CourseEmailContentValidation extends MyTriggers {
 	public static void validateEmailContent( List<Course__c> courses ) {
 
 		for ( Course__c course : courses ) {
-			System.debug( 'course: ' + course );
 			for ( String field : FIELDS ) {
 				if ( !String.isBlank( (String) course.get( field ) ) ) {
 					for ( String illegalTag : ILLEGAL_TAG ) {

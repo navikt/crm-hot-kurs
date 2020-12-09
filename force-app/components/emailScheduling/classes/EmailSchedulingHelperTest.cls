@@ -190,15 +190,18 @@ public without sharing class EmailSchedulingHelperTest {
 	@isTest
 	private static void testSendEmailToCourseRecipients() {
 		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		courses.remove( 3 );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
 
 		Test.StartTest();
-		EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
+		List<Messaging.SendEmailResult> results = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
 		Test.StopTest();
 
-		List<EmailMessage> emails = [SELECT Id FROM EmailMessage];
-		System.assertEquals( 16, emails.size(), '8 emails sent, 8 EmailMessages created' );
+		System.assertEquals( 6, results.size(), 'should be four logs for email' );
+		for ( Messaging.SendEmailResult res : results ) {
+			System.assertEquals( true, res.isSuccess(), 'should be no errors' );
+		}
 	}
 
 	@isTest

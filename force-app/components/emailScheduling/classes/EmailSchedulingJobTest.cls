@@ -44,7 +44,10 @@ private without sharing class EmailSchedulingJobTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		// ! removed because saveAsActivity = true, thus, no email message
+		// System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -82,7 +85,10 @@ private without sharing class EmailSchedulingJobTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailReminderSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		// ! removed because saveAsActivity = true, thus, no email message
+		// System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -120,7 +126,10 @@ private without sharing class EmailSchedulingJobTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailAfterSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		// ! removed because saveAsActivity = true, thus, no email message
+		// System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -158,7 +167,10 @@ private without sharing class EmailSchedulingJobTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		// ! removed because saveAsActivity = true, thus, no email message
+		// System.assertEquals( 4, [SELECT Id FROM EmailMessage].size(), '2 emails sent, 2 EmailMessages created' );
+		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -186,8 +198,10 @@ private without sharing class EmailSchedulingJobTest {
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one course should have scheduled emails for "today"' );
-		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one course should be marked as sent' );
+		System.assertEquals( 0, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one course should be marked as sent' );
 		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), '0 courses with two course participants each' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent as no participants' );
+		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
+		System.assertEquals( 1, afterCourses.size(), 'should still be one more course because no email was sent' );
 	}
 }
