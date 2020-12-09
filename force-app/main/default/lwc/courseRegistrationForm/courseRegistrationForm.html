@@ -1,58 +1,51 @@
 <template>
-  <div class="decorator-header">
-    <div class="decorator-wrapper">
-      <div class="decorator-utils-container">
-        <div class="decorator-utils-content">
-          <nav
-            class="brodsmulesti"
-            aria-label="Brødsmulesti"
-            itemprop="breadcrumb"
-          >
-            <ol>
-              <li class="typo-normal">
-                <a href="https://www.nav.no" class="lenke brodsmulesti__home"
-                  ><img src={houseicon} alt="" class="brodsmulesti__icon" />
-                  <span>nav.no</span
-                  ><i
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  ></i
-                ></a>
-              </li>
-              <li class="typo-normal">
-                <a href="https://www.nav.no/no/bedrift" class="lenke"
-                  ><span>Arbeidsgiver</span
-                  ><i
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  ></i
-                ></a>
-              </li>
-              <li class="typo-normal" aria-current="false">
-                <a
-                  href="https://arbeidsgiver.nav.no/kursoversikt/"
-                  class="lenke brodsmulesti__transform"
-                  ><span>Kurskalender</span
-                  ><i
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  ></i
-                ></a>
-              </li>
-              <li class="typo-normal" aria-current="false">
-                <a href={url} class="lenke brodsmulesti__transform"
-                  ><span>Om kurset</span
-                  ><i
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  ></i
-                ></a>
-              </li>
-              <li class="typo-normal" aria-current="page">
-                <span class="brodsmulesti__transform">Påmeldingsskjema</span>
-              </li>
-            </ol>
-          </nav>
-        </div>
+  <!--<div class="decorator-header">-->
+
+  <div class="decorator-wrapper">
+    <div class="decorator-utils-container">
+      <div class="decorator-utils-content">
+        <nav
+          class="brodsmulesti"
+          aria-label="Brødsmulesti"
+          itemprop="breadcrumb"
+        >
+          <ol>
+            <li class="typo-normal">
+              <a href="https://www.nav.no" class="lenke brodsmulesti__home"
+                ><img src={houseicon} alt="" class="brodsmulesti__icon" />
+                <span>nav.no</span
+                ><i class="nav-frontend-chevron chevronboks chevron--hoyre"></i
+              ></a>
+            </li>
+            <li class="typo-normal">
+              <a href="https://www.nav.no/no/bedrift" class="lenke"
+                ><span>Arbeidsgiver</span
+                ><i class="nav-frontend-chevron chevronboks chevron--hoyre"></i
+              ></a>
+            </li>
+            <li class="typo-normal" aria-current="false">
+              <a
+                href="https://arbeidsgiver.nav.no/kursoversikt/"
+                class="lenke brodsmulesti__transform"
+                ><span>Kurskalender</span
+                ><i class="nav-frontend-chevron chevronboks chevron--hoyre"></i
+              ></a>
+            </li>
+            <li class="typo-normal" aria-current="false">
+              <a href={url} class="lenke brodsmulesti__transform"
+                ><span>Om kurset</span
+                ><i class="nav-frontend-chevron chevronboks chevron--hoyre"></i
+              ></a>
+            </li>
+            <li class="typo-normal" aria-current="page">
+              <span class="brodsmulesti__transform">Påmeldingsskjema</span>
+            </li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
+  <!-- </div>-->
 
   <div class="root">
     <div class="app">
@@ -154,14 +147,14 @@
                       alt="advarsel-ikon"
                     />
                     <p class="typo-normal">
-                      Dette kurset er fulltegnet. Ved å fylle ut skjema blir du
-                      satt på venteliste, og automatisk tildelt en plass dersom
-                      det blir ledig. Det er for øyeblikket
-                      {numberOnWaitinglist} personer på venteliste før deg.
+                      Kurset er fullt. Ved å fylle ut skjemaet blir du satt på
+                      venteliste og automatisk tildelt en plass dersom det blir
+                      ledig. Du blir nummer {numberOnWaitinglist} på
+                      ventelisten.
                     </p>
                   </div>
                 </div>
-
+                <br />
                 <!--=====================================================================-->
 
                 <div class="kontaktskjema-felter__bolk">

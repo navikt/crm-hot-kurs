@@ -365,7 +365,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_A1_4002424113</name>
+        <name>formula_10_myRule_9_A1_7886980068</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} + 1</expression>
         <scale>18</scale>
@@ -377,7 +377,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_13_myRule_12_A1_1044891406</name>
+        <name>formula_13_myRule_12_A1_4061218759</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} - 1</expression>
         <scale>18</scale>
@@ -389,7 +389,7 @@
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_6147145924</name>
+        <name>formula_2_myRule_1_A1_5875256689</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
@@ -401,7 +401,7 @@
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_6920920894</name>
+        <name>formula_5_myRule_4_A1_1164431013</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} - 1</expression>
         <scale>18</scale>
@@ -449,13 +449,21 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Avmeldt&quot;))
+                <stringValue>AND(
+ISCHANGED( [CourseRegistration__c].Status__c),
+ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Avmeldt&quot;), 
+NOT(ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&quot;)),
+[CourseRegistration__c].Course__r.Waitinglist__c&lt;&gt; 0 )
 </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_7</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Avmeldt&quot;))</expression>
+        <expression>AND(
+ISCHANGED( {!myVariable_current.Status__c}),
+ISPICKVAL({!myVariable_current.Status__c} ,&quot;Avmeldt&quot;), 
+NOT(ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;)),
+{!myVariable_current.Course__r.Waitinglist__c}&lt;&gt; 0 )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -474,7 +482,7 @@ AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Venteliste&quot;) ),
 AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Venteliste&quot;))
 )</expression>
     </formulas>
-    <interviewLabel>CourseRegistration-12_InterviewLabel</interviewLabel>
+    <interviewLabel>CourseRegistration-2_InterviewLabel</interviewLabel>
     <label>Course Registration + Email Ver4</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -576,7 +584,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_13_myRule_12_A1_1044891406</elementReference>
+                <elementReference>formula_13_myRule_12_A1_4061218759</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -659,7 +667,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_6147145924</elementReference>
+                <elementReference>formula_2_myRule_1_A1_5875256689</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -742,7 +750,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_6920920894</elementReference>
+                <elementReference>formula_5_myRule_4_A1_1164431013</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -825,7 +833,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_10_myRule_9_A1_4002424113</elementReference>
+                <elementReference>formula_10_myRule_9_A1_7886980068</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
