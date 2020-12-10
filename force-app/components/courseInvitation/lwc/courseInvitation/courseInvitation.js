@@ -29,6 +29,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     @track error;
     @track errorMsg;
     @track loading;
+    @track lessThanTenRecipients = true;
 
     // #########################################
     // ################# EVENTS ################
@@ -47,6 +48,16 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
             this.createPill(pill);
             this.template.querySelector('[data-id="fullName"]').focus();
             emptyInputFields(this.template.querySelectorAll("lightning-input"));
+            this.IslessThanTenRecipients();
+        }
+    }
+
+    IslessThanTenRecipients() {
+        if (this.emails.length > 9) {
+            this.lessThanTenRecipients = false;
+        }
+        else {
+            this.lessThanTenRecipients = true;
         }
     }
 
@@ -70,6 +81,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         const index = event.detail.index;
         this.recipients.splice(index, 1);
         this.emails.splice(index, 1);
+        this.IslessThanTenRecipients();
     }
 
     // #########################################
