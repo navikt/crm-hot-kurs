@@ -129,17 +129,26 @@
       <lightning-layout
         vertical-align="center"
         class="slds-p-top_small slds-p-bottom_x-small"
-        if:true={lessThanTenRecipients}
       >
         <lightning-layout-item flexibility="grow">
           <div
+          if:true={lessThanTenRecipients}
             class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
           >
             {labels.pressEnterToAdd}
           </div>
         </lightning-layout-item>
+        <lightning-layout-item flexibility="grow">
+            <div
+            if:false={lessThanTenRecipients}
+              class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
+            >
+            Du kan dessverre bare invitere 10 personer om gangen, men du kan invitere 10 nye etterpå. Dette er kun midlertidig.
+            </div>
+          </lightning-layout-item>
         <lightning-layout-item>
           <button
+          if:true={lessThanTenRecipients}
             class="slds-button slds-button_outline-brand slds-float_right"
             onclick={addEmail}
           >
