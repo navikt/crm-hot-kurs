@@ -30,6 +30,8 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     @track errorMsg;
     @track loading;
     @track lessThanTenRecipients = true;
+    @track moreThanTenRecipients = false;
+    @track falseMoreThanTenAndEmailSent = false;
 
     // #########################################
     // ################# EVENTS ################
@@ -49,15 +51,32 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
             this.template.querySelector('[data-id="fullName"]').focus();
             emptyInputFields(this.template.querySelectorAll("lightning-input"));
             this.IslessThanTenRecipients();
+            this.IsBothMoreThanTenRecipientsAndEmailSentFalse();
         }
     }
 
     IslessThanTenRecipients() {
-        if (this.emails.length > 9) {
+        if (this.emails.length === 2) {
             this.lessThanTenRecipients = false;
+            this.moreThanTenRecipients = false;
         }
-        else {
+        else if (this.emails.length > 2) {
+            this.lessThanTenRecipients = false;
+            this.moreThanTenRecipients = true;
+        }
+
+        else if (this.emails.length < 2) {
             this.lessThanTenRecipients = true;
+            this.moreThanTenRecipients = false;
+        }
+    }
+
+    IsBothMoreThanTenRecipientsAndEmailSentFalse() {
+        if ((this.moreThanTenRecipients === false) && (this.emailSent === false)) {
+            this.falseMoreThanTenAndEmailSent = false;
+        }
+        else if ((this.moreThanTenRecipients === true) || (this.emailSent === true)) {
+            this.falseMoreThanTenAndEmailSent = true;
         }
     }
 
@@ -82,6 +101,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         this.recipients.splice(index, 1);
         this.emails.splice(index, 1);
         this.IslessThanTenRecipients();
+        this.IsBothMoreThanTenRecipientsAndEmailSentFalse();
     }
 
     // #########################################
@@ -93,7 +113,7 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     }
 
     get isConfirmDisabled() {
-        return this.recipients.length === 0;
+        return (this.recipients.length === 0 || this.recipients.length > 2);
     }
 
     // #########################################
@@ -146,6 +166,8 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
                 this.createPill(con);
             }
         });
+        this.IslessThanTenRecipients();
+        this.IsBothMoreThanTenRecipientsAndEmailSentFalse();
     }
 
     emailCancel(event) {

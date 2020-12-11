@@ -48,10 +48,10 @@
 
       <!-- CONFIRM -->
       <lightning-button
+        if:false={falseMoreThanTenAndEmailSent}
         label={labels.goToConfirmation}
         onclick={openConfirmation}
         variant="brand"
-        if:false={emailSent}
         disabled={isConfirmDisabled}
       >
       </lightning-button>
