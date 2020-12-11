@@ -56,16 +56,16 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
     }
 
     IslessThanTenRecipients() {
-        if (this.emails.length === 2) {
+        if (this.emails.length === 10) {
             this.lessThanTenRecipients = false;
             this.moreThanTenRecipients = false;
         }
-        else if (this.emails.length > 2) {
+        else if (this.emails.length > 10) {
             this.lessThanTenRecipients = false;
             this.moreThanTenRecipients = true;
         }
 
-        else if (this.emails.length < 2) {
+        else if (this.emails.length < 10) {
             this.lessThanTenRecipients = true;
             this.moreThanTenRecipients = false;
         }
