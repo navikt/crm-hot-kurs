@@ -50,6 +50,10 @@ export default class CourseInvitation extends NavigationMixin(LightningElement) 
         }
     }
 
+    get lessThanTenRecipients() {
+        return this.emails.length < 10;
+    }
+
     createPill(pill) {
         pill = contactToPill(pill);
         this.recipients.unshift(pill);
