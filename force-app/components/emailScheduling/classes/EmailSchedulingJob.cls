@@ -13,7 +13,7 @@ public with sharing class EmailSchedulingJob implements Queueable, Database.Allo
 		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend( filteredCourses, courseRegistrations );
 		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
 		Map<Id, String> coursesWithErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( this.courseRegistrations, emailResults );
-		// EmailSchedulingHelper.createTask( recipients );
+		EmailSchedulingHelper.createTasks( filteredCourses );
 		EmailSchedulingHelper.updateCoursesWithEmailStatus( filteredCourses, coursesWithErrors );
 
 	}

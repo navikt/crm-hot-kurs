@@ -194,7 +194,24 @@ public with sharing class EmailSchedulingHelper {
 		update courses;
 	}
 
-	public static void createTasks() {
+	public static List<Task> createTasks( List<Course__c> courses ) {
+		List<Task> tasks = new List<Task>();
+		for ( Course__c c : courses ) {
+
+			Task task = new Task();
+			switch on checkEmailType( c ) {
+				when AFTER      { task.Subject = 'Epost om evaluering sendt'; }
+				when BEFORE     { task.Subject = 'Epost med informasjon før kurs sendt'; }
+				when MANUAL     { task.Subject = 'Manuell epost sendt'; }
+				when REMINDER   { task.Subject = 'Påminnelse om kurs er sendt på epost'; }
+			}
+			task.WhatId = c.Id;
+			task.Status = 'Completed';
+			tasks.add( task );
+			system.debug( tasks );
+		}
+
+		return tasks;
 
 	}
 
