@@ -14,8 +14,6 @@ global with sharing class CourseHandler {
 			wrapper.Title = course.Name;
 			wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
-
-
 			Datetime fromTime = course.RegistrationFromDateTime__c;
 			fromTime = fromTime.addHours( 1 );
 			wrapper.RegistrationFromDateTime = fromTime;
@@ -29,7 +27,7 @@ global with sharing class CourseHandler {
 			deadline = deadline.addHours( 1 );
 			wrapper.RegistrationDeadline = deadline;
 
-
+			wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
 			wrapper.FrontPageDescription = course.DescriptionFormatted__c;
 			wrapper.Description = course.DescriptionShort__c;
 			wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
