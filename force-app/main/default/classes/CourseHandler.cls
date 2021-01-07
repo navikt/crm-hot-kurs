@@ -13,9 +13,9 @@ global with sharing class CourseHandler {
 			wrapper.RegistrationID = course.Id;
 			wrapper.Title = course.Name;
 			wrapper.RegistrationUrl = course.RegistrationUrl2__c;
-			wrapper.RegistrationFromDateTime = course.RegistrationFromDateTime__c;
-			wrapper.RegistrationToDateTime = course.RegistrationToDateTime__c;
-			wrapper.RegistrationDeadline = course.RegistrationDeadline__c;
+			wrapper.RegistrationFromDateTime = course.RegistrationFromDateTime__c.addHours( 1 );
+			wrapper.RegistrationToDateTime = course.RegistrationToDateTime__c.addHours( 1 );
+			wrapper.RegistrationDeadline = course.RegistrationDeadline__c.addHours( 1 );
 			wrapper.FrontPageDescription = course.DescriptionFormatted__c;
 			wrapper.Description = course.DescriptionShort__c;
 			wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
