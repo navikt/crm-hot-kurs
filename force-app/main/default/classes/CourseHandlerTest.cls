@@ -11,6 +11,14 @@ private with sharing class CourseHandlerTest {
 			course.Region__c = 'Oslo';
 			course.Active__c = true;
 			course.MaxNumberOfParticipants__c = 10;
+
+			DateTime dt = DateTime.now();
+			dt = dt.addHours( 4 );
+			course.RegistrationFromDateTime__c = datetime.now();
+			course.RegistrationToDateTime__c = dt;
+			Datetime st = dt.addDays( -1 );
+			course.RegistrationDeadline__c = st;
+
 			courses.add( course );
 		}
 		insert courses;

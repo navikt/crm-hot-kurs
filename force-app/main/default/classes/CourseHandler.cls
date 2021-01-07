@@ -13,9 +13,23 @@ global with sharing class CourseHandler {
 			wrapper.RegistrationID = course.Id;
 			wrapper.Title = course.Name;
 			wrapper.RegistrationUrl = course.RegistrationUrl2__c;
-			wrapper.RegistrationFromDateTime = course.RegistrationFromDateTime__c;
-			wrapper.RegistrationToDateTime = course.RegistrationToDateTime__c;
-			wrapper.RegistrationDeadline = course.RegistrationDeadline__c;
+
+
+
+			Datetime fromTime = course.RegistrationFromDateTime__c;
+			fromTime = fromTime.addHours( 1 );
+			wrapper.RegistrationFromDateTime = fromTime;
+
+
+			Datetime toTime = course.RegistrationToDateTime__c;
+			toTime = toTime.addHours( 1 );
+			wrapper.RegistrationToDateTime = toTime;
+
+			Datetime deadline = course.RegistrationDeadline__c;
+			deadline = deadline.addHours( 1 );
+			wrapper.RegistrationDeadline = deadline;
+
+
 			wrapper.FrontPageDescription = course.DescriptionFormatted__c;
 			wrapper.Description = course.DescriptionShort__c;
 			wrapper.ShowInActivityList = course.Active__c ? 1 : 0;

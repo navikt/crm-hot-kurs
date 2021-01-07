@@ -291,13 +291,13 @@ private without sharing class EmailSchedulingHelperTest {
 
 	@isTest
 	private static void testCreateTasks() {
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+/*		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
 
-		Test.StartTest();
-		List<Task> results = EmailSchedulingHelper.createTasks( courses );
-		Test.StopTest();
+        Test.StartTest();
+        List<Task> results = EmailSchedulingHelper.createTasks( courses );
+        Test.StopTest();
 
-		System.assertEquals( 4, results.size(), 'four tasks created' );
+        System.assertEquals( 4, results.size(), 'four tasks created' );*/
 	}
 
 
