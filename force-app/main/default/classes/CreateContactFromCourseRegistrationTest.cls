@@ -2,6 +2,19 @@
 private with sharing class CreateContactFromCourseRegistrationTest {
 
 	@isTest
+	private static void testFetchAccount() {
+		Account a = new Account();
+		a.Name = 'Kursdeltakere';
+		insert a;
+
+		Test.startTest();
+		Map<String, Account> result = CreateContactFromCourseRegistration.fetchAccount( );
+		Test.stopTest();
+
+		System.assertEquals( a.Id, result.get( a.Name ).Id, 'Should be the same account' );
+	}
+
+	@isTest
 	private static void testFindOrCreateContact() {
 		Course__c course = new Course__c( Name = 'Testkurs', MaxNumberOfParticipants__c = 10, DescriptionFormatted__c = 'Testkurs', Active__c = true );
 		insert course;

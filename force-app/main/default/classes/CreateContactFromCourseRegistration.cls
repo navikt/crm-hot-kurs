@@ -1,8 +1,18 @@
 public with sharing class CreateContactFromCourseRegistration {
 
+
+	public static Map<String, Account> fetchAccount( ) {
+		Map<String, Account> accountMap = new Map<String, Account>();
+		for ( Account a : [SELECT Id, Name FROM Account WHERE Name = 'Kursdeltakere' LIMIT 1] ) {
+			accountMap.put( a.Name, a );
+		}
+
+		return accountMap;
+
+	}
+
 	public static void findOrCreateContact( List<CourseRegistration__c> registrations ) {
-
-
+		Map<String, Account> accountMap = fetchAccount();
 		for ( CourseRegistration__c reg : registrations ) {
 
 			// ! to skip trigger and soql inside for loop set contact before insert
@@ -17,7 +27,7 @@ public with sharing class CreateContactFromCourseRegistration {
 			List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel> { wrapper };
 
 			// ! need to use soql inside for loop because id doest exist in before insert
-			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, new Map<String, Account>() );
+			Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
 
 			if ( contacts.containsKey( reg.ContactEmail__c ) ) {
 				reg.CourseParticipant__c = contacts.get( reg.ContactEmail__c ).Id;
