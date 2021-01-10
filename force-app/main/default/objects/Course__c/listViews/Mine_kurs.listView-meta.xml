@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All</fullName>
+    <fullName>Mine_kurs</fullName>
     <columns>NAME</columns>
     <columns>Theme__c</columns>
     <columns>Type__c</columns>
@@ -8,6 +8,6 @@
     <columns>RegistrationToDateTime__c</columns>
     <columns>RegistrationPlaceName__c</columns>
     <columns>Active__c</columns>
-    <filterScope>Everything</filterScope>
-    <label>Alle kurs</label>
+    <filterScope>Mine</filterScope>
+    <label>Mine kurs</label>
 </ListView>

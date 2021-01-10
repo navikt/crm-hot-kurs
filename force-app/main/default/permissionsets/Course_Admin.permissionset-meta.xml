@@ -45,6 +45,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CourseRegistration__c.InvalidEmail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CourseRegistration__c.Participant_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
