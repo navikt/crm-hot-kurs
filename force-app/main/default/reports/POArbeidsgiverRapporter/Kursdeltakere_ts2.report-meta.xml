@@ -31,6 +31,9 @@
         <field>CourseRegistration__c.Participant_email__c</field>
     </columns>
     <columns>
+        <field>CourseRegistration__c.InvalidEmail__c</field>
+    </columns>
+    <columns>
         <field>CourseRegistration__c.Participant_phone__c</field>
     </columns>
     <format>Summary</format>
