@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Kursdeltaker</label>
-    <name>CourseParticipant__c</name>
-    <relationshipLabel>Kurspåmeldinger</relationshipLabel>
+    <label><!-- ContactFirstName --></label>
+    <name>ContactFirstName__c</name>
 </CustomFieldTranslation>

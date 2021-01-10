@@ -7,6 +7,10 @@
         <translation><!-- Avmeldt --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Invitert</masterLabel>
+        <translation><!-- Invitert --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Påmeldt</masterLabel>
         <translation><!-- Påmeldt --></translation>
     </picklistValues>
