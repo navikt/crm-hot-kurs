@@ -29,7 +29,7 @@ global with sharing class CourseHandler {
 
 			wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
 			wrapper.FrontPageDescription = course.DescriptionFormatted__c;
-			wrapper.Description = course.DescriptionShort__c;
+			wrapper.Description = course.DescriptionShort2__c;
 			wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
 
 			wrapper.configurable_custom = new CourseApiModel.Configurable_custom();
