@@ -3,7 +3,7 @@ global with sharing class CourseHandler {
 	@HttpGet
 	global static void doGet() {
 
-		List<Course__c> courses = [SELECT Id, Name, RegistrationUrl2__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, RegistrationDeadline__c, RegistrationPlaceName__c, DescriptionFormatted__c, DescriptionShort__c, Active__c, Region__c, Type__c, Theme__c FROM Course__c];
+		List<Course__c> courses = [SELECT Id, Name, RegistrationUrl2__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, RegistrationDeadline__c, RegistrationPlaceName__c, DescriptionFormatted__c, DescriptionShort2__c, Active__c, Region__c, Type__c, Theme__c FROM Course__c];
 
 		List<CourseApiModel> wrapperList = new List<CourseApiModel>();
 
