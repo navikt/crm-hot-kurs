@@ -99,11 +99,6 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.DescriptionShort2__c</fieldItem>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
                 <fieldItem>Record.DescriptionInternal__c</fieldItem>
             </fieldInstance>
         </itemInstances>
@@ -124,6 +119,11 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.DescriptionShort2__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.DescriptionFormatted__c</fieldItem>
