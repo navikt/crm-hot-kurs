@@ -8,6 +8,7 @@ private with sharing class CourseHandlerTest {
 			Course__c course = new Course__c();
 			course.Name = 'Test ' + i;
 			course.DescriptionFormatted__c = 'Testkurs';
+			course.DescriptionShort__c = 'Kort beskrivelse';
 			course.Region__c = 'Oslo';
 			course.Active__c = true;
 			course.MaxNumberOfParticipants__c = 10;

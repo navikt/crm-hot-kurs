@@ -90,6 +90,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.DescriptionShort2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.DescriptionShort__c</field>
         <readable>true</readable>
     </fieldPermissions>
