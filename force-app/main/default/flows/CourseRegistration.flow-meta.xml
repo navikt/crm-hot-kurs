@@ -2,188 +2,6 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>Send Email</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A2</name>
-        <label>EmailConfirmation</label>
-        <locationX>100</locationX>
-        <locationY>300</locationY>
-        <actionName>Process_SendEmail</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Dev Name of Enhanced Email Template</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>emailTemplateName</name>
-            <value>
-                <stringValue>courseRegistrationConfirmation</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Use do-not-reply@nav.no</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>useDoNotReply</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Recipient Contact Lookup</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue>Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>recipientContact</name>
-            <value>
-                <elementReference>myVariable_current.CourseParticipant__r</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Object Relation ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>relatedToId</name>
-            <value>
-                <elementReference>myVariable_current.Course__c</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
             <name>ActionCallType</name>
             <value>
                 <stringValue>flow</stringValue>
@@ -205,6 +23,7 @@
             <targetReference>myDecision8</targetReference>
         </connector>
     </actionCalls>
+    <apiVersion>49.0</apiVersion>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -365,7 +184,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_A1_7886980068</name>
+        <name>formula_10_myRule_9_A1_7021501956</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} + 1</expression>
         <scale>18</scale>
@@ -377,7 +196,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_13_myRule_12_A1_4061218759</name>
+        <name>formula_13_myRule_12_A1_3393474054</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} - 1</expression>
         <scale>18</scale>
@@ -389,7 +208,7 @@
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_5875256689</name>
+        <name>formula_2_myRule_1_A1_3017585424</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
@@ -401,7 +220,7 @@
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_1164431013</name>
+        <name>formula_5_myRule_4_A1_1633521581</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} - 1</expression>
         <scale>18</scale>
@@ -538,6 +357,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <label>-1 waitinglist</label>
         <locationX>1200</locationX>
         <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -584,7 +404,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_13_myRule_12_A1_4061218759</elementReference>
+                <elementReference>formula_13_myRule_12_A1_3393474054</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -618,9 +438,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <label>+1 registered</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <connector>
-            <targetReference>myRule_1_A2</targetReference>
-        </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -667,7 +485,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_5875256689</elementReference>
+                <elementReference>formula_2_myRule_1_A1_3017585424</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -704,6 +522,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <connector>
             <targetReference>myDecision6</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -750,7 +569,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_1164431013</elementReference>
+                <elementReference>formula_5_myRule_4_A1_1633521581</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -787,6 +606,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <connector>
             <targetReference>myDecision11</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -833,7 +653,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_10_myRule_9_A1_7886980068</elementReference>
+                <elementReference>formula_10_myRule_9_A1_7021501956</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
