@@ -35,6 +35,11 @@
     <description>Kan se alle kurs og kursdeltakere</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CourseRegistration__c.Attendance__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -320,6 +325,15 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Kurs - Administrator</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Contact</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
