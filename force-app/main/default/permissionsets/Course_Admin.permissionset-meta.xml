@@ -39,6 +39,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CourseRegistration__c.CompanyName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CourseRegistration__c.CourseParticipant__c</field>
         <readable>true</readable>
@@ -81,6 +86,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.DescriptionInternal__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.DescriptionShort2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

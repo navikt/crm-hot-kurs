@@ -205,6 +205,7 @@
             <targetReference>myDecision8</targetReference>
         </connector>
     </actionCalls>
+    <apiVersion>49.0</apiVersion>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -538,6 +539,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <label>-1 waitinglist</label>
         <locationX>1200</locationX>
         <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -621,6 +623,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <connector>
             <targetReference>myRule_1_A2</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -704,6 +707,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <connector>
             <targetReference>myDecision6</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -787,6 +791,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <connector>
             <targetReference>myDecision11</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>

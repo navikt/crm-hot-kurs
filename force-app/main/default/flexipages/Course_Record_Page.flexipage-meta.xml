@@ -121,7 +121,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.DescriptionShort__c</fieldItem>
+                <fieldItem>Record.DescriptionShort2__c</fieldItem>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

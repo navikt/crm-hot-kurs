@@ -61,7 +61,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DescriptionShort__c</field>
+                <field>DescriptionShort2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
