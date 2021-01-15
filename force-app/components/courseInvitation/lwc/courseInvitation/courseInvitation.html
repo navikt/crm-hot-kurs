@@ -38,19 +38,19 @@
     <!-- #################################### -->
     <lightning-button-group slot="actions">
       <!-- IMPORT -->
-      <!-- <lightning-button
+      <lightning-button
         label={labels.importBtn}
         onclick={startImport}
         if:false={emailSent}
       >
-      </lightning-button> -->
+      </lightning-button>
 
       <!-- CONFIRM -->
       <lightning-button
-        if:false={emailSent}
         label={labels.goToConfirmation}
         onclick={openConfirmation}
         variant="brand"
+        if:false={emailSent}
         disabled={isConfirmDisabled}
       >
       </lightning-button>
@@ -90,10 +90,7 @@
       <!-- #################################### -->
       <!-- ######### ADD RECIPIENTS ########### -->
       <!-- #################################### -->
-      <div
-        class="slds-grid slds-wrap slds-p-top_x-small"
-        if:true={lessThanTenRecipients}
-      >
+      <div class="slds-grid slds-wrap slds-p-top_x-small">
         <div class="slds-col slds-size_6-of-12 slds-p-right_x-small">
           <!-- NAME FIELD -->
           <lightning-input
@@ -132,24 +129,13 @@
       >
         <lightning-layout-item flexibility="grow">
           <div
-            if:true={lessThanTenRecipients}
             class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
           >
             {labels.pressEnterToAdd}
           </div>
         </lightning-layout-item>
-        <lightning-layout-item flexibility="grow">
-          <div
-            if:false={lessThanTenRecipients}
-            class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
-          >
-            Du kan dessverre bare invitere 10 personer om gangen, men du kan
-            invitere 10 nye etterpå. Dette er kun midlertidig.
-          </div>
-        </lightning-layout-item>
         <lightning-layout-item>
           <button
-            if:true={lessThanTenRecipients}
             class="slds-button slds-button_outline-brand slds-float_right"
             onclick={addEmail}
           >
