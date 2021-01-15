@@ -7,7 +7,6 @@
     record-id={recordId}
     recipients={recipients}
     template-name="courseRegistrationInvitation"
-    use-do-not-reply="true"
     oncancel={emailCancel}
     onsuccess={emailSuccess}
   >
@@ -91,9 +90,10 @@
       <!-- #################################### -->
       <!-- ######### ADD RECIPIENTS ########### -->
       <!-- #################################### -->
-      <div class="slds-grid slds-wrap slds-p-top_x-small"
-      if:true={lessThanTenRecipients}
-      >          
+      <div
+        class="slds-grid slds-wrap slds-p-top_x-small"
+        if:true={lessThanTenRecipients}
+      >
         <div class="slds-col slds-size_6-of-12 slds-p-right_x-small">
           <!-- NAME FIELD -->
           <lightning-input
@@ -132,23 +132,24 @@
       >
         <lightning-layout-item flexibility="grow">
           <div
-          if:true={lessThanTenRecipients}
+            if:true={lessThanTenRecipients}
             class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
           >
             {labels.pressEnterToAdd}
           </div>
         </lightning-layout-item>
         <lightning-layout-item flexibility="grow">
-            <div
+          <div
             if:false={lessThanTenRecipients}
-              class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
-            >
-            Du kan dessverre bare invitere 10 personer om gangen, men du kan invitere 10 nye etterpå. Dette er kun midlertidig.
-            </div>
-          </lightning-layout-item>
+            class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
+          >
+            Du kan dessverre bare invitere 10 personer om gangen, men du kan
+            invitere 10 nye etterpå. Dette er kun midlertidig.
+          </div>
+        </lightning-layout-item>
         <lightning-layout-item>
           <button
-          if:true={lessThanTenRecipients}
+            if:true={lessThanTenRecipients}
             class="slds-button slds-button_outline-brand slds-float_right"
             onclick={addEmail}
           >
