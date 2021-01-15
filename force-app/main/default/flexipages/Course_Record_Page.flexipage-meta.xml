@@ -1108,43 +1108,6 @@
                 <componentName>courseInvitation</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>amountOfMonths</name>
-                    <value>4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>amountOfMonthsToLoad</name>
-                    <value>4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>amountOfRecords</name>
-                    <value>5</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>amountOfRecordsToLoad</name>
-                    <value>3</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>configId</name>
-                    <value>TAG_Course</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>headerIcon</name>
-                    <value>custom:custom18</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>headerTitleEnglish</name>
-                    <value>Activities</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>headerTitleNorwegian</name>
-                    <value>Aktiviteter</value>
-                </componentInstanceProperties>
-                <componentName>activityTimeline</componentName>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>
