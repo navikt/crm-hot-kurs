@@ -33,6 +33,7 @@ public with sharing class EmailConfirmationModalHelper {
 			request.TemplateId__c = templateId;
 			request.TargetObjectId__c = con.Id;
 			request.WhatId__c = recordId;
+			request.Priority__c = '5';
 			request.SaveAsActivity__c = true;
 			requests.add( request );
 		}
