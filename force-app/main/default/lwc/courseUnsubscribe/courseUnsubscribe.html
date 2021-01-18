@@ -1,0 +1,24 @@
+<template>
+  <div class="center-screen">
+    <div if:true={showButton}>
+      <h2 class="typo-systemtittel">
+        Hei {name}
+        <br />
+        <br />
+        Du er i ferd med å melde deg av kurset: {course}
+      </h2>
+      <br />
+      <button
+        title="Meld av"
+        class="btn-submit"
+        type="submit"
+        onclick={handleSubmit}
+      >
+        Klikk her for å bekrefte
+      </button>
+    </div>
+    <div if:true={showConfirmation}>
+      <h2 class="typo-systemtittel">Du er nå meldt av kurset</h2>
+    </div>
+  </div>
+</template>
