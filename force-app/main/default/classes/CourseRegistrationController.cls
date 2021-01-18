@@ -46,6 +46,7 @@ public with sharing class CourseRegistrationController {
 			registration.ContactEmail__c = model.email;
 			registration.ContactPhone__c = model.phone;
 			registration.Course__c = courseId;
+			registration.County__c = model.county;
 
 			if ( courseIsFull ) {
 				registration.Status__c = 'Venteliste';
