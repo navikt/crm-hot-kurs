@@ -3,8 +3,8 @@ public with sharing class CreateContactFromCourseRegistration {
 
 	public static Map<String, Account> fetchAccount( ) {
 		Map<String, Account> accountMap = new Map<String, Account>();
-		for ( Account a : [SELECT Id, Name FROM Account WHERE Name = 'Kursdeltakere' LIMIT 1] ) {
-			accountMap.put( a.Name, a );
+		for ( Account a : [SELECT Id, INT_OrganizationNumber__c, INT_MunicipalityNumber__c FROM Account WHERE Name = 'Kursdeltakere' LIMIT 1] ) {
+			accountMap.put( a.INT_OrganizationNumber__c, a );
 		}
 
 		return accountMap;
@@ -24,6 +24,7 @@ public with sharing class CreateContactFromCourseRegistration {
 			wrapper.email = reg.ContactEmail__c;
 			wrapper.phone = reg.ContactPhone__c;
 			wrapper.source = 'Kurs';
+			wrapper.companyNumber = 'Kurs';
 			List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel> { wrapper };
 
 			// ! need to use soql inside for loop because id doest exist in before insert
