@@ -1,4 +1,4 @@
-public with sharing class EmailConfirmationModalHelper {
+public without sharing class EmailConfirmationModalHelper {
 
 	public static List<Contact> fetchOrCreateContacts( List<EmailConfirmationModalModel> recipients ) {
 
