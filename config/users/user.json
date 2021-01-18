@@ -6,6 +6,8 @@
     "EmailEncodingKey": "UTF-8",
     "LanguageLocaleKey": "en_US",
     "profileName": "Standard User",
-    "permsets": [],
+    "permsets": [
+        "Course_Admin"
+    ],
     "generatePassword": true
 }

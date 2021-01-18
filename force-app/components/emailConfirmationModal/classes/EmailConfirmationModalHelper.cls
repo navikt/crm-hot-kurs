@@ -1,4 +1,4 @@
-public with sharing class EmailConfirmationModalHelper {
+public without sharing class EmailConfirmationModalHelper {
 
 	public static List<Contact> fetchOrCreateContacts( List<EmailConfirmationModalModel> recipients ) {
 
@@ -25,20 +25,20 @@ public with sharing class EmailConfirmationModalHelper {
 		return contacts.values();
 	}
 
-	public static void sendEmailToCourseRecipients( Id recordId, List<Contact> contacts, String template, Boolean useDoNotReply ) {
+	public static void sendEmailToCourseRecipients( Id recordId, List<Contact> contacts, Id templateId ) {
 
-		Map<Id, Contact> contactMap = new Map<Id, Contact>( contacts );
-
-		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
+		List<EmailQueue__c> requests = new List<EmailQueue__c>();
 		for ( Contact con : contacts ) {
-			Process_SendEmail.Request request = new Process_SendEmail.Request();
-			request.emailTemplateName = template;
-			request.recipientContactId = con.Id;
-			request.useDoNotReply = useDoNotReply;
-			request.relatedToId = recordId;
+			EmailQueue__c request = new EmailQueue__c();
+			request.TemplateId__c = templateId;
+			request.TargetObjectId__c = con.Id;
+			request.WhatId__c = recordId;
+			request.Status__c = 'Instant';
+			request.Priority__c = '5';
+			request.SaveAsActivity__c = true;
 			requests.add( request );
 		}
 
-		Process_SendEmail.sendEmail( requests );
+		insert requests;
 	}
 }

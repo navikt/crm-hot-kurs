@@ -3,9 +3,12 @@ public with sharing class EmailConfirmationModalController {
 	@AuraEnabled
 	public static List<Contact> sendEmail( String recordId, String recipientsJson, String template, Boolean useDoNotReply ) {
 
+		List<EmailTemplate> templates = [SELECT Id FROM EmailTemplate WHERE DeveloperName = :template LIMIT 1];
+		if ( templates.size() != 1 ) { throw new AuraException( Label.EmailConfirmation_missingTemplate ); }
+
 		List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize( recipientsJson, List<EmailConfirmationModalModel>.class );
 		List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts( recipients );
-		EmailConfirmationModalHelper.sendEmailToCourseRecipients( recordId, contacts, template, useDoNotReply );
+		EmailConfirmationModalHelper.sendEmailToCourseRecipients( recordId, contacts, templates[0].Id );
 
 		return contacts;
 	}

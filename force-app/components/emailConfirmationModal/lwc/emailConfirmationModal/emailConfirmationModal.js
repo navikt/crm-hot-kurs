@@ -11,7 +11,6 @@ export default class EmailConfirmationModal extends LightningElement {
     // parameters
     @api recordId;
     @api templateName;
-    @api useDoNotReply;
     @api recipients = [];
     @api isPreview;
 
@@ -60,8 +59,7 @@ export default class EmailConfirmationModal extends LightningElement {
         sendEmail({
             recordId: this.recordId,
             recipientsJson: JSON.stringify(this.recipients),
-            template: this.templateName,
-            useDoNotReply: this.useDoNotReply
+            template: this.templateName
         }).then(result => {
             this.dispatchEvent(new CustomEvent('success', { detail: result }));
             this.sendingEmail = false;

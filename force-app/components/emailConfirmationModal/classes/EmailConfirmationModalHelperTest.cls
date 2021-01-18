@@ -59,8 +59,11 @@ private without sharing class EmailConfirmationModalHelperTest {
 		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 		System.assertEquals( 0, emails.size(), 'No emails sent before' );
 
+		List<EmailTemplate> templates = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseRegistrationInvitation' LIMIT 1];
+		System.assertEquals( 1, templates.size(), 'should be one template with name "courseRegistrationInvitation"' );
+
 		Test.StartTest();
-		EmailConfirmationModalHelper.sendEmailToCourseRecipients( course.Id, contacts, 'courseRegistrationInvitation', true );
+		EmailConfirmationModalHelper.sendEmailToCourseRecipients( course.Id, contacts, templates[0].Id );
 		Test.StopTest();
 
 		emails = [SELECT Id, RelatedToId FROM EmailMessage];
