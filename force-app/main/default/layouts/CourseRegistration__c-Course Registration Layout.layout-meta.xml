@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>County__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>UnsubscriptionUrl__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

@@ -205,6 +205,7 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
         <fields>CourseParticipant__c</fields>
         <fields>Status__c</fields>
         <fields>Attendance__c</fields>
@@ -216,7 +217,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000001jlNN</masterLabel>
+        <masterLabel>00h1X000001eGTO</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
