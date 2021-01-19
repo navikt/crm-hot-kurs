@@ -5,10 +5,11 @@ global class EmailSchedulingService implements Schedulable {
 		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails( emailsToSchedule );
 		List<EmailQueue__c> emailQueue = EmailSchedulingHelper.queueEmails( recipients );
 
-		// EmailSchedulingHelper.createTasks( courses );
+		Map<Id, List<String> > courses = EmailSchedulingHelper.getCourses( emailQueue );
+		Map<Id, EmailSchedulingHelper.EmailTypes> courseTypes = EmailSchedulingHelper.getCourseTypes( emailsToSchedule );
 
-		// Map<Id, String> coursesWithErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( emailQueue );
-		// EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, coursesWithErrors );
+		EmailSchedulingHelper.updateCourses( courses, courseTypes );
+		EmailSchedulingHelper.createTasks( courses, courseTypes );
 	}
 
 	// TODO add async function

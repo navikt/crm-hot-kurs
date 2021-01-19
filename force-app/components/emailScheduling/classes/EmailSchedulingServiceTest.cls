@@ -14,16 +14,16 @@ private without sharing class EmailSchedulingServiceTest {
 	private static void testExecute_beforeSuccess() {
 
 		createData( EmailSchedulingHelper.EmailTypes.BEFORE, true );
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
+		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
 		Test.StopTest();
 
-		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = true].size(), 'one courses should have marked as sent' );
-		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
+		System.assertEquals( 2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
 		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
@@ -31,16 +31,16 @@ private without sharing class EmailSchedulingServiceTest {
 	private static void testExecute_reminderSuccess() {
 
 		createData( EmailSchedulingHelper.EmailTypes.REMINDER, true );
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
+		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
 		Test.StopTest();
 
-		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailReminderSent__c = true].size(), 'one courses should have marked as sent' );
-		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
+		System.assertEquals( 2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
 		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
@@ -48,16 +48,16 @@ private without sharing class EmailSchedulingServiceTest {
 	private static void testExecute_afterSuccess() {
 
 		createData( EmailSchedulingHelper.EmailTypes.AFTER, true );
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
+		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
 		Test.StopTest();
 
-		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailAfterSent__c = true].size(), 'one courses should have marked as sent' );
-		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
+		System.assertEquals( 2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
 		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
@@ -65,16 +65,16 @@ private without sharing class EmailSchedulingServiceTest {
 	private static void testExecute_manualSuccess() {
 
 		createData( EmailSchedulingHelper.EmailTypes.MANUAL, true );
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
+		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
 		Test.StopTest();
 
-		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one courses should have scheduled emails for "today"' );
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one courses should have marked as sent' );
-		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
-		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
+		System.assertEquals( 2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
 		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
@@ -84,15 +84,15 @@ private without sharing class EmailSchedulingServiceTest {
 		createData( EmailSchedulingHelper.EmailTypes.MANUAL, false );
 
 		System.assertEquals( 2, EmailSchedulingHelper.findEmailsToSchedule().size(), 'verify two emails scheduled' );
+		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one course should have scheduled emails for "today"' );
+		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), '0 courses with two course participants each' );
 
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
 		Test.StopTest();
 
-		System.assertEquals( 1, [SELECT Id FROM Course__c].size(), 'one course should have scheduled emails for "today"' );
 		System.assertEquals( 0, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one course should be marked as sent' );
-		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), '0 courses with two course participants each' );
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c].size(), '0 emails sent as no participants' );
 		System.assertEquals( 1, EmailSchedulingHelper.findEmailsToSchedule().size(), 'should still be one more course because no email was sent' );
 	}
