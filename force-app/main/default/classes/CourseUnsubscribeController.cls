@@ -1,4 +1,4 @@
-public with sharing class CourseUnsubscribeController {
+public without sharing class CourseUnsubscribeController {
 	@AuraEnabled
 	public static CourseRegistration__c getCourseRegistrationFields( String courseRegId ) {
 		return [SELECT CourseParticipantName__c, Course__r.Name FROM CourseRegistration__c WHERE Id = : courseRegId];
