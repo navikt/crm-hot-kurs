@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="overflow-y: hidden;">
-<head><meta content="text/html; charset=utf-8"><meta content="width=device-width" name="viewport"><meta content="IE=edge">
+<head><meta content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta content="IE=edge">
 	<title></title>
 	<style type="text/css">body {
 			margin: 0;
@@ -241,15 +241,22 @@
 			<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
 			<div style="color:#3e3832;font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;line-height:1.2;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;">
 			<div style="font-size: 14px; line-height: 1.2; font-family: 'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif; color: #3e3832; mso-line-height-alt: 17px;">
-			<p style="font-size: 14px; line-height: 1.2; word-break: break-word; font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif; margin: 0px 20px;"><strong><span style="font-size: 42px;"><span style=""><span style="">Hei {{{Recipient.LastName}}},&nbsp;{{{Recipient.FirstName}}}&nbsp;{{{Recipient.MiddleName}}}</span></span></span></strong></p>
+			<p style="font-size: 14px; line-height: 1.2; word-break: break-word; font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif; margin: 0px 20px;"><strong><span style="font-size: 42px;"><span style=""><span style="">Hei {{{Recipient.FirstName}}}&nbsp;{{{Recipient.LastName}}}&nbsp;</span></span></span></strong></p>
 			</div>
 			</div>
 
 			<div style="color:#3e3832;font-family:Source Sans Pro, Tahoma, Verdana, Segoe, sans-serif;line-height:1.5;padding-top:20px;padding-right:0px;padding-bottom:0px;padding-left:0px;">
 			<div style="font-size: 14px; line-height: 1.5; color: #3e3832; font-family: Source Sans Pro, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 21px;">
-			<p style="font-size: 20px; line-height: 1.5; word-break: break-word; margin: 0px 20px;">Du er p&aring;meldt&nbsp;<span style="font-size: 20px;"><strong>{{{Course__c.Name}}}</strong></span><br />
-			Tidspunkt:&nbsp;<span style="font-size: 20px;"><strong>{{{Course__c.RegistrationFromDateTime__c}}} -&nbsp;{{{Course__c.RegistrationToDateTime__c}}}</strong></span><br />
-			Sted:&nbsp;<span style="font-size: 20px;"><strong>{{{Course__c.RegistrationPlaceName__c}}}</strong></span></p>
+			<p style="font-size: 20px; line-height: 1.5; word-break: break-word; margin: 0px 20px;"><br />
+			Du er p&aring;meldt&nbsp;<strong>{{{CourseRegistration__c.Course__c}}}</strong><br />
+			Tidspunkt:&nbsp;<b>{{{CourseRegistration__c.CourseStart__c}}} -&nbsp;{{{CourseRegistration__c.CourseEnd__c}}}</b><br />
+			Sted:&nbsp;<b>{{{CourseRegistration__c.CoursePlace__c}}}</b><br />
+			<br />
+			<br />
+			<br />
+			&Oslash;nsker du ikke &aring; delta p&aring; kurset alikevel?&nbsp;</p>
+
+			<p style="font-size: 20px; line-height: 1.5; word-break: break-word; margin: 0px 20px;"><a href="{{{CourseRegistration__c.UnsubscriptionUrl__c}}}">Meld deg av her</a></p>
 			</div>
 			</div>
 			</div>

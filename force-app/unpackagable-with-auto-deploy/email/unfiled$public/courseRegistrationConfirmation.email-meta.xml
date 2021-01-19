@@ -3,6 +3,7 @@
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>courseRegistrationConfirmation</name>
+    <relatedEntityType>CourseRegistration__c</relatedEntityType>
     <style>none</style>
     <subject>Bekreftelse på kurspåmelding</subject>
     <type>custom</type>

@@ -6,6 +6,7 @@ public with sharing class CourseRegistrationModel {
 	public String phone;
 	public String companyNumber;
 	public String source;
+	public String county;
 
 
 	public static CourseRegistrationModel parse( String json ) {
