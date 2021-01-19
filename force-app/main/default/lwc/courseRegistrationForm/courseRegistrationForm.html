@@ -215,8 +215,8 @@
                     />
                   </div>
 
-                  <div class="felt">
-                    <label class="skjemaelement__label" for="placeholer">
+                  <div if:true={county} class="felt">
+                    <label class="skjemaelement__label" for="county">
                       <p class="typo-element">Fylke</p>
                     </label>
                     <div class="selectContainer input--fullbredde">
@@ -245,6 +245,19 @@
                         <option value="Viken">Viken</option>
                       </select>
                     </div>
+                  </div>
+                  <div if:true={companyName} class="felt">
+                    <label class="skjemaelement__label" for="companyName">
+                      <p class="typo-element">Firma</p>
+                    </label>
+                    <input
+                      type="text"
+                      class="skjemaelement__input input--fullbredde"
+                      name="companyName"
+                      id="companyName"
+                      onchange={handleChange}
+                      required
+                    />
                   </div>
                 </div>
 
