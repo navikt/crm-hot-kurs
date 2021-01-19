@@ -28,25 +28,6 @@ public with sharing class EmailSchedulingHelper {
 		        Status__c = 'Påmeldt'];
 	}
 
-	// TODO remove after new email scheduling system is in place
-	public static List<Course__c> removeCourses( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
-
-		List<Course__c> filteredCourses = new List<Course__c>();
-		Set<Id> courseRegistrationIds = new Set<Id>();
-
-		for ( CourseRegistration__c courseRegistration : courseRegistrations ) {
-			courseRegistrationIds.add( courseRegistration.Course__c );
-		}
-
-		for ( Course__c course : courses ) {
-			if ( courseRegistrationIds.contains( course.Id ) ) {
-				filteredCourses.add( course );
-			}
-		}
-
-		return filteredCourses;
-	}
-
 	public static List<ScheduleModel> getEmailsToSend( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
 
 		List<ScheduleModel> recipients = new List<ScheduleModel>();
@@ -203,4 +184,13 @@ public with sharing class EmailSchedulingHelper {
 
 		return null;
 	}
+
+	// public static EmailTypes checkEmailType( CourseParticipant__c courseParticipant ) {
+	// 	if      ( Date.today() == courseParticipant.Course__r.EmailAfterDate__c )    { return EmailTypes.AFTER; }
+	// 	else if ( Date.today() == courseParticipant.Course__r.EmailBeforeDate__c )   { return EmailTypes.BEFORE; }
+	// 	else if ( Date.today() == courseParticipant.Course__r.EmailManualDate__c )   { return EmailTypes.MANUAL; }
+	// 	else if ( Date.today() == courseParticipant.Course__r.EmailReminderDate__c ) { return EmailTypes.REMINDER; }
+
+	// 	return null;
+	// }
 }
