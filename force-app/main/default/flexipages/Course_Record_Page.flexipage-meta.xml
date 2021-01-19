@@ -376,7 +376,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.ShowCompany__c</fieldItem>
+                <fieldItem>Record.ShowCounty__c</fieldItem>
             </fieldInstance>
         </itemInstances>
         <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>
@@ -385,7 +385,7 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.ShowCounty__c</fieldItem>
+                <fieldItem>Record.ShowCompany__c</fieldItem>
             </fieldInstance>
         </itemInstances>
         <name>Facet-4ce9dcee-5f5d-4ab4-8a97-c60926c27b77</name>

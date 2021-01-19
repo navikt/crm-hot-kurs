@@ -10,6 +10,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Hele landet</fullName>
+                <default>false</default>
+                <label>Hele landet</label>
+            </value>
+            <value>
                 <fullName>Agder</fullName>
                 <default>false</default>
                 <label>Agder</label>
