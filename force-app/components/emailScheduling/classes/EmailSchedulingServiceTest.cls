@@ -97,7 +97,6 @@ public without sharing class EmailSchedulingServiceTest {
 	}
 
 
-
 	// HELPER FUNCTIONS
 	public static void createData( EmailSchedulingHelper.EmailTypes type, Boolean createParticipants ) {
 
