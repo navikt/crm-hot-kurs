@@ -112,11 +112,19 @@ public with sharing class EmailSchedulingHelper {
 			Course__c course = courseMap.get( courseId );
 
 			switch on checkEmailType( course ) {
-				when AFTER      { course.EmailAfterSent__c = true; }
-				when BEFORE     { course.EmailBeforeSent__c = true; }
-				when MANUAL     { course.EmailManualSent__c = true; }
-				when REMINDER   { course.EmailReminderSent__c = true; }
-				// TODO add emailQueue__c ids
+				when AFTER {
+					course.EmailAfterSent__c = true;
+					course.EmailAfterEmailQueueId__c = String.join( coursesWithEmailQueue.get( courseId ), ';' );
+				} when BEFORE {
+					course.EmailBeforeSent__c = true;
+					course.EmailBeforeEmailQueueId__c = String.join( coursesWithEmailQueue.get( courseId ), ';' );
+				} when MANUAL {
+					course.EmailManualSent__c = true;
+					course.EmailManualEmailQueueId__c = String.join( coursesWithEmailQueue.get( courseId ), ';' );
+				} when REMINDER {
+					course.EmailReminderSent__c = true;
+					course.EmailReminderEmailQueueId__c = String.join( coursesWithEmailQueue.get( courseId ), ';' );
+				}
 			}
 
 			courses.add( course );
@@ -124,9 +132,6 @@ public with sharing class EmailSchedulingHelper {
 
 		update courses;
 	}
-
-	// public static void updateCourseRegistrations( Map<Id, List<String> > courses ) {
-	// }
 
 	public static void createTasks( Map<Id, Course__c> courseMap, Map<Id, List<String> > coursesWithEmailQueue ) {
 

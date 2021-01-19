@@ -183,7 +183,7 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testUpdateCoursesWithEmailStatus() {
+	private static void testUpdateCourses() {
 
 		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		System.assertEquals( 4, courses.size(), 'all four courses should have one email ready to be sent' );
@@ -198,6 +198,28 @@ private without sharing class EmailSchedulingHelperTest {
 
 		courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		System.assertEquals( 0, courses.size(), 'all four courses should have emails sent' );
+
+		Course__c beforeCourse = [SELECT EmailBeforeEmailQueueId__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+		Course__c afterCourse = [SELECT EmailAfterEmailQueueId__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+		Course__c reminderCourse = [SELECT EmailReminderEmailQueueId__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+		Course__c manualCourse = [SELECT EmailManualEmailQueueId__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
+
+		List<EmailQueue__c> beforeQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :beforeCourse.Id];
+		List<EmailQueue__c> afterQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :afterCourse.Id];
+		List<EmailQueue__c> reminderQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :reminderCourse.Id];
+		List<EmailQueue__c> manualQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :manualCourse.Id];
+
+		System.assert ( beforeCourse.EmailBeforeEmailQueueId__c.contains( beforeQueue[0].Id ), 'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[0].Id );
+		System.assert ( beforeCourse.EmailBeforeEmailQueueId__c.contains( beforeQueue[1].Id ), 'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[1].Id );
+
+		System.assert ( afterCourse.EmailAfterEmailQueueId__c.contains( afterQueue[0].Id ), 'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[0].Id );
+		System.assert ( afterCourse.EmailAfterEmailQueueId__c.contains( afterQueue[1].Id ), 'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[1].Id );
+
+		System.assert ( reminderCourse.EmailReminderEmailQueueId__c.contains( reminderQueue[0].Id ), 'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[0].Id );
+		System.assert ( reminderCourse.EmailReminderEmailQueueId__c.contains( reminderQueue[1].Id ), 'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[1].Id );
+
+		System.assert ( manualCourse.EmailManualEmailQueueId__c.contains( manualQueue[0].Id ), 'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[0].Id );
+		System.assert ( manualCourse.EmailManualEmailQueueId__c.contains( manualQueue[1].Id ), 'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[1].Id );
 	}
 
 	@isTest
