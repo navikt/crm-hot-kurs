@@ -24,8 +24,7 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
-		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
+		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -42,8 +41,7 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailReminderSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
-		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
+		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -60,8 +58,7 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailAfterSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
-		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
+		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -78,8 +75,7 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 		System.assertEquals( 4, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
-		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 0, afterCourses.size(), 'all emails should be sent' );
+		System.assertEquals( 0, EmailSchedulingHelper.findEmailsToSchedule().size(), 'all emails should be sent' );
 	}
 
 	@isTest
@@ -87,7 +83,7 @@ private without sharing class EmailSchedulingServiceTest {
 
 		createData( EmailSchedulingHelper.EmailTypes.MANUAL, false );
 
-		System.assertEquals( 1, EmailSchedulingHelper.findScheduledEmails().size(), 'verify one course have emails scheduled' );
+		System.assertEquals( 2, EmailSchedulingHelper.findEmailsToSchedule().size(), 'verify two emails scheduled' );
 
 		String CRON_EXP = '0 0 0 3 9 ? 2022';
 		Test.StartTest();
@@ -98,8 +94,7 @@ private without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 0, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one course should be marked as sent' );
 		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), '0 courses with two course participants each' );
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c].size(), '0 emails sent as no participants' );
-		List<Course__c> afterCourses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 1, afterCourses.size(), 'should still be one more course because no email was sent' );
+		System.assertEquals( 1, EmailSchedulingHelper.findEmailsToSchedule().size(), 'should still be one more course because no email was sent' );
 	}
 
 
