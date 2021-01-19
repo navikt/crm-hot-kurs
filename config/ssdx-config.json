@@ -8,6 +8,7 @@
     },
     "permsets_to_assign": [
         "Course_Admin",
-        "Email_Scheduling_App_Admin"
+        "EmailSchedulingApp_Admin",
+        "EmailTemplateAccess"
     ]
 }
