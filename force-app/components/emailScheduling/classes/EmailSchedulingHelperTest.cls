@@ -147,25 +147,6 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testSeprateRegistrationsIntoBulks() {
-
-		addCoursesAndRegistrations( 1, 2, true, true, true, true, 'unique' ); // doubled with makeData()
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-
-		System.assertEquals( 8, courses.size(), 'should have 8 courses due to doubled courses' );
-		System.assertEquals( 16, courseRegistrations.size(), 'should have 16 registrations due to doubled courses' );
-
-		Test.StartTest();
-		List<List<CourseRegistration__c> > sepratedEmailBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
-		Test.StopTest();
-
-		System.assertEquals( 2, sepratedEmailBulks.size(), '10 is max emails, thus the 16 emails are separated into two bulks' );
-		System.assertEquals( 10, sepratedEmailBulks[0].size(), '10 is max emails, and with 16 total the first batch are 10 emails' );
-		System.assertEquals( 6, sepratedEmailBulks[1].size(), '10 is max emails, and with 16 total the second batch are 6 emails' );
-	}
-
-	@isTest
 	private static void testRemoveCourses_noChanges() {
 
 		addCoursesAndRegistrations( 1, 2, true, true, true, true, 'unique' ); // doubled with makeData()

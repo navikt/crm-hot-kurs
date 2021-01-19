@@ -45,28 +45,6 @@ public with sharing class EmailSchedulingHelper {
 	}
 
 	// TODO remove after new email scheduling system is in place
-	public static List<List<CourseRegistration__c> > separateRegistrationsIntoBulks( List<CourseRegistration__c> recipients ) {
-
-		List<List<CourseRegistration__c> > recipientsAsBulks = new List<List<CourseRegistration__c> >();
-		List<CourseRegistration__c> bulkedRecipients = new List<CourseRegistration__c>();
-
-		for ( Integer i = 0; i < recipients.size(); i++ ) {
-			bulkedRecipients.add( recipients[i] );
-
-			if ( Math.mod( i, 10 ) == 9 ) {
-				recipientsAsBulks.add( bulkedRecipients );
-				bulkedRecipients = new List<CourseRegistration__c>();
-			}
-		}
-
-		if ( bulkedRecipients.size() > 0 ) {
-			recipientsAsBulks.add( bulkedRecipients );
-		}
-
-		return recipientsAsBulks;
-	}
-
-	// TODO remove after new email scheduling system is in place
 	public static List<Course__c> removeCourses( List<Course__c> courses, List<CourseRegistration__c> courseRegistrations ) {
 
 		List<Course__c> filteredCourses = new List<Course__c>();
