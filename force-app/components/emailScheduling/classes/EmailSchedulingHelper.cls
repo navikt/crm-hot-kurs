@@ -8,23 +8,7 @@ public with sharing class EmailSchedulingHelper {
 		public String emailTemplate;
 	}
 
-	public static Boolean checkIfTemplatesMissing( List<Course__c> courses ) {
-		List<EmailTemplate> emailTemplates = [SELECT Id, DeveloperName FROM EmailTemplate WHERE DeveloperName IN ( 'courseScheduledEmailAfter', 'courseScheduledEmailBefore', 'courseScheduledEmailManual', 'courseScheduledEmailReminder' )];
-		if ( emailTemplates.size() == 4 ) { return false; }
 
-		for ( Course__c course : courses ) {
-			switch on checkEmailType( course ) {
-				when AFTER      { course.EmailAfterErrorMessage__c = 'Email template missing!'; }
-				when BEFORE     { course.EmailBeforeErrorMessage__c = 'Email template missing!'; }
-				when MANUAL     { course.EmailManualErrorMessage__c = 'Email template missing!'; }
-				when REMINDER   { course.EmailReminderErrorMessage__c = 'Email template missing!'; }
-			}
-		}
-		update courses;
-
-		return true;
-
-	}
 
 	public static List<Course__c> findScheduledEmails() {
 		return [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c

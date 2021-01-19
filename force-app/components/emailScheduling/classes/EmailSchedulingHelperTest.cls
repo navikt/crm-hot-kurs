@@ -14,18 +14,6 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testcheckIfTemplatesMissing_exists() {
-
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-
-		Test.StartTest();
-		Boolean result = EmailSchedulingHelper.checkIfTemplatesMissing( courses );
-		Test.StopTest();
-
-		System.assertEquals( false, result, 'templates exists, so should return false' );
-	}
-
-	@isTest
 	private static void testFindScheduledEmails() {
 
 		Test.StartTest();
