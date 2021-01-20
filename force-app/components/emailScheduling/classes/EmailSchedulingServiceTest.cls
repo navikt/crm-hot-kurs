@@ -23,9 +23,6 @@ public without sharing class EmailSchedulingServiceTest {
 		// ! no tests, as scheduled jobs cannot run future jobs in tests
 	}
 
-	// TODO more tests for more use cases
-	// TODO tweak status formula field for new app
-	// TODO test new app (lwc log)
 	@isTest
 	private static void testExecute_beforeSuccess() {
 
