@@ -32,6 +32,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     @track url;
 
+    @track county = false;
+    @track companyName = false;
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
@@ -50,6 +53,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 if (result) {
                     this.code = result.InvitationCode__c;
                     this.title = result.Name;
+                    this.companyName = result.ShowCompany__c;
+                    this.county = result.ShowCounty__c;
+
 
                     this.dueDate = result.RegistrationDeadline__c;
                     let registrationDeadline = new Date(this.dueDate);

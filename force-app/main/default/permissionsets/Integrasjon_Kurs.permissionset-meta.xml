@@ -34,6 +34,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CourseRegistration__c.County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CourseRegistration__c.CourseParticipantName__c</field>
         <readable>true</readable>

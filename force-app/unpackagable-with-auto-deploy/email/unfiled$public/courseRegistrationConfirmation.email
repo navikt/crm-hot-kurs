@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="overflow-y: hidden;">
-<head><meta content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta content="IE=edge">
+<head><meta content="text/html; charset=utf-8"><meta content="width=device-width" name="viewport"><meta content="IE=edge">
 	<title></title>
 	<style type="text/css">body {
 			margin: 0;
@@ -254,7 +254,7 @@
 			<br />
 			<br />
 			<br />
-			&Oslash;nsker du ikke &aring; delta p&aring; kurset alikevel?&nbsp;</p>
+			&Oslash;nsker du ikke &aring; delta p&aring; kurset allikevel?&nbsp;</p>
 
 			<p style="font-size: 20px; line-height: 1.5; word-break: break-word; margin: 0px 20px;"><a href="{{{CourseRegistration__c.UnsubscriptionUrl__c}}}">Meld deg av her</a></p>
 			</div>

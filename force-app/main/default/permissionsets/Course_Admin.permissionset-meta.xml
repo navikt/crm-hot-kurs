@@ -369,6 +369,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.IsNew__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.NumberOfParticipants__c</field>
         <readable>true</readable>
@@ -406,6 +411,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.RegistrationUrl2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.ShowCompany__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.ShowCounty__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
