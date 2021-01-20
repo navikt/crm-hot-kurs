@@ -1,0 +1,954 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef1"
+            },
+            "Name": "Project Course",
+            "RegistrationDeadline__c": "2022-11-04T21:56:47.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "4377 Springs Parkway",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 13,
+            "Active__c": true,
+            "Type__c": "Kurs",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef2"
+            },
+            "Name": "Matrix Course",
+            "RegistrationDeadline__c": "2022-09-20T01:41:59.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "70512 Center Parkway",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 8,
+            "Active__c": true,
+            "Type__c": "Konferanse",
+            "Region__c": "Vest-Viken",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef3"
+            },
+            "Name": "Core Course",
+            "RegistrationDeadline__c": "2022-10-21T07:05:20.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "0014 Commercial Circle",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 37,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Vestfold og Telemark",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef4"
+            },
+            "Name": "Instruction Set Course",
+            "RegistrationDeadline__c": "2022-10-18T11:24:46.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "46559 Bowman Place",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 75,
+            "Active__c": false,
+            "Type__c": "Konferanse",
+            "Region__c": "Nordland",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef5"
+            },
+            "Name": "Graphical User Interface Course",
+            "RegistrationDeadline__c": "2022-10-06T05:43:30.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "13607 Portage Pass",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 54,
+            "Active__c": false,
+            "Type__c": "E-læring",
+            "Region__c": "Troms og Finnmark",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef6"
+            },
+            "Name": "Open Architecture Course",
+            "RegistrationDeadline__c": "2022-11-16T04:36:54.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "5028 Raven Terrace",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 59,
+            "Active__c": true,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Vest-Viken",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef7"
+            },
+            "Name": "Workforce Course",
+            "RegistrationDeadline__c": "2022-09-08T03:24:21.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "1117 Jenifer Hill",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 58,
+            "Active__c": false,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Oslo",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef8"
+            },
+            "Name": "Scalable Course",
+            "RegistrationDeadline__c": "2022-09-27T16:27:48.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "60641 Grayhawk Parkway",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 26,
+            "Active__c": false,
+            "Type__c": "E-læring",
+            "Region__c": "Troms og Finnmark",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef9"
+            },
+            "Name": "Real-time Course",
+            "RegistrationDeadline__c": "2022-10-02T18:48:48.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "9 Mitchell Lane",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 18,
+            "Active__c": true,
+            "Type__c": "Kurs",
+            "Region__c": "Oslo",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef10"
+            },
+            "Name": "Access Course",
+            "RegistrationDeadline__c": "2022-09-03T14:15:40.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "4 Independence Hill",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 29,
+            "Active__c": true,
+            "Type__c": "Kurs",
+            "Region__c": "Nordland",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef11"
+            },
+            "Name": "Function-based Course",
+            "RegistrationDeadline__c": "2022-10-26T01:50:19.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "44508 Parkside Lane",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 21,
+            "Active__c": false,
+            "Type__c": "Webinar",
+            "Region__c": "Vestfold og Telemark",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef12"
+            },
+            "Name": "Challenge Course",
+            "RegistrationDeadline__c": "2022-09-08T21:55:56.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "86 Dakota Circle",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 72,
+            "Active__c": true,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Møre og Romsdal",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef13"
+            },
+            "Name": "Stable Course",
+            "RegistrationDeadline__c": "2022-09-14T10:18:13.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "48813 Rieder Terrace",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 76,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Agder",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef14"
+            },
+            "Name": "Definition Course",
+            "RegistrationDeadline__c": "2022-11-20T19:44:32.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "53 Pine View Place",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 88,
+            "Active__c": false,
+            "Type__c": "E-læring",
+            "Region__c": "Innlandet",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef15"
+            },
+            "Name": "Executive Course",
+            "RegistrationDeadline__c": "2022-11-10T00:00:59.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "178 Sauthoff Center",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 43,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Innlandet",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef16"
+            },
+            "Name": "Analyzing Course",
+            "RegistrationDeadline__c": "2022-11-11T12:31:16.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "15 Helena Drive",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 32,
+            "Active__c": false,
+            "Type__c": "Konferanse",
+            "Region__c": "Oslo",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef17"
+            },
+            "Name": "Future-proofed Course",
+            "RegistrationDeadline__c": "2022-11-11T05:09:09.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "03342 Green Alley",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 28,
+            "Active__c": false,
+            "Type__c": "E-læring",
+            "Region__c": "Møre og Romsdal",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef18"
+            },
+            "Name": "Array Course",
+            "RegistrationDeadline__c": "2022-11-26T00:17:58.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "39 Talisman Center",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 73,
+            "Active__c": true,
+            "Type__c": "Konferanse",
+            "Region__c": "Vestfold og Telemark",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef19"
+            },
+            "Name": "Context-sensitive Course",
+            "RegistrationDeadline__c": "2022-09-30T01:52:43.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "09 Mockingbird Way",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 37,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef20"
+            },
+            "Name": "Synergy Course",
+            "RegistrationDeadline__c": "2022-10-04T11:32:01.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "34 Spenser Road",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 74,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef21"
+            },
+            "Name": "Secured Line Course",
+            "RegistrationDeadline__c": "2022-09-05T03:52:07.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "8436 Glendale Point",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 71,
+            "Active__c": true,
+            "Type__c": "E-læring",
+            "Region__c": "Troms og Finnmark",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef22"
+            },
+            "Name": "Networked Course",
+            "RegistrationDeadline__c": "2022-09-15T22:34:10.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "77 Blackbird Way",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 100,
+            "Active__c": false,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef23"
+            },
+            "Name": "Re-engineered Course",
+            "RegistrationDeadline__c": "2022-10-13T05:23:13.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "434 Nevada Parkway",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 69,
+            "Active__c": false,
+            "Type__c": "Konferanse",
+            "Region__c": "Troms og Finnmark",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef24"
+            },
+            "Name": "Cross-platform Course",
+            "RegistrationDeadline__c": "2022-11-06T16:43:28.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "058 Eagle Crest Terrace",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 23,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Øst-Viken",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef25"
+            },
+            "Name": "Analyzer Course",
+            "RegistrationDeadline__c": "2022-11-23T05:48:14.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "720 Lawn Avenue",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 7,
+            "Active__c": true,
+            "Type__c": "Kurs",
+            "Region__c": "Nordland",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef26"
+            },
+            "Name": "Secured Course",
+            "RegistrationDeadline__c": "2022-09-03T14:36:54.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "8 Harbort Avenue",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 45,
+            "Active__c": true,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Vestfold og Telemark",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef27"
+            },
+            "Name": "Focused Course",
+            "RegistrationDeadline__c": "2022-12-02T01:58:05.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "17879 Starling Alley",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 79,
+            "Active__c": true,
+            "Type__c": "E-læring",
+            "Region__c": "Øst-Viken",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef28"
+            },
+            "Name": "Installation Course",
+            "RegistrationDeadline__c": "2022-10-10T02:46:45.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "456 Dakota Circle",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 66,
+            "Active__c": true,
+            "Type__c": "E-læring",
+            "Region__c": "Agder",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef29"
+            },
+            "Name": "Reduced Course",
+            "RegistrationDeadline__c": "2022-11-25T23:13:51.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "946 Evergreen Street",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 73,
+            "Active__c": true,
+            "Type__c": "Konferanse",
+            "Region__c": "Vestfold og Telemark",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef30"
+            },
+            "Name": "Even-keeled Course",
+            "RegistrationDeadline__c": "2022-09-03T05:21:58.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "29932 Carberry Court",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 55,
+            "Active__c": false,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Vest-Viken",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef31"
+            },
+            "Name": "Realigned Course",
+            "RegistrationDeadline__c": "2022-11-16T09:56:07.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "24650 Anniversary Terrace",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 63,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Vest-Viken",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef32"
+            },
+            "Name": "Realigned Course",
+            "RegistrationDeadline__c": "2022-10-23T12:09:29.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "12105 Riverside Plaza",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 91,
+            "Active__c": true,
+            "Type__c": "Webinar",
+            "Region__c": "Innlandet",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef33"
+            },
+            "Name": "Implemented Course",
+            "RegistrationDeadline__c": "2022-09-19T17:28:49.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "15287 Sachtjen Way",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 37,
+            "Active__c": false,
+            "Type__c": "Webinar",
+            "Region__c": "Innlandet",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef34"
+            },
+            "Name": "Mobile Course",
+            "RegistrationDeadline__c": "2022-11-11T06:56:23.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "0 Nobel Plaza",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 60,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef35"
+            },
+            "Name": "Mandatory Course",
+            "RegistrationDeadline__c": "2022-10-26T03:02:52.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "159 Division Crossing",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 84,
+            "Active__c": true,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Innlandet",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef36"
+            },
+            "Name": "Workforce Course",
+            "RegistrationDeadline__c": "2022-09-19T00:11:38.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "3 Hansons Point",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 38,
+            "Active__c": true,
+            "Type__c": "Konferanse",
+            "Region__c": "Rogaland",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef37"
+            },
+            "Name": "Phased Course",
+            "RegistrationDeadline__c": "2022-11-16T20:20:42.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "029 Vermont Junction",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 45,
+            "Active__c": false,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Innlandet",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef38"
+            },
+            "Name": "User-facing Course",
+            "RegistrationDeadline__c": "2022-10-13T10:32:33.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "63118 Homewood Pass",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 15,
+            "Active__c": true,
+            "Type__c": "Webinar",
+            "Region__c": "Nordland",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef39"
+            },
+            "Name": "Seamless Course",
+            "RegistrationDeadline__c": "2022-10-28T02:20:53.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "16584 Arrowood Lane",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 69,
+            "Active__c": true,
+            "Type__c": "Webinar",
+            "Region__c": "Vest-Viken",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef40"
+            },
+            "Name": "Matrix Course",
+            "RegistrationDeadline__c": "2022-10-05T09:58:51.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "18 Forest Dale Plaza",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 96,
+            "Active__c": true,
+            "Type__c": "E-læring",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef41"
+            },
+            "Name": "Decentralized Course",
+            "RegistrationDeadline__c": "2022-10-11T02:53:10.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "5922 Division Drive",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 55,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Øst-Viken",
+            "Theme__c": "Annet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef42"
+            },
+            "Name": "Methodical Course",
+            "RegistrationDeadline__c": "2022-09-13T12:44:14.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "399 Arizona Crossing",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 47,
+            "Active__c": true,
+            "Type__c": "E-læring",
+            "Region__c": "Møre og Romsdal",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef43"
+            },
+            "Name": "Persevering Course",
+            "RegistrationDeadline__c": "2022-09-30T05:16:11.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "2 Mendota Plaza",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 24,
+            "Active__c": false,
+            "Type__c": "Konferanse",
+            "Region__c": "Øst-Viken",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef44"
+            },
+            "Name": "Open Architecture Course",
+            "RegistrationDeadline__c": "2022-11-09T00:02:14.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "66 Westerfield Drive",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 17,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Nordland",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef45"
+            },
+            "Name": "Open System Course",
+            "RegistrationDeadline__c": "2022-10-14T19:51:30.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "40865 International Point",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 67,
+            "Active__c": true,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Øst-Viken",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef46"
+            },
+            "Name": "Advanced Course",
+            "RegistrationDeadline__c": "2022-09-24T09:06:51.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "376 Grover Terrace",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 77,
+            "Active__c": false,
+            "Type__c": "Kurs",
+            "Region__c": "Agder",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef47"
+            },
+            "Name": "Phased Course",
+            "RegistrationDeadline__c": "2022-10-19T00:08:05.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "5 Northland Crossing",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 74,
+            "Active__c": true,
+            "Type__c": "Informasjonsmøte",
+            "Region__c": "Troms og Finnmark",
+            "Theme__c": "Arbeidssøkeraktivitet"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef48"
+            },
+            "Name": "Foreground Course",
+            "RegistrationDeadline__c": "2022-10-23T20:39:21.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "5 Crest Line Crossing",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 11,
+            "Active__c": false,
+            "Type__c": "Nettverks- og erfaringssamling",
+            "Region__c": "Møre og Romsdal",
+            "Theme__c": "Hjelpemidler og tilrettelegging"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef49"
+            },
+            "Name": "Help-desk Course",
+            "RegistrationDeadline__c": "2022-09-28T02:34:53.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": false,
+            "RegistrationPlaceName__c": "933 Glendale Avenue",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 89,
+            "Active__c": true,
+            "Type__c": "Konferanse",
+            "Region__c": "Møre og Romsdal",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        },
+        {
+            "attributes": {
+                "type": "Course__c",
+                "referenceId": "Course__cRef50"
+            },
+            "Name": "Foreground Course",
+            "RegistrationDeadline__c": "2022-09-07T18:16:55.000+0000",
+            "RegistrationFromDateTime__c": "2023-09-03T08:00:00.000+0000",
+            "RegistrationToDateTime__c": "2024-09-03T16:00:00.000+0000",
+            "GenerateInvitationCode__c": true,
+            "RegistrationPlaceName__c": "081 Anniversary Trail",
+            "DescriptionShort__c": "Lorem Ipsum Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada.",
+            "DescriptionFormatted__c": "<h1>Lorem ipsum dolor sit amet</h1> <br><br>consectetur adipiscing elit. Nunc ac tellus lobortis, dictum turpis vitae, posuere orci. Curabitur commodo porta nisi vel ultricies. Maecenas porttitor efficitur leo, non aliquam nisl ullamcorper eu. Sed hendrerit magna non neque iaculis, eget fringilla odio maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique dui quis lorem laoreet scelerisque. Nam a quam id felis vehicula vehicula a non sem. Morbi vel maximus est. Pellentesque a elit vitae massa scelerisque consectetur. Nulla eget ultricies mi, ac ullamcorper elit. Curabitur eu sem lectus. Donec efficitur rutrum massa, at finibus velit luctus sed. Maecenas varius mi velit, ac maximus dolor interdum vel. Suspendisse eleifend ac quam malesuada luctus. Donec sem odio, luctus id turpis vitae, bibendum porta quam. Nulla facilisi. <br> <br> <br> Fusce eget orci ac mi tempor sodales. Donec hendrerit vehicula diam nec ullamcorper. Proin nec lacus in magna venenatis feugiat sed nec enim. Proin eget libero ut lacus fringilla laoreet. Vivamus elit nunc, lacinia eu leo id, malesuada egestas nibh. Morbi vehicula nunc orci, eget porta augue rhoncus sit amet. Nulla sapien ipsum, semper et purus sit amet, ultricies aliquet risus. Nunc vitae finibus velit, vel varius ipsum.",
+            "MaxNumberOfParticipants__c": 30,
+            "Active__c": false,
+            "Type__c": "Konferanse",
+            "Region__c": "Trøndelag",
+            "Theme__c": "Inkluderende arbeidsliv (IA)"
+        }
+    ]
+}
