@@ -19,7 +19,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] Scheduled</shortDescription>
-        <value>Scheduled to be sent today at 9 am</value>
+        <value>Scheduled to be sent sometime today</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_NotScheduled</fullName>

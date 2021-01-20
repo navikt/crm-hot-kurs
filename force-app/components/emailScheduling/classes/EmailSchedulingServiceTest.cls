@@ -11,6 +11,22 @@ public without sharing class EmailSchedulingServiceTest {
 	}
 
 	@isTest
+	private static void testExecute_schedule() {
+
+		createData( EmailSchedulingHelper.EmailTypes.MANUAL, false );
+
+		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
+		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		Test.StopTest();
+
+		// ! no tests, as scheduled jobs cannot run future jobs in tests
+	}
+
+	// TODO more tests for more use cases
+	// TODO tweak status formula field for new app
+	// TODO test new app (lwc log)
+	@isTest
 	private static void testExecute_beforeSuccess() {
 
 		createData( EmailSchedulingHelper.EmailTypes.BEFORE, true );
@@ -18,9 +34,9 @@ public without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
 		Test.StartTest();
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
-		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		EmailSchedulingService.run();
 		Test.StopTest();
+
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = true].size(), 'one courses should have marked as sent' );
 		System.assertEquals( 2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created' );
@@ -35,8 +51,7 @@ public without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
 		Test.StartTest();
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
-		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		EmailSchedulingService.run();
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailReminderSent__c = true].size(), 'one courses should have marked as sent' );
@@ -53,8 +68,7 @@ public without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
 		Test.StartTest();
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
-		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		EmailSchedulingService.run();
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailAfterSent__c = true].size(), 'one courses should have marked as sent' );
@@ -70,8 +84,7 @@ public without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 2, [SELECT Id FROM CourseRegistration__c].size(), 'four courses with two course participants each' );
 
 		Test.StartTest();
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
-		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		EmailSchedulingService.run();
 		Test.StopTest();
 
 		System.assertEquals( 1, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one courses should have marked as sent' );
@@ -87,8 +100,7 @@ public without sharing class EmailSchedulingServiceTest {
 		System.assertEquals( 0, [SELECT Id FROM CourseRegistration__c].size(), '0 courses with two course participants each' );
 
 		Test.StartTest();
-		String CRON_EXP = '0 0 0 3 9 ? 2022';
-		System.schedule( 'EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService() );
+		EmailSchedulingService.run();
 		Test.StopTest();
 
 		System.assertEquals( 0, [SELECT Id FROM Course__c WHERE EmailManualSent__c = true].size(), 'one course should be marked as sent' );
