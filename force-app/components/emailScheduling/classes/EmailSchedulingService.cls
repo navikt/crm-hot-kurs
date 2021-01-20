@@ -11,8 +11,7 @@ global class EmailSchedulingService implements Schedulable {
 		List<EmailQueue__c> emailQueue = EmailSchedulingHelper.queueEmails( recipients );
 
 		Map<Id, List<String> > coursesWithEmailQueue = EmailSchedulingHelper.getCoursesWithEmailQueue( emailQueue );
-
 		EmailSchedulingHelper.updateCourses( courses, coursesWithEmailQueue );
-		EmailSchedulingHelper.createTasks( courses, coursesWithEmailQueue );
+		// EmailSchedulingHelper.createTasks( courses, coursesWithEmailQueue );
 	}
 }
