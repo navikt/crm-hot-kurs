@@ -1,5 +1,9 @@
 @isTest
 private with sharing class CreateContactFromCourseRegistrationTest {
+	@TestSetup
+	static void makeData() {
+		TestDataFactory.insertEncryptionKey();
+	}
 
 	@isTest
 	private static void testFetchAccount() {
