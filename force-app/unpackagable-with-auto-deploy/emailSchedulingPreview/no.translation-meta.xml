@@ -5,15 +5,15 @@
         <name>EmailConfirmation_RegisteredParticipants</name>
     </customLabels>
     <customLabels>
-        <label>Sendt</label>
+        <label>Skedulert for utsending. Se e-postlogg til høyre for status.</label>
         <name>EmailConfirmation_Sent</name>
     </customLabels>
     <customLabels>
-        <label>Planlagt for utsending idag kl. 9</label>
+        <label>Planlagt for utsending i løpet av dagen og kan ikke lengre redigeres</label>
         <name>EmailConfirmation_Scheduled</name>
     </customLabels>
     <customLabels>
-        <label>Ingen e-post var planlagt utsendt</label>
+        <label>Ingen e-post var planlagt for utsendelse</label>
         <name>EmailConfirmation_NotScheduled</name>
     </customLabels>
     <customLabels>

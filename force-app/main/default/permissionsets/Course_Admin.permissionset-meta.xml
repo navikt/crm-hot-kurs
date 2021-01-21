@@ -225,7 +225,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.EmailAfterErrorMessage__c</field>
+        <field>Course__c.EmailAfterEmailQueueId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -265,7 +265,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.EmailBeforeErrorMessage__c</field>
+        <field>Course__c.EmailBeforeEmailQueueId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -300,7 +300,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.EmailManualErrorMessage__c</field>
+        <field>Course__c.EmailManualEmailQueueId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -335,7 +335,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.EmailReminderErrorMessage__c</field>
+        <field>Course__c.EmailReminderEmailQueueId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

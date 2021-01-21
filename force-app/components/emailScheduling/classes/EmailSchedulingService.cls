@@ -1,16 +1,17 @@
 global class EmailSchedulingService implements Schedulable {
 	global void execute( SchedulableContext ctx ) {
+		run();
+	}
 
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-
-		Boolean templatesAreMissing = EmailSchedulingHelper.checkIfTemplatesMissing( courses );
-		if ( templatesAreMissing ) { return; }
-
+	@future
+	public static void run() {
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails( );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<List<CourseRegistration__c> > courseRegistrationBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
+		List<EmailQueue__c> emailQueue = EmailSchedulingHelper.queueEmails( recipients );
 
-		for ( List<CourseRegistration__c> bulkedRecipients : courseRegistrationBulks ) {
-			System.enqueueJob( new EmailSchedulingJob( courses, bulkedRecipients ) );
-		}
+		Map<Id, List<String> > coursesWithEmailQueue = EmailSchedulingHelper.getCoursesWithEmailQueue( emailQueue );
+		EmailSchedulingHelper.updateCourses( courses, coursesWithEmailQueue );
+		// EmailSchedulingHelper.createTasks( courses, coursesWithEmailQueue );
 	}
 }

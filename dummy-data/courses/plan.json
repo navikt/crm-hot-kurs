@@ -1,10 +1,54 @@
 [
     {
+        "sobject": "Account",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "Accounts.json"
+        ]
+    },
+    {
         "sobject": "Course__c",
         "saveRefs": true,
         "resolveRefs": false,
         "files": [
-            "Course__cs.json"
+            "Courses.json"
+        ]
+    },
+    {
+        "sobject": "Contact",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Contacts.json"
+        ]
+    },
+    {
+        "sobject": "CourseRegistration__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "CourseRegistrations_con1.json",
+            "CourseRegistrations_con2.json",
+            "CourseRegistrations_con3.json"
+        ]
+    },
+    {
+        "sobject": "EmailTemplate",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "EmailTemplates.json"
+        ]
+    },
+    {
+        "sobject": "EmailQueue__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "EmailQueue_error.json",
+            "EmailQueue_sent.json",
+            "EmailQueue_queued.json"
         ]
     }
 ]

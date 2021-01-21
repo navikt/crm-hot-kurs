@@ -14,22 +14,10 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testcheckIfTemplatesMissing_exists() {
-
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+	private static void testGetCoursesWithScheduledEmails() {
 
 		Test.StartTest();
-		Boolean result = EmailSchedulingHelper.checkIfTemplatesMissing( courses );
-		Test.StopTest();
-
-		System.assertEquals( false, result, 'templates exists, so should return false' );
-	}
-
-	@isTest
-	private static void testFindScheduledEmails() {
-
-		Test.StartTest();
-		List<Course__c> results = EmailSchedulingHelper.findScheduledEmails();
+		Map<Id, Course__c> results = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		Test.StopTest();
 
 		System.assertEquals( 4, results.size(), 'four courses should have scheduled emails for "today"' );
@@ -38,7 +26,7 @@ private without sharing class EmailSchedulingHelperTest {
 	@isTest
 	private static void testGetCourseRegistrations() {
 
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 
 		Test.StartTest();
 		List<CourseRegistration__c> results = EmailSchedulingHelper.getCourseRegistrations( courses );
@@ -48,68 +36,98 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 	@isTest
-	private static void testGetEmailsToSend() {
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+	private static void testPrepareEmails() {
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
 		Test.StopTest();
 
 		System.assertEquals( 8, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+
+		for ( EmailSchedulingHelper.ScheduleModel model : results ) {
+			System.assertNotEquals( null, model.courseId, 'courseId should be set nad NOT null' );
+			System.assertNotEquals( null, model.contactId, 'contactId should be set nad NOT null' );
+			System.assertNotEquals( null, model.emailTemplate, 'emailTemplate should be set nad NOT null' );
+		}
 	}
 
 	@isTest
-	private static void testGetEmailsToSend_after() {
-		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+	private static void testPrepareEmails_after() {
+		Map<Id, Course__c> courses = new Map<Id, Course__c> ( [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'after' LIMIT 1] );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
 		Test.StopTest();
 
+		EmailTemplate template = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseScheduledEmailAfter' LIMIT 1];
+
 		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
-		System.assertEquals( 'courseScheduledEmailAfter', results[0].emailTemplate, 'Should have the "after" template' );
-		System.assertEquals( 'courseScheduledEmailAfter', results[1].emailTemplate, 'Should have the "after" template' );
-		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
-		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+		System.assertEquals( template.Id, results[0].emailTemplate, 'Should have the "after" template' );
+		System.assertEquals( template.Id, results[1].emailTemplate, 'Should have the "after" template' );
+		System.assertEquals( courses.values()[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses.values()[0].Id, results[1].courseId, 'Should have the same course id' );
 	}
 
 	@isTest
-	private static void testGetEmailsToSend_before() {
-		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+	private static void testPrepareEmails_before() {
+		Map<Id, Course__c> courses = new Map<Id, Course__c> ( [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'before' LIMIT 1] );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
 		Test.StopTest();
 
+		EmailTemplate template = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseScheduledEmailBefore' LIMIT 1];
+
 		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
-		System.assertEquals( 'courseScheduledEmailBefore', results[0].emailTemplate, 'Should have the "before" template' );
-		System.assertEquals( 'courseScheduledEmailBefore', results[1].emailTemplate, 'Should have the "before" template' );
-		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
-		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+		System.assertEquals( template.Id, results[0].emailTemplate, 'Should have the "before" template' );
+		System.assertEquals( template.Id, results[1].emailTemplate, 'Should have the "before" template' );
+		System.assertEquals( courses.values()[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses.values()[0].Id, results[1].courseId, 'Should have the same course id' );
 	}
 
 	@isTest
-	private static void testGetEmailsToSend_manual() {
-		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
+	private static void testPrepareEmails_manual() {
+		Map<Id, Course__c> courses = new Map<Id, Course__c> ( [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'manual' LIMIT 1] );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
 		Test.StopTest();
 
+		EmailTemplate template = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseScheduledEmailManual' LIMIT 1];
+
 		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
-		System.assertEquals( 'courseScheduledEmailManual', results[0].emailTemplate, 'Should have the "manual" template' );
-		System.assertEquals( 'courseScheduledEmailManual', results[1].emailTemplate, 'Should have the "manual" template' );
-		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
-		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
+		System.assertEquals( template.Id, results[0].emailTemplate, 'Should have the "manual" template' );
+		System.assertEquals( template.Id, results[1].emailTemplate, 'Should have the "manual" template' );
+		System.assertEquals( courses.values()[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses.values()[0].Id, results[1].courseId, 'Should have the same course id' );
+	}
+
+	@isTest
+	private static void testPrepareEmails_reminder() {
+		Map<Id, Course__c> courses = new Map<Id, Course__c> ( [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'reminder' LIMIT 1] );
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+
+		Test.StartTest();
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
+		Test.StopTest();
+
+		EmailTemplate template = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseScheduledEmailReminder' LIMIT 1];
+
+		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
+		System.assertEquals( template.Id, results[0].emailTemplate, 'Should have the "reminder" template' );
+		System.assertEquals( template.Id, results[1].emailTemplate, 'Should have the "reminder" template' );
+		System.assertEquals( courses.values()[0].Id, results[0].courseId, 'Should have the same course id' );
+		System.assertEquals( courses.values()[0].Id, results[1].courseId, 'Should have the same course id' );
 	}
 
 	// makes sure datetime field used is converted correctly to date to avoid any timing issues
 	@isTest
-	private static void testGetEmailsToSend_differentTime() {
+	private static void testPrepareEmails_differentTime() {
 
 		Contact con = new Contact( LastName = 'test', email = 'ola.nordmann2@test.com', TAG_Informed__c = true );
 		insert con;
@@ -119,207 +137,135 @@ private without sharing class EmailSchedulingHelperTest {
 		CourseRegistration__c courseReg = new CourseRegistration__c( Course__c = course.Id, CourseParticipant__c = con.Id, Status__c = 'Påmeldt' );
 		insert courseReg;
 
-		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'unique' LIMIT 1];
+		Map<Id, Course__c> courses = new Map<Id, Course__c> ( [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'unique' LIMIT 1] );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.prepareEmails( courses, courseRegistrations );
 		Test.StopTest();
+
+		EmailTemplate template = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'courseScheduledEmailBefore' LIMIT 1];
 
 		System.assertEquals( 1, results.size(), 'only one reg' );
-		System.assertEquals( 'courseScheduledEmailBefore', results[0].emailTemplate, 'Should have the "before" template' );
+		System.assertEquals( template.Id, results[0].emailTemplate, 'Should have the "before" template' );
 	}
 
 	@isTest
-	private static void testGetEmailsToSend_reminder() {
-		List<Course__c> courses = [SELECT Id, EmailAfterDate__c, EmailBeforeDate__c, EmailManualDate__c, EmailReminderDate__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+	private static void testQueueEmails() {
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails(  courses,  courseRegistrations );
 
 		Test.StartTest();
-		List<EmailSchedulingHelper.ScheduleModel> results = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
+		EmailSchedulingHelper.queueEmails( recipients );
 		Test.StopTest();
 
-		System.assertEquals( 2, results.size(), 'four courses with two course participants each, resulting in 8 emails to be sent' );
-		System.assertEquals( 'courseScheduledEmailReminder', results[0].emailTemplate, 'Should have the "reminder" template' );
-		System.assertEquals( 'courseScheduledEmailReminder', results[1].emailTemplate, 'Should have the "reminder" template' );
-		System.assertEquals( courses[0].Id, results[0].courseId, 'Should have the same course id' );
-		System.assertEquals( courses[0].Id, results[1].courseId, 'Should have the same course id' );
-	}
-
-	@isTest
-	private static void testSeprateRegistrationsIntoBulks() {
-
-		addCoursesAndRegistrations( 1, 2, true, true, true, true, 'unique' ); // doubled with makeData()
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-
-		System.assertEquals( 8, courses.size(), 'should have 8 courses due to doubled courses' );
-		System.assertEquals( 16, courseRegistrations.size(), 'should have 16 registrations due to doubled courses' );
-
-		Test.StartTest();
-		List<List<CourseRegistration__c> > sepratedEmailBulks = EmailSchedulingHelper.separateRegistrationsIntoBulks( courseRegistrations );
-		Test.StopTest();
-
-		System.assertEquals( 2, sepratedEmailBulks.size(), '10 is max emails, thus the 16 emails are separated into two bulks' );
-		System.assertEquals( 10, sepratedEmailBulks[0].size(), '10 is max emails, and with 16 total the first batch are 10 emails' );
-		System.assertEquals( 6, sepratedEmailBulks[1].size(), '10 is max emails, and with 16 total the second batch are 6 emails' );
-	}
-
-	@isTest
-	private static void testRemoveCourses_noChanges() {
-
-		addCoursesAndRegistrations( 1, 2, true, true, true, true, 'unique' ); // doubled with makeData()
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-
-		Test.StartTest();
-		List<Course__c> changedCourses = EmailSchedulingHelper.removeCourses( courses, courseRegistrations );
-		Test.StopTest();
-
-		System.assertEquals( 8, changedCourses.size(), 'should have the same courses' );
-	}
-
-	@isTest
-	private static void testRemoveCourses_removeHalf() {
-
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		addCoursesAndRegistrations( 1, 2, true, true, true, true, 'unique' ); // doubled with makeData()
-		courses = EmailSchedulingHelper.findScheduledEmails();
-
-		Test.StartTest();
-		List<Course__c> changedCourses = EmailSchedulingHelper.removeCourses( courses, courseRegistrations );
-		Test.StopTest();
-
-		System.assertEquals( 4, changedCourses.size(), 'should have the same courses' );
-	}
-
-	@isTest
-	private static void testSendEmailToCourseRecipients() {
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		courses.remove( 3 );
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
-
-		Test.StartTest();
-		List<Messaging.SendEmailResult> results = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
-		Test.StopTest();
-
-		System.assertEquals( 6, results.size(), 'should be four logs for email' );
-		for ( Messaging.SendEmailResult res : results ) {
-			System.assertEquals( true, res.isSuccess(), 'should be no errors' );
-		}
+		System.assertEquals( 8, [SELECT Id FROM EmailQueue__c].size(), 'should be 8 email queues as 4 courses with 2 participants each' );
 	}
 
 	@isTest
 	private static void testGetCoursesWithEmailErrors() {
 
-		delete [SELECT Id FROM CourseRegistration__c];
-		delete [SELECT Id FROM Course__c];
-
-		addCoursesAndRegistrations( 1, 20, true, false, false, false, 'unique' );
-
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
-		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
-
-		System.assertEquals( 1, courses.size(), 'one courses' );
-		System.assertEquals( 20, courseRegistrations.size(), '20 participants' );
-		System.assertEquals( 20, recipients.size(), '20 participants' );
-		System.assertEquals( 20, emailResults.size(), '20 participants' );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails(  courses,  courseRegistrations );
+		List<EmailQueue__c> queuedEmails = EmailSchedulingHelper.queueEmails( recipients );
 
 		Test.StartTest();
-		Map<Id, String> results = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
+		Map<Id, List<String> > results = EmailSchedulingHelper.getCoursesWithEmailQueue( queuedEmails );
 		Test.StopTest();
 
-		System.assertEquals( 1, results.size(), 'four courses with email issues' );
+		System.assertEquals( 4, results.size(), 'four courses' );
 
 		for ( Id key : results.keySet() ) {
-			System.assert ( results.get( key ).contains( 'Email limit exceeded' ), '"Email limit exceeded" should be in string' );
+			System.assertEquals( 2, results.get( key ).size(), 'should be two email queues for each course__c' );
 		}
 	}
 
 	@isTest
-	private static void testUpdateCoursesWithEmailStatus() {
+	private static void testUpdateCourses() {
 
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		courses.remove( 3 );
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
+		System.assertEquals( 4, courses.size(), 'all four courses should have one email ready to be sent' );
 		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.getEmailsToSend(  courses,  courseRegistrations );
-		List<Messaging.SendEmailResult> emailResults = EmailSchedulingHelper.sendEmailToCourseRecipients( recipients );
-		Map<Id, String> cousesWithEmailErrors = EmailSchedulingHelper.getCoursesWithEmailErrors( courseRegistrations, emailResults );
-
-		System.assertEquals( 3, courses.size(), 'four courses ready to have emails be sent' );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails(  courses,  courseRegistrations );
+		List<EmailQueue__c> queuedEmails = EmailSchedulingHelper.queueEmails( recipients );
+		Map<Id, List<String> > coursesWithEmailQueue = EmailSchedulingHelper.getCoursesWithEmailQueue( queuedEmails );
 
 		Test.StartTest();
-		EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, cousesWithEmailErrors );
+		EmailSchedulingHelper.updateCourses( courses, coursesWithEmailQueue );
 		Test.StopTest();
 
-		courses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 1, courses.size(), 'one course have emails that should be sent, but is now lower' );
-	}
+		courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
+		System.assertEquals( 0, courses.size(), 'all four courses should have emails sent' );
 
-	@isTest
-	private static void testUpdateCoursesWithEmailStatus_errorOnAllEmails() {
+		Course__c beforeCourse = [SELECT EmailBeforeEmailQueueId__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+		Course__c afterCourse = [SELECT EmailAfterEmailQueueId__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+		Course__c reminderCourse = [SELECT EmailReminderEmailQueueId__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+		Course__c manualCourse = [SELECT EmailManualEmailQueueId__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
 
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailQueue__c> beforeQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :beforeCourse.Id];
+		List<EmailQueue__c> afterQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :afterCourse.Id];
+		List<EmailQueue__c> reminderQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :reminderCourse.Id];
+		List<EmailQueue__c> manualQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :manualCourse.Id];
 
-		Map<Id, String> cousesWithEmailErrors = new Map<Id, String>();
-		for ( Course__c course : courses ) {
-			cousesWithEmailErrors.put( course.Id, 'ERROR' );
-		}
+		System.assert ( beforeCourse.EmailBeforeEmailQueueId__c.contains( beforeQueue[0].Id ), 'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[0].Id );
+		System.assert ( beforeCourse.EmailBeforeEmailQueueId__c.contains( beforeQueue[1].Id ), 'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[1].Id );
 
-		System.assertEquals( 4, courses.size(), 'four courses ready to have emails be sent' );
+		System.assert ( afterCourse.EmailAfterEmailQueueId__c.contains( afterQueue[0].Id ), 'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[0].Id );
+		System.assert ( afterCourse.EmailAfterEmailQueueId__c.contains( afterQueue[1].Id ), 'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[1].Id );
 
-		Test.StartTest();
-		EmailSchedulingHelper.updateCoursesWithEmailStatus( courses, cousesWithEmailErrors );
-		Test.StopTest();
+		System.assert ( reminderCourse.EmailReminderEmailQueueId__c.contains( reminderQueue[0].Id ), 'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[0].Id );
+		System.assert ( reminderCourse.EmailReminderEmailQueueId__c.contains( reminderQueue[1].Id ), 'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[1].Id );
 
-		courses = EmailSchedulingHelper.findScheduledEmails();
-		System.assertEquals( 4, courses.size(), 'still four new courses have emails that should be sent because of emailing issues' );
-
-		for ( Course__c course : [SELECT EmailAfterErrorMessage__c, EmailBeforeErrorMessage__c, EmailManualErrorMessage__c, EmailReminderErrorMessage__c FROM Course__c] ) {
-			System.assert (
-				(course.EmailAfterErrorMessage__c != null) ||
-				(course.EmailBeforeErrorMessage__c != null) ||
-				(course.EmailManualErrorMessage__c != null) ||
-				(course.EmailReminderErrorMessage__c != null), 'at least one error message shoulds be set' );
-		}
+		System.assert ( manualCourse.EmailManualEmailQueueId__c.contains( manualQueue[0].Id ), 'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[0].Id );
+		System.assert ( manualCourse.EmailManualEmailQueueId__c.contains( manualQueue[1].Id ), 'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[1].Id );
 	}
 
 	@isTest
 	private static void testCreateTasks() {
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
+
+		Map<Id, Course__c> courses = EmailSchedulingHelper.getCoursesWithScheduledEmails();
+		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
+		List<EmailSchedulingHelper.ScheduleModel> recipients = EmailSchedulingHelper.prepareEmails(  courses,  courseRegistrations );
+		List<EmailQueue__c> queuedEmails = EmailSchedulingHelper.queueEmails( recipients );
+		Map<Id, List<String> > coursesWithEmailQueue = EmailSchedulingHelper.getCoursesWithEmailQueue( queuedEmails );
 
 		Test.StartTest();
-		List<Task> results = EmailSchedulingHelper.createTasks( courses );
+		EmailSchedulingHelper.createTasks( courses, coursesWithEmailQueue );
 		Test.StopTest();
 
-		System.assertEquals( 4, results.size(), 'four tasks created' );
+		List<Task> tasks = [SELECT Id, Description, Subject, WhatId, Status FROM Task WHERE WhatId IN : courses.keySet()];
+		Course__c after = [SELECT Id, EmailAfterContent__c, EmailAfterSent__c FROM Course__c WHERE Name = 'after' LIMIT 1];
+		Course__c before = [SELECT Id, EmailBeforeContent__c, EmailBeforeSent__c FROM Course__c WHERE Name = 'before' LIMIT 1];
+		Course__c manual = [SELECT Id, EmailManualContent__c, EmailManualSent__c FROM Course__c WHERE Name = 'manual' LIMIT 1];
+		Course__c reminder = [SELECT Id, EmailReminderContent__c, EmailReminderSent__c FROM Course__c WHERE Name = 'reminder' LIMIT 1];
+
+		System.assertEquals( 4, tasks.size(), 'four tasks created' );
+
+		for ( Task task : tasks ) {
+			System.assertEquals( 'Completed', task.Status, 'Status should be completed' );
+
+			if ( task.WhatId == after.Id ) {
+				System.assertEquals( after.EmailAfterContent__c, task.Description, 'EmailAfterContent__c should be the tasks description' );
+				System.assertEquals( 'Evaluerings e-post sendt', task.Subject, 'Subject should "Evaluerings e-post sendt"' );
+			} else if ( task.WhatId == before.Id ) {
+				System.assertEquals( before.EmailBeforeContent__c, task.Description, 'EmailBeforeContent__c should be the tasks description' );
+				System.assertEquals( 'E-post med informasjon før kurs sendt', task.Subject, 'Subject should "E-post med informasjon før kurs sendt"' );
+			} else if ( task.WhatId == manual.Id ) {
+				System.assertEquals( manual.EmailManualContent__c, task.Description, 'EmailManualContent__c should be the tasks description' );
+				System.assertEquals( 'Manuell e-post sendt', task.Subject, 'Subject should "Manuell e-post sendt"' );
+			} else if ( task.WhatId == reminder.Id ) {
+				System.assertEquals( reminder.EmailReminderContent__c, task.Description, 'EmailReminderContent__c should be the tasks description' );
+				System.assertEquals( 'Påminnelse om kurs er sendt på e-post', task.Subject, 'Subject should "Påminnelse om kurs er sendt på e-post"' );
+			}
+		}
 	}
 
 
 	// ------------------------------------------------
 	// ------------ HELPER FUNCTIONS TESTS ------------
 	// ------------------------------------------------
-
-	@isTest
-	private static void testGetMapOfCourseRegistrations() {
-
-		List<Course__c> courses = EmailSchedulingHelper.findScheduledEmails();
-		List<CourseRegistration__c> courseRegistrations = EmailSchedulingHelper.getCourseRegistrations( courses );
-
-		Test.StartTest();
-		Map<Id, List<CourseRegistration__c> > results = EmailSchedulingHelper.getMapOfCourseRegistrations( courseRegistrations );
-		Test.StopTest();
-
-		System.assertEquals( 2, results.size(), 'should only be two contacts' );
-		for ( Id key : results.keySet() ) {
-			System.assertEquals( 4, results.get( key ).size(), 'should be four courses for each contact' );
-		}
-	}
 
 	@isTest
 	private static void testCheckEmailType() {
@@ -343,11 +289,9 @@ private without sharing class EmailSchedulingHelperTest {
 	}
 
 
-
 	// ------------------------------------------------
 	// --------------- HELPER FUNCTIONS ---------------
 	// ------------------------------------------------
-
 
 	public static void addCoursesAndRegistrations( Integer amountOfEach, Integer amountOfContacts, Boolean createBefore, Boolean createReminder, Boolean createAfter, Boolean createManual, String unique ) {
 
@@ -372,10 +316,10 @@ private without sharing class EmailSchedulingHelperTest {
 			Course__c manualCourse = !createManual ? null :     new Course__c( Name = 'manual', Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo',
 			                                                                   RegistrationDeadline__c = manualDate.addDays( -1 ), RegistrationFromDateTime__c = manualDate.addDays( -1 ), RegistrationToDateTime__c = Date.today(),
 			                                                                   EmailManualContent__c = 'test', EmailManualDate__c = Date.today(), EmailManualConfirmation__c = true );
-			if ( beforeCourse != null ) { courses.add( beforeCourse ); }
+			if ( beforeCourse != null ) {   courses.add( beforeCourse ); }
 			if ( reminderCourse != null ) { courses.add( reminderCourse ); }
-			if ( afterCourse != null ) { courses.add( afterCourse ); }
-			if ( manualCourse != null ) { courses.add( manualCourse ); }
+			if ( afterCourse != null ) {    courses.add( afterCourse ); }
+			if ( manualCourse != null ) {   courses.add( manualCourse ); }
 			insert courses;
 
 			List<Contact> contacts = new List<Contact>();

@@ -12,14 +12,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] Sent</shortDescription>
-        <value>Sent</value>
+        <value>Scheduled for sending. See email log to the right for status.</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_Scheduled</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] Scheduled</shortDescription>
-        <value>Scheduled to be sent today at 9 am</value>
+        <value>Scheduled to be sent sometime today and cannot be edited anymore</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_NotScheduled</fullName>

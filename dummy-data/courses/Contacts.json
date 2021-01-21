@@ -1,0 +1,37 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef1"
+            },
+            "Email": "heidi.larsen@FAKEEMAIL.no",
+            "FirstName": "Heidi",
+            "LastName": "Larsen",
+            "MobilePhone": "12345667",
+            "AccountId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef2"
+            },
+            "Email": "kk@FAKEEMAIL.no",
+            "FirstName": "Knut",
+            "LastName": "Knutsen",
+            "MobilePhone": "43563211",
+            "AccountId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef3"
+            },
+            "Email": "e.finn@FAKEEMAIL.no",
+            "FirstName": "Erik",
+            "LastName": "Finnesland",
+            "MobilePhone": "1234434",
+            "AccountId": "@AccountRef1"
+        }
+    ]
+}
