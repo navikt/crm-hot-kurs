@@ -1,0 +1,704 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef1"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef1",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef2"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef2",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef3"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef3",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef4"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef4",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef5"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef5",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef6"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef6",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef7"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef7",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef8"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef8",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef9"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef9",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef10"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef10",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef11"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef11",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef12"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef12",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef13"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef13",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef14"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef14",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef15"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef15",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef16"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef16",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef17"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef17",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef18"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef18",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef19"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef19",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef20"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef20",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef21"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef21",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef22"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef22",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef23"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef23",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef24"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef24",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef25"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef25",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef26"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef26",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef27"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef27",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef28"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef28",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef29"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef29",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef30"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef30",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef31"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef31",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef32"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef32",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef33"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef33",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef34"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef34",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef35"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef35",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef36"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef36",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef37"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef37",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef38"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef38",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef39"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef39",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef40"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef40",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef41"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef41",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef42"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef42",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef43"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef43",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef44"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef44",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef45"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef45",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef46"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef46",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef47"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef47",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef48"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef48",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef49"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef49",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef50"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Error",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef50",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
+        }
+    ]
+}

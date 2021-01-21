@@ -1,0 +1,604 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef1"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef2"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef3"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef4"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef5"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef5"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef6"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef6"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef7"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef7"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef8"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef8"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef9"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef9"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef10"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef10"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef11"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef11"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef12"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef12"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef13"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef13"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef14"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef14"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef15"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef15"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef16"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef16"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef17"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef17"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef18"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef18"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef19"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef19"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef20"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef20"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef21"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef21"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef22"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef22"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef23"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef23"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef24"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef24"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef25"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef25"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef26"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef26"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef27"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef27"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef28"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef28"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef29"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef29"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef30"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef30"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef31"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef31"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef32"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef32"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef33"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef33"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef34"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef34"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef35"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef35"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef36"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef36"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef37"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef37"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef38"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef38"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef39"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef39"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef40"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef40"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef41"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef41"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef42"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef42"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef43"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef43"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef44"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef44"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef45"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef45"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef46"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef46"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef47"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@Course__cRef47"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef48"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef48"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef49"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef49"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef50"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@Course__cRef50"
+        }
+    ]
+}

@@ -1,0 +1,454 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef1"
+            },
+            "Course__c": "@Course__cRef1",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef2"
+            },
+            "Course__c": "@Course__cRef2",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef3"
+            },
+            "Course__c": "@Course__cRef3",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef4"
+            },
+            "Course__c": "@Course__cRef4",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef5"
+            },
+            "Course__c": "@Course__cRef5",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef6"
+            },
+            "Course__c": "@Course__cRef6",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef7"
+            },
+            "Course__c": "@Course__cRef7",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef8"
+            },
+            "Course__c": "@Course__cRef8",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef9"
+            },
+            "Course__c": "@Course__cRef9",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef10"
+            },
+            "Course__c": "@Course__cRef10",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef11"
+            },
+            "Course__c": "@Course__cRef11",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef12"
+            },
+            "Course__c": "@Course__cRef12",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef13"
+            },
+            "Course__c": "@Course__cRef13",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef14"
+            },
+            "Course__c": "@Course__cRef14",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef15"
+            },
+            "Course__c": "@Course__cRef15",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef16"
+            },
+            "Course__c": "@Course__cRef16",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef17"
+            },
+            "Course__c": "@Course__cRef17",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef18"
+            },
+            "Course__c": "@Course__cRef18",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef19"
+            },
+            "Course__c": "@Course__cRef19",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef20"
+            },
+            "Course__c": "@Course__cRef20",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef21"
+            },
+            "Course__c": "@Course__cRef21",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef22"
+            },
+            "Course__c": "@Course__cRef22",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef23"
+            },
+            "Course__c": "@Course__cRef23",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef24"
+            },
+            "Course__c": "@Course__cRef24",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef25"
+            },
+            "Course__c": "@Course__cRef25",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef26"
+            },
+            "Course__c": "@Course__cRef26",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef27"
+            },
+            "Course__c": "@Course__cRef27",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef28"
+            },
+            "Course__c": "@Course__cRef28",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef29"
+            },
+            "Course__c": "@Course__cRef29",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef30"
+            },
+            "Course__c": "@Course__cRef30",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef31"
+            },
+            "Course__c": "@Course__cRef31",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef32"
+            },
+            "Course__c": "@Course__cRef32",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef33"
+            },
+            "Course__c": "@Course__cRef33",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef34"
+            },
+            "Course__c": "@Course__cRef34",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef35"
+            },
+            "Course__c": "@Course__cRef35",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef36"
+            },
+            "Course__c": "@Course__cRef36",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef37"
+            },
+            "Course__c": "@Course__cRef37",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef38"
+            },
+            "Course__c": "@Course__cRef38",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef39"
+            },
+            "Course__c": "@Course__cRef39",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef40"
+            },
+            "Course__c": "@Course__cRef40",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef41"
+            },
+            "Course__c": "@Course__cRef41",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef42"
+            },
+            "Course__c": "@Course__cRef42",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef43"
+            },
+            "Course__c": "@Course__cRef43",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef44"
+            },
+            "Course__c": "@Course__cRef44",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef45"
+            },
+            "Course__c": "@Course__cRef45",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef46"
+            },
+            "Course__c": "@Course__cRef46",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef47"
+            },
+            "Course__c": "@Course__cRef47",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef48"
+            },
+            "Course__c": "@Course__cRef48",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef49"
+            },
+            "Course__c": "@Course__cRef49",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        },
+        {
+            "attributes": {
+                "type": "CourseRegistration__c",
+                "referenceId": "CourseRegistrations__cRef50"
+            },
+            "Course__c": "@Course__cRef50",
+            "CourseParticipant__c": "@ContactRef3",
+            "Status__c": "Påmeldt"
+        }
+    ]
+}
