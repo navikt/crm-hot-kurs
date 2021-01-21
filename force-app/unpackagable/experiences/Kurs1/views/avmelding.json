@@ -27,7 +27,7 @@
     "components" : [ {
       "componentAttributes" : {
         "description" : "",
-        "metaTags" : "",
+        "metaTags" : "<meta name=\"robots\" content=\"noindex\">",
         "title" : "Avmelding"
       },
       "componentName" : "forceCommunity:seoAssistant",
