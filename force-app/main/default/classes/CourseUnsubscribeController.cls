@@ -1,11 +1,14 @@
 public without sharing class CourseUnsubscribeController {
 	@AuraEnabled
 	public static CourseRegistration__c getCourseRegistrationFields( String courseRegId ) {
-		return [SELECT CourseParticipantName__c, Course__r.Name FROM CourseRegistration__c WHERE Id = : courseRegId];
+		String recordId = CryptoService.decryptString( courseRegId );
+
+		return [SELECT CourseParticipantName__c, Course__r.Name FROM CourseRegistration__c WHERE Id = : recordId];
 	}
 	@AuraEnabled
 	public static CourseRegistration__c updateCourseRegistration( String courseRegId ) {
-		CourseRegistration__c courseReg = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id =: courseRegId LIMIT 1];
+		String recordId = CryptoService.decryptString( courseRegId );
+		CourseRegistration__c courseReg = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id =: recordId LIMIT 1];
 		courseReg.Status__c = 'Avmeldt';
 		update courseReg;
 
