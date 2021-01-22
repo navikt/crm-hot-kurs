@@ -1,6 +1,9 @@
 @isTest
 private without sharing class CourseInvitationControllerTest {
-
+	@TestSetup
+	static void makeData() {
+		TestDataFactory.insertEncryptionKey();
+	}
 
 	@isTest
 	private static void testCreateCourseRegistrations() {
