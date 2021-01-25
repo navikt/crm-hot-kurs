@@ -7,6 +7,10 @@
         <translation><!-- Agder --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Hele landet</masterLabel>
+        <translation><!-- Hele landet --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Innlandet</masterLabel>
         <translation><!-- Innlandet --></translation>
     </picklistValues>
