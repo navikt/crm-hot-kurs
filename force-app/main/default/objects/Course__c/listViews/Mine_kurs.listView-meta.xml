@@ -9,5 +9,10 @@
     <columns>RegistrationPlaceName__c</columns>
     <columns>Active__c</columns>
     <filterScope>Mine</filterScope>
-    <label>Mine kurs</label>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Mine kurs - Aktive</label>
 </ListView>

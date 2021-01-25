@@ -259,6 +259,19 @@
                       required
                     />
                   </div>
+                  <div if:true={role} class="felt">
+                    <label class="skjemaelement__label" for="role">
+                      <p class="typo-element">Rolle</p>
+                    </label>
+                    <input
+                      type="text"
+                      class="skjemaelement__input input--fullbredde"
+                      name="role"
+                      id="role"
+                      onchange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
 
                 <div class="navno-dekorator alertstripe">
