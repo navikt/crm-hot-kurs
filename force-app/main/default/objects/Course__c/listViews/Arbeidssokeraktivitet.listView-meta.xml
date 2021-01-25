@@ -13,5 +13,10 @@
         <operation>equals</operation>
         <value>Arbeidssøkeraktivitet</value>
     </filters>
-    <label>Arbeidssøkeraktivitet</label>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Tema: Arbeidssøkeraktivitet</label>
 </ListView>

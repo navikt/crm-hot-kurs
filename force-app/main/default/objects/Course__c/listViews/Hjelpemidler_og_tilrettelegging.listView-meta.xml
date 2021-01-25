@@ -13,5 +13,10 @@
         <operation>equals</operation>
         <value>Hjelpemidler og tilrettelegging</value>
     </filters>
-    <label>Hjelpemidler og tilrettelegging</label>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Tema: Hjelpemidler og tilrettelegging</label>
 </ListView>
