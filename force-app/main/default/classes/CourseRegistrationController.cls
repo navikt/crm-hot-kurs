@@ -22,7 +22,7 @@ public with sharing class CourseRegistrationController {
 	}
 	@AuraEnabled
 	public static Course__c getCourseFields( String courseId ) {
-		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c, MaxNumberOfParticipants__c, NumberOfParticipants__c, Waitinglist__c, ShowCompany__c, ShowCounty__c FROM Course__c WHERE Id = : courseId];
+		return [SELECT Name, RegistrationDeadline__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, InvitationCode__c, RegistrationPlaceName__c, Type__c, MaxNumberOfParticipants__c, NumberOfParticipants__c, Waitinglist__c, ShowCompany__c, ShowCounty__c, ShowRole__c FROM Course__c WHERE Id = : courseId];
 	}
 
 	public static Boolean checkIfCourseIsFull( String courseId ) {
@@ -48,6 +48,7 @@ public with sharing class CourseRegistrationController {
 			registration.Course__c = courseId;
 			registration.County__c = model.county;
 			registration.CompanyName__c = model.companyName;
+			registration.Role__c = model.role;
 
 			if ( courseIsFull ) {
 				registration.Status__c = 'Venteliste';
