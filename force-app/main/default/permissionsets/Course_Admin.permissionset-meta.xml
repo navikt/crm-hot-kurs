@@ -8,6 +8,10 @@
         <apexClass>CourseInvitationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+       <classAccesses>
+        <apexClass>EmailSchedulingLog</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>EmailConfirmationModalController</apexClass>
         <enabled>true</enabled>
