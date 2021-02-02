@@ -41,7 +41,7 @@ public with sharing class EmailConfirmationModalHelperPreview {
 		for ( String key : replacedMergeFields.keySet() ) {
 			if ( key != null && key != ' ' ) {
 				String value = replacedMergeFields.get( key ) != null ? replacedMergeFields.get( key ) : '';
-				html = html.replaceAll( key, value );
+				html = html.replaceAll( key, Matcher.quoteReplacement( value ) );
 			}
 		}
 
