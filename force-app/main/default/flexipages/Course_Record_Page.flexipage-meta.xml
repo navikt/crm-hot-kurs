@@ -72,11 +72,25 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.NumberOfParticipants__c</fieldItem>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.IsNew__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Waitinglist__c</fieldItem>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.IsNew__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-25ae3f01-3e42-4c5f-855f-b2ae433d7248</name>
