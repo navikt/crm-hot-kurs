@@ -11,7 +11,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>Hele landet</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Hele landet</label>
             </value>
             <value>
