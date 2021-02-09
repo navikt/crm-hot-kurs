@@ -76,6 +76,27 @@ private without sharing class EmailConfirmationModalHelperPreviewTest {
 
 		String expected = 'this is nice. Would you not agree, Kari? However, we don\'t want any {{{Account.BusinessPeople__c}}}';
 		System.assertEquals( expected, actual, 'should have replaced all fields' );
-	}
+    }
+    
+    @isTest
+	private static void testIsDateTimeField_positive() {
+    
+        Test.StartTest();
+        Boolean result = EmailConfirmationModalHelperPreview.isDateTimeField( 'Course__c' , 'RegistrationFromDateTime__c' );
+        Test.StopTest();
+
+		System.assertEquals( true, result, 'Field expected to be DateTime type' );
+
+    }
+
+    @isTest
+	private static void testIsDateTimeField_negative() {
+    
+        Test.StartTest();
+        Boolean result = EmailConfirmationModalHelperPreview.isDateTimeField( 'Course__c' , 'Name' );
+        Test.StopTest();
+
+		System.assertEquals( false, result, 'Field expected to not be DateTime type' );
+    }
 
 }
