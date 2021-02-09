@@ -28,14 +28,14 @@ public with sharing class EmailConfirmationModalHelperPreview {
 
 		Map<String, String> replacingMap = new Map<String, String>();
 		for ( String sObjectField : sObjectFields ) {
-            if (isDateTimeField ( sObjectType, sObjectField) == true ) {
-                String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
+            String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
+            
+            if (isDateTimeField ( sObjectType, sObjectField) ) {
                 Datetime dateGMT = Datetime.valueOf( data[0].get( sObjectField ) );
                 String value = dateGMT.format( 'dd/MM/yyyy hh:mm' );
                 replacingMap.put( key, value );
             }
             else {
-			    String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
                 String value = String.valueOf( data[0].get( sObjectField ) );
                 replacingMap.put( key, value );
             }
