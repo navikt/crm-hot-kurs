@@ -28,10 +28,17 @@ public with sharing class EmailConfirmationModalHelperPreview {
 
 		Map<String, String> replacingMap = new Map<String, String>();
 		for ( String sObjectField : sObjectFields ) {
-			String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
-			String value = String.valueOf( data[0].get( sObjectField ) );
-
-			replacingMap.put( key, value );
+            String key = '\\{\\{\\{' + sObjectType + '.' + sObjectField + '\\}\\}\\}';
+            
+            if (isDateTimeField ( sObjectType, sObjectField) ) {
+                Datetime dateGMT = Datetime.valueOf( data[0].get( sObjectField ) );
+                String value = dateGMT.format( 'dd/MM/yyyy hh:mm' );
+                replacingMap.put( key, value );
+            }
+            else {
+                String value = String.valueOf( data[0].get( sObjectField ) );
+                replacingMap.put( key, value );
+            }
 		}
 
 		return replacingMap;
@@ -46,5 +53,20 @@ public with sharing class EmailConfirmationModalHelperPreview {
 		}
 
 		return html;
-	}
+    }
+    
+    public static Boolean isDateTimeField ( String sObjectType, String sObjectField) {
+
+        Boolean res = false;
+        Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
+        Schema.SObjectType leadSchema = schemaMap.get(sObjectType);
+        Map<String, Schema.SObjectField> M = leadSchema.getDescribe().fields.getMap();
+        Schema.SObjectField field = M.get(sObjectField);
+        Schema.DisplayType FldType = field.getDescribe().getType();
+
+        if ( FldType == Schema.DisplayType.DateTime ) {
+            res = true;
+        }
+        return res;
+    }
 }
