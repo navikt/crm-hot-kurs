@@ -1,10 +1,13 @@
-export { getDataFromInputFields, validateData, emptyInputFields, contactToPill };
-
+export {
+    getDataFromInputFields,
+    validateData,
+    emptyInputFields,
+    contactToPill
+};
 
 const getDataFromInputFields = (array) => {
-
     let obj = {};
-    array.forEach(element => {
+    array.forEach((element) => {
         obj[element.name] = element.value;
     });
 
@@ -19,14 +22,13 @@ const validateData = (array) => {
 };
 
 const emptyInputFields = (array) => {
-    array.forEach(element => {
+    array.forEach((element) => {
         element.value = '';
-        element.setCustomValidity("");
+        element.setCustomValidity('');
     });
 };
 
 const contactToPill = (pill) => {
-
     pill.type = 'avatar';
     pill.label = pill.fullName;
     pill.name = pill.email;

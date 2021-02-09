@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>ImportUsers_title</fullName>
@@ -33,8 +33,10 @@
         <fullName>ImportUsers_pasteFromExcelHelp</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[ImportUsers] Paste from Excel (help text)</shortDescription>
-        <value>Each user should be on its own row, and the name and email can be comma- or semicolon-separated</value>
+        <shortDescription
+        >[ImportUsers] Paste from Excel (help text)</shortDescription>
+        <value
+        >Each user should be on its own row, and the name and email can be comma- or semicolon-separated</value>
     </labels>
     <labels>
         <fullName>ImportUsers_process</fullName>

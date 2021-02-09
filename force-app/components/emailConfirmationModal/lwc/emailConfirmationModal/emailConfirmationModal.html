@@ -1,140 +1,151 @@
 <template>
-  <section
-    class="slds-modal slds-fade-in-open slds-modal_large"
-    role="dialog"
-    aria-describedby="modal-content-id-1"
-    aria-labelledby="modal-heading-01"
-    aria-modal="true"
-    tabindex="-1"
-  >
-    <div class="slds-modal__container">
-      <header class="slds-modal__header">
-        <!-- CLOSE BUTTON -->
-        <button
-          class="slds-button slds-button_icon slds-modal__close slds-p-right_large"
-          title={labels.close}
-          if:true={isPreview}
-          onclick={cancel}
-        >
-          <lightning-icon
-            title={labels.close}
-            icon-name="utility:close"
-            alternative-text={labels.close}
-            variant="inverse"
-          ></lightning-icon>
-          <span class="slds-assistive-text">{labels.close}</span>
-        </button>
-
-        <!-- HEADER LAYOUT -->
-        <lightning-layout>
-          <!-- RECIPIENT -->
-          <lightning-layout-item class="slds-p-left_small">
-            <!-- SUBJECT FIELD -->
-            <lightning-layout>
-              <lightning-layout-item>
-                <div
-                  class="slds-text-heading_medium"
-                  style="
-                    text-overflow: clip;
-                    white-space: nowrap;
-                    overflow: hidden;
-                  "
+    <section
+        class="slds-modal slds-fade-in-open slds-modal_large"
+        role="dialog"
+        aria-describedby="modal-content-id-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        tabindex="-1"
+    >
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <!-- CLOSE BUTTON -->
+                <button
+                    class="slds-button slds-button_icon slds-modal__close slds-p-right_large"
+                    title={labels.close}
+                    if:true={isPreview}
+                    onclick={cancel}
                 >
-                  {subject}
+                    <lightning-icon
+                        title={labels.close}
+                        icon-name="utility:close"
+                        alternative-text={labels.close}
+                        variant="inverse"
+                    ></lightning-icon>
+                    <span class="slds-assistive-text">{labels.close}</span>
+                </button>
+
+                <!-- HEADER LAYOUT -->
+                <lightning-layout>
+                    <!-- RECIPIENT -->
+                    <lightning-layout-item class="slds-p-left_small">
+                        <!-- SUBJECT FIELD -->
+                        <lightning-layout>
+                            <lightning-layout-item>
+                                <div
+                                    class="slds-text-heading_medium"
+                                    style="
+                                        text-overflow: clip;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                    "
+                                >
+                                    {subject}
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+
+                        <!-- TO FIELD -->
+                        <lightning-layout class="slds-p-top_x-small">
+                            <lightning-layout-item class="slds-p-top_small">
+                                <span class="">{labels.toField}:</span>
+                            </lightning-layout-item>
+                            <lightning-layout-item
+                                alignment-bump="left"
+                                flexibility="grow"
+                            >
+                                <template
+                                    if:true={recipientBadges}
+                                    iterator:it={recipientBadges}
+                                >
+                                    <lightning-badge
+                                        class="slds-m-left_x-small slds-m-top_x-small slds-float_left"
+                                        if:true={it.first}
+                                        key={it.value.id}
+                                        label={it.value.label}
+                                    ></lightning-badge>
+                                    <lightning-badge
+                                        class="slds-m-top_x-small slds-float_left"
+                                        if:false={it.first}
+                                        key={it.value.id}
+                                        label={it.value.label}
+                                    ></lightning-badge>
+                                </template>
+                                <!-- LOAD MORE  -->
+                                <c-email-confirmation-view-more
+                                    recipients={hiddenRecipients}
+                                    amount-to-load={amountToLoad}
+                                    if:true={amountToLoad}
+                                    onexpandrecipients={expandRecipients}
+                                    oncollapserecipients={collapseRecipients}
+                                ></c-email-confirmation-view-more>
+                            </lightning-layout-item>
+                        </lightning-layout>
+
+                        <!-- RECIPIENT END -->
+                    </lightning-layout-item>
+
+                    <!-- BUTTONS -->
+                    <lightning-layout-item
+                        class="slds-p-right_small"
+                        alignment-bump="left"
+                    >
+                        <lightning-button-group if:false={isPreview}>
+                            <lightning-button
+                                name="cancel"
+                                title={labels.cancelEmail}
+                                variant="neutral"
+                                label={labels.cancelEmail}
+                                onclick={cancel}
+                                disabled={sendingEmail}
+                            >
+                            </lightning-button>
+                            <lightning-button
+                                name="send"
+                                title={labels.sendEmail}
+                                variant="brand"
+                                label={labels.sendEmail}
+                                icon-name="utility:send"
+                                onclick={send}
+                                disabled={sendingEmail}
+                            >
+                            </lightning-button>
+                        </lightning-button-group>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </header>
+
+            <!-- HTML -->
+            <div
+                id="modal-content-id-1"
+                class="slds-modal__content slds-p-around_medium"
+            >
+                <lightning-formatted-rich-text
+                    value={htmlEmail}
+                    if:false={loading}
+                >
+                </lightning-formatted-rich-text>
+                <div class="slds-m-top_large" if:true={error}>
+                    <div
+                        class="slds-text-heading_large slds-align_absolute-center"
+                    >
+                        {labels.error}
+                    </div>
+                    <div
+                        class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large"
+                    >
+                        {errorMsg}
+                    </div>
                 </div>
-              </lightning-layout-item>
-            </lightning-layout>
-
-            <!-- TO FIELD -->
-            <lightning-layout class="slds-p-top_x-small">
-              <lightning-layout-item class="slds-p-top_small">
-                <span class="">{labels.toField}:</span>
-              </lightning-layout-item>
-              <lightning-layout-item alignment-bump="left" flexibility="grow">
-                <template
-                  if:true={recipientBadges}
-                  iterator:it={recipientBadges}
+                <div
+                    if:true={loading}
+                    style="position: relative; min-height: 10em"
                 >
-                  <lightning-badge
-                    class="slds-m-left_x-small slds-m-top_x-small slds-float_left"
-                    if:true={it.first}
-                    key={it.value.id}
-                    label={it.value.label}
-                  ></lightning-badge>
-                  <lightning-badge
-                    class="slds-m-top_x-small slds-float_left"
-                    if:false={it.first}
-                    key={it.value.id}
-                    label={it.value.label}
-                  ></lightning-badge>
-                </template>
-                <!-- LOAD MORE  -->
-                <c-email-confirmation-view-more
-                  recipients={hiddenRecipients}
-                  amount-to-load={amountToLoad}
-                  if:true={amountToLoad}
-                  onexpandrecipients={expandRecipients}
-                  oncollapserecipients={collapseRecipients}
-                ></c-email-confirmation-view-more>
-              </lightning-layout-item>
-            </lightning-layout>
-
-            <!-- RECIPIENT END -->
-          </lightning-layout-item>
-
-          <!-- BUTTONS -->
-          <lightning-layout-item
-            class="slds-p-right_small"
-            alignment-bump="left"
-          >
-            <lightning-button-group if:false={isPreview}>
-              <lightning-button
-                name="cancel"
-                title={labels.cancelEmail}
-                variant="neutral"
-                label={labels.cancelEmail}
-                onclick={cancel}
-                disabled={sendingEmail}
-              >
-              </lightning-button>
-              <lightning-button
-                name="send"
-                title={labels.sendEmail}
-                variant="brand"
-                label={labels.sendEmail}
-                icon-name="utility:send"
-                onclick={send}
-                disabled={sendingEmail}
-              >
-              </lightning-button>
-            </lightning-button-group>
-          </lightning-layout-item>
-        </lightning-layout>
-      </header>
-
-      <!-- HTML -->
-      <div
-        id="modal-content-id-1"
-        class="slds-modal__content slds-p-around_medium"
-      >
-        <lightning-formatted-rich-text value={htmlEmail} if:false={loading}>
-        </lightning-formatted-rich-text>
-        <div class="slds-m-top_large" if:true={error}>
-          <div class="slds-text-heading_large slds-align_absolute-center">
-            {labels.error}
-          </div>
-          <div
-            class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large"
-          >
-            {errorMsg}
-          </div>
+                    <lightning-spinner alternative-text="Loading" size="large">
+                    </lightning-spinner>
+                </div>
+            </div>
         </div>
-        <div if:true={loading} style="position: relative; min-height: 10em">
-          <lightning-spinner alternative-text="Loading" size="large">
-          </lightning-spinner>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="slds-backdrop slds-backdrop_open"></div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
 </template>

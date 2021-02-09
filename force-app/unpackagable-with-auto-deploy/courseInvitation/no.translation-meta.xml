@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Kunne ikke finne nødvendig data.</label>
@@ -57,7 +57,8 @@
         <name>CourseInvitation_error</name>
     </customLabels>
     <customLabels>
-        <label>E-post invitasjoner ble sendt, men kursregisteringen feilet. Brukerne vil fortsatt kunne registrere seg og de vil da være synlige i Salesforce. Vennligst kontakt en administrator om dette problemet.</label>
+        <label
+        >E-post invitasjoner ble sendt, men kursregisteringen feilet. Brukerne vil fortsatt kunne registrere seg og de vil da være synlige i Salesforce. Vennligst kontakt en administrator om dette problemet.</label>
         <name>CourseInvitation_errorMsg</name>
     </customLabels>
 </Translations>

@@ -1,66 +1,79 @@
 {
-  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-  "componentName" : "siteforce:sldsOneColLayout",
-  "id" : "b0d3525e-ab7a-4035-a41b-dca36c4d99a4",
-  "label" : "Pamelding",
-  "regions" : [ {
-    "components" : [ {
-      "componentAttributes" : {
-        "NAVarea" : "Arbeidsgiver"
-      },
-      "componentName" : "c:globalCommunityHeader",
-      "id" : "455afb95-379d-445d-9418-a183a38dfa4c",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "9b66a000-346f-4b37-8f95-534d146308c5",
-    "regionName" : "header",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : { },
-      "componentName" : "c:courseRegistrationForm",
-      "id" : "5e7959c9-4599-4ea5-a425-b91f5e0a44d0",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "e11b7029-d0da-4b0e-bfaf-8375fb852845",
-    "regionName" : "content",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "NAVarea" : "Arbeidsgiver"
-      },
-      "componentName" : "c:globalCommunityFooter",
-      "id" : "a6522d52-b833-4c1e-987a-b9b9e93644b4",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "ef28094e-53e8-4616-977b-5977d9f9cb12",
-    "regionName" : "footer",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "description" : "",
-        "metaTags" : "",
-        "title" : "Pamelding"
-      },
-      "componentName" : "forceCommunity:seoAssistant",
-      "id" : "4ebc559c-c6c6-477e-ace3-7213de73ee5f",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "e39a491b-a21d-42e7-a0ef-4f75c1ee3320",
-    "regionName" : "sfdcHiddenRegion",
-    "type" : "region"
-  } ],
-  "themeLayoutType" : "Inner",
-  "type" : "view",
-  "viewType" : "custom-pamelding"
+    "appPageId": "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "b0d3525e-ab7a-4035-a41b-dca36c4d99a4",
+    "label": "Pamelding",
+    "regions": [
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "NAVarea": "Arbeidsgiver"
+                    },
+                    "componentName": "c:globalCommunityHeader",
+                    "id": "455afb95-379d-445d-9418-a183a38dfa4c",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "9b66a000-346f-4b37-8f95-534d146308c5",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {},
+                    "componentName": "c:courseRegistrationForm",
+                    "id": "5e7959c9-4599-4ea5-a425-b91f5e0a44d0",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "e11b7029-d0da-4b0e-bfaf-8375fb852845",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "NAVarea": "Arbeidsgiver"
+                    },
+                    "componentName": "c:globalCommunityFooter",
+                    "id": "a6522d52-b833-4c1e-987a-b9b9e93644b4",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "ef28094e-53e8-4616-977b-5977d9f9cb12",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "description": "",
+                        "metaTags": "",
+                        "title": "Pamelding"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "4ebc559c-c6c6-477e-ace3-7213de73ee5f",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "e39a491b-a21d-42e7-a0ef-4f75c1ee3320",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "custom-pamelding"
 }

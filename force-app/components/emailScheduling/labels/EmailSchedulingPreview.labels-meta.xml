@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>EmailConfirmation_RegisteredParticipants</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailSchedulingPreview] Registered participants</shortDescription>
+        <shortDescription
+        >[EmailSchedulingPreview] Registered participants</shortDescription>
         <value>Registered participants</value>
     </labels>
     <labels>
@@ -12,20 +13,23 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] Sent</shortDescription>
-        <value>Scheduled for sending. See email log to the right for status.</value>
+        <value
+        >Scheduled for sending. See email log to the right for status.</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_Scheduled</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] Scheduled</shortDescription>
-        <value>Scheduled to be sent sometime today and cannot be edited anymore</value>
+        <value
+        >Scheduled to be sent sometime today and cannot be edited anymore</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_NotScheduled</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailSchedulingPreview] Not Scheduled</shortDescription>
+        <shortDescription
+        >[EmailSchedulingPreview] Not Scheduled</shortDescription>
         <value>No email was scheduled</value>
     </labels>
     <labels>
@@ -33,13 +37,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[EmailSchedulingPreview] SendError</shortDescription>
-        <value>Error, one or more emails failed to send. Contact an administrator.</value>
+        <value
+        >Error, one or more emails failed to send. Contact an administrator.</value>
     </labels>
     <labels>
         <fullName>EmailConfirmation_ImageUploadError</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[EmailSchedulingPreview] ImageUploadError</shortDescription>
+        <shortDescription
+        >[EmailSchedulingPreview] ImageUploadError</shortDescription>
         <value>Error! You cannot upload images.</value>
     </labels>
 </CustomLabels>

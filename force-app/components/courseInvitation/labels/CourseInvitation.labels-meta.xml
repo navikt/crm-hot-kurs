@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>CourseInvitation_queryNoResults</fullName>
@@ -39,14 +39,16 @@
         <fullName>CourseInvitation_pressEnterToAdd</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[CourseInvitation] Press enter to add</shortDescription>
+        <shortDescription
+        >[CourseInvitation] Press enter to add</shortDescription>
         <value>Press enter to add</value>
     </labels>
     <labels>
         <fullName>CourseInvitation_goToConfirmation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[CourseInvitation] Go to confirmation</shortDescription>
+        <shortDescription
+        >[CourseInvitation] Go to confirmation</shortDescription>
         <value>Confirm</value>
     </labels>
     <labels>
@@ -88,14 +90,16 @@
         <fullName>CourseInvitation_success</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
+        <shortDescription
+        >[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Successfully sent invitations</value>
     </labels>
     <labels>
         <fullName>CourseInvitation_error</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
+        <shortDescription
+        >[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Error</value>
     </labels>
     <labels>
@@ -103,6 +107,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[CourseInvitation] Error msg</shortDescription>
-        <value>Email invitations were sent, but the course registration failed. The users will still be able to sign up correctly and will then appear inside Salesforce. Please contact an administrator regarding this issue.</value>
+        <value
+        >Email invitations were sent, but the course registration failed. The users will still be able to sign up correctly and will then appear inside Salesforce. Please contact an administrator regarding this issue.</value>
     </labels>
 </CustomLabels>

@@ -1,101 +1,181 @@
 @isTest
 private without sharing class EmailConfirmationModalControllerTest {
+    @testSetup
+    private static void setup() {
+        EmailTemplate et = new EmailTemplate(
+            DeveloperName = 'courseRegistrationInvitation',
+            Name = 'courseRegistrationInvitation',
+            IsActive = true,
+            FolderId = UserInfo.getOrganizationId(),
+            UiType = 'sfx',
+            TemplateType = 'custom',
+            Subject = 'Invitasjon til kurs',
+            HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>'
+        );
+        EmailTemplate et2 = new EmailTemplate(
+            DeveloperName = 'MY_UNIQUE_TEMPLATE',
+            Name = 'MY_UNIQUE_TEMPLATE',
+            IsActive = true,
+            FolderId = UserInfo.getOrganizationId(),
+            UiType = 'sfx',
+            TemplateType = 'custom',
+            Subject = 'Invitasjon til kurs',
+            HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>'
+        );
+        Database.insert(et, false);
+        Database.insert(et2, false);
+    }
 
-	@testSetup
-	private static void setup() {
-		EmailTemplate et = new EmailTemplate( DeveloperName = 'courseRegistrationInvitation', Name = 'courseRegistrationInvitation', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		EmailTemplate et2 = new EmailTemplate( DeveloperName = 'MY_UNIQUE_TEMPLATE', Name = 'MY_UNIQUE_TEMPLATE', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Invitasjon til kurs', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}! Velkommen til {{{Course__c.Name}}}.</p></body></html>' );
-		Database.insert( et, false );
-		Database.insert( et2, false );
-	}
+    @isTest
+    private static void testsendEmail() {
+        DateTime d = Date.today().addDays(1);
 
-	@isTest
-	private static void testsendEmail() {
+        Course__c course = new Course__c(
+            Active__c = true,
+            MaxNumberOfParticipants__c = 4,
+            CommunityUrl__c = 'test',
+            Region__c = 'Oslo',
+            RegistrationDeadline__c = d,
+            RegistrationFromDateTime__c = d,
+            RegistrationToDateTime__c = d.addDays(1)
+        );
+        insert course;
 
-		DateTime d = Date.today().addDays( 1 );
+        // List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+        // System.assertEquals( 0, registrations.size(), 'no registrations before test' );
 
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
-		insert course;
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        System.assertEquals(0, contacts.size(), 'no contacts before test');
 
-		// List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
-		// System.assertEquals( 0, registrations.size(), 'no registrations before test' );
+        List<EmailMessage> emails = [
+            SELECT HtmlBody, ToAddress
+            FROM EmailMessage
+        ];
+        System.assertEquals(0, emails.size(), 'No emails sent before');
 
-		List<Contact> contacts = [SELECT Id FROM Contact];
-		System.assertEquals( 0, contacts.size(), 'no contacts before test' );
+        Test.StartTest();
+        EmailConfirmationModalController.sendEmail(
+            course.Id,
+            EmailConfirmationModalModelTest.jsonData,
+            'courseRegistrationInvitation',
+            true
+        );
+        Test.StopTest();
 
-		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-		System.assertEquals( 0, emails.size(), 'No emails sent before' );
+        // registrations = [SELECT Id FROM CourseRegistration__c];
+        // System.assertEquals( 3, registrations.size(), 'three registrations after test' );
 
-		Test.StartTest();
-		EmailConfirmationModalController.sendEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
-		Test.StopTest();
+        contacts = [SELECT Id FROM Contact];
+        System.assertEquals(3, contacts.size(), 'three contacts after test');
 
-		// registrations = [SELECT Id FROM CourseRegistration__c];
-		// System.assertEquals( 3, registrations.size(), 'three registrations after test' );
+        emails = [SELECT Id FROM EmailMessage];
+        System.assertEquals(
+            3,
+            emails.size(),
+            'three emails sent, three EmailMessages created'
+        );
+    }
 
-		contacts = [SELECT Id FROM Contact];
-		System.assertEquals( 3, contacts.size(), 'three contacts after test' );
+    @isTest
+    private static void testsendEmail_doubleInvitation() {
+        DateTime d = Date.today().addDays(1);
 
-		emails = [SELECT Id FROM EmailMessage];
-		System.assertEquals( 3, emails.size(), 'three emails sent, three EmailMessages created' );
-	}
+        Course__c course = new Course__c(
+            Active__c = true,
+            MaxNumberOfParticipants__c = 4,
+            CommunityUrl__c = 'test',
+            Region__c = 'Oslo',
+            RegistrationDeadline__c = d,
+            RegistrationFromDateTime__c = d,
+            RegistrationToDateTime__c = d.addDays(1)
+        );
+        insert course;
 
-	@isTest
-	private static void testsendEmail_doubleInvitation() {
+        // List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+        // System.assertEquals( 0, registrations.size(), 'no registrations before test' );
 
-		DateTime d = Date.today().addDays( 1 );
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        System.assertEquals(0, contacts.size(), 'no contacts before test');
 
-		Course__c course = new Course__c( Active__c = true, MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
-		insert course;
+        List<EmailMessage> emails = [
+            SELECT HtmlBody, ToAddress
+            FROM EmailMessage
+        ];
+        System.assertEquals(0, emails.size(), 'No emails sent before');
 
-		// List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
-		// System.assertEquals( 0, registrations.size(), 'no registrations before test' );
+        EmailConfirmationModalController.sendEmail(
+            course.Id,
+            EmailConfirmationModalModelTest.jsonData,
+            'courseRegistrationInvitation',
+            true
+        );
 
-		List<Contact> contacts = [SELECT Id FROM Contact];
-		System.assertEquals( 0, contacts.size(), 'no contacts before test' );
+        Test.StartTest();
+        EmailConfirmationModalController.sendEmail(
+            course.Id,
+            EmailConfirmationModalModelTest.jsonData,
+            'courseRegistrationInvitation',
+            true
+        );
+        Test.StopTest();
 
-		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-		System.assertEquals( 0, emails.size(), 'No emails sent before' );
+        // registrations = [SELECT Id FROM CourseRegistration__c];
+        // System.assertEquals( 3, registrations.size(), 'three registrations after test' );
 
-		EmailConfirmationModalController.sendEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
+        contacts = [SELECT Id FROM Contact];
+        System.assertEquals(3, contacts.size(), 'three contacts after test');
 
-		Test.StartTest();
-		EmailConfirmationModalController.sendEmail( course.Id, EmailConfirmationModalModelTest.jsonData, 'courseRegistrationInvitation', true );
-		Test.StopTest();
+        emails = [SELECT Id FROM EmailMessage];
+        System.assertEquals(
+            6,
+            emails.size(),
+            'six emails sent, six EmailMessages created'
+        );
+    }
 
-		// registrations = [SELECT Id FROM CourseRegistration__c];
-		// System.assertEquals( 3, registrations.size(), 'three registrations after test' );
+    @isTest
+    private static void testGetEmailPreview() {
+        DateTime d = Date.today().addDays(1);
+        Course__c course = new Course__c(
+            Active__c = true,
+            Name = 'mitt kurs',
+            MaxNumberOfParticipants__c = 4,
+            CommunityUrl__c = 'test',
+            Region__c = 'Oslo',
+            RegistrationDeadline__c = d,
+            RegistrationFromDateTime__c = d,
+            RegistrationToDateTime__c = d.addDays(1)
+        );
+        insert course;
 
-		contacts = [SELECT Id FROM Contact];
-		System.assertEquals( 3, contacts.size(), 'three contacts after test' );
+        Test.StartTest();
+        String actual = EmailConfirmationModalController.getEmailPreview(
+            course.Id,
+            'MY_UNIQUE_TEMPLATE'
+        );
+        Test.StopTest();
 
-		emails = [SELECT Id FROM EmailMessage];
-		System.assertEquals( 6, emails.size(), 'six emails sent, six EmailMessages created' );
-	}
+        String expected = 'Hei {{{Recipient.Name}}}! Velkommen til mitt kurs.';
+        System.assertEquals(
+            expected,
+            actual.stripHtmlTags(),
+            'should have merged fields and given email template'
+        );
+    }
 
-	@isTest
-	private static void testGetEmailPreview() {
+    @isTest
+    private static void testGetEmailSubject() {
+        Test.StartTest();
+        String actual = EmailConfirmationModalController.getEmailSubject(
+            'MY_UNIQUE_TEMPLATE'
+        );
+        Test.StopTest();
 
-		DateTime d = Date.today().addDays( 1 );
-		Course__c course = new Course__c( Active__c = true, Name = 'mitt kurs', MaxNumberOfParticipants__c = 4, CommunityUrl__c = 'test', Region__c = 'Oslo', RegistrationDeadline__c = d, RegistrationFromDateTime__c = d, RegistrationToDateTime__c = d.addDays( 1 ) );
-		insert course;
-
-		Test.StartTest();
-		String actual = EmailConfirmationModalController.getEmailPreview( course.Id, 'MY_UNIQUE_TEMPLATE' );
-		Test.StopTest();
-
-		String expected = 'Hei {{{Recipient.Name}}}! Velkommen til mitt kurs.';
-		System.assertEquals( expected, actual.stripHtmlTags(), 'should have merged fields and given email template' );
-	}
-
-	@isTest
-	private static void testGetEmailSubject() {
-
-		Test.StartTest();
-		String actual = EmailConfirmationModalController.getEmailSubject( 'MY_UNIQUE_TEMPLATE' );
-		Test.StopTest();
-
-		String expected = 'Invitasjon til kurs';
-		System.assertEquals( expected, actual, 'should have fetched correct subject' );
-	}
+        String expected = 'Invitasjon til kurs';
+        System.assertEquals(
+            expected,
+            actual,
+            'should have fetched correct subject'
+        );
+    }
 }

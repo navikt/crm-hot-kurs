@@ -10,7 +10,8 @@
     font-weight: 400;
 }
 
-.typo-element, .typo-feilmelding {
+.typo-element,
+.typo-feilmelding {
     font-family: Source Sans Pro, Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.375rem;
@@ -20,7 +21,7 @@
 /*@media (min-width: 992px) {*/
 
 .metainfo__panel {
-    padding: 2.5rem 1.5rem .75rem;
+    padding: 2.5rem 1.5rem 0.75rem;
 }
 
 .metainfo {
@@ -28,7 +29,8 @@
     margin: 0 1rem 1rem;
 }
 
-.metainfo__infoTekst, .metainfo__pamelding {
+.metainfo__infoTekst,
+.metainfo__pamelding {
     margin-bottom: 2rem;
 }
 
@@ -40,7 +42,8 @@
     margin-bottom: 1rem;
 }
 
-.panel, .panel--stor {
+.panel,
+.panel--stor {
     background-color: #fff;
     display: block;
     border-radius: 4px;

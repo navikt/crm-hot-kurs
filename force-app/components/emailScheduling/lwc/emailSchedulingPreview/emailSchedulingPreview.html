@@ -1,23 +1,23 @@
 <template>
-  <c-email-confirmation-modal
-    if:true={showPreview}
-    record-id={recordId}
-    is-preview="true"
-    recipients={recipients}
-    template-name={emailTemplate}
-    oncancel={previewCancel}
-  >
-  </c-email-confirmation-modal>
+    <c-email-confirmation-modal
+        if:true={showPreview}
+        record-id={recordId}
+        is-preview="true"
+        recipients={recipients}
+        template-name={emailTemplate}
+        oncancel={previewCancel}
+    >
+    </c-email-confirmation-modal>
 
-  <lightning-button
-    variant="brand-outline"
-    label="Preview"
-    title="Preview"
-    onclick={preview}
-    disabled={disabled}
-    class="slds-p-left_small"
-  ></lightning-button>
-  <br />
-  <br />
-  <br />
+    <lightning-button
+        variant="brand-outline"
+        label="Preview"
+        title="Preview"
+        onclick={preview}
+        disabled={disabled}
+        class="slds-p-left_small"
+    ></lightning-button>
+    <br />
+    <br />
+    <br />
 </template>

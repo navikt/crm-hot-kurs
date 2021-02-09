@@ -1,5 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
-import getCourseFields from "@salesforce/apex/CourseRegistrationController.getCourseFields";
+import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
 import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/momentJs';
@@ -18,29 +18,32 @@ export default class courseRegistrationInformation extends LightningElement {
     @track type;
     @track courseStart;
 
-
     connectedCallback() {
-
-        Promise.all([
-            loadScript(this, MOMENT_JS),
-        ]).then(() => {
+        Promise.all([loadScript(this, MOMENT_JS)]).then(() => {
             moment.locale('nb-no');
         });
 
-        getCourseFields({ courseId: this.courseId }).then(
-            result => {
-                if (result) {
-                    let courseEnd = moment(result.RegistrationToDateTime__c).format('LT');
-                    this.courseStart = moment(result.RegistrationFromDateTime__c).format('DD. MMM') + ' kl. ' + moment(result.RegistrationFromDateTime__c).format('LT') + ' - ' + courseEnd;
-                    this.registrationDeadline = moment(result.RegistrationDeadline__c).format('DD. MMM') + ' kl. ' + moment(result.RegistrationDeadline__c).format('LT');
-                    this.place = result.RegistrationPlaceName__c;
-                    this.type = result.Type__c;
-
-                } else {
-
-                }
+        getCourseFields({ courseId: this.courseId }).then((result) => {
+            if (result) {
+                let courseEnd = moment(result.RegistrationToDateTime__c).format(
+                    'LT'
+                );
+                this.courseStart =
+                    moment(result.RegistrationFromDateTime__c).format(
+                        'DD. MMM'
+                    ) +
+                    ' kl. ' +
+                    moment(result.RegistrationFromDateTime__c).format('LT') +
+                    ' - ' +
+                    courseEnd;
+                this.registrationDeadline =
+                    moment(result.RegistrationDeadline__c).format('DD. MMM') +
+                    ' kl. ' +
+                    moment(result.RegistrationDeadline__c).format('LT');
+                this.place = result.RegistrationPlaceName__c;
+                this.type = result.Type__c;
+            } else {
             }
-        );
-
+        });
     }
 }

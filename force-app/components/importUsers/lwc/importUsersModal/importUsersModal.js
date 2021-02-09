@@ -1,8 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
-import labels from "./labels";
+import labels from './labels';
 
 export default class ImportUsersModal extends LightningElement {
-
     @api columns;
 
     @track imported = false;
@@ -10,7 +9,9 @@ export default class ImportUsersModal extends LightningElement {
     labels = labels;
 
     addUsers() {
-        const users = this.template.querySelector('[data-id="importTextField"]').value.split(/\r?\n/);
+        const users = this.template
+            .querySelector('[data-id="importTextField"]')
+            .value.split(/\r?\n/);
 
         users.forEach(function (user, index) {
             if (user) {
@@ -20,7 +21,12 @@ export default class ImportUsersModal extends LightningElement {
                 // if email found, use the first from array
                 if (email) email = email[0];
                 var emailPattern = new RegExp(email, 'gi');
-                let fullName = user.replace(emailPattern, '').replaceAll(',', '').replaceAll(';', '').replaceAll('"', '').trim();
+                let fullName = user
+                    .replace(emailPattern, '')
+                    .replaceAll(',', '')
+                    .replaceAll(';', '')
+                    .replaceAll('"', '')
+                    .trim();
                 this.push({ id: index, fullName: fullName, email: email });
             }
         }, this.contacts);
@@ -29,7 +35,6 @@ export default class ImportUsersModal extends LightningElement {
     }
 
     removeContact(event) {
-
         if (this.contacts.length == 1) {
             this.contacts = [];
             this.imported = false;
@@ -48,6 +53,8 @@ export default class ImportUsersModal extends LightningElement {
     }
 
     startImport() {
-        this.dispatchEvent(new CustomEvent('success', { detail: this.contacts }));
+        this.dispatchEvent(
+            new CustomEvent('success', { detail: this.contacts })
+        );
     }
 }

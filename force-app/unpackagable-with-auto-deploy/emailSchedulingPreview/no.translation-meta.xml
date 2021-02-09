@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Registrerte deltakere</label>
         <name>EmailConfirmation_RegisteredParticipants</name>
     </customLabels>
     <customLabels>
-        <label>Skedulert for utsending. Se e-postlogg til høyre for status.</label>
+        <label
+        >Skedulert for utsending. Se e-postlogg til høyre for status.</label>
         <name>EmailConfirmation_Sent</name>
     </customLabels>
     <customLabels>
-        <label>Planlagt for utsending i løpet av dagen og kan ikke lengre redigeres</label>
+        <label
+        >Planlagt for utsending i løpet av dagen og kan ikke lengre redigeres</label>
         <name>EmailConfirmation_Scheduled</name>
     </customLabels>
     <customLabels>
@@ -17,7 +19,8 @@
         <name>EmailConfirmation_NotScheduled</name>
     </customLabels>
     <customLabels>
-        <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
+        <label
+        >Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
         <name>EmailConfirmation_SendError</name>
     </customLabels>
     <customLabels>

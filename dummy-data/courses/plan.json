@@ -3,25 +3,19 @@
         "sobject": "Account",
         "saveRefs": true,
         "resolveRefs": false,
-        "files": [
-            "Accounts.json"
-        ]
+        "files": ["Accounts.json"]
     },
     {
         "sobject": "Course__c",
         "saveRefs": true,
         "resolveRefs": false,
-        "files": [
-            "Courses.json"
-        ]
+        "files": ["Courses.json"]
     },
     {
         "sobject": "Contact",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Contacts.json"
-        ]
+        "files": ["Contacts.json"]
     },
     {
         "sobject": "CourseRegistration__c",
@@ -37,9 +31,7 @@
         "sobject": "EmailTemplate",
         "saveRefs": true,
         "resolveRefs": false,
-        "files": [
-            "EmailTemplates.json"
-        ]
+        "files": ["EmailTemplates.json"]
     },
     {
         "sobject": "EmailQueue__c",

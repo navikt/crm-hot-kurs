@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <article>Definite</article>
@@ -44,7 +44,8 @@
         <name>Course_must_be_active</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Maks antall deltagere er registrert på dette kurset. Deltakeren må settes på venteliste. --></errorMessage>
+        <errorMessage
+        ><!-- Maks antall deltagere er registrert på dette kurset. Deltakeren må settes på venteliste. --></errorMessage>
         <name>Do_not_exceed_max_number_of_participants</name>
     </validationRules>
     <validationRules>

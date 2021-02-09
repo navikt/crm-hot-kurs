@@ -1,8 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
-import labels from "./labels";
+import labels from './labels';
 
 export default class EmailConfirmationViewMore extends LightningElement {
-
     @api amountToLoad = '+10';
     @api recipients;
 

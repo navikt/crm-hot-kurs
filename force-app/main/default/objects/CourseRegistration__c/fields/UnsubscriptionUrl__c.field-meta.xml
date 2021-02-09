@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UnsubscriptionUrl__c</fullName>
     <externalId>false</externalId>
-    <formula>Course__r.CommunityUrl__c + &apos;s/avmelding?id=&apos; + EncryptedId__c</formula>
+    <formula
+    >Course__r.CommunityUrl__c + &apos;s/avmelding?id=&apos; + EncryptedId__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Unsubscription URL</label>
     <required>false</required>

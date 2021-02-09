@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
@@ -47,7 +47,8 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>CustomEntity$CourseRegistration__c@CourseRegistration__c.Course__c</reportType>
+    <reportType
+    >CustomEntity$CourseRegistration__c@CourseRegistration__c.Course__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>

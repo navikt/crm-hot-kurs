@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Jeg har lest følgende betingelser</label>
         <name>GdprConfirmation_title</name>
     </customLabels>
     <customLabels>
-        <label>Brukere eller brukerinformasjon inneholder ingen sensitiv informasjon, og brukerne er informert om at de blir lagret i systemet.</label>
+        <label
+        >Brukere eller brukerinformasjon inneholder ingen sensitiv informasjon, og brukerne er informert om at de blir lagret i systemet.</label>
         <name>GdprConfirmation_subtitle</name>
     </customLabels>
 </Translations>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
@@ -441,7 +441,8 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b&gt;Obligatoriske felter&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I påmeldingsskjema vil disse feltene alltid være obligatoriske og ikke mulig å velge bort:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Fornavn&lt;/li&gt;&lt;li&gt;Etternavn&lt;/li&gt;&lt;li&gt;E-post&lt;/li&gt;&lt;li&gt;Telefonnummer&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ønsker du i tillegg å samle inn annen relevant informasjon i påmeldingsskjema kan du krysse av for feltene du trenger i listen under&lt;/p&gt;</value>
+                    <value
+                    >&lt;p&gt;&lt;b&gt;Obligatoriske felter&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I påmeldingsskjema vil disse feltene alltid være obligatoriske og ikke mulig å velge bort:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Fornavn&lt;/li&gt;&lt;li&gt;Etternavn&lt;/li&gt;&lt;li&gt;E-post&lt;/li&gt;&lt;li&gt;Telefonnummer&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ønsker du i tillegg å samle inn annen relevant informasjon i påmeldingsskjema kan du krysse av for feltene du trenger i listen under&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
             </componentInstance>
@@ -487,7 +488,8 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b&gt;Ønsker du er liste over alle deltakere? Klikk på &quot;Vis rapport&quot; nederst på siden. Fra denne visningen er det også mulig å eksportere listen til excel ved å klikke på pilen øverst i høyre hjørne,&lt;/b&gt;&lt;/p&gt;</value>
+                    <value
+                    >&lt;p&gt;&lt;b&gt;Ønsker du er liste over alle deltakere? Klikk på &quot;Vis rapport&quot; nederst på siden. Fra denne visningen er det også mulig å eksportere listen til excel ved å klikke på pilen øverst i høyre hjørne,&lt;/b&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
             </componentInstance>
@@ -548,7 +550,8 @@
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -564,7 +567,8 @@
                 <fieldItem>Record.EmailBeforeConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -619,7 +623,8 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -699,7 +704,8 @@
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -715,7 +721,8 @@
                 <fieldItem>Record.EmailReminderConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -770,7 +777,8 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -855,7 +863,8 @@
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -871,7 +880,8 @@
                 <fieldItem>Record.EmailAfterConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -926,7 +936,8 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -1006,7 +1017,8 @@
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1022,7 +1034,8 @@
                 <fieldItem>Record.EmailManualConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -1077,7 +1090,8 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue
+                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -1206,7 +1220,8 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
+                    <value
+                    >&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
             </componentInstance>

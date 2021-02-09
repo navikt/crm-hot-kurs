@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
     <masterLabel>Email Scheduling Preview Button</masterLabel>
@@ -12,8 +12,18 @@
             <objects>
                 <object>Course__c</object>
             </objects>
-            <property name="period" type="String" label="Period" datasource="before,reminder,after,manual" />
-            <property name="emailTemplate" type="String" label="Period" datasource="courseScheduledEmailBefore,courseScheduledEmailReminder,courseScheduledEmailAfter,courseScheduledEmailManual" />
+            <property
+                name="period"
+                type="String"
+                label="Period"
+                datasource="before,reminder,after,manual"
+            />
+            <property
+                name="emailTemplate"
+                type="String"
+                label="Period"
+                datasource="courseScheduledEmailBefore,courseScheduledEmailReminder,courseScheduledEmailAfter,courseScheduledEmailManual"
+            />
             <supportedFormFactors>
                 <supportedFormFactor type="Large" />
             </supportedFormFactors>

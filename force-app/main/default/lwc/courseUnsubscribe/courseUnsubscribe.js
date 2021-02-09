@@ -1,6 +1,6 @@
 import { LightningElement, track } from 'lwc';
-import updateCourseRegistration from "@salesforce/apex/CourseUnsubscribeController.updateCourseRegistration";
-import getCourseRegistrationFields from "@salesforce/apex/CourseUnsubscribeController.getCourseRegistrationFields";
+import updateCourseRegistration from '@salesforce/apex/CourseUnsubscribeController.updateCourseRegistration';
+import getCourseRegistrationFields from '@salesforce/apex/CourseUnsubscribeController.getCourseRegistrationFields';
 
 export default class CourseUnsubscribe extends LightningElement {
     @track courseRegId;
@@ -15,7 +15,7 @@ export default class CourseUnsubscribe extends LightningElement {
         this.courseRegId = this.parameters.id;
 
         getCourseRegistrationFields({ courseRegId: this.courseRegId }).then(
-            result => {
+            (result) => {
                 this.name = result.CourseParticipantName__c;
                 this.course = result.Course__r.Name;
             }
@@ -32,7 +32,7 @@ export default class CourseUnsubscribe extends LightningElement {
             params = JSON.parse(
                 '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
                 (key, value) => {
-                    return key === "" ? value : decodeURIComponent(value);
+                    return key === '' ? value : decodeURIComponent(value);
                 }
             );
         }
@@ -41,11 +41,10 @@ export default class CourseUnsubscribe extends LightningElement {
 
     handleSubmit(event) {
         updateCourseRegistration({ courseRegId: this.courseRegId }).then(
-            result => {
+            (result) => {
                 this.showButton = false;
                 this.showConfirmation = true;
             }
         );
     }
-
 }
