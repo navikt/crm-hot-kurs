@@ -56,6 +56,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
                 this.companyName = result.ShowCompany__c;
                 this.county = result.ShowCounty__c;
                 this.role = result.ShowRole__c;
+                this.canceled = result.Cancel__c;
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
@@ -63,12 +64,18 @@ export default class CourseRegistrationForm extends NavigationMixin(
                 this.url =
                     'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
-                if (registrationDeadline > dateNow) {
+                if (registrationDeadline > dateNow && this.canceled == false) {
                     this.showForm = true;
                 } else {
-                    this.errorMessage =
-                        'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
-                    this.displayErrorMessage = true;
+                    if (!this.canceled) {
+                        this.errorMessage =
+                            'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
+                        this.displayErrorMessage = true;
+                    } else {
+                        this.errorMessage =
+                            'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
+                        this.displayErrorMessage = true;
+                    }
                 }
 
                 let maxNumberOfParticipants = result.MaxNumberOfParticipants__c;

@@ -35,7 +35,8 @@ public with sharing class CourseRegistrationController {
                 Waitinglist__c,
                 ShowCompany__c,
                 ShowCounty__c,
-                ShowRole__c
+                ShowRole__c,
+                Cancel__c
             FROM Course__c
             WHERE Id = :courseId
         ];
