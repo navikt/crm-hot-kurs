@@ -13,9 +13,7 @@ public with sharing class CreateContactFromCourseRegistration {
         return accountMap;
     }
 
-    public static void findOrCreateContact(
-        List<CourseRegistration__c> registrations
-    ) {
+    public static void findOrCreateContact(List<CourseRegistration__c> registrations) {
         Map<String, Account> accountMap = fetchAccount();
         for (CourseRegistration__c reg : registrations) {
             // ! to skip trigger and soql inside for loop set contact before insert
@@ -30,15 +28,10 @@ public with sharing class CreateContactFromCourseRegistration {
             wrapper.phone = reg.ContactPhone__c;
             wrapper.source = 'Kurs';
             wrapper.companyNumber = 'Kurs';
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
-                wrapper
-            };
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
 
             // ! need to use soql inside for loop because id doest exist in before insert
-            Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact(
-                wrapperList,
-                accountMap
-            );
+            Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
 
             if (contacts.containsKey(reg.ContactEmail__c)) {
                 reg.CourseParticipant__c = contacts.get(reg.ContactEmail__c).Id;

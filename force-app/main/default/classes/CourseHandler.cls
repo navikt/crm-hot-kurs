@@ -56,8 +56,6 @@ global with sharing class CourseHandler {
         }
 
         RestContext.response.addHeader('Content-Type', 'application/json');
-        RestContext.response.responseBody = Blob.valueOf(
-            JSON.serialize(wrapperList)
-        );
+        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(wrapperList));
     }
 }

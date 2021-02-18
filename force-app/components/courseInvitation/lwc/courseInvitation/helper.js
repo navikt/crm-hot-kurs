@@ -1,9 +1,4 @@
-export {
-    getDataFromInputFields,
-    validateData,
-    emptyInputFields,
-    contactToPill
-};
+export { getDataFromInputFields, validateData, emptyInputFields, contactToPill };
 
 const getDataFromInputFields = (array) => {
     let obj = {};

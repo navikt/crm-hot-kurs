@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailAfterConfirmation__c</fullName>
     <defaultValue>false</defaultValue>
-    <description
-    >Check the box if the content is finished and ready to be sent on the designated date</description>
+    <description>Check the box if the content is finished and ready to be sent on the designated date</description>
     <externalId>false</externalId>
     <inlineHelpText
     >Check the box if the content is finished and ready to be sent on the designated date</inlineHelpText>

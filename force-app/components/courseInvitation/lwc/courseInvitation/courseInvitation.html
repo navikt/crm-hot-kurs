@@ -12,38 +12,20 @@
     >
     </c-email-confirmation-modal>
     <!-- GDPR CHECKBOX -->
-    <c-gdpr-checkbox-modal
-        if:true={showGdpr}
-        oncancel={gdprCancel}
-        onaccept={gdprAccept}
-    >
-    </c-gdpr-checkbox-modal>
+    <c-gdpr-checkbox-modal if:true={showGdpr} oncancel={gdprCancel} onaccept={gdprAccept}> </c-gdpr-checkbox-modal>
     <!-- IMPORT USER -->
-    <c-import-users-modal
-        if:true={showImport}
-        oncancel={importCancel}
-        onsuccess={importSuccess}
-    >
+    <c-import-users-modal if:true={showImport} oncancel={importCancel} onsuccess={importSuccess}>
     </c-import-users-modal>
     <!-- #################################### -->
     <!-- ############### CARD ############### -->
     <!-- #################################### -->
-    <lightning-card
-        variant="Narrow"
-        title={labels.title}
-        icon-name="standard:email_chatter"
-    >
+    <lightning-card variant="Narrow" title={labels.title} icon-name="standard:email_chatter">
         <!-- #################################### -->
         <!-- ########## ACTION BUTTONS ########## -->
         <!-- #################################### -->
         <lightning-button-group slot="actions">
             <!-- IMPORT -->
-            <lightning-button
-                label={labels.importBtn}
-                onclick={startImport}
-                if:false={emailSent}
-            >
-            </lightning-button>
+            <lightning-button label={labels.importBtn} onclick={startImport} if:false={emailSent}> </lightning-button>
 
             <!-- CONFIRM -->
             <lightning-button
@@ -55,19 +37,13 @@
             >
             </lightning-button>
             <!-- CLOSE CONFIRM -->
-            <lightning-button
-                label={labels.close}
-                onclick={restart}
-                if:true={emailSent}
-            >
-            </lightning-button>
+            <lightning-button label={labels.close} onclick={restart} if:true={emailSent}> </lightning-button>
         </lightning-button-group>
         <!-- #################################### -->
         <!-- ############# SPINNER ############## -->
         <!-- #################################### -->
         <div if:true={loading} style="position: relative; min-height: 10em">
-            <lightning-spinner alternative-text="Loading" size="large">
-            </lightning-spinner>
+            <lightning-spinner alternative-text="Loading" size="large"> </lightning-spinner>
         </div>
 
         <div class="slds-p-horizontal_medium" if:false={emailSent}>
@@ -83,11 +59,7 @@
                 class="slds-m-vertical_medium slds-p-left_xx-small slds-p-top_xx-small slds-p-bottom_xxx-small"
                 if:true={hasRecipients}
             >
-                <lightning-pill-container
-                    items={recipients}
-                    onitemremove={removePill}
-                >
-                </lightning-pill-container>
+                <lightning-pill-container items={recipients} onitemremove={removePill}> </lightning-pill-container>
             </div>
 
             <!-- #################################### -->
@@ -126,22 +98,14 @@
             <!-- #################################### -->
             <!-- ####### ADD RECIPIENT BUTTON ####### -->
             <!-- #################################### -->
-            <lightning-layout
-                vertical-align="center"
-                class="slds-p-top_small slds-p-bottom_x-small"
-            >
+            <lightning-layout vertical-align="center" class="slds-p-top_small slds-p-bottom_x-small">
                 <lightning-layout-item flexibility="grow">
-                    <div
-                        class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right"
-                    >
+                    <div class="slds-text-color_weak slds-text-body_small slds-p-right_small slds-float_right">
                         {labels.pressEnterToAdd}
                     </div>
                 </lightning-layout-item>
                 <lightning-layout-item>
-                    <button
-                        class="slds-button slds-button_outline-brand slds-float_right"
-                        onclick={addEmail}
-                    >
+                    <button class="slds-button slds-button_outline-brand slds-float_right" onclick={addEmail}>
                         {labels.addRecipient}
                     </button>
                 </lightning-layout-item>
@@ -151,10 +115,7 @@
         <!-- #################################### -->
         <!-- ############## SUCCESS ############# -->
         <!-- #################################### -->
-        <div
-            class="slds-var-p-top_x-small slds-var-p-bottom_medium slds-p-horizontal_medium"
-            if:true={emailSent}
-        >
+        <div class="slds-var-p-top_x-small slds-var-p-bottom_medium slds-p-horizontal_medium" if:true={emailSent}>
             <span class="slds-align_absolute-center slds-m-bottom_small">
                 <lightning-icon
                     icon-name="utility:success"
@@ -163,21 +124,14 @@
                     size="x-small"
                     title={labels.emailSent}
                 ></lightning-icon>
-                <div class="slds-p-left_small slds-text-heading_medium">
-                    {labels.contactsCreated}
-                </div>
+                <div class="slds-p-left_small slds-text-heading_medium">{labels.contactsCreated}</div>
             </span>
 
             <!-- #################################### -->
             <!-- ############# INVITEES ############# -->
             <!-- #################################### -->
             <lightning-layout horizontal-align="center" multiple-rows>
-                <template
-                    if:true={contacts}
-                    for:each={contacts}
-                    for:item="con"
-                    for:index="index"
-                >
+                <template if:true={contacts} for:each={contacts} for:item="con" for:index="index">
                     <lightning-layout-item
                         class="slds-m-right_xx-small slds-m-top_medium"
                         key={con.Id}

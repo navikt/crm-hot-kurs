@@ -550,8 +550,7 @@
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -567,8 +566,7 @@
                 <fieldItem>Record.EmailBeforeConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -623,8 +621,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -704,8 +701,7 @@
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -721,8 +717,7 @@
                 <fieldItem>Record.EmailReminderConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -777,8 +772,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -863,8 +857,7 @@
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -880,8 +873,7 @@
                 <fieldItem>Record.EmailAfterConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -936,8 +928,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -1017,8 +1008,7 @@
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1034,8 +1024,7 @@
                 <fieldItem>Record.EmailManualConfirmation__c</fieldItem>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -1090,8 +1079,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue
-                        >{!Record.EmailManualSendDatePassed__c}</leftValue>
+                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>

@@ -15,13 +15,7 @@ private with sharing class CourseRegistrationControllerTest {
         );
         insert course;
 
-        String courseId = [
-            SELECT Id
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .Id;
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
         String noCourseId;
 
         CourseRegistrationModel wrapper = new CourseRegistrationModel();
@@ -35,24 +29,14 @@ private with sharing class CourseRegistrationControllerTest {
         String fields = JSON.serialize(wrapper);
 
         Test.StartTest();
-        String result = CourseRegistrationController.createRegistration(
-            fields,
-            courseId
-        );
-        String result2 = CourseRegistrationController.createRegistration(
-            fields,
-            noCourseId
-        );
+        String result = CourseRegistrationController.createRegistration(fields, courseId);
+        String result2 = CourseRegistrationController.createRegistration(fields, noCourseId);
         Test.StopTest();
         System.assertEquals(
             'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post',
             result,
             'Registration successfull'
         );
-        System.assertEquals(
-            'Det oppsto en feil. Prøv igjen senere.',
-            result2,
-            'Course id missing'
-        );
+        System.assertEquals('Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing');
     }
 }

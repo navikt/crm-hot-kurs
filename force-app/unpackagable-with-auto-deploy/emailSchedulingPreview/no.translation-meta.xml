@@ -5,13 +5,11 @@
         <name>EmailConfirmation_RegisteredParticipants</name>
     </customLabels>
     <customLabels>
-        <label
-        >Skedulert for utsending. Se e-postlogg til høyre for status.</label>
+        <label>Skedulert for utsending. Se e-postlogg til høyre for status.</label>
         <name>EmailConfirmation_Sent</name>
     </customLabels>
     <customLabels>
-        <label
-        >Planlagt for utsending i løpet av dagen og kan ikke lengre redigeres</label>
+        <label>Planlagt for utsending i løpet av dagen og kan ikke lengre redigeres</label>
         <name>EmailConfirmation_Scheduled</name>
     </customLabels>
     <customLabels>
@@ -19,8 +17,7 @@
         <name>EmailConfirmation_NotScheduled</name>
     </customLabels>
     <customLabels>
-        <label
-        >Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
+        <label>Feil, en eller flere e-poster ble ikke sendt. Kontakt en administrator.</label>
         <name>EmailConfirmation_SendError</name>
     </customLabels>
     <customLabels>

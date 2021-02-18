@@ -7,17 +7,10 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import createCourseRegistrations from '@salesforce/apex/CourseInvitationController.createCourseRegistrations';
 
 // LOCAL IMPORTS
-import {
-    getDataFromInputFields,
-    validateData,
-    emptyInputFields,
-    contactToPill
-} from './helper';
+import { getDataFromInputFields, validateData, emptyInputFields, contactToPill } from './helper';
 import labels from './labels';
 
-export default class CourseInvitation extends NavigationMixin(
-    LightningElement
-) {
+export default class CourseInvitation extends NavigationMixin(LightningElement) {
     @api recordId = 'a0A1j000003dIDEEA2';
     emailRegex =
         '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])';
@@ -42,16 +35,12 @@ export default class CourseInvitation extends NavigationMixin(
     // #########################################
 
     addEmail(event) {
-        const validInputs = validateData(
-            this.template.querySelectorAll('lightning-input')
-        );
+        const validInputs = validateData(this.template.querySelectorAll('lightning-input'));
         if (!validInputs) {
             return;
         }
 
-        let pill = getDataFromInputFields(
-            this.template.querySelectorAll('lightning-input')
-        );
+        let pill = getDataFromInputFields(this.template.querySelectorAll('lightning-input'));
         let emailIsUnique = !this.emails.includes(pill.email);
 
         if (emailIsUnique) {
@@ -162,24 +151,12 @@ export default class CourseInvitation extends NavigationMixin(
                 this.loading = false;
                 this.contacts = event.detail;
                 this.emailSent = true;
-                this.toast(
-                    this.labels.success,
-                    undefined,
-                    undefined,
-                    'success',
-                    'dismissable'
-                );
+                this.toast(this.labels.success, undefined, undefined, 'success', 'dismissable');
             })
             .catch((error) => {
                 this.loading = false;
                 this.error = true;
-                this.toast(
-                    this.labels.error,
-                    this.labels.errorMsg,
-                    undefined,
-                    'error',
-                    'sticky'
-                );
+                this.toast(this.labels.error, this.labels.errorMsg, undefined, 'error', 'sticky');
             });
     }
 

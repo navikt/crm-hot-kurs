@@ -6,8 +6,6 @@
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Date</type>
-    <description
-    >Legg inn egendefinert dato for når du ønsker at denne e-posten skal sendes ut</description>
-    <inlineHelpText
-    >Legg inn egendefinert dato for når du ønsker at denne e-posten skal sendes ut</inlineHelpText>
+    <description>Legg inn egendefinert dato for når du ønsker at denne e-posten skal sendes ut</description>
+    <inlineHelpText>Legg inn egendefinert dato for når du ønsker at denne e-posten skal sendes ut</inlineHelpText>
 </CustomField>

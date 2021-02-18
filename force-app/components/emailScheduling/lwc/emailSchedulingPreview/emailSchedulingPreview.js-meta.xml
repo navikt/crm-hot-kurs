@@ -12,12 +12,7 @@
             <objects>
                 <object>Course__c</object>
             </objects>
-            <property
-                name="period"
-                type="String"
-                label="Period"
-                datasource="before,reminder,after,manual"
-            />
+            <property name="period" type="String" label="Period" datasource="before,reminder,after,manual" />
             <property
                 name="emailTemplate"
                 type="String"
