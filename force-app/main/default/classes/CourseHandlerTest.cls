@@ -27,27 +27,7 @@ private with sharing class CourseHandlerTest {
 
     @isTest
     private static void CourseHandlerTest() {
-        List<Course__c> courses = new List<Course__c>();
-
-        for (Integer i = 0; i < 2; i++) {
-            Course__c course = new Course__c();
-            course.Name = 'Test ' + i;
-            course.DescriptionFormatted__c = 'Testkurs';
-            course.DescriptionShort__c = 'Kort beskrivelse';
-            course.Region__c = 'Oslo';
-            course.Active__c = true;
-            course.MaxNumberOfParticipants__c = 10;
-
-            DateTime dt = DateTime.now();
-            dt = dt.addHours(4);
-            course.RegistrationFromDateTime__c = datetime.now();
-            course.RegistrationToDateTime__c = dt;
-            Datetime st = dt.addDays(-1);
-            course.RegistrationDeadline__c = st;
-
-            courses.add(course);
-        }
-        insert courses;
+        List<Course__c> courses = [SELECT Id FROM Course__c];
         System.assertEquals(2, courses.size(), '2 courses inserted');
 
         RestRequest req = new RestRequest();
