@@ -34,11 +34,7 @@
                             <lightning-layout-item>
                                 <div
                                     class="slds-text-heading_medium"
-                                    style="
-                                        text-overflow: clip;
-                                        white-space: nowrap;
-                                        overflow: hidden;
-                                    "
+                                    style="text-overflow: clip; white-space: nowrap; overflow: hidden"
                                 >
                                     {subject}
                                 </div>
@@ -50,14 +46,8 @@
                             <lightning-layout-item class="slds-p-top_small">
                                 <span class="">{labels.toField}:</span>
                             </lightning-layout-item>
-                            <lightning-layout-item
-                                alignment-bump="left"
-                                flexibility="grow"
-                            >
-                                <template
-                                    if:true={recipientBadges}
-                                    iterator:it={recipientBadges}
-                                >
+                            <lightning-layout-item alignment-bump="left" flexibility="grow">
+                                <template if:true={recipientBadges} iterator:it={recipientBadges}>
                                     <lightning-badge
                                         class="slds-m-left_x-small slds-m-top_x-small slds-float_left"
                                         if:true={it.first}
@@ -86,10 +76,7 @@
                     </lightning-layout-item>
 
                     <!-- BUTTONS -->
-                    <lightning-layout-item
-                        class="slds-p-right_small"
-                        alignment-bump="left"
-                    >
+                    <lightning-layout-item class="slds-p-right_small" alignment-bump="left">
                         <lightning-button-group if:false={isPreview}>
                             <lightning-button
                                 name="cancel"
@@ -116,33 +103,16 @@
             </header>
 
             <!-- HTML -->
-            <div
-                id="modal-content-id-1"
-                class="slds-modal__content slds-p-around_medium"
-            >
-                <lightning-formatted-rich-text
-                    value={htmlEmail}
-                    if:false={loading}
-                >
-                </lightning-formatted-rich-text>
+            <div id="modal-content-id-1" class="slds-modal__content slds-p-around_medium">
+                <lightning-formatted-rich-text value={htmlEmail} if:false={loading}> </lightning-formatted-rich-text>
                 <div class="slds-m-top_large" if:true={error}>
-                    <div
-                        class="slds-text-heading_large slds-align_absolute-center"
-                    >
-                        {labels.error}
-                    </div>
-                    <div
-                        class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large"
-                    >
+                    <div class="slds-text-heading_large slds-align_absolute-center">{labels.error}</div>
+                    <div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">
                         {errorMsg}
                     </div>
                 </div>
-                <div
-                    if:true={loading}
-                    style="position: relative; min-height: 10em"
-                >
-                    <lightning-spinner alternative-text="Loading" size="large">
-                    </lightning-spinner>
+                <div if:true={loading} style="position: relative; min-height: 10em">
+                    <lightning-spinner alternative-text="Loading" size="large"> </lightning-spinner>
                 </div>
             </div>
         </div>

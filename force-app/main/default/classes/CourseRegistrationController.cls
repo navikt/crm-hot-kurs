@@ -54,9 +54,7 @@ public with sharing class CourseRegistrationController {
     public static void insertRegistration(String fields, Id courseId) {
         if (fields != null) {
             Boolean courseIsFull = checkIfCourseIsFull(courseId);
-            CourseRegistrationModel model = CourseRegistrationModel.parse(
-                fields
-            );
+            CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
             CourseRegistration__c registration = new CourseRegistration__c();
 
             registration.ContactFirstName__c = model.firstName;

@@ -9,6 +9,5 @@ OR (
     EmailManualDate__c = EmailReminderDate__c)
 )</errorConditionFormula>
     <errorDisplayField>EmailManualDate__c</errorDisplayField>
-    <errorMessage
-    >Can&apos;t set manual email date to same date as an existing email schedule</errorMessage>
+    <errorMessage>Can&apos;t set manual email date to same date as an existing email schedule</errorMessage>
 </ValidationRule>

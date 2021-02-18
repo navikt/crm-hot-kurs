@@ -6,8 +6,7 @@
         <locationX>50</locationX>
         <locationY>398</locationY>
         <assignmentItems>
-            <assignToReference
-            >Get_Course_Registrations.Status__c</assignToReference>
+            <assignToReference>Get_Course_Registrations.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Påmeldt</stringValue>
@@ -43,8 +42,7 @@
             <name>List_is_not_empty</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-                >Get_Course_Registrations.Id</leftValueReference>
+                <leftValueReference>Get_Course_Registrations.Id</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -82,8 +80,7 @@
         <label>Get Course Registrations</label>
         <locationX>182</locationX>
         <locationY>158</locationY>
-        <assignNullValuesIfNoRecordsFound
-        >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_record</targetReference>
         </connector>
@@ -105,8 +102,7 @@
         <label>Get Courses</label>
         <locationX>50</locationX>
         <locationY>638</locationY>
-        <assignNullValuesIfNoRecordsFound
-        >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_waitinglist</targetReference>
         </connector>
@@ -114,8 +110,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-                >Get_Course_Registrations.Course__r.Id</elementReference>
+                <elementReference>Get_Course_Registrations.Course__r.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>

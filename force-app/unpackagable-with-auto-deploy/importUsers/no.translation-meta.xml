@@ -17,8 +17,7 @@
         <name>ImportUsers_textAreaTitle</name>
     </customLabels>
     <customLabels>
-        <label
-        >Hver bruker må være på hver sin linje, og navn og e-post kan være komma- eller semikolon-separert</label>
+        <label>Hver bruker må være på hver sin linje, og navn og e-post kan være komma- eller semikolon-separert</label>
         <name>ImportUsers_pasteFromExcelHelp</name>
     </customLabels>
     <customLabels>

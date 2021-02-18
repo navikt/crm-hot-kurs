@@ -56,9 +56,7 @@ global with sharing class CourseHandler extends MyTriggers {
         }
 
         RestContext.response.addHeader('Content-Type', 'application/json');
-        RestContext.response.responseBody = Blob.valueOf(
-            JSON.serialize(wrapperList)
-        );
+        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(wrapperList));
     }
 
     public override void onBeforeUpdate(Map<Id, sObject> triggerOldMap) {
@@ -73,9 +71,7 @@ global with sharing class CourseHandler extends MyTriggers {
         }
     }
 
-    public static void changeCanceledCourseTitle(
-        List<Course__c> canceledCourses
-    ) {
+    public static void changeCanceledCourseTitle(List<Course__c> canceledCourses) {
         for (Course__c course : canceledCourses) {
             course.Name = 'AVLYST ' + course.Name;
         }

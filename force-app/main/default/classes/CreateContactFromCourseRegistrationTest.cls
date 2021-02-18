@@ -16,11 +16,7 @@ private with sharing class CreateContactFromCourseRegistrationTest {
         Map<String, Account> result = CreateContactFromCourseRegistration.fetchAccount();
         Test.stopTest();
 
-        System.assertEquals(
-            a.Id,
-            result.get(a.INT_OrganizationNumber__c).Id,
-            'Should be the same account'
-        );
+        System.assertEquals(a.Id, result.get(a.INT_OrganizationNumber__c).Id, 'Should be the same account');
     }
 
     @isTest

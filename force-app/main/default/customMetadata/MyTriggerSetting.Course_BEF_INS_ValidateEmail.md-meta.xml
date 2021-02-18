@@ -20,9 +20,7 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value
-            xsi:type="xsd:string"
-        >Validate if email content contains illegal values</value>
+        <value xsi:type="xsd:string">Validate if email content contains illegal values</value>
     </values>
     <values>
         <field>Event__c</field>

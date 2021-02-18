@@ -35,21 +35,9 @@ private without sharing class EmailConfirmationModalHelperTest {
 
     @isTest
     private static void testFetchOrCreateContacts_contactsExists() {
-        Contact c1 = new Contact(
-            LastName = 'test',
-            email = 'ola.nordmann@test.com',
-            TAG_Informed__c = true
-        );
-        Contact c2 = new Contact(
-            LastName = 'test',
-            email = 'kari.nordmann@test.com',
-            TAG_Informed__c = true
-        );
-        Contact c3 = new Contact(
-            LastName = 'test',
-            email = 'per.nordmann@test.com',
-            TAG_Informed__c = true
-        );
+        Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
+        Contact c2 = new Contact(LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true);
+        Contact c3 = new Contact(LastName = 'test', email = 'per.nordmann@test.com', TAG_Informed__c = true);
         insert new List<Contact>{ c1, c2, c3 };
 
         List<EmailConfirmationModalModel> recipients = (List<EmailConfirmationModalModel>) System.JSON.deserialize(
@@ -61,23 +49,13 @@ private without sharing class EmailConfirmationModalHelperTest {
         System.assertEquals(3, contacts.size(), 'three contacts before test');
 
         Test.StartTest();
-        contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
+        contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
         Test.StopTest();
 
-        System.assertEquals(
-            3,
-            contacts.size(),
-            'three contacts returned from function'
-        );
+        System.assertEquals(3, contacts.size(), 'three contacts returned from function');
 
         contacts = [SELECT Id FROM Contact];
-        System.assertEquals(
-            3,
-            contacts.size(),
-            'still three contacts after test'
-        );
+        System.assertEquals(3, contacts.size(), 'still three contacts after test');
     }
 
     @isTest
@@ -98,14 +76,9 @@ private without sharing class EmailConfirmationModalHelperTest {
             EmailConfirmationModalModelTest.jsonData,
             List<EmailConfirmationModalModel>.class
         );
-        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
+        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
 
-        List<EmailMessage> emails = [
-            SELECT HtmlBody, ToAddress
-            FROM EmailMessage
-        ];
+        List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
         System.assertEquals(0, emails.size(), 'No emails sent before');
 
         List<EmailTemplate> templates = [
@@ -114,33 +87,17 @@ private without sharing class EmailConfirmationModalHelperTest {
             WHERE DeveloperName = 'courseRegistrationInvitation'
             LIMIT 1
         ];
-        System.assertEquals(
-            1,
-            templates.size(),
-            'should be one template with name "courseRegistrationInvitation"'
-        );
+        System.assertEquals(1, templates.size(), 'should be one template with name "courseRegistrationInvitation"');
 
         Test.StartTest();
-        EmailConfirmationModalHelper.sendEmailToCourseRecipients(
-            course.Id,
-            contacts,
-            templates[0].Id
-        );
+        EmailConfirmationModalHelper.sendEmailToCourseRecipients(course.Id, contacts, templates[0].Id);
         Test.StopTest();
 
         emails = [SELECT Id, RelatedToId FROM EmailMessage];
-        System.assertEquals(
-            3,
-            emails.size(),
-            'three emails sent, three EmailMessage created'
-        );
+        System.assertEquals(3, emails.size(), 'three emails sent, three EmailMessage created');
 
         for (EmailMessage email : emails) {
-            System.assertEquals(
-                course.Id,
-                email.RelatedToId,
-                'Should be related to course'
-            );
+            System.assertEquals(course.Id, email.RelatedToId, 'Should be related to course');
         }
     }
 }

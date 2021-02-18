@@ -14,12 +14,10 @@ export default class CourseUnsubscribe extends LightningElement {
         this.parameters = this.getQueryParameters();
         this.courseRegId = this.parameters.id;
 
-        getCourseRegistrationFields({ courseRegId: this.courseRegId }).then(
-            (result) => {
-                this.name = result.CourseParticipantName__c;
-                this.course = result.Course__r.Name;
-            }
-        );
+        getCourseRegistrationFields({ courseRegId: this.courseRegId }).then((result) => {
+            this.name = result.CourseParticipantName__c;
+            this.course = result.Course__r.Name;
+        });
 
         console.log('id' + this.courseRegId);
     }
@@ -29,22 +27,17 @@ export default class CourseUnsubscribe extends LightningElement {
         var search = location.search.substring(1);
 
         if (search) {
-            params = JSON.parse(
-                '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
-                (key, value) => {
-                    return key === '' ? value : decodeURIComponent(value);
-                }
-            );
+            params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
+                return key === '' ? value : decodeURIComponent(value);
+            });
         }
         return params;
     }
 
     handleSubmit(event) {
-        updateCourseRegistration({ courseRegId: this.courseRegId }).then(
-            (result) => {
-                this.showButton = false;
-                this.showConfirmation = true;
-            }
-        );
+        updateCourseRegistration({ courseRegId: this.courseRegId }).then((result) => {
+            this.showButton = false;
+            this.showConfirmation = true;
+        });
     }
 }

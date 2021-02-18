@@ -47,8 +47,7 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType
-    >CustomEntity$CourseRegistration__c@CourseRegistration__c.Course__c</reportType>
+    <reportType>CustomEntity$CourseRegistration__c@CourseRegistration__c.Course__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>

@@ -4,9 +4,7 @@ import createRegistration from '@salesforce/apex/CourseRegistrationController.cr
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
 
-export default class CourseRegistrationForm extends NavigationMixin(
-    LightningElement
-) {
+export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
 
     @track theRecord = {};
@@ -61,19 +59,16 @@ export default class CourseRegistrationForm extends NavigationMixin(
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
-                this.url =
-                    'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
+                this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
                 if (registrationDeadline > dateNow && this.canceled == false) {
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
-                        this.errorMessage =
-                            'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
+                        this.errorMessage = 'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
                         this.displayErrorMessage = true;
                     } else {
-                        this.errorMessage =
-                            'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
+                        this.errorMessage = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
                         this.displayErrorMessage = true;
                     }
                 }
@@ -100,12 +95,9 @@ export default class CourseRegistrationForm extends NavigationMixin(
         var search = location.search.substring(1);
 
         if (search) {
-            params = JSON.parse(
-                '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
-                (key, value) => {
-                    return key === '' ? value : decodeURIComponent(value);
-                }
-            );
+            params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
+                return key === '' ? value : decodeURIComponent(value);
+            });
         }
         return params;
     }
@@ -121,12 +113,7 @@ export default class CourseRegistrationForm extends NavigationMixin(
 
     handleSubmit(event) {
         event.preventDefault();
-        if (
-            this.theRecord.firstName &&
-            this.theRecord.lastName &&
-            this.theRecord.email &&
-            this.theRecord.phone
-        ) {
+        if (this.theRecord.firstName && this.theRecord.lastName && this.theRecord.email && this.theRecord.phone) {
             let output = JSON.stringify(this.theRecord, null);
             createRegistration({
                 fields: output,

@@ -21,11 +21,7 @@
         "sobject": "CourseRegistration__c",
         "saveRefs": false,
         "resolveRefs": true,
-        "files": [
-            "CourseRegistrations_con1.json",
-            "CourseRegistrations_con2.json",
-            "CourseRegistrations_con3.json"
-        ]
+        "files": ["CourseRegistrations_con1.json", "CourseRegistrations_con2.json", "CourseRegistrations_con3.json"]
     },
     {
         "sobject": "EmailTemplate",
@@ -37,10 +33,6 @@
         "sobject": "EmailQueue__c",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "EmailQueue_error.json",
-            "EmailQueue_sent.json",
-            "EmailQueue_queued.json"
-        ]
+        "files": ["EmailQueue_error.json", "EmailQueue_sent.json", "EmailQueue_queued.json"]
     }
 ]

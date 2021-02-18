@@ -25,13 +25,9 @@ export default class courseRegistrationInformation extends LightningElement {
 
         getCourseFields({ courseId: this.courseId }).then((result) => {
             if (result) {
-                let courseEnd = moment(result.RegistrationToDateTime__c).format(
-                    'LT'
-                );
+                let courseEnd = moment(result.RegistrationToDateTime__c).format('LT');
                 this.courseStart =
-                    moment(result.RegistrationFromDateTime__c).format(
-                        'DD. MMM'
-                    ) +
+                    moment(result.RegistrationFromDateTime__c).format('DD. MMM') +
                     ' kl. ' +
                     moment(result.RegistrationFromDateTime__c).format('LT') +
                     ' - ' +

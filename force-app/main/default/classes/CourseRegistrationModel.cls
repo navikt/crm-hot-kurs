@@ -10,9 +10,6 @@ public with sharing class CourseRegistrationModel {
     public String role;
 
     public static CourseRegistrationModel parse(String json) {
-        return (CourseRegistrationModel) System.JSON.deserialize(
-            json,
-            CourseRegistrationModel.class
-        );
+        return (CourseRegistrationModel) System.JSON.deserialize(json, CourseRegistrationModel.class);
     }
 }
