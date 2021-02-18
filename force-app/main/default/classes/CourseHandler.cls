@@ -64,19 +64,20 @@ global with sharing class CourseHandler extends MyTriggers {
     public override void onBeforeUpdate(Map<Id, sObject> triggerOldMap) {
         List<Course__c> canceledCourses = new List<Course__c>();
         for (Course__c course : (List<Course__c>) records) {
-            if (course.Cancel__c != false) {
+            if (course.get('Cancel__c') != false) {
                 canceledCourses.add(course);
             }
         }
-        if (canceledCourses.size() > 0) {
-            changeCourseTitle(canceledCourses);
+        if (!canceledCourses.isEmpty()) {
+            changeCanceledCourseTitle(canceledCourses);
         }
     }
 
-    public static void changeCourseTitle(List<Course__c> canceledCourses) {
+    public static void changeCanceledCourseTitle(
+        List<Course__c> canceledCourses
+    ) {
         for (Course__c course : canceledCourses) {
-            course.Name = 'AVLYST' + course.Name;
-            course.Active__c = false;
+            course.Name = 'AVLYST ' + course.Name;
         }
     }
 }
