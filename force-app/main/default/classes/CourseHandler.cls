@@ -1,5 +1,5 @@
 @RestResource(urlMapping='/Course/*')
-global with sharing class CourseHandler {
+global with sharing class CourseHandler extends MyTriggers {
     @HttpGet
     global static void doGet() {
         List<Course__c> courses = [
@@ -59,5 +59,24 @@ global with sharing class CourseHandler {
         RestContext.response.responseBody = Blob.valueOf(
             JSON.serialize(wrapperList)
         );
+    }
+
+    public override void onBeforeUpdate(Map<Id, sObject> triggerOldMap) {
+        List<Course__c> canceledCourses = new List<Course__c>();
+        for (Course__c course : (List<Course__c>) records) {
+            if (course.Cancel__c != false) {
+                canceledCourses.add(course);
+            }
+        }
+        if (canceledCourses.size() > 0) {
+            changeCourseTitle(canceledCourses);
+        }
+    }
+
+    public static void changeCourseTitle(List<Course__c> canceledCourses) {
+        for (Course__c course : canceledCourses) {
+            course.Name = 'AVLYST' + course.Name;
+            course.Active__c = false;
+        }
     }
 }

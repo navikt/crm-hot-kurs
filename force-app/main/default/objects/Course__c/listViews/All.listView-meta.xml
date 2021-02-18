@@ -8,6 +8,7 @@
     <columns>RegistrationToDateTime__c</columns>
     <columns>RegistrationPlaceName__c</columns>
     <columns>Active__c</columns>
+    <columns>Cancel__c</columns>
     <filterScope>Everything</filterScope>
     <label>Alle kurs</label>
 </ListView>
