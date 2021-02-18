@@ -23,54 +23,26 @@ private without sharing class CourseInvitationControllerTest {
             EmailConfirmationModalModelTest.jsonData,
             List<EmailConfirmationModalModel>.class
         );
-        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
+        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
 
         System.assertEquals(3, contacts.size(), 'three contacts should exist');
 
-        List<CourseRegistration__c> registrations = [
-            SELECT Id
-            FROM CourseRegistration__c
-        ];
-        System.assertEquals(
-            0,
-            registrations.size(),
-            'no registrations before test'
-        );
+        List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+        System.assertEquals(0, registrations.size(), 'no registrations before test');
 
         Test.StartTest();
-        CourseInvitationController.createCourseRegistrations(
-            course.Id,
-            contacts
-        );
+        CourseInvitationController.createCourseRegistrations(course.Id, contacts);
         Test.StopTest();
 
         registrations = [SELECT Id FROM CourseRegistration__c];
-        System.assertEquals(
-            3,
-            registrations.size(),
-            'three registrations after test'
-        );
+        System.assertEquals(3, registrations.size(), 'three registrations after test');
     }
 
     @isTest
     private static void testCreateCourseRegistrations_allRegistrationsExists() {
-        Contact c1 = new Contact(
-            LastName = 'test',
-            email = 'ola.nordmann@test.com',
-            TAG_Informed__c = true
-        );
-        Contact c2 = new Contact(
-            LastName = 'test',
-            email = 'kari.nordmann@test.com',
-            TAG_Informed__c = true
-        );
-        Contact c3 = new Contact(
-            LastName = 'test',
-            email = 'per.nordmann@test.com',
-            TAG_Informed__c = true
-        );
+        Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
+        Contact c2 = new Contact(LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true);
+        Contact c3 = new Contact(LastName = 'test', email = 'per.nordmann@test.com', TAG_Informed__c = true);
         insert new List<Contact>{ c1, c2, c3 };
 
         DateTime d = Date.today().addDays(1);
@@ -105,43 +77,23 @@ private without sharing class CourseInvitationControllerTest {
             EmailConfirmationModalModelTest.jsonData,
             List<EmailConfirmationModalModel>.class
         );
-        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
+        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
 
         System.assertEquals(3, contacts.size(), 'three contacts should exist');
 
-        List<CourseRegistration__c> registrations = [
-            SELECT Id
-            FROM CourseRegistration__c
-        ];
-        System.assertEquals(
-            3,
-            registrations.size(),
-            'three registrations before test'
-        );
+        List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+        System.assertEquals(3, registrations.size(), 'three registrations before test');
 
         Test.StartTest();
-        registrations = CourseInvitationController.createCourseRegistrations(
-            course.Id,
-            contacts
-        );
+        registrations = CourseInvitationController.createCourseRegistrations(course.Id, contacts);
         Test.StopTest();
 
-        System.assertEquals(
-            3,
-            registrations.size(),
-            'three registrations return in function'
-        );
+        System.assertEquals(3, registrations.size(), 'three registrations return in function');
     }
 
     @isTest
     private static void testCreateCourseRegistrations_alreadyExists() {
-        Contact con = new Contact(
-            LastName = 'test',
-            email = 'ola.nordmann@test.com',
-            TAG_Informed__c = true
-        );
+        Contact con = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
         insert con;
         DateTime d = Date.today().addDays(1);
         Course__c course = new Course__c(
@@ -165,49 +117,21 @@ private without sharing class CourseInvitationControllerTest {
             EmailConfirmationModalModelTest.jsonData,
             List<EmailConfirmationModalModel>.class
         );
-        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
+        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
 
         System.assertEquals(3, contacts.size(), 'three contacts should exist');
 
-        List<CourseRegistration__c> registrations = [
-            SELECT Id
-            FROM CourseRegistration__c
-        ];
-        System.assertEquals(
-            1,
-            registrations.size(),
-            'one registration before test'
-        );
+        List<CourseRegistration__c> registrations = [SELECT Id FROM CourseRegistration__c];
+        System.assertEquals(1, registrations.size(), 'one registration before test');
 
         Test.StartTest();
-        CourseInvitationController.createCourseRegistrations(
-            course.Id,
-            contacts
-        );
+        CourseInvitationController.createCourseRegistrations(course.Id, contacts);
         Test.StopTest();
 
-        registrations = [
-            SELECT Id
-            FROM CourseRegistration__c
-            WHERE Status__c = 'Invitert'
-        ];
-        System.assertEquals(
-            2,
-            registrations.size(),
-            'two invited registrations after test'
-        );
+        registrations = [SELECT Id FROM CourseRegistration__c WHERE Status__c = 'Invitert'];
+        System.assertEquals(2, registrations.size(), 'two invited registrations after test');
 
-        registrations = [
-            SELECT Id
-            FROM CourseRegistration__c
-            WHERE Status__c = 'Påmeldt'
-        ];
-        System.assertEquals(
-            1,
-            registrations.size(),
-            'one attending registrations after test'
-        );
+        registrations = [SELECT Id FROM CourseRegistration__c WHERE Status__c = 'Påmeldt'];
+        System.assertEquals(1, registrations.size(), 'one attending registrations after test');
     }
 }

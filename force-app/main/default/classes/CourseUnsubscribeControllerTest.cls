@@ -14,11 +14,7 @@ private with sharing class CourseUnsubscribeControllerTest {
         );
         insert course;
 
-        Contact participant = new Contact(
-            FirstName = 'Test',
-            LastName = 'Testesen',
-            Email = 'test.testesen@test.no'
-        );
+        Contact participant = new Contact(FirstName = 'Test', LastName = 'Testesen', Email = 'test.testesen@test.no');
         insert participant;
 
         CourseRegistration__c courseReg = new CourseRegistration__c(
@@ -28,26 +24,13 @@ private with sharing class CourseUnsubscribeControllerTest {
         );
         insert courseReg;
 
-        String encrypted = [
-            SELECT EncryptedId__c
-            FROM CourseRegistration__c
-            LIMIT 1
-        ]
-        .EncryptedId__c;
+        String encrypted = [SELECT EncryptedId__c FROM CourseRegistration__c LIMIT 1].EncryptedId__c;
 
         Test.startTest();
-        CourseRegistration__c result = CourseUnsubscribeController.getCourseRegistrationFields(
-            encrypted
-        );
-        CourseRegistration__c unsubscribed = CourseUnsubscribeController.updateCourseRegistration(
-            encrypted
-        );
+        CourseRegistration__c result = CourseUnsubscribeController.getCourseRegistrationFields(encrypted);
+        CourseRegistration__c unsubscribed = CourseUnsubscribeController.updateCourseRegistration(encrypted);
         Test.stopTest();
 
-        System.assertEquals(
-            unsubscribed.Status__c,
-            'Avmeldt',
-            'Participant is unsubscribed'
-        );
+        System.assertEquals(unsubscribed.Status__c, 'Avmeldt', 'Participant is unsubscribed');
     }
 }

@@ -56,9 +56,7 @@ global with sharing class CourseHandler extends MyTriggers {
         }
 
         RestContext.response.addHeader('Content-Type', 'application/json');
-        RestContext.response.responseBody = Blob.valueOf(
-            JSON.serialize(wrapperList)
-        );
+        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(wrapperList));
     }
 
     public override void onBeforeUpdate(Map<Id, sObject> triggerOldMap) {

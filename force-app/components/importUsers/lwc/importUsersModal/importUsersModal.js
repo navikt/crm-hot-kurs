@@ -9,9 +9,7 @@ export default class ImportUsersModal extends LightningElement {
     labels = labels;
 
     addUsers() {
-        const users = this.template
-            .querySelector('[data-id="importTextField"]')
-            .value.split(/\r?\n/);
+        const users = this.template.querySelector('[data-id="importTextField"]').value.split(/\r?\n/);
 
         users.forEach(function (user, index) {
             if (user) {
@@ -53,8 +51,6 @@ export default class ImportUsersModal extends LightningElement {
     }
 
     startImport() {
-        this.dispatchEvent(
-            new CustomEvent('success', { detail: this.contacts })
-        );
+        this.dispatchEvent(new CustomEvent('success', { detail: this.contacts }));
     }
 }

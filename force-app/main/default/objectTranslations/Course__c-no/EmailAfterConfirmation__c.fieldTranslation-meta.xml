@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help
-    >Huk boksen hvis innholdet er ferdig og klar til å sendes ved angitt dato</help>
+    <help>Huk boksen hvis innholdet er ferdig og klar til å sendes ved angitt dato</help>
     <label>Klar for utsending</label>
     <name>EmailAfterConfirmation__c</name>
 </CustomFieldTranslation>

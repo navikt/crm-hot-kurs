@@ -28,15 +28,8 @@
         role="dialog"
     >
         <div id="popover-body-id" class="slds-popover__body">
-            <template
-                if:true={recipients}
-                for:each={recipients}
-                for:item="recipient"
-                for:index="index"
-            >
-                <div class="slds-p-bottom--xxx-small" key={recipient.name}>
-                    {recipient.label}
-                </div>
+            <template if:true={recipients} for:each={recipients} for:item="recipient" for:index="index">
+                <div class="slds-p-bottom--xxx-small" key={recipient.name}>{recipient.label}</div>
             </template>
         </div>
     </section>

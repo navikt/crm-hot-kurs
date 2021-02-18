@@ -6,12 +6,7 @@ public with sharing class EmailConfirmationModalController {
         String template,
         Boolean useDoNotReply
     ) {
-        List<EmailTemplate> templates = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = :template
-            LIMIT 1
-        ];
+        List<EmailTemplate> templates = [SELECT Id FROM EmailTemplate WHERE DeveloperName = :template LIMIT 1];
         if (templates.size() != 1) {
             throw new AuraException(Label.EmailConfirmation_missingTemplate);
         }
@@ -20,23 +15,14 @@ public with sharing class EmailConfirmationModalController {
             recipientsJson,
             List<EmailConfirmationModalModel>.class
         );
-        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(
-            recipients
-        );
-        EmailConfirmationModalHelper.sendEmailToCourseRecipients(
-            recordId,
-            contacts,
-            templates[0].Id
-        );
+        List<Contact> contacts = EmailConfirmationModalHelper.fetchOrCreateContacts(recipients);
+        EmailConfirmationModalHelper.sendEmailToCourseRecipients(recordId, contacts, templates[0].Id);
 
         return contacts;
     }
 
     @AuraEnabled(cacheable=true)
-    public static String getEmailPreview(
-        String recordId,
-        String emailTemplate
-    ) {
+    public static String getEmailPreview(String recordId, String emailTemplate) {
         List<EmailTemplate> templates = [
             SELECT Id, HtmlValue
             FROM EmailTemplate
@@ -46,9 +32,7 @@ public with sharing class EmailConfirmationModalController {
         if (templates.size() != 1) {
             throw new AuraException(Label.EmailConfirmation_missingTemplate);
         }
-        String sObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(
-            recordId
-        );
+        String sObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(recordId);
         List<String> sObjectFields = EmailConfirmationModalHelperPreview.getSObjectFields(
             sObjectType,
             templates[0].HtmlValue
@@ -58,10 +42,7 @@ public with sharing class EmailConfirmationModalController {
             sObjectType,
             sObjectFields
         );
-        String mergedHtml = EmailConfirmationModalHelperPreview.mergeHtml(
-            templates[0].HtmlValue,
-            replacedMergeFields
-        );
+        String mergedHtml = EmailConfirmationModalHelperPreview.mergeHtml(templates[0].HtmlValue, replacedMergeFields);
 
         return mergedHtml;
     }

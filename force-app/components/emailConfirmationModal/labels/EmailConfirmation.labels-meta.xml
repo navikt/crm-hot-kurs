@@ -4,8 +4,7 @@
         <fullName>EmailConfirmation_loadMoreRecipients</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[EmailConfirmation] Load More Recipients</shortDescription>
+        <shortDescription>[EmailConfirmation] Load More Recipients</shortDescription>
         <value>View more recipients</value>
     </labels>
     <labels>
@@ -54,8 +53,7 @@
         <fullName>EmailConfirmation_missingTemplate</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[EmailConfirmation] Missing Template</shortDescription>
+        <shortDescription>[EmailConfirmation] Missing Template</shortDescription>
         <value>Could not find the email template specified</value>
     </labels>
     <labels>
@@ -69,8 +67,7 @@
         <fullName>EmailConfirmation_listOfRecipients</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[EmailConfirmation] List of recipients</shortDescription>
+        <shortDescription>[EmailConfirmation] List of recipients</shortDescription>
         <value>Remaining recipients</value>
     </labels>
     <labels>

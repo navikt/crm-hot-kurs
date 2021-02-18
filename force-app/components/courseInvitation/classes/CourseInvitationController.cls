@@ -1,9 +1,6 @@
 public with sharing class CourseInvitationController {
     @AuraEnabled
-    public static List<CourseRegistration__c> createCourseRegistrations(
-        Id courseId,
-        List<Contact> contacts
-    ) {
+    public static List<CourseRegistration__c> createCourseRegistrations(Id courseId, List<Contact> contacts) {
         if (contacts.size() == 0 || courseId == null) {
             throw new AuraException('');
         }

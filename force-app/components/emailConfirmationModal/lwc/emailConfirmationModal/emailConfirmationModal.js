@@ -46,14 +46,10 @@ export default class EmailConfirmationModal extends LightningElement {
         });
 
         // recipient badges
-        let amount =
-            this.recipients.length < this.amountToView
-                ? this.recipients.length
-                : this.amountToView; // if recipient length is less than viewable recipients, use recipient length
+        let amount = this.recipients.length < this.amountToView ? this.recipients.length : this.amountToView; // if recipient length is less than viewable recipients, use recipient length
         this.loadRecipientsToBadges(amount);
         if (this.recipients.length > this.amountToView) {
-            this.amountToLoad =
-                '+' + (this.recipients.length - this.amountToView).toString();
+            this.amountToLoad = '+' + (this.recipients.length - this.amountToView).toString();
         }
     }
 
@@ -70,9 +66,7 @@ export default class EmailConfirmationModal extends LightningElement {
             template: this.templateName
         })
             .then((result) => {
-                this.dispatchEvent(
-                    new CustomEvent('success', { detail: result })
-                );
+                this.dispatchEvent(new CustomEvent('success', { detail: result }));
                 this.sendingEmail = false;
             })
             .catch((error) => {
@@ -112,12 +106,7 @@ export default class EmailConfirmationModal extends LightningElement {
     setError(error) {
         this.loading = false;
         this.error = true;
-        if (
-            error.body &&
-            error.body.message &&
-            typeof error.body.message === 'object' &&
-            error.body.message !== null
-        ) {
+        if (error.body && error.body.message && typeof error.body.message === 'object' && error.body.message !== null) {
             this.errorMsg = JSON.stringify(error.body.message, undefined, 2);
         } else if (error.body && error.body.message) {
             this.errorMsg = error.body.message;

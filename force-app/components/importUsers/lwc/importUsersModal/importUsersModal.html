@@ -23,40 +23,25 @@
                     title={labels.close}
                 ></lightning-button-icon>
                 <!-- TITLE 1 -->
-                <h2
-                    id="modal-heading-01"
-                    if:false={imported}
-                    class="slds-modal__title slds-hyphenate"
-                >
+                <h2 id="modal-heading-01" if:false={imported} class="slds-modal__title slds-hyphenate">
                     {labels.title}
                 </h2>
                 <!-- TITLE 2 -->
-                <h2
-                    id="modal-heading-02"
-                    if:true={imported}
-                    class="slds-modal__title slds-hyphenate"
-                >
+                <h2 id="modal-heading-02" if:true={imported} class="slds-modal__title slds-hyphenate">
                     {labels.titleConfirm}
                 </h2>
             </header>
             <!-- ########################################## -->
             <!-- ################## BODY ################## -->
             <!-- ########################################## -->
-            <div
-                class="slds-modal__content slds-p-around_medium"
-                id="modal-content-id-1"
-            >
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <!-- ########################################## -->
                 <!-- ############# IMPORT TEXTAREA ############ -->
                 <!-- ########################################## -->
 
                 <div class="slds-form-element" if:false={imported}>
-                    <label class="slds-form-element__label" for="textarea-id-01"
-                        >{labels.textAreaTitle}</label
-                    >
-                    <lightning-helptext
-                        content={labels.pasteFromExcelHelp}
-                    ></lightning-helptext>
+                    <label class="slds-form-element__label" for="textarea-id-01">{labels.textAreaTitle}</label>
+                    <lightning-helptext content={labels.pasteFromExcelHelp}></lightning-helptext>
 
                     <div class="slds-form-element__control">
                         <textarea
@@ -73,22 +58,9 @@
                 <!-- ############# IMPORTED USERS ############# -->
                 <!-- ########################################## -->
                 <div if:true={imported}>
-                    <lightning-layout
-                        horizontal-align="space"
-                        vertical-align="center"
-                        multiple-rows
-                    >
-                        <template
-                            if:true={contacts}
-                            for:each={contacts}
-                            for:item="con"
-                            for:index="index"
-                        >
-                            <lightning-layout-item
-                                size="5"
-                                class="slds-p-bottom_xx-small"
-                                key={con.id}
-                            >
+                    <lightning-layout horizontal-align="space" vertical-align="center" multiple-rows>
+                        <template if:true={contacts} for:each={contacts} for:item="con" for:index="index">
+                            <lightning-layout-item size="5" class="slds-p-bottom_xx-small" key={con.id}>
                                 <lightning-input
                                     variant="label-hidden"
                                     label="fullName"
@@ -97,11 +69,7 @@
                                     value={con.fullName}
                                 ></lightning-input>
                             </lightning-layout-item>
-                            <lightning-layout-item
-                                size="6"
-                                class="slds-p-bottom_xx-small"
-                                key={con.id}
-                            >
+                            <lightning-layout-item size="6" class="slds-p-bottom_xx-small" key={con.id}>
                                 <lightning-input
                                     variant="label-hidden"
                                     class="slds-p-bottom_xx-small"
@@ -110,10 +78,7 @@
                                     value={con.email}
                                 ></lightning-input>
                             </lightning-layout-item>
-                            <lightning-layout-item
-                                class="slds-p-bottom_xx-small"
-                                key={con.id}
-                            >
+                            <lightning-layout-item class="slds-p-bottom_xx-small" key={con.id}>
                                 <lightning-button-icon
                                     icon-name="utility:delete"
                                     class="slds-p-bottom_xx-small"
@@ -129,11 +94,7 @@
             </div>
             <footer class="slds-modal__footer">
                 <!-- ADD BUTTON -->
-                <lightning-button
-                    label={labels.process}
-                    if:false={imported}
-                    onclick={addUsers}
-                ></lightning-button>
+                <lightning-button label={labels.process} if:false={imported} onclick={addUsers}></lightning-button>
                 <!-- IMPORT BUTTON -->
                 <lightning-button
                     variant="brand"

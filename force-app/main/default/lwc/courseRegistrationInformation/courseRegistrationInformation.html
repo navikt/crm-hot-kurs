@@ -1,25 +1,14 @@
 <template>
     <!--<span class="metainfo"> -->
     <div class="panel metainfo__panel">
-        <lightning-record-view-form
-            record-id={courseId}
-            object-api-name="Course__c"
-        >
+        <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
             <div class="metainfo__egenskap">
-                <img
-                    class="metainfo__ikon"
-                    src={calendaricon}
-                    alt="kalender-ikon"
-                />
-                <p class="typo-element metainfo__infoTekst">
-                    Når: {courseStart}
-                </p>
+                <img class="metainfo__ikon" src={calendaricon} alt="kalender-ikon" />
+                <p class="typo-element metainfo__infoTekst">Når: {courseStart}</p>
             </div>
             <div class="metainfo__egenskap">
                 <img class="metainfo__ikon" src={flagicon} alt="flagg-ikon" />
-                <p class="typo-element metainfo__infoTekst">
-                    Påmeldingsfrist: {registrationDeadline}
-                </p>
+                <p class="typo-element metainfo__infoTekst">Påmeldingsfrist: {registrationDeadline}</p>
             </div>
 
             <div class="metainfo__egenskap">
@@ -28,9 +17,7 @@
             </div>
             <div class="metainfo__egenskap">
                 <img class="metainfo__ikon" src={staricon} alt="stjerne-ikon" />
-                <p class="typo-element metainfo__infoTekst">
-                    Type kurs: {type}
-                </p>
+                <p class="typo-element metainfo__infoTekst">Type kurs: {type}</p>
             </div>
         </lightning-record-view-form>
     </div>

@@ -47,10 +47,7 @@ private without sharing class EmailConfirmationModalControllerTest {
         List<Contact> contacts = [SELECT Id FROM Contact];
         System.assertEquals(0, contacts.size(), 'no contacts before test');
 
-        List<EmailMessage> emails = [
-            SELECT HtmlBody, ToAddress
-            FROM EmailMessage
-        ];
+        List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
         System.assertEquals(0, emails.size(), 'No emails sent before');
 
         Test.StartTest();
@@ -69,11 +66,7 @@ private without sharing class EmailConfirmationModalControllerTest {
         System.assertEquals(3, contacts.size(), 'three contacts after test');
 
         emails = [SELECT Id FROM EmailMessage];
-        System.assertEquals(
-            3,
-            emails.size(),
-            'three emails sent, three EmailMessages created'
-        );
+        System.assertEquals(3, emails.size(), 'three emails sent, three EmailMessages created');
     }
 
     @isTest
@@ -97,10 +90,7 @@ private without sharing class EmailConfirmationModalControllerTest {
         List<Contact> contacts = [SELECT Id FROM Contact];
         System.assertEquals(0, contacts.size(), 'no contacts before test');
 
-        List<EmailMessage> emails = [
-            SELECT HtmlBody, ToAddress
-            FROM EmailMessage
-        ];
+        List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
         System.assertEquals(0, emails.size(), 'No emails sent before');
 
         EmailConfirmationModalController.sendEmail(
@@ -126,11 +116,7 @@ private without sharing class EmailConfirmationModalControllerTest {
         System.assertEquals(3, contacts.size(), 'three contacts after test');
 
         emails = [SELECT Id FROM EmailMessage];
-        System.assertEquals(
-            6,
-            emails.size(),
-            'six emails sent, six EmailMessages created'
-        );
+        System.assertEquals(6, emails.size(), 'six emails sent, six EmailMessages created');
     }
 
     @isTest
@@ -149,33 +135,20 @@ private without sharing class EmailConfirmationModalControllerTest {
         insert course;
 
         Test.StartTest();
-        String actual = EmailConfirmationModalController.getEmailPreview(
-            course.Id,
-            'MY_UNIQUE_TEMPLATE'
-        );
+        String actual = EmailConfirmationModalController.getEmailPreview(course.Id, 'MY_UNIQUE_TEMPLATE');
         Test.StopTest();
 
         String expected = 'Hei {{{Recipient.Name}}}! Velkommen til mitt kurs.';
-        System.assertEquals(
-            expected,
-            actual.stripHtmlTags(),
-            'should have merged fields and given email template'
-        );
+        System.assertEquals(expected, actual.stripHtmlTags(), 'should have merged fields and given email template');
     }
 
     @isTest
     private static void testGetEmailSubject() {
         Test.StartTest();
-        String actual = EmailConfirmationModalController.getEmailSubject(
-            'MY_UNIQUE_TEMPLATE'
-        );
+        String actual = EmailConfirmationModalController.getEmailSubject('MY_UNIQUE_TEMPLATE');
         Test.StopTest();
 
         String expected = 'Invitasjon til kurs';
-        System.assertEquals(
-            expected,
-            actual,
-            'should have fetched correct subject'
-        );
+        System.assertEquals(expected, actual, 'should have fetched correct subject');
     }
 }

@@ -1,7 +1,5 @@
 public without sharing class EmailConfirmationModalHelper {
-    public static List<Contact> fetchOrCreateContacts(
-        List<EmailConfirmationModalModel> recipients
-    ) {
+    public static List<Contact> fetchOrCreateContacts(List<EmailConfirmationModalModel> recipients) {
         List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>();
 
         for (EmailConfirmationModalModel recipient : recipients) {
@@ -20,19 +18,12 @@ public without sharing class EmailConfirmationModalHelper {
             wrapperList.add(wrapper);
         }
 
-        Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact(
-            wrapperList,
-            new Map<String, Account>()
-        );
+        Map<String, Contact> contacts = SharedFunctions.fetchOrCreateContact(wrapperList, new Map<String, Account>());
 
         return contacts.values();
     }
 
-    public static void sendEmailToCourseRecipients(
-        Id recordId,
-        List<Contact> contacts,
-        Id templateId
-    ) {
+    public static void sendEmailToCourseRecipients(Id recordId, List<Contact> contacts, Id templateId) {
         List<EmailQueue__c> requests = new List<EmailQueue__c>();
         for (Contact con : contacts) {
             EmailQueue__c request = new EmailQueue__c();

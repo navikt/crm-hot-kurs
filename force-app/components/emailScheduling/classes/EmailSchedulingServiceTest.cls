@@ -48,20 +48,11 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_schedule() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.MANUAL
-            },
-            false
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.MANUAL }, false);
 
         Test.StartTest();
         String CRON_EXP = '0 0 0 3 9 ? 2022';
-        System.schedule(
-            'EmailSchedulingServiceTest',
-            CRON_EXP,
-            new EmailSchedulingService()
-        );
+        System.schedule('EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService());
         Test.StopTest();
 
         // ! no tests, as scheduled jobs cannot run future jobs in tests
@@ -69,12 +60,7 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_beforeSuccess() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.BEFORE
-            },
-            true
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.BEFORE }, true);
         System.assertEquals(
             1,
             [SELECT Id FROM Course__c].size(),
@@ -95,11 +81,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(
-            2,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '2 emails sent, 2 EmailQueue__cs created'
-        );
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -109,12 +91,7 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_reminderSuccess() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.REMINDER
-            },
-            true
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.REMINDER }, true);
         System.assertEquals(
             1,
             [SELECT Id FROM Course__c].size(),
@@ -135,11 +112,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailReminderSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(
-            2,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '2 emails sent, 2 EmailQueue__cs created'
-        );
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -149,12 +122,7 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_afterSuccess() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.AFTER
-            },
-            true
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.AFTER }, true);
         System.assertEquals(
             1,
             [SELECT Id FROM Course__c].size(),
@@ -175,11 +143,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailAfterSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(
-            2,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '2 emails sent, 2 EmailQueue__cs created'
-        );
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -189,12 +153,7 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_manualSuccess() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.MANUAL
-            },
-            true
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.MANUAL }, true);
         System.assertEquals(
             1,
             [SELECT Id FROM Course__c].size(),
@@ -215,11 +174,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailManualSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(
-            2,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '2 emails sent, 2 EmailQueue__cs created'
-        );
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -229,12 +184,7 @@ public without sharing class EmailSchedulingServiceTest {
 
     @isTest
     private static void testExecute_noParticipants() {
-        createData(
-            new List<EmailSchedulingHelper.EmailTypes>{
-                EmailSchedulingHelper.EmailTypes.MANUAL
-            },
-            false
-        );
+        createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.MANUAL }, false);
         System.assertEquals(
             1,
             [SELECT Id FROM Course__c].size(),
@@ -255,11 +205,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailManualSent__c = TRUE].size(),
             'one course should be marked as sent'
         );
-        System.assertEquals(
-            0,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '0 emails sent as no participants'
-        );
+        System.assertEquals(0, [SELECT Id FROM EmailQueue__c].size(), '0 emails sent as no participants');
         System.assertEquals(
             1,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -268,20 +214,9 @@ public without sharing class EmailSchedulingServiceTest {
     }
 
     // HELPER FUNCTIONS
-    public static void createData(
-        List<EmailSchedulingHelper.EmailTypes> types,
-        Boolean createParticipants
-    ) {
-        Contact c1 = new Contact(
-            LastName = 'test',
-            email = 'ola.nordmann@test.com',
-            TAG_Informed__c = true
-        );
-        Contact c2 = new Contact(
-            LastName = 'test',
-            email = 'kari.nordmann@test.com',
-            TAG_Informed__c = true
-        );
+    public static void createData(List<EmailSchedulingHelper.EmailTypes> types, Boolean createParticipants) {
+        Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
+        Contact c2 = new Contact(LastName = 'test', email = 'kari.nordmann@test.com', TAG_Informed__c = true);
         insert new List<Contact>{ c1, c2 };
 
         for (EmailSchedulingHelper.EmailTypes type : types) {
@@ -299,10 +234,7 @@ public without sharing class EmailSchedulingServiceTest {
                     CourseParticipant__c = c2.Id,
                     Status__c = 'Påmeldt'
                 );
-                insert new List<CourseRegistration__c>{
-                    courseParticipant1,
-                    courseParticipant2
-                };
+                insert new List<CourseRegistration__c>{ courseParticipant1, courseParticipant2 };
             }
         }
     }

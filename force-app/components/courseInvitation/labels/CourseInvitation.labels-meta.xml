@@ -39,16 +39,14 @@
         <fullName>CourseInvitation_pressEnterToAdd</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[CourseInvitation] Press enter to add</shortDescription>
+        <shortDescription>[CourseInvitation] Press enter to add</shortDescription>
         <value>Press enter to add</value>
     </labels>
     <labels>
         <fullName>CourseInvitation_goToConfirmation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[CourseInvitation] Go to confirmation</shortDescription>
+        <shortDescription>[CourseInvitation] Go to confirmation</shortDescription>
         <value>Confirm</value>
     </labels>
     <labels>
@@ -90,16 +88,14 @@
         <fullName>CourseInvitation_success</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[CourseInvitation] Successfully sent invitations</shortDescription>
+        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Successfully sent invitations</value>
     </labels>
     <labels>
         <fullName>CourseInvitation_error</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription
-        >[CourseInvitation] Successfully sent invitations</shortDescription>
+        <shortDescription>[CourseInvitation] Successfully sent invitations</shortDescription>
         <value>Error</value>
     </labels>
     <labels>
