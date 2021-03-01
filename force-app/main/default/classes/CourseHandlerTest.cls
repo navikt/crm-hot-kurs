@@ -1,7 +1,7 @@
 @isTest
 private with sharing class CourseHandlerTest {
-    @isTest
-    private static void CourseHandlerTest() {
+    @TestSetup
+    static void setup() {
         List<Course__c> courses = new List<Course__c>();
 
         for (Integer i = 0; i < 2; i++) {
@@ -23,6 +23,11 @@ private with sharing class CourseHandlerTest {
             courses.add(course);
         }
         insert courses;
+    }
+
+    @isTest
+    private static void CourseHandlerTest() {
+        List<Course__c> courses = [SELECT Id FROM Course__c];
         System.assertEquals(2, courses.size(), '2 courses inserted');
 
         RestRequest req = new RestRequest();

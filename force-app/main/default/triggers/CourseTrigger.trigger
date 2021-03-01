@@ -7,5 +7,6 @@ trigger CourseTrigger on Course__c(
     after delete,
     after undelete
 ) {
+    System.debug('CourseTrigger: ' + Trigger.operationType);
     MyTriggers.run();
 }
