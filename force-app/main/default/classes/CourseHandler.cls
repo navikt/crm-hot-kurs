@@ -29,16 +29,24 @@ global with sharing class CourseHandler {
             wrapper.Title = course.Name;
             wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
+            TimeZone tz = UserInfo.getTimeZone();
+            Datetime nowDate = Datetime.now();
             Datetime fromTime = course.RegistrationFromDateTime__c;
-            fromTime = fromTime.addHours(1);
+            Integer summerOffsetTime = tz.getOffset(fromTime) - tz.getOffset(nowDate);
+            Integer os = tz.getOffset(fromTime);
+            fromTime = fromTime.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
             wrapper.RegistrationFromDateTime = fromTime;
 
             Datetime toTime = course.RegistrationToDateTime__c;
-            toTime = toTime.addHours(1);
+            summerOffsetTime = tz.getOffset(toTime) - tz.getOffset(nowDate);
+            os = tz.getOffset(toTime);
+            toTime = toTime.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
             wrapper.RegistrationToDateTime = toTime;
 
             Datetime deadline = course.RegistrationDeadline__c;
-            deadline = deadline.addHours(1);
+            summerOffsetTime = tz.getOffset(deadline) - tz.getOffset(nowDate);
+            os = tz.getOffset(deadline);
+            deadline = deadline.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
             wrapper.RegistrationDeadline = deadline;
 
             wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
