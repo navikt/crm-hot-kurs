@@ -51,19 +51,4 @@ private with sharing class CourseHandlerTest {
         System.assert(result.contains('Testkurs'));
         System.assert(result.contains('1'));
     }
-
-    @isTest
-    private static void changeCanceledCourseTitle() {
-        Course__c course = [SELECT Id, Name, Cancel__c FROM Course__c LIMIT 1];
-        course.Cancel__c = true;
-        update course;
-
-        course = [
-            SELECT Id, Name, Cancel__c
-            FROM Course__c
-            WHERE Id = :course.Id
-        ];
-        System.assertEquals(true, course.Cancel__c);
-        System.assertEquals(true, course.Name.contains('AVLYST'));
-    }
 }

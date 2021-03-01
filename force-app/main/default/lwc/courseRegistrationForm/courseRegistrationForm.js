@@ -22,6 +22,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     @track dueDate;
     @track title;
+    @track canceled = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
