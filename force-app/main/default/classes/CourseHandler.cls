@@ -29,26 +29,35 @@ global with sharing class CourseHandler {
             wrapper.Title = course.Name;
             wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
-            TimeZone tz = UserInfo.getTimeZone();
-            Datetime nowDate = Datetime.now();
+            //temp fix for timezone problems
+            Datetime summer = DateTime.newInstance(2021, 03, 28, 0, 0, 0);
+            Datetime winter = DateTime.newInstance(2021, 10, 31, 0, 0, 0);
+
             Datetime fromTime = course.RegistrationFromDateTime__c;
-            Integer summerOffsetTime = tz.getOffset(fromTime) - tz.getOffset(nowDate);
-            Integer os = tz.getOffset(fromTime);
-            fromTime = fromTime.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
+            if(fromTime > summer && fromTime < winter){
+                fromTime = fromTime.addHours( 2 );
+            } else {
+                fromTime = fromTime.addHours( 1 );
+            }
+
             wrapper.RegistrationFromDateTime = fromTime;
 
-            Datetime toTime = course.RegistrationToDateTime__c;
-            summerOffsetTime = tz.getOffset(toTime) - tz.getOffset(nowDate);
-            os = tz.getOffset(toTime);
-            toTime = toTime.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
-            wrapper.RegistrationToDateTime = toTime;
+			Datetime toTime = course.RegistrationToDateTime__c;
+            if(toTime > summer && toTime < winter){
+                toTime = toTime.addHours( 2 );
+            } else {
+                toTime = toTime.addHours( 1 );
+            }
+			wrapper.RegistrationToDateTime = toTime;
 
-            Datetime deadline = course.RegistrationDeadline__c;
-            summerOffsetTime = tz.getOffset(deadline) - tz.getOffset(nowDate);
-            os = tz.getOffset(deadline);
-            deadline = deadline.addHours(1 - os / 3600000 + summerOffsetTime / 3600000);
-            wrapper.RegistrationDeadline = deadline;
-
+			Datetime deadline = course.RegistrationDeadline__c;
+            if(deadline > summer && deadline < winter){
+                deadline = deadline.addHours( 2 );
+            } else {
+                deadline = deadline.addHours( 1 );
+            }
+			wrapper.RegistrationDeadline = deadline;
+            // --------------------------------------------- //
             wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
             wrapper.FrontPageDescription = course.DescriptionFormatted__c;
             wrapper.Description = course.DescriptionShort2__c;
