@@ -26,7 +26,7 @@ private with sharing class Course_CancelTest {
     }
 
     @isTest
-    private static void changeCanceledCourseTitle() {
+    private static void changeCanceledCourseTitleTest_onBeforeUpdate() {
         Course__c course = [SELECT Id, Name, Cancel__c FROM Course__c LIMIT 1];
         course.Cancel__c = true;
         update course;
@@ -34,5 +34,23 @@ private with sharing class Course_CancelTest {
         course = [SELECT Id, Name, Cancel__c FROM Course__c WHERE Id = :course.Id];
         System.assertEquals(true, course.Cancel__c);
         System.assertEquals(true, course.Name.contains('AVLYST'));
+    }
+
+    @isTest
+    private static void previouslyCanceledCoursesTest_onBeforeUpdate() {
+        Course__c course = [SELECT Id, Name, Cancel__c FROM Course__c LIMIT 1];
+        course.Cancel__c = true;
+        update course;
+
+        course = [SELECT Id, Name, Cancel__c FROM Course__c WHERE Id = :course.Id];
+        System.assertEquals(true, course.Cancel__c);
+        System.assertEquals(true, course.Name.contains('AVLYST'));
+
+        course.Cancel__c = false;
+        update course;
+
+        course = [SELECT Id, Name, Cancel__c FROM Course__c WHERE Id = :course.Id];
+        System.assertEquals(false, course.Cancel__c);
+        System.assertEquals(false, course.Name.contains('AVLYST'));
     }
 }
