@@ -13,7 +13,9 @@ global with sharing class Course_Cancel extends MyTriggers {
 
     public static void changeCanceledCourseTitle(List<Course__c> canceledCourses) {
         for (Course__c course : canceledCourses) {
-            course.Name = 'AVLYST ' + course.Name;
+            if (!course.Name.contains('AVLYST')) {
+                course.Name = 'AVLYST ' + course.Name;
+            }
         }
     }
 }
