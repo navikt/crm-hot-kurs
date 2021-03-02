@@ -15,5 +15,6 @@ public class CourseApiModel {
         public String Fylke;
         public String Type;
         public String Tema;
+        public String Underkategori;
     }
 }
