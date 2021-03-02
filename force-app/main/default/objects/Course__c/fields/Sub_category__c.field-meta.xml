@@ -28,24 +28,18 @@
             </value>
         </valueSetDefinition>
         <valueSettings>
-            <controllingFieldValue>Arbeidssøkeraktivitet</controllingFieldValue>
             <controllingFieldValue>Inkluderende arbeidsliv (IA)</controllingFieldValue>
             <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
-            <controllingFieldValue>Annet</controllingFieldValue>
             <valueName>Bevegelse</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Arbeidssøkeraktivitet</controllingFieldValue>
             <controllingFieldValue>Inkluderende arbeidsliv (IA)</controllingFieldValue>
             <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
-            <controllingFieldValue>Annet</controllingFieldValue>
             <valueName>Hørsel</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Arbeidssøkeraktivitet</controllingFieldValue>
             <controllingFieldValue>Inkluderende arbeidsliv (IA)</controllingFieldValue>
             <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
-            <controllingFieldValue>Annet</controllingFieldValue>
             <valueName>Syn</valueName>
         </valueSettings>
     </valueSet>
