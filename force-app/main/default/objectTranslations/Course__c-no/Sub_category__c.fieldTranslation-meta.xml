@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Underkategori</label>
+    <name>Sub_category__c</name>
+    <picklistValues>
+        <masterLabel>Bevegelse</masterLabel>
+        <translation><!-- Bevegelse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hørsel</masterLabel>
+        <translation><!-- Hørsel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Syn</masterLabel>
+        <translation><!-- Syn --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

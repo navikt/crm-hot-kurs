@@ -43,6 +43,11 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.Sub_category__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldItem>Record.Type__c</fieldItem>
             </fieldInstance>
         </itemInstances>
