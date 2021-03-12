@@ -54,7 +54,8 @@ private without sharing class EmailSchedulingServiceTest_noTemplates {
             [SELECT Id FROM CourseRegistration__c].size(),
             'four courses with two course participants each'
         );
-        System.assertEquals(0, [SELECT Id FROM EmailQueue__c].size(), 'no emails sent yet');
+
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
 
         Test.StartTest();
         EmailSchedulingService.run();
@@ -65,7 +66,7 @@ private without sharing class EmailSchedulingServiceTest_noTemplates {
             [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = TRUE OR EmailManualSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             1,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
