@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_category__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Theme__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Bevegelse</fullName>
+                <default>false</default>
+                <label>Bevegelse</label>
+            </value>
+            <value>
+                <fullName>Bolig</fullName>
+                <default>false</default>
+                <label>Bolig</label>
+            </value>
+            <value>
+                <fullName>Hørsel</fullName>
+                <default>false</default>
+                <label>Hørsel</label>
+            </value>
+            <value>
+                <fullName>Kognisjon</fullName>
+                <default>false</default>
+                <label>Kognisjon</label>
+            </value>
+            <value>
+                <fullName>Kommunikasjon (ASK)</fullName>
+                <default>false</default>
+                <label>Kommunikasjon (ASK)</label>
+            </value>
+            <value>
+                <fullName>Service og reparasjon</fullName>
+                <default>false</default>
+                <label>Service og reparasjon</label>
+            </value>
+            <value>
+                <fullName>Syn</fullName>
+                <default>false</default>
+                <label>Syn</label>
+            </value>
+            <value>
+                <fullName>Tilrettelegging i arbeid</fullName>
+                <default>false</default>
+                <label>Tilrettelegging i arbeid</label>
+            </value>
+            <value>
+                <fullName>Varsling</fullName>
+                <default>false</default>
+                <label>Varsling</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Bevegelse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Bolig</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Hørsel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Kognisjon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Kommunikasjon (ASK)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Service og reparasjon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Syn</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Tilrettelegging i arbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Varsling</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>
