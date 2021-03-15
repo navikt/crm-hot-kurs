@@ -305,13 +305,15 @@ private without sharing class EmailSchedulingHelperTest {
             courseRegistrations
         );
 
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
+
         Test.StartTest();
         EmailSchedulingHelper.queueEmails(recipients);
         Test.StopTest();
 
         System.assertEquals(
             8,
-            [SELECT Id FROM EmailQueue__c].size(),
+            [SELECT Id FROM EmailQueue__c].size() - sizeBefore,
             'should be 8 email queues as 4 courses with 2 participants each'
         );
     }

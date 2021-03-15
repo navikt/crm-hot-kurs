@@ -1,187 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>Send Email</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A2</name>
-        <label>EmailConfirmation</label>
-        <locationX>100</locationX>
-        <locationY>300</locationY>
-        <actionName>Process_SendEmail</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Dev Name of Enhanced Email Template</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>emailTemplateName</name>
-            <value>
-                <stringValue>courseRegistrationConfirmation</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Use do-not-reply@nav.no</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>useDoNotReply</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Recipient Contact Lookup</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue>Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>recipientContact</name>
-            <value>
-                <elementReference>myVariable_current.CourseParticipant__r</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Object Relation ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>relatedToId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <actionCalls>
         <processMetadataValues>
             <name>ActionCallType</name>
@@ -195,14 +13,14 @@
                 <stringValue>Update waitinglist</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_7_A1</name>
+        <name>myRule_8_A1</name>
         <label>Set next in line to påmeldt</label>
-        <locationX>700</locationX>
+        <locationX>800</locationX>
         <locationY>200</locationY>
         <actionName>Update_waitinglist</actionName>
         <actionType>flow</actionType>
         <connector>
-            <targetReference>myDecision8</targetReference>
+            <targetReference>myDecision9</targetReference>
         </connector>
     </actionCalls>
     <apiVersion>49.0</apiVersion>
@@ -218,7 +36,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision3</targetReference>
+            <targetReference>myDecision4</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -244,23 +62,23 @@
                 <numberValue>4.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision11</name>
-        <label>myDecision11</label>
+        <name>myDecision12</name>
+        <label>myDecision12</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_12</name>
+            <name>myRule_13</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_12</leftValueReference>
+                <leftValueReference>formula_myRule_13</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_12_A1</targetReference>
+                <targetReference>myRule_13_A1</targetReference>
             </connector>
             <label>Status is changed from Venteliste</label>
         </rules>
@@ -272,26 +90,26 @@
                 <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision3</name>
-        <label>myDecision3</label>
+        <name>myDecision4</name>
+        <label>myDecision4</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision6</targetReference>
+            <targetReference>myDecision7</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_4</name>
+            <name>myRule_5</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_4</leftValueReference>
+                <leftValueReference>formula_myRule_5</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_4_A1</targetReference>
+                <targetReference>myRule_5_A1</targetReference>
             </connector>
             <label>Status is changed from Påmeldt</label>
         </rules>
@@ -303,26 +121,26 @@
                 <numberValue>2.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision6</name>
-        <label>myDecision6</label>
+        <name>myDecision7</name>
+        <label>myDecision7</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision8</targetReference>
+            <targetReference>myDecision9</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_7</name>
+            <name>myRule_8</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_7</leftValueReference>
+                <leftValueReference>formula_myRule_8</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_7_A1</targetReference>
+                <targetReference>myRule_8_A1</targetReference>
             </connector>
             <label>Status is set to Avmeldt</label>
         </rules>
@@ -334,26 +152,26 @@
                 <numberValue>3.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision8</name>
-        <label>myDecision8</label>
+        <name>myDecision9</name>
+        <label>myDecision9</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision11</targetReference>
+            <targetReference>myDecision12</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_9</name>
+            <name>myRule_10</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_9</leftValueReference>
+                <leftValueReference>formula_myRule_10</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_9_A1</targetReference>
+                <targetReference>myRule_10_A1</targetReference>
             </connector>
             <label>Status is set to Venteliste</label>
         </rules>
@@ -366,7 +184,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_A1_4191693075</name>
+        <name>formula_11_myRule_10_A1_5000101416</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} + 1</expression>
         <scale>18</scale>
@@ -378,7 +196,7 @@
                 <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_13_myRule_12_A1_2734993372</name>
+        <name>formula_14_myRule_13_A1_1126218904</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.Waitinglist__c} - 1</expression>
         <scale>18</scale>
@@ -387,10 +205,21 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>[CourseRegistration__c].CourseParticipant__c</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A2_0214463257</name>
+        <dataType>String</dataType>
+        <expression>{!myVariable_current.CourseParticipant__c}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_1913307923</name>
+        <name>formula_3_myRule_1_A1_3544767796</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
@@ -402,7 +231,7 @@
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_4964432325</name>
+        <name>formula_6_myRule_5_A1_3270865621</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} - 1</expression>
         <scale>18</scale>
@@ -428,27 +257,40 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue
-                >AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&quot;))</stringValue>
+                <stringValue>OR(
+AND(ISNEW(),ISPICKVAL([CourseRegistration__c].Status__c,&quot;Venteliste&quot;) ),
+AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Venteliste&quot;))
+)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_12</name>
+        <name>formula_myRule_10</name>
         <dataType>Boolean</dataType>
-        <expression
-        >AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;))</expression>
+        <expression>OR(
+AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Venteliste&quot;) ),
+AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Venteliste&quot;))
+)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue
-                >AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Påmeldt&quot;))</stringValue>
+                <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&quot;))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_4</name>
+        <name>formula_myRule_13</name>
         <dataType>Boolean</dataType>
-        <expression
-        >AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Påmeldt&quot;))</expression>
+        <expression>AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;))</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Påmeldt&quot;))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Påmeldt&quot;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -462,7 +304,7 @@ NOT(ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&qu
 </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_7</name>
+        <name>formula_myRule_8</name>
         <dataType>Boolean</dataType>
         <expression>AND(
 ISCHANGED( {!myVariable_current.Status__c}),
@@ -470,24 +312,7 @@ ISPICKVAL({!myVariable_current.Status__c} ,&quot;Avmeldt&quot;),
 NOT(ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;)),
 {!myVariable_current.Course__r.Waitinglist__c}&lt;&gt; 0 )</expression>
     </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>OR(
-AND(ISNEW(),ISPICKVAL([CourseRegistration__c].Status__c,&quot;Venteliste&quot;) ),
-AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Venteliste&quot;))
-)</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_9</name>
-        <dataType>Boolean</dataType>
-        <expression>OR(
-AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Venteliste&quot;) ),
-AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Venteliste&quot;))
-)</expression>
-    </formulas>
-    <interviewLabel>CourseRegistration-2_InterviewLabel</interviewLabel>
+    <interviewLabel>CourseRegistration-3_InterviewLabel</interviewLabel>
     <label>Course Registration + Email Ver4</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -514,6 +339,187 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_1_A2</name>
+        <label>Create EmailQueue (Send Email)</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Save As Activity</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>SaveAsActivity__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Target Object ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>TargetObjectId__c</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A2_0214463257</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Template Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>TemplateName__c</field>
+            <value>
+                <stringValue>courseRegistrationConfirmation</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>What ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmailQueue__c</object>
+    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
@@ -539,9 +545,93 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_12_A1</name>
+        <name>myRule_10_A1</name>
+        <label>+1 waitinglist</label>
+        <locationX>1000</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision12</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Course__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Waitinglist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Waitinglist__c</field>
+            <value>
+                <elementReference>formula_11_myRule_10_A1_5000101416</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Course__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[CourseRegistration__c].Course</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_13_A1</name>
         <label>-1 waitinglist</label>
-        <locationX>1200</locationX>
+        <locationX>1300</locationX>
         <locationY>200</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -579,7 +669,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -590,7 +680,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_13_myRule_12_A1_2734993372</elementReference>
+                <elementReference>formula_14_myRule_13_A1_1126218904</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -663,7 +753,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -674,7 +764,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_1913307923</elementReference>
+                <elementReference>formula_3_myRule_1_A1_3544767796</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -704,12 +794,12 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_4_A1</name>
+        <name>myRule_5_A1</name>
         <label>-1 registered</label>
-        <locationX>400</locationX>
+        <locationX>500</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision6</targetReference>
+            <targetReference>myDecision7</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -747,7 +837,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -758,91 +848,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_4964432325</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Course__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[CourseRegistration__c].Course</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_9_A1</name>
-        <label>+1 waitinglist</label>
-        <locationX>900</locationX>
-        <locationY>200</locationY>
-        <connector>
-            <targetReference>myDecision11</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Course__c</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Waitinglist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Formula</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Waitinglist__c</field>
-            <value>
-                <elementReference>formula_10_myRule_9_A1_4191693075</elementReference>
+                <elementReference>formula_6_myRule_5_A1_3270865621</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>

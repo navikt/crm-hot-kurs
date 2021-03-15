@@ -72,6 +72,8 @@ public without sharing class EmailSchedulingServiceTest {
             'four courses with two course participants each'
         );
 
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
+
         Test.StartTest();
         EmailSchedulingService.run();
         Test.StopTest();
@@ -81,7 +83,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -103,6 +105,8 @@ public without sharing class EmailSchedulingServiceTest {
             'four courses with two course participants each'
         );
 
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
+
         Test.StartTest();
         EmailSchedulingService.run();
         Test.StopTest();
@@ -112,7 +116,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailReminderSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -134,6 +138,8 @@ public without sharing class EmailSchedulingServiceTest {
             'four courses with two course participants each'
         );
 
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
+
         Test.StartTest();
         EmailSchedulingService.run();
         Test.StopTest();
@@ -143,7 +149,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailAfterSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
@@ -165,6 +171,8 @@ public without sharing class EmailSchedulingServiceTest {
             'four courses with two course participants each'
         );
 
+        Integer sizeBefore = [SELECT Id FROM EmailQueue__c].size();
+
         Test.StartTest();
         EmailSchedulingService.run();
         Test.StopTest();
@@ -174,7 +182,7 @@ public without sharing class EmailSchedulingServiceTest {
             [SELECT Id FROM Course__c WHERE EmailManualSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size(), '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
         System.assertEquals(
             0,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
