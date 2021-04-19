@@ -32,7 +32,7 @@ public with sharing class EmailConfirmationModalController {
         if (templates.size() != 1) {
             throw new AuraException(Label.EmailConfirmation_missingTemplate);
         }
-        String sObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(recordId);
+        String sObjectType = getSOjectTypeFromRecordId(recordId);
         List<String> sObjectFields = EmailConfirmationModalHelperPreview.getSObjectFields(
             sObjectType,
             templates[0].HtmlValue
@@ -45,6 +45,12 @@ public with sharing class EmailConfirmationModalController {
         String mergedHtml = EmailConfirmationModalHelperPreview.mergeHtml(templates[0].HtmlValue, replacedMergeFields);
 
         return mergedHtml;
+    }
+
+    public static String getSOjectTypeFromRecordId(String recordId) {
+        Id i = (Id) recordId;
+
+        return String.valueOf(i.getSobjectType());
     }
 
     @AuraEnabled(cacheable=true)
