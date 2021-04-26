@@ -66,7 +66,11 @@ private without sharing class EmailSchedulingServiceTest_noTemplates {
             [SELECT Id FROM Course__c WHERE EmailBeforeSent__c = TRUE OR EmailManualSent__c = TRUE].size(),
             'one courses should have marked as sent'
         );
-        System.assertEquals(2, [SELECT Id FROM EmailQueue__c].size() - sizeBefore, '2 emails sent, 2 EmailQueue__cs created');
+        System.assertEquals(
+            2,
+            [SELECT Id FROM EmailQueue__c].size() - sizeBefore,
+            '2 emails sent, 2 EmailQueue__cs created'
+        );
         System.assertEquals(
             1,
             EmailSchedulingHelper.getCoursesWithScheduledEmails().size(),
