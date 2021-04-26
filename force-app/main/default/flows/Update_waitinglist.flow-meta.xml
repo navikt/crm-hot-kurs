@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>Update_status_to_p_meldt_0</name>
         <label>Update status to påmeldt</label>
@@ -84,6 +85,7 @@
         <connector>
             <targetReference>Check_record</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>Status__c</field>
             <operator>EqualTo</operator>
@@ -106,6 +108,7 @@
         <connector>
             <targetReference>Update_waitinglist</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -141,5 +144,5 @@
             <targetReference>Get_Course_Registrations</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
 </Flow>
