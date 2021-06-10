@@ -3,7 +3,6 @@ public with sharing class CourseRegistrationHelperTest {
     @TestSetup
     static void makeData() {
         TestDataFactory.insertEncryptionKey();
-
     }
     @isTest
     private static void testCourseRegistrationHelper() {
@@ -33,24 +32,14 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToReduceAttending(courseIds);
         Test.stopTest();
 
-        Decimal ParticipantCount = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
+        Decimal ParticipantCount = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
 
         System.assertEquals(0, ParticipantCount, 'Should be 0 participants');
 
         CourseRegistrationHelper.countCourseIdsToIncreaseAttending(courseIds);
 
-        Decimal ParticipantCount1 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
+        Decimal ParticipantCount1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
 
         System.assertEquals(2, ParticipantCount1, 'Should be 2 participants');
@@ -74,12 +63,7 @@ public with sharing class CourseRegistrationHelperTest {
 
         CourseRegistrationHelper.updateCoursesParticipants(testParticipant);
 
-        Decimal ParticipantCount2 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
+        Decimal ParticipantCount2 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
 
         System.assertEquals(7, ParticipantCount2, 'Should be 7 participants');
@@ -93,12 +77,10 @@ public with sharing class CourseRegistrationHelperTest {
         .Waitinglist__c;
 
         System.assertEquals(0, WaitinglistCount2, 'Should be 0 on waiting list');
-
     }
 
     @isTest
     private static void testWaitingListFunction() {
-
         Course__c course2 = new Course__c(
             Name = 'Testkurs2',
             MaxNumberOfParticipants__c = 10,
@@ -118,20 +100,10 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistration__c cr4 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', courseId2);
         insert cr4;
 
-        Decimal ParticipantCount = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
+        Decimal ParticipantCount = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
         .NumberOfParticipants__c;
 
-        Decimal WaitingCount = [
-            SELECT Id, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
+        Decimal WaitingCount = [SELECT Id, WaitingList__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
         .WaitingList__c;
 
         System.assertEquals(2, ParticipantCount, 'Should be 2 participants');
@@ -143,24 +115,11 @@ public with sharing class CourseRegistrationHelperTest {
 
         CourseRegistrationHelper.countCourseIdsToCheckWaiting(courseIdsUpdated);
 
-        String cr3Status = [
-            SELECT Id, Status__c
-            FROM CourseRegistration__c
-            WHERE Id = :cr3.Id
-            LIMIT 1
-        ]
-        .Status__c;
+        String cr3Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr3.Id LIMIT 1].Status__c;
 
-        String cr4Status = [
-            SELECT Id, Status__c
-            FROM CourseRegistration__c
-            WHERE Id = :cr4.Id
-            LIMIT 1
-        ]
-        .Status__c;
+        String cr4Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
 
         System.assertEquals('Påmeldt', cr3Status, 'cr3 should have status Påmeldt');
         System.assertEquals('Påmeldt', cr4Status, 'cr4 should have status Påmeldt');
-
     }
 }

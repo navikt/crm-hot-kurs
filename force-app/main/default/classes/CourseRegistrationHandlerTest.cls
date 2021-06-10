@@ -6,21 +6,11 @@ public with sharing class CourseRegistrationHandlerTest {
     }
 
     @isTest
-    private static void testDeleteUndeleteInsert() {
-        Course__c course = new Course__c(
-            Name = 'Testkurs',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs',
-            Active__c = true
-        );
+    private static void testInsertDeleteUndelete() {
+        Course__c course = getCourse('Testkurs');
         insert course;
 
-        Course__c course2 = new Course__c(
-            Name = 'Testkurs2',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs2',
-            Active__c = true
-        );
+        Course__c course2 = getCourse('Testkurs2');
         insert course2;
 
         String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
@@ -109,21 +99,10 @@ public with sharing class CourseRegistrationHandlerTest {
     }
 
     @isTest
-    private static void testInsertUpdate() {
-        Course__c course = new Course__c(
-            Name = 'Testkurs',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs',
-            Active__c = true
-        );
+    private static void testUpdateSingleFromAttending() {
+        Course__c course = getCourse('Testkurs');
         insert course;
-
-        Course__c course2 = new Course__c(
-            Name = 'Testkurs2',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs2',
-            Active__c = true
-        );
+        Course__c course2 = getCourse('Testkurs2');
         insert course2;
 
         String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
@@ -134,17 +113,11 @@ public with sharing class CourseRegistrationHandlerTest {
         System.assertEquals(null, course2.NumberOfParticipants__c, 'Should be 0 participants');
         System.assertEquals(null, course2.Waitinglist__c, 'Should be 0 on waitinglist');
 
-        CourseRegistration__c cr1 = getCourseRegistration('Invitert', courseId);
+        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', courseId);
         insert cr1;
 
-        CourseRegistration__c cr2 = getCourseRegistration('Avmeldt', courseId);
+        CourseRegistration__c cr2 = getCourseRegistration('Påmeldt', courseId2);
         insert cr2;
-
-        CourseRegistration__c cr3 = getCourseRegistration('Venteliste', courseId2);
-        insert cr3;
-
-        CourseRegistration__c cr4 = getCourseRegistration('Påmeldt', courseId2);
-        insert cr4;
 
         Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
@@ -160,203 +133,19 @@ public with sharing class CourseRegistrationHandlerTest {
         Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
         .Waitinglist__c;
 
-        System.assertEquals(0, ParticipantCountC1, 'Should be 0 participants');
+        System.assertEquals(1, ParticipantCountC1, 'Should be 1 participants');
         System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
         System.assertEquals(1, ParticipantCountC2, 'Should be 1 participant');
-        System.assertEquals(1, WaitinglistCountC2, 'Should be 1 on waitinglist');
+        System.assertEquals(0, WaitinglistCountC2, 'Should be 0 on waitinglist');
 
         Test.StartTest();
         List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
-        for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c]) {
-            cr.Status__c = 'Påmeldt';
-            crListUpd.add(cr);
-        }
+        cr1.Status__c = 'Avmeldt';
+        crListUpd.add(cr1);
+        cr2.Status__c = 'Venteliste';
+        crListUpd.add(cr2);
+
         update crListUpd;
-        Test.StopTest();
-
-        Decimal ParticipantCountC1Upd1 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-        Decimal ParticipantCountC2Upd1 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC2Upd1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .Waitinglist__c;
-        String cr3IdStatusUpd1 = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr3.Id LIMIT 1].Status__c;
-
-        System.assertEquals(2, ParticipantCountC1Upd1, 'Should be 2 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd1, 'Should be 0 on waitinglist');
-        System.assertEquals(2, ParticipantCountC2Upd1, 'Should be 2 participants');
-        System.assertEquals(0, WaitinglistCountC2Upd1, 'Should be 0 on waitinglist');
-        System.assertEquals('Påmeldt', cr3IdStatusUpd1, 'cr3 should have Påmeldt');
-
-        cr1.Status__c = 'Avmeldt';
-        update cr1;
-        cr2.Status__c = 'Avmeldt';
-        update cr2;
-        cr3.Status__c = 'Venteliste';
-        update cr3;
-
-        Decimal ParticipantCountC1Upd2 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-        Decimal ParticipantCountC2Upd2 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC2Upd2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .Waitinglist__c;
-
-        System.assertEquals(0, ParticipantCountC1Upd2, 'Should be 0 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd2, 'Should be 0 on waitinglist');
-        System.assertEquals(1, ParticipantCountC2Upd2, 'Should be 1 participants');
-        System.assertEquals(1, WaitinglistCountC2Upd2, 'Should be 1 on waitinglist');
-
-        cr1.Status__c = 'Venteliste';
-        update cr1;
-        cr2.Status__c = 'Påmeldt';
-        update cr2;
-
-        Decimal ParticipantCountC1Upd3 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd3 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-
-        System.assertEquals(1, ParticipantCountC1Upd3, 'Should be 1 participants');
-        System.assertEquals(1, WaitinglistCountC1Upd3, 'Should be 1 on waitinglist');
-        System.assertEquals(1, ParticipantCountC2Upd2, 'Should be 1 participants');
-        System.assertEquals(1, WaitinglistCountC2Upd2, 'Should be 1 on waitinglist');
-
-        cr1.Status__c = 'Påmeldt';
-        update cr1;
-        cr3.Status__c = 'Avmeldt';
-        update cr3;
-        
-        Decimal ParticipantCountC1Upd4 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd4 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-        Decimal ParticipantCountC2Upd4 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC2Upd4 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .Waitinglist__c;
-
-        System.assertEquals(2, ParticipantCountC1Upd4, 'Should be 2 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd4, 'Should be 0 on waitinglist');
-        System.assertEquals(1, ParticipantCountC2Upd4, 'Should be 1 participants');
-        System.assertEquals(0, WaitinglistCountC2Upd4, 'Should be 0 on waitinglist');
-
-        List<CourseRegistration__c> crListUpd5 = new List<CourseRegistration__c>();
-        cr1.Status__c = 'Avmeldt';
-        crListUpd5.add(cr1);
-        cr2.Status__c = 'Avmeldt';
-        crListUpd5.add(cr2);
-        update crListUpd5;
-
-        Decimal ParticipantCountC1Upd5 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd5 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-
-        System.assertEquals(0, ParticipantCountC1Upd5, 'Should be 0 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd4, 'Should be 0 on waitinglist');
-    }
-    private static void testDoubleUpdate() {
-        Course__c course = new Course__c(
-            Name = 'Testkurs',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs',
-            Active__c = true
-        );
-        insert course;
-
-        Course__c course2 = new Course__c(
-            Name = 'Testkurs2',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs2',
-            Active__c = true
-        );
-        insert course2;
-
-        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
-        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
-
-        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', courseId);
-        insert cr1;
-
-        CourseRegistration__c cr2 = getCourseRegistration('Påmeldt', courseId);
-        insert cr2;
-
-        CourseRegistration__c cr3 = getCourseRegistration('Påmeldt', courseId2);
-        insert cr3;
-
-        CourseRegistration__c cr4 = getCourseRegistration('Påmeldt', courseId2);
-        insert cr4;
-
-        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .NumberOfParticipants__c;
-        Decimal ParticipantCountC2 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ]
-        .NumberOfParticipants__c;
-
-        System.assertEquals(2, ParticipantCountC1, 'Should be 2 participants');
-        System.assertEquals(2, ParticipantCountC2, 'Should be 2 participants');
-
-        Test.StartTest();
-        List<CourseRegistration__c> crListUpdFromAtt = new List<CourseRegistration__c>();
-        for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId]) {
-            cr.Status__c = 'Avmeldt';
-            crListUpdFromAtt.add(cr);
-        }
-
-        for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId2]) {
-            cr.Status__c = 'Venteliste';
-            crListUpdFromAtt.add(cr);
-        }
-        update crListUpdFromAtt;
         Test.StopTest();
 
         Decimal ParticipantCountC1Upd1 = [
@@ -381,99 +170,314 @@ public with sharing class CourseRegistrationHandlerTest {
         System.assertEquals(0, ParticipantCountC1Upd1, 'Should be 0 participants');
         System.assertEquals(0, WaitinglistCountC1Upd1, 'Should be 0 on waitinglist');
         System.assertEquals(0, ParticipantCountC2Upd1, 'Should be 0 participants');
-        System.assertEquals(2, WaitinglistCountC2Upd1, 'Should be 2 on waitinglist');
+        System.assertEquals(1, WaitinglistCountC2Upd1, 'Should be 1 on waitinglist');
+    }
+    @isTest
+    private static void testUpdateSingleFromNotAttending() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
 
-        cr3.Status__c = 'Avmeldt';
-        update cr3;
-        cr4.Status__c = 'Avmeldt';
-        update cr4;
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
 
-        List<CourseRegistration__c> crListUpdFromNotAtt = new List<CourseRegistration__c>();
+        CourseRegistration__c cr1 = getCourseRegistration('Avmeldt', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Avmeldt', courseId2);
+        insert cr2;
+
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
+        cr1.Status__c = 'Påmeldt';
+        crListUpd.add(cr1);
+        cr2.Status__c = 'Venteliste';
+        crListUpd.add(cr2);
+
+        update crListUpd;
+        Test.StopTest();
+
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .Waitinglist__c;
+        Decimal ParticipantCountC2 = [
+            SELECT Id, NumberOfParticipants__c
+            FROM Course__c
+            WHERE Name = 'Testkurs2'
+            LIMIT 1
+        ]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        .Waitinglist__c;
+
+        System.assertEquals(1, ParticipantCountC1, 'Should be 1 participants');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(0, ParticipantCountC2, 'Should be 0 participants');
+        System.assertEquals(1, WaitinglistCountC2, 'Should be 1 on waitinglist');
+    }
+    @isTest
+    private static void testUpdateSingleFromWaiting() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
+
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
+
+        CourseRegistration__c cr1 = getCourseRegistration('Venteliste', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Venteliste', courseId2);
+        insert cr2;
+
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
+        cr1.Status__c = 'Påmeldt';
+        crListUpd.add(cr1);
+        cr2.Status__c = 'Avmeldt';
+        crListUpd.add(cr2);
+
+        update crListUpd;
+        Test.StopTest();
+
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .Waitinglist__c;
+        Decimal ParticipantCountC2 = [
+            SELECT Id, NumberOfParticipants__c
+            FROM Course__c
+            WHERE Name = 'Testkurs2'
+            LIMIT 1
+        ]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        .Waitinglist__c;
+
+        System.assertEquals(1, ParticipantCountC1, 'Should be 1 participants');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(0, ParticipantCountC2, 'Should be 0 participants');
+        System.assertEquals(0, WaitinglistCountC2, 'Should be 0 on waitinglist');
+    }
+    @isTest
+    private static void testUpdateDoubleFromAttending() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
+
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
+
+        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Påmeldt', courseId);
+        insert cr2;
+        CourseRegistration__c cr3 = getCourseRegistration('Påmeldt', courseId2);
+        insert cr3;
+        CourseRegistration__c cr4 = getCourseRegistration('Påmeldt', courseId2);
+        insert cr4;
+
+        Decimal ParticipantCount1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .NumberOfParticipants__c;
+        Decimal ParticipantCount2 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        .NumberOfParticipants__c;
+
+        System.assertEquals(2, ParticipantCount1, 'Should be 2 participants');
+        System.assertEquals(2, ParticipantCount2, 'Should be 2 participants');
+
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
         for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId]) {
-            cr.Status__c = 'Påmeldt';
-            crListUpdFromNotAtt.add(cr);
+            cr.Status__c = 'Avmeldt';
+            crListUpd.add(cr);
         }
 
         for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId2]) {
             cr.Status__c = 'Venteliste';
-            crListUpdFromNotAtt.add(cr);
+            crListUpd.add(cr);
         }
-        update crListUpdFromNotAtt;
+        update crListUpd;
         Test.StopTest();
 
-        Decimal ParticipantCountC1Upd2 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .Waitinglist__c;
-        Decimal ParticipantCountC2Upd2 = [
+        Decimal ParticipantCountC2 = [
             SELECT Id, NumberOfParticipants__c
             FROM Course__c
             WHERE Name = 'Testkurs2'
             LIMIT 1
         ]
         .NumberOfParticipants__c;
-        Decimal WaitinglistCountC2Upd2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
         .Waitinglist__c;
 
-        System.assertEquals(2, ParticipantCountC1Upd2, 'Should be 2 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd2, 'Should be 0 on waitinglist');
-        System.assertEquals(0, ParticipantCountC2Upd2, 'Should be 0 participants');
-        System.assertEquals(2, WaitinglistCountC2Upd2, 'Should be 2 on waitinglist');
+        System.assertEquals(0, ParticipantCountC1, 'Should be 0 participants');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(0, ParticipantCountC2, 'Should be 0 participants');
+        System.assertEquals(2, WaitinglistCountC2, 'Should be 2 on waitinglist');
+    }
+    @isTest
+    private static void testUpdateDoubleFromNotAttending() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
 
-        cr1.Status__c = 'Venteliste';
-        update cr1;
-        cr2.Status__c = 'Venteliste';
-        update cr2;
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
 
-        Decimal WaitinglistCountC1UpdX = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-        Decimal WaitinglistCountC2UpdX = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .Waitinglist__c;
+        CourseRegistration__c cr1 = getCourseRegistration('Avmeldt', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Avmeldt', courseId);
+        insert cr2;
+        CourseRegistration__c cr3 = getCourseRegistration('Avmeldt', courseId2);
+        insert cr3;
+        CourseRegistration__c cr4 = getCourseRegistration('Avmeldt', courseId2);
+        insert cr4;
 
-        System.assertEquals(2, WaitinglistCountC1UpdX, 'Should be 2 on waitinglist');
-        System.assertEquals(2, WaitinglistCountC2UpdX, 'Should be 2 on waitinglist');
-
-        List<CourseRegistration__c> crListUpdFromWaiting = new List<CourseRegistration__c>();
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
         for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId]) {
             cr.Status__c = 'Påmeldt';
-            crListUpdFromWaiting.add(cr);
+            crListUpd.add(cr);
+        }
+
+        for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId2]) {
+            cr.Status__c = 'Venteliste';
+            crListUpd.add(cr);
+        }
+        update crListUpd;
+        Test.StopTest();
+
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .Waitinglist__c;
+        Decimal ParticipantCountC2 = [
+            SELECT Id, NumberOfParticipants__c
+            FROM Course__c
+            WHERE Name = 'Testkurs2'
+            LIMIT 1
+        ]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        .Waitinglist__c;
+
+        System.assertEquals(2, ParticipantCountC1, 'Should be 2 participants');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(0, ParticipantCountC2, 'Should be 0 participants');
+        System.assertEquals(2, WaitinglistCountC2, 'Should be 2 on waitinglist');
+    }
+    @isTest
+    private static void testUpdateDoubleFromWaiting() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
+
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
+
+        CourseRegistration__c cr1 = getCourseRegistration('Venteliste', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Venteliste', courseId);
+        insert cr2;
+        CourseRegistration__c cr3 = getCourseRegistration('Venteliste', courseId2);
+        insert cr3;
+        CourseRegistration__c cr4 = getCourseRegistration('Venteliste', courseId2);
+        insert cr4;
+
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
+        for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId]) {
+            cr.Status__c = 'Påmeldt';
+            crListUpd.add(cr);
         }
 
         for (CourseRegistration__c cr : [SELECT Id FROM CourseRegistration__c WHERE Course__c = :courseId2]) {
             cr.Status__c = 'Avmeldt';
-            crListUpdFromWaiting.add(cr);
+            crListUpd.add(cr);
         }
-        update crListUpdFromWaiting;
+        update crListUpd;
         Test.StopTest();
 
-        Decimal ParticipantCountC1Upd3 = [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ]
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .NumberOfParticipants__c;
-        Decimal WaitinglistCountC1Upd3 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
         .Waitinglist__c;
-        Decimal ParticipantCountC2Upd3 = [
+        Decimal ParticipantCountC2 = [
             SELECT Id, NumberOfParticipants__c
             FROM Course__c
             WHERE Name = 'Testkurs2'
             LIMIT 1
         ]
         .NumberOfParticipants__c;
-        Decimal WaitinglistCountC2Upd3 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
         .Waitinglist__c;
 
-        System.assertEquals(2, ParticipantCountC1Upd3, 'Should be 2 participants');
-        System.assertEquals(0, WaitinglistCountC1Upd3, 'Should be 0 on waitinglist');
-        System.assertEquals(0, ParticipantCountC2Upd3, 'Should be 0 participants');
-        System.assertEquals(0, WaitinglistCountC2Upd3, 'Should be 0 on waitinglist');
+        System.assertEquals(2, ParticipantCountC1, 'Should be 2 participants');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(0, ParticipantCountC2, 'Should be 0 participants');
+        System.assertEquals(0, WaitinglistCountC2, 'Should be 0 on waitinglist');
+    }
+    @isTest
+    private static void testWaitingListFunctionality() {
+        Course__c course = getCourse('Testkurs');
+        insert course;
+        Course__c course2 = getCourse('Testkurs2');
+        insert course2;
+
+        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
+        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
+
+        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', courseId);
+        insert cr1;
+        CourseRegistration__c cr2 = getCourseRegistration('Venteliste', courseId);
+        insert cr2;
+        CourseRegistration__c cr3 = getCourseRegistration('Påmeldt', courseId2);
+        insert cr3;
+        CourseRegistration__c cr4 = getCourseRegistration('Venteliste', courseId2);
+        insert cr4;
+        CourseRegistration__c cr5 = getCourseRegistration('Venteliste', courseId2);
+        insert cr5;
+
+        Test.StartTest();
+        List<CourseRegistration__c> crListUpd = new List<CourseRegistration__c>();
+        cr1.Status__c = 'Avmeldt';
+        crListUpd.add(cr1);
+
+        cr3.Status__c = 'Avmeldt';
+        crListUpd.add(cr3);
+
+        update crListUpd;
+        Test.StopTest();
+
+        Decimal ParticipantCountC1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
+        .Waitinglist__c;
+        Decimal ParticipantCountC2 = [
+            SELECT Id, NumberOfParticipants__c
+            FROM Course__c
+            WHERE Name = 'Testkurs2'
+            LIMIT 1
+        ]
+        .NumberOfParticipants__c;
+        Decimal WaitinglistCountC2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
+        .Waitinglist__c;
+        String cr2IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr2.Id LIMIT 1].Status__c;
+        String cr4IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
+
+        System.assertEquals(1, ParticipantCountC1, 'Should be 1 participant');
+        System.assertEquals(0, WaitinglistCountC1, 'Should be 0 on waitinglist');
+        System.assertEquals(1, ParticipantCountC2, 'Should be 1 participant');
+        System.assertEquals(1, WaitinglistCountC2, 'Should be 1 on waitinglist');
+        System.assertEquals('Påmeldt', cr2IdStatus, 'cr2 should have Påmeldt status');
+        System.assertEquals('Påmeldt', cr4IdStatus, 'cr4 should have Påmeldt status');
     }
 
     public static CourseRegistration__c getCourseRegistration(String status, String courseId) {
@@ -486,5 +490,15 @@ public with sharing class CourseRegistrationHandlerTest {
             Status__c = status
         );
         return cr;
+    }
+
+    public static Course__c getCourse(String courseName) {
+        Course__c course = new Course__c(
+            Name = courseName,
+            MaxNumberOfParticipants__c = 10,
+            DescriptionFormatted__c = courseName,
+            Active__c = true
+        );
+        return course;
     }
 }

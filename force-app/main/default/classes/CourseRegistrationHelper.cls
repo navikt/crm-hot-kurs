@@ -20,7 +20,7 @@ public with sharing class CourseRegistrationHelper {
             countCourseIdsToReduceWaiting(coursesReduceWaiting);
         }
     }
-    
+
     public static void getCourseIdToIncrease(List<CourseRegistration__c> registrations) {
         List<String> coursesIncreaseAttending = new List<String>();
         List<String> coursesIncreaseWaiting = new List<String>();
@@ -142,7 +142,7 @@ public with sharing class CourseRegistrationHelper {
                     ORDER BY CreatedDate ASC
                     LIMIT :courseWaitingList
                 ]) {
-                    cr.Status__c = 'Påmeldt';   //change cr status from 'Venteliste' to 'Påmeldt'
+                    cr.Status__c = 'Påmeldt'; //change cr status from 'Venteliste' to 'Påmeldt'
                     crToUpdateWait.add(cr);
                 }
             }
@@ -155,7 +155,7 @@ public with sharing class CourseRegistrationHelper {
                     ORDER BY CreatedDate ASC
                     LIMIT :waitingListQuantityFromUpdate
                 ]) {
-                    cr.Status__c = 'Påmeldt';   //change cr status from 'Venteliste' to 'Påmeldt'
+                    cr.Status__c = 'Påmeldt'; //change cr status from 'Venteliste' to 'Påmeldt'
                     crToUpdateWait.add(cr);
                 }
             }
