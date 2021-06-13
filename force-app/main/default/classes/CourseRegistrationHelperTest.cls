@@ -5,109 +5,133 @@ public with sharing class CourseRegistrationHelperTest {
         TestDataFactory.insertEncryptionKey();
     }
     @isTest
-    private static void testCourseRegistrationHelper() {
-        Course__c course = new Course__c(
-            Name = 'Testkurs',
-            MaxNumberOfParticipants__c = 10,
-            NumberOfParticipants__c = 2,
-            WaitingList__c = 2,
-            DescriptionFormatted__c = 'Testkurs',
-            Active__c = true
-        );
-        insert course;
-
-        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
-
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', courseId);
-        insert cr1;
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', courseId);
-        insert cr2;
+    private static void testCountCourseIdsToReduceAttending() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        course.NumberOfParticipants__c = 5;
+        update course;
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
         List<String> courseIds = new List<String>();
+        courseIds.add(cr1.Course__c);
+        courseIds.add(cr2.Course__c);
 
-        for (CourseRegistration__c cr : [SELECT Id, Course__c FROM CourseRegistration__c]) {
-            courseIds.add(cr.Course__c);
-        }
         Test.StartTest();
         CourseRegistrationHelper.countCourseIdsToReduceAttending(courseIds);
         Test.stopTest();
 
-        Decimal ParticipantCount = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .NumberOfParticipants__c;
+        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(3, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 3 participants');
+    }
 
-        System.assertEquals(0, ParticipantCount, 'Should be 0 participants');
+    @isTest
+    private static void testCountCourseIdsToIncreaseAttending() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
+        List<String> courseIds = new List<String>();
+        courseIds.add(cr1.Course__c);
+        courseIds.add(cr2.Course__c);
+
+        Test.StartTest();
         CourseRegistrationHelper.countCourseIdsToIncreaseAttending(courseIds);
+        Test.stopTest();
 
-        Decimal ParticipantCount1 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .NumberOfParticipants__c;
+        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
+    }
 
-        System.assertEquals(2, ParticipantCount1, 'Should be 2 participants');
+    @isTest
+    private static void testCountCourseIdsToReduceWaiting() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        course.Waitinglist__c = 5;
+        update course;
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
+        List<String> courseIds = new List<String>();
+        courseIds.add(cr1.Course__c);
+        courseIds.add(cr2.Course__c);
+
+        Test.StartTest();
         CourseRegistrationHelper.countCourseIdsToReduceWaiting(courseIds);
+        Test.stopTest();
 
-        Decimal WaitinglistCount = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
+        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
+    }
 
-        System.assertEquals(0, WaitinglistCount, 'Should be 0 on waiting list');
+    @isTest
+    private static void testCountCourseIdsToIncreaseWaiting() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
+        List<String> courseIds = new List<String>();
+        courseIds.add(cr1.Course__c);
+        courseIds.add(cr2.Course__c);
+
+        Test.StartTest();
         CourseRegistrationHelper.countCourseIdsToIncreaseWaiting(courseIds);
+        Test.stopTest();
 
-        Decimal WaitinglistCount1 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
+        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(2, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 2 on waiting list');
+    }
 
-        System.assertEquals(2, WaitinglistCount1, 'Should be 2 on waiting list');
+    @isTest
+    private static void testUpdateCoursesParticipants() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
         Map<String, Integer> testParticipant = new Map<String, Integer>();
-        testParticipant.put(courseId, 5);
+        testParticipant.put(course.Id, 5);
 
+        Test.StartTest();
         CourseRegistrationHelper.updateCoursesParticipants(testParticipant);
+        Test.stopTest();
 
-        Decimal ParticipantCount2 = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .NumberOfParticipants__c;
+        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(5, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 5 participants');
+    }
 
-        System.assertEquals(7, ParticipantCount2, 'Should be 7 participants');
+    @isTest
+    private static void testUpdateCourseWaiting() {
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        course.Waitinglist__c = 5;
+        update course;
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
 
         Map<String, Integer> testWaiting = new Map<String, Integer>();
-        testWaiting.put(courseId, -2);
+        testWaiting.put(course.Id, -2);
 
+        Test.StartTest();
         CourseRegistrationHelper.updateCourseWaiting(testWaiting);
+        Test.stopTest();
 
-        Decimal WaitinglistCount2 = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1]
-        .Waitinglist__c;
-
-        System.assertEquals(0, WaitinglistCount2, 'Should be 0 on waiting list');
+        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
     }
 
     @isTest
     private static void testWaitingListFunction() {
-        Course__c course2 = new Course__c(
-            Name = 'Testkurs2',
-            MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs2',
-            Active__c = true
-        );
-        insert course2;
+        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', course.Id);
+        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', course.Id);
+        CourseRegistration__c cr3 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
+        CourseRegistration__c cr4 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
 
-        String courseId2 = [SELECT Id FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1].Id;
-
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', courseId2);
-        insert cr1;
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', courseId2);
-        insert cr2;
-        CourseRegistration__c cr3 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', courseId2);
-        insert cr3;
-        CourseRegistration__c cr4 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', courseId2);
-        insert cr4;
-
-        Decimal ParticipantCount = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .NumberOfParticipants__c;
-
-        Decimal WaitingCount = [SELECT Id, WaitingList__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1]
-        .WaitingList__c;
-
-        System.assertEquals(2, ParticipantCount, 'Should be 2 participants');
-        System.assertEquals(2, WaitingCount, 'Should be 2 on waiting list');
+        Course__c courseBefore = [
+            SELECT Id, NumberOfParticipants__c, Waitinglist__c
+            FROM Course__c
+            WHERE Name = 'Testkurs'
+            LIMIT 1
+        ];
+        System.assertEquals(2, courseBefore.NumberOfParticipants__c, 'Should be 2 participants');
+        System.assertEquals(2, courseBefore.Waitinglist__c, 'Should be 2 on waiting list');
 
         List<String> courseIdsUpdated = new List<String>();
         courseIdsUpdated.add(cr1.Course__c);
@@ -116,7 +140,6 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToCheckWaiting(courseIdsUpdated);
 
         String cr3Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr3.Id LIMIT 1].Status__c;
-
         String cr4Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
 
         System.assertEquals('Påmeldt', cr3Status, 'cr3 should have status Påmeldt');
