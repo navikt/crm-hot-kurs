@@ -19,13 +19,8 @@ public with sharing class CourseRegistrationHandlerTest {
         CourseRegistration__c cr2 = getCourseRegistration('Venteliste', course2.Id);
         Test.StopTest();
 
-        Course__c course1After = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
-        Course__c course2After = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ];
+        Course__c course1After = fetchCourse('Testkurs');
+        Course__c course2After = fetchCourse('Testkurs2');
 
         System.assertEquals(1, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 1 participant');
         System.assertEquals(1, Integer.valueOf(course2After.NumberOfParticipants__c), 'Should be 1 participant');
@@ -47,7 +42,7 @@ public with sharing class CourseRegistrationHandlerTest {
         List<CourseRegistration__c> crListDel = [SELECT Id FROM CourseRegistration__c];
         System.assertEquals(0, crListDel.size(), 'Should be 0 registrations');
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
     }
     @isTest
@@ -67,7 +62,7 @@ public with sharing class CourseRegistrationHandlerTest {
         List<CourseRegistration__c> crListUnDel = [SELECT Id FROM CourseRegistration__c];
         System.assertEquals(2, crListUnDel.size(), 'Should be 2 registrations');
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
     }
 
@@ -81,7 +76,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
     }
 
@@ -95,12 +90,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(1, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 1 on waiting list');
     }
@@ -115,7 +105,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(1, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 1 participant');
     }
 
@@ -129,12 +119,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(1, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 1 on waiting list');
     }
@@ -149,12 +134,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(1, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 1 participant');
         System.assertEquals(0, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 0 on waiting list');
     }
@@ -168,12 +148,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update cr1;
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(0, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 0 on waiting list');
     }
@@ -190,7 +165,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
     }
 
@@ -206,12 +181,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(2, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 2 on waiting list');
     }
@@ -228,7 +198,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
     }
 
@@ -244,12 +214,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(2, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 2 on waiting list');
     }
@@ -266,12 +231,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
         System.assertEquals(0, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 0 on waiting list');
     }
@@ -288,12 +248,7 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c courseAfter = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(0, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 0 on waiting list');
     }
@@ -311,8 +266,8 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c course1After = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
-        Course__c course2After = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1];
+        Course__c course1After = fetchCourse('Testkurs');
+        Course__c course2After = fetchCourse('Testkurs2');
         System.assertEquals(0, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(0, Integer.valueOf(course2After.NumberOfParticipants__c), 'Should be 0 participants');
     }
@@ -330,18 +285,8 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c course1After = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
-        Course__c course2After = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ];
+        Course__c course1After = fetchCourse('Testkurs');
+        Course__c course2After = fetchCourse('Testkurs2');
         System.assertEquals(0, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(0, Integer.valueOf(course2After.NumberOfParticipants__c), 'Should be 0 participants');
         System.assertEquals(1, Integer.valueOf(course1After.WaitingList__c), 'Should be 1 on waiting list');
@@ -361,8 +306,8 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr2 };
         Test.StopTest();
 
-        Course__c course1After = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
-        Course__c course2After = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs2' LIMIT 1];
+        Course__c course1After = fetchCourse('Testkurs');
+        Course__c course2After = fetchCourse('Testkurs2');
         System.assertEquals(1, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 1 participant');
         System.assertEquals(1, Integer.valueOf(course2After.NumberOfParticipants__c), 'Should be 1 participant');
     }
@@ -384,18 +329,8 @@ public with sharing class CourseRegistrationHandlerTest {
         update new List<CourseRegistration__c>{ cr1, cr3 };
         Test.StopTest();
 
-        Course__c course1After = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
-        Course__c course2After = [
-            SELECT Id, NumberOfParticipants__c, WaitingList__c
-            FROM Course__c
-            WHERE Name = 'Testkurs2'
-            LIMIT 1
-        ];
+        Course__c course1After = fetchCourse('Testkurs');
+        Course__c course2After = fetchCourse('Testkurs2');
         String cr2IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr2.Id LIMIT 1].Status__c;
         String cr4IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
 
@@ -428,6 +363,16 @@ public with sharing class CourseRegistrationHandlerTest {
             Active__c = true
         );
         insert course;
+        return course;
+    }
+
+    public static Course__c fetchCourse(String courseName) {
+        Course__c course = [
+            SELECT Id, NumberOfParticipants__c, WaitingList__c
+            FROM Course__c
+            WHERE Name = :courseName
+            LIMIT 1
+        ];
         return course;
     }
 }

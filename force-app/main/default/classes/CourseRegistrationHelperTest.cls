@@ -20,7 +20,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToReduceAttending(courseIds);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(3, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 3 participants');
     }
 
@@ -38,7 +38,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToIncreaseAttending(courseIds);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
     }
 
@@ -58,7 +58,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToReduceWaiting(courseIds);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
     }
 
@@ -76,7 +76,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.countCourseIdsToIncreaseWaiting(courseIds);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(2, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 2 on waiting list');
     }
 
@@ -93,7 +93,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.updateCoursesParticipants(testParticipant);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, NumberOfParticipants__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(5, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 5 participants');
     }
 
@@ -112,7 +112,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistrationHelper.updateCourseWaiting(testWaiting);
         Test.stopTest();
 
-        Course__c courseAfter = [SELECT Id, Waitinglist__c FROM Course__c WHERE Name = 'Testkurs' LIMIT 1];
+        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
     }
 
@@ -124,12 +124,7 @@ public with sharing class CourseRegistrationHelperTest {
         CourseRegistration__c cr3 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
         CourseRegistration__c cr4 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
 
-        Course__c courseBefore = [
-            SELECT Id, NumberOfParticipants__c, Waitinglist__c
-            FROM Course__c
-            WHERE Name = 'Testkurs'
-            LIMIT 1
-        ];
+        Course__c courseBefore = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
         System.assertEquals(2, courseBefore.NumberOfParticipants__c, 'Should be 2 participants');
         System.assertEquals(2, courseBefore.Waitinglist__c, 'Should be 2 on waiting list');
 
