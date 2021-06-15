@@ -1,4 +1,4 @@
-public with sharing class CourseRegistrationHelper {
+public class CourseRegistrationHelper {
     public static void getCourseIdToReduce(List<CourseRegistration__c> registrations) {
         List<String> coursesReduceAttending = new List<String>();
         List<String> coursesReduceWaiting = new List<String>();

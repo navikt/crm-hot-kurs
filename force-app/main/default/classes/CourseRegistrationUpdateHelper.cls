@@ -1,4 +1,4 @@
-public with sharing class CourseRegistrationUpdateHelper {
+public class CourseRegistrationUpdateHelper {
     public static void UpdateHelper(List<CourseRegistration__c> records, Map<Id, sObject> triggerOldMap) {
         List<String> fieldsToCheck = new List<String>{ 'Status__c' };
         List<String> coursesReduceAttending = new List<String>();
