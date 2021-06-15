@@ -1,11 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>CourseRegistrationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CourseRegistrationHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CourseRegistrationHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CourseRegistrationModel</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CourseRegistrationUpdateHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -20,8 +32,7 @@
         <apexClass>Process_SendEmailHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description
-    >Gir gjestebrukere til Kurs Community tilgang til å opprette kurspåmeldinger</description>
+    <description>Gir gjestebrukere til Kurs Community tilgang til å opprette kurspåmeldinger</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>CourseRegistration__c.Attendance__c</field>
