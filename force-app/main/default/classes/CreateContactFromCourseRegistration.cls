@@ -1,6 +1,5 @@
 public with sharing class CreateContactFromCourseRegistration {
     public static void findOrCreateContact(List<CourseRegistration__c> registrations) {
-        Map<String, Account> accountMap = fetchAccount();
         for (CourseRegistration__c reg : registrations) {
             // ! to skip trigger and soql inside for loop set contact before insert
             if (reg.CourseParticipant__c != null) {
