@@ -2,7 +2,7 @@ import { LightningElement, api, track } from 'lwc';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
 import { loadScript } from 'lightning/platformResourceLoader';
-import MOMENT_JS from '@salesforce/resourceUrl/momentJs';
+import MOMENT_JS from '@salesforce/resourceUrl/moment';
 
 export default class courseRegistrationInformation extends LightningElement {
     @api courseId;

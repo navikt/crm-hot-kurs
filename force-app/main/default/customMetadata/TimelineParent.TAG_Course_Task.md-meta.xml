@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<CustomMetadata
-    xmlns="http://soap.sforce.com/2006/04/metadata"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
->
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <label>Course &lt;= Task</label>
     <protected>false</protected>
     <values>
-        <field>Activity_Timeline_Child__c</field>
+        <field>Timeline_Child__c</field>
         <value xsi:type="xsd:string">TAG_CourseTask</value>
     </values>
     <values>
