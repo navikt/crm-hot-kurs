@@ -10,21 +10,23 @@ public with sharing class CourseScheduledDeleteContacts {
         ]) {
             coursesIdsToRemoveContacts.add(course.Id);
         }
-        List<CourseRegistration__c> crList12WeeksOld = fetchCourseRegistrations(coursesIdsToRemoveContacts);
-        Set<Id> crContactIds12WeeksOld = fetchCrContactIds(coursesIdsToRemoveContacts);
+        if (!coursesIdsToRemoveContacts.isEmpty()) {
+            List<CourseRegistration__c> crList12WeeksOld = fetchCourseRegistrations(coursesIdsToRemoveContacts);
+            Set<Id> crContactIds12WeeksOld = fetchCrContactIds(coursesIdsToRemoveContacts);
 
-        Set<Id> contactsOtherThanKursdeltakere = checkAccountContactRelationship(crContactIds12WeeksOld);
-        Set<Id> sameContactIdsOnSoonerCourse = checkIfSameContactsSoonerCourses(
-            crContactIds12WeeksOld,
-            date12WeeksInPast
-        );
+            Set<Id> contactsOtherThanKursdeltakere = checkAccountContactRelationship(crContactIds12WeeksOld);
+            Set<Id> sameContactIdsOnSoonerCourse = checkIfSameContactsSoonerCourses(
+                crContactIds12WeeksOld,
+                date12WeeksInPast
+            );
 
-        removePersonalDataFromCr(crList12WeeksOld);
+            removePersonalDataFromCr(crList12WeeksOld);
 
-        contactsOtherThanKursdeltakere.addAll(sameContactIdsOnSoonerCourse); //Add contacts that have relationship to other Accounts than 'Kursdeltakere' or should attend other course sooner than 12 weeks
-        crContactIds12WeeksOld.removeAll(contactsOtherThanKursdeltakere); //Remove contact IDs that should not be deleted (described in line over)
+            contactsOtherThanKursdeltakere.addAll(sameContactIdsOnSoonerCourse); //Add contacts that have relationship to other Accounts than 'Kursdeltakere' or should attend other course sooner than 12 weeks
+            crContactIds12WeeksOld.removeAll(contactsOtherThanKursdeltakere); //Remove contact IDs that should not be deleted (described in line over)
 
-        deleteContacts12WeeksOld(crContactIds12WeeksOld);
+            deleteContacts12WeeksOld(crContactIds12WeeksOld);
+        }
     }
 
     public static void deleteContacts12WeeksOld(Set<Id> contactIdsForDeletion) {
