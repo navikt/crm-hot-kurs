@@ -6,20 +6,6 @@ private with sharing class CreateContactFromCourseRegistrationTest {
     }
 
     @isTest
-    private static void testFetchAccount() {
-        Account a = new Account();
-        a.Name = 'Kursdeltakere';
-        a.INT_OrganizationNumber__c = 'Kurs';
-        insert a;
-
-        Test.startTest();
-        Map<String, Account> result = CreateContactFromCourseRegistration.fetchAccount();
-        Test.stopTest();
-
-        System.assertEquals(a.Id, result.get(a.INT_OrganizationNumber__c).Id, 'Should be the same account');
-    }
-
-    @isTest
     private static void testFindOrCreateContact() {
         Course__c course = new Course__c(
             Name = 'Testkurs',
