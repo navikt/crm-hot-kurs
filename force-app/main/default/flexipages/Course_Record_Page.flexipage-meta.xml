@@ -246,7 +246,11 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Region__c</fieldItem>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>required</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Region2__c</fieldItem>
             </fieldInstance>
         </itemInstances>
         <name>Facet-93405310-c6b7-4b4a-876e-2902884a935b</name>
