@@ -14,10 +14,13 @@ global with sharing class CourseHandler {
                 DescriptionFormatted__c,
                 DescriptionShort2__c,
                 Active__c,
-                Region__c,
+                Region2__c,
                 Type__c,
                 Sub_category__c,
-                Theme__c
+                Theme__c,
+                AvailableSeats__c,
+                MaxNumberOfParticipants__c,
+                NumberOfParticipants__c
             FROM Course__c
         ];
 
@@ -63,10 +66,13 @@ global with sharing class CourseHandler {
             wrapper.FrontPageDescription = course.DescriptionFormatted__c;
             wrapper.Description = course.DescriptionShort2__c;
             wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
+            wrapper.AvailableSeats = course.AvailableSeats__c;
+            wrapper.MaxNumberOfParticipants = course.MaxNumberOfParticipants__c;
+            wrapper.NumberOfParticipants = course.NumberOfParticipants__c;
 
             wrapper.configurable_custom = new CourseApiModel.Configurable_custom();
 
-            wrapper.configurable_custom.Fylke = course.Region__c;
+            wrapper.configurable_custom.Fylke = course.Region2__c;
             wrapper.configurable_custom.Type = course.Type__c;
             wrapper.configurable_custom.Tema = course.Theme__c;
             wrapper.configurable_custom.Underkategori = course.Sub_category__c;
