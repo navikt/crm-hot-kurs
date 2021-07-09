@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
@@ -451,8 +451,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value
-                    >&lt;p&gt;&lt;b&gt;Obligatoriske felter&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I påmeldingsskjema vil disse feltene alltid være obligatoriske og ikke mulig å velge bort:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Fornavn&lt;/li&gt;&lt;li&gt;Etternavn&lt;/li&gt;&lt;li&gt;E-post&lt;/li&gt;&lt;li&gt;Telefonnummer&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ønsker du i tillegg å samle inn annen relevant informasjon i påmeldingsskjema kan du krysse av for feltene du trenger i listen under&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;b&gt;Obligatoriske felter&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I påmeldingsskjema vil disse feltene alltid være obligatoriske og ikke mulig å velge bort:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Fornavn&lt;/li&gt;&lt;li&gt;Etternavn&lt;/li&gt;&lt;li&gt;E-post&lt;/li&gt;&lt;li&gt;Telefonnummer&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ønsker du i tillegg å samle inn annen relevant informasjon i påmeldingsskjema kan du krysse av for feltene du trenger i listen under&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
             </componentInstance>
@@ -465,7 +464,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Valgfrie felter</value>
+                    <value>Tilleggsfelter</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <visibilityRule>
@@ -478,54 +477,6 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-ba1927dd-76df-46b3-a4c2-28cb14051f24</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>relatedListComponentOverride</name>
-                    <value>GRID</value>
-                </componentInstanceProperties>
-                <componentName>force:relatedListContainer</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value
-                    >&lt;p&gt;&lt;b&gt;Ønsker du er liste over alle deltakere? Klikk på &quot;Vis rapport&quot; nederst på siden. Fra denne visningen er det også mulig å eksportere listen til excel ved å klikke på pilen øverst i høyre hjørne,&lt;/b&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>cacheAge</name>
-                    <value>1440</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>reportFilter</name>
-                    <value>FK_CUSTENT_ID</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>reportName</name>
-                    <value>Kursdeltakere_ts2</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showRefreshButton</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:reportChart</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-ce7c2bf0-4016-40cd-9d97-0a4a695ca7b3</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1218,8 +1169,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value
-                    >&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
             </componentInstance>
@@ -1234,6 +1184,53 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-dd3ae915-b490-4aed-bbe9-71090dd44978</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>GRID</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListContainer</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;b&gt;Ønsker du er liste over alle deltakere? Klikk på &quot;Vis rapport&quot; nederst på siden. Fra denne visningen er det også mulig å eksportere listen til excel ved å klikke på pilen øverst i høyre hjørne,&lt;/b&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>cacheAge</name>
+                    <value>1440</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>reportFilter</name>
+                    <value>FK_CUSTENT_ID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>reportName</name>
+                    <value>Kursdeltakere_ts2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showRefreshButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:reportChart</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-ce7c2bf0-4016-40cd-9d97-0a4a695ca7b3</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1271,11 +1268,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-ce7c2bf0-4016-40cd-9d97-0a4a695ca7b3</value>
+                    <value>Facet-dd3ae915-b490-4aed-bbe9-71090dd44978</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Deltakere</value>
+                    <value>E-post</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
@@ -1284,11 +1281,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-dd3ae915-b490-4aed-bbe9-71090dd44978</value>
+                    <value>Facet-ce7c2bf0-4016-40cd-9d97-0a4a695ca7b3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>E-post</value>
+                    <value>Deltakere</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
