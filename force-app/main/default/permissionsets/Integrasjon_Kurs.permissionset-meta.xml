@@ -60,6 +60,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.AvailableSeats__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.CommunityUrl__c</field>
         <readable>true</readable>
     </fieldPermissions>
