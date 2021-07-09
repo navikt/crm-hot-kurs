@@ -493,23 +493,6 @@
                 <fieldItem>Record.EmailBeforeContent__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-9ceb9db6-828c-4a2f-9643-80a7054d091c</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-9ceb9db6-828c-4a2f-9643-80a7054d091c</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-262e8db9-efeb-40ea-80bd-d5477b267307</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
@@ -538,16 +521,12 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-21cb5cea-f936-4399-889e-bd6c65579a90</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailBeforeDate__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-1244b0f2-4e7c-4966-9786-441da24bb050</name>
+        <name>Facet-9ceb9db6-828c-4a2f-9643-80a7054d091c</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -555,83 +534,12 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-21cb5cea-f936-4399-889e-bd6c65579a90</value>
+                    <value>Facet-9ceb9db6-828c-4a2f-9643-80a7054d091c</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-1244b0f2-4e7c-4966-9786-441da24bb050</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-cf042a27-8ded-402e-81c6-97ed4c200ed7</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-262e8db9-efeb-40ea-80bd-d5477b267307</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-cf042a27-8ded-402e-81c6-97ed4c200ed7</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Sendes en uke før kurset</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>emailTemplate</name>
-                    <value>courseScheduledEmailBefore</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>period</name>
-                    <value>before</value>
-                </componentInstanceProperties>
-                <componentName>emailSchedulingPreview</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-a73bb992-4518-496a-a813-62b8411705d7</name>
+        <name>Facet-262e8db9-efeb-40ea-80bd-d5477b267307</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -644,23 +552,6 @@
                 <fieldItem>Record.EmailReminderContent__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-7890378a-ac61-4a1e-ae83-84c24874c49b</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-7890378a-ac61-4a1e-ae83-84c24874c49b</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-c3e42f34-5d41-40d9-9d27-fc5c7a51ce5f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
@@ -689,16 +580,12 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-536e6af9-4ea8-44d5-a87e-5a40c42429c4</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailReminderDate__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-5cdabbd8-b413-4f9e-bcbd-6a4105932284</name>
+        <name>Facet-7890378a-ac61-4a1e-ae83-84c24874c49b</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -706,83 +593,12 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-536e6af9-4ea8-44d5-a87e-5a40c42429c4</value>
+                    <value>Facet-7890378a-ac61-4a1e-ae83-84c24874c49b</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-5cdabbd8-b413-4f9e-bcbd-6a4105932284</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-3fa2cb1c-3340-4e06-baba-b1bd447a38f2</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-c3e42f34-5d41-40d9-9d27-fc5c7a51ce5f</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-3fa2cb1c-3340-4e06-baba-b1bd447a38f2</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Sendes dagen før kurset</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>emailTemplate</name>
-                    <value>courseScheduledEmailReminder</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>period</name>
-                    <value>reminder</value>
-                </componentInstanceProperties>
-                <componentName>emailSchedulingPreview</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-cdf7749a-7905-440d-9d42-58b9f0bd46e2</name>
+        <name>Facet-c3e42f34-5d41-40d9-9d27-fc5c7a51ce5f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -800,23 +616,6 @@
                 <fieldItem>Record.EmailAfterURL__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-1c296380-c9f3-4983-a997-fa7a57f840ce</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-1c296380-c9f3-4983-a997-fa7a57f840ce</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-ab7e3140-97d4-45d3-9606-f2c389bda66d</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
@@ -845,16 +644,12 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-9xjh773y9g</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailAfterDate__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-vviar02zgh</name>
+        <name>Facet-1c296380-c9f3-4983-a997-fa7a57f840ce</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -862,83 +657,12 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-9xjh773y9g</value>
+                    <value>Facet-1c296380-c9f3-4983-a997-fa7a57f840ce</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-vviar02zgh</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-c0kbwy7ui8m</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-ab7e3140-97d4-45d3-9606-f2c389bda66d</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-c0kbwy7ui8m</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Sendes dagen etter kurset</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>emailTemplate</name>
-                    <value>courseScheduledEmailAfter</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>period</name>
-                    <value>after</value>
-                </componentInstanceProperties>
-                <componentName>emailSchedulingPreview</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-3473cee0-2383-4b50-aabc-65cb94a8c00b</name>
+        <name>Facet-ab7e3140-97d4-45d3-9606-f2c389bda66d</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -951,23 +675,6 @@
                 <fieldItem>Record.EmailManualContent__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-d936ec8b-9bb4-4e5c-8d68-cdb773a43b07</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-d936ec8b-9bb4-4e5c-8d68-cdb773a43b07</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-60b499b9-da89-4ac4-8c1e-6558ce7b085d</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
@@ -996,16 +703,12 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-6f8302e3-f79e-43b5-b757-f6913d5089a7</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.EmailManualDate__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-58a0af67-dbbe-49c2-a5dc-a2a699896656</name>
+        <name>Facet-d936ec8b-9bb4-4e5c-8d68-cdb773a43b07</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1013,24 +716,145 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-6f8302e3-f79e-43b5-b757-f6913d5089a7</value>
+                    <value>Facet-d936ec8b-9bb4-4e5c-8d68-cdb773a43b07</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-60b499b9-da89-4ac4-8c1e-6558ce7b085d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-58a0af67-dbbe-49c2-a5dc-a2a699896656</value>
+                    <name>columns</name>
+                    <value>Facet-262e8db9-efeb-40ea-80bd-d5477b267307</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Informasjon før kurset (sendes en uke før kurset)</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.IsNew__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
-        <name>Facet-e7aa2e88-64e1-4cf4-8549-8d96b1e51ae4</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailBefore</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>period</name>
+                    <value>before</value>
+                </componentInstanceProperties>
+                <componentName>emailSchedulingPreview</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c3e42f34-5d41-40d9-9d27-fc5c7a51ce5f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Påminnelse (sendes dagen før kurset)</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.IsNew__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailReminder</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>period</name>
+                    <value>reminder</value>
+                </componentInstanceProperties>
+                <componentName>emailSchedulingPreview</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-ab7e3140-97d4-45d3-9606-f2c389bda66d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Evaluering av kurset (sendes dagen etter kurset)</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.IsNew__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>emailTemplate</name>
+                    <value>courseScheduledEmailAfter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>period</name>
+                    <value>after</value>
+                </componentInstanceProperties>
+                <componentName>emailSchedulingPreview</componentName>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -1039,6 +863,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
+                    <value>Egendefinert tidspunkt (sendes ved valgfritt tidspunkt)</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <visibilityRule>
@@ -1059,26 +884,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-e7aa2e88-64e1-4cf4-8549-8d96b1e51ae4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Valgfritt tidspunkt</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
                     <name>emailTemplate</name>
                     <value>courseScheduledEmailManual</value>
                 </componentInstanceProperties>
@@ -1087,104 +892,6 @@
                     <value>manual</value>
                 </componentInstanceProperties>
                 <componentName>emailSchedulingPreview</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-c37pq2bg7tr</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-a73bb992-4518-496a-a813-62b8411705d7</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Informasjon før kurset</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection1</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-cdf7749a-7905-440d-9d42-58b9f0bd46e2</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Påminnelse</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection2</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-3473cee0-2383-4b50-aabc-65cb94a8c00b</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Evaluering av kurset</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection--x9xdhvm65ol</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-c37pq2bg7tr</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Egendefinert tidspunkt</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection--62plaw1mpc</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-bb7513c7-db6b-4506-84ec-be9827166684</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/b&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>accordionSections</name>
-                    <value>Facet-bb7513c7-db6b-4506-84ec-be9827166684</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordion</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-dd3ae915-b490-4aed-bbe9-71090dd44978</name>
