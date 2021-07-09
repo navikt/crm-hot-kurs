@@ -7,6 +7,9 @@ public class CourseApiModel {
     public Datetime RegistrationDeadline;
     public String RegistrationPlaceName;
     public String Description;
+    public Decimal AvailableSeats;
+    public Decimal MaxNumberOfParticipants;
+    public Decimal NumberOfParticipants;
     public String FrontPageDescription;
     public Integer ShowInActivityList;
     public Configurable_custom configurable_custom;
