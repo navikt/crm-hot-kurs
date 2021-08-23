@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>GdprConfirmation_title</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[GdprConfirmation] Title</shortDescription>
-        <value>I've read the terms</value>
+        <value>Registrering av personopplysninger</value>
     </labels>
     <labels>
         <fullName>GdprConfirmation_subtitle</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>[GdprConfirmation] Subtitle</shortDescription>
-        <value
-        >Users or user information does not contain any sensitive material, and the user in question are informed that they are being added to the solution.</value>
+        <value>Ved å gå videre bekrefter jeg at ingen sensitiv informasjon er registrert om kontaktpersonene. Kontaktpersonene er informert om at de blir registrert i systemet, og blir automatisk slettet etter 12 uker.</value>
     </labels>
 </CustomLabels>

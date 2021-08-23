@@ -21,7 +21,7 @@
             </header>
             <div class="slds-modal__content slds-p-around_x-large" id="modal-content-id-1">
                 <lightning-layout vertical-align="center">
-                    <lightning-layout-item>
+                    <!--    <lightning-layout-item>
                         <lightning-button-icon
                             title="Accept"
                             variant="border-filled"
@@ -30,15 +30,46 @@
                             icon-name="utility:check"
                             name="input1"
                         ></lightning-button-icon>
-                    </lightning-layout-item>
-
-                    <lightning-layout-item>
-                        <div class="slds-text-heading_medium slds-p-left_medium">{title}</div>
-                    </lightning-layout-item>
+                    </lightning-layout-item>-->
                 </lightning-layout>
 
+                <div class="slds-text-heading_medium">{title}</div>
                 <div class="slds-text-body_regular slds-p-top_medium">{subtitle}</div>
+                <!--<lightning-layout vertical-align="center" class="slds-p-top_medium slds-m-left_x-large">
+                    <lightning-layout-item>
+                        <lightning-button
+                            label="Avbryt"
+                            title="Non-primary action"
+                            onclick={cancel}
+                            class="slds-m-left_x-small"
+                        ></lightning-button>
+                   </lightning-layout-item>
+                    <lightning-layout-item>
+                        <lightning-button
+                            variant="brand"
+                            label="Godta"
+                            title="Primary action"
+                            onclick={accept}
+                            class="slds-m-left_x-small"
+                        ></lightning-button>
+                   </lightning-layout-item>
+                </lightning-layout> -->
             </div>
+            <footer class="slds-modal__footer">
+                <lightning-button
+                    label="Avbryt"
+                    title="Non-primary action"
+                    onclick={cancel}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+                <lightning-button
+                    variant="brand"
+                    label="Godta"
+                    title="Primary action"
+                    onclick={accept}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </footer>
         </div>
     </section>
     <div class="slds-backdrop slds-backdrop_open"></div>
