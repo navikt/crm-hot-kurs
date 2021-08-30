@@ -176,6 +176,73 @@ public with sharing class CourseScheduledDeleteContactsTest {
         );
     }
 
+    @isTest
+    private static void testContactAttendingLaterCourse() {
+        Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        Course__c course2 = CourseRegistrationHandlerTest.getCourse('Testkurs2');
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
+        course2.RegistrationToDateTime__c = Datetime.Now().addDays(-83);
+        update new List<Course__c>{ course1, course2 };
+
+        Account accountCourse = new Account(Name = 'Kontakter uten konto');
+        insert accountCourse;
+
+        Contact contactCourse1 = getContact(accountCourse.Id, 'test1@test.no'); //Only this one should be deleted
+        Contact contactCourse2 = getContact(accountCourse.Id, 'test2@test.no');
+        Contact contactCourse3 = getContact(accountCourse.Id, 'test3@test.no');
+
+        CourseRegistration__c cr1 = getCourseRegistration(course1.Id, contactCourse1.Id);
+        CourseRegistration__c cr2 = getCourseRegistration(course2.Id, contactCourse2.Id);
+        CourseRegistration__c cr3 = getCourseRegistration(course1.Id, contactCourse2.Id);
+        CourseRegistration__c cr4 = getCourseRegistration(course2.Id, contactCourse3.Id);
+
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        List<CourseRegistration__c> crList = [SELECT Id FROM CourseRegistration__c];
+        System.assertEquals(3, contacts.size(), 'Should be 3 contacts');
+        System.assertEquals(4, crList.size(), 'Should be 4 registrations');
+
+        Test.StartTest();
+        CourseScheduledDeleteContacts.courseScheduledDeleteContacts();
+        Test.StopTest();
+
+        List<Contact> contactsAfter = [SELECT Id FROM Contact];
+        List<CourseRegistration__c> crListAfter = [SELECT Id FROM CourseRegistration__c];
+        CourseRegistration__c cr1After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr1.Id
+        ];
+        CourseRegistration__c cr2After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr2.Id
+        ];
+        CourseRegistration__c cr3After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr3.Id
+        ];
+        CourseRegistration__c cr4After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr4.Id
+        ];
+        System.assertEquals(2, contactsAfter.size(), 'Should be 2 contacts');
+        System.assertEquals(4, crListAfter.size(), 'Should be 4 registrations');
+        System.assertEquals(null, cr1After.CourseParticipant__c, 'Should be no contact for cr1');
+        System.assertEquals(
+            contactCourse2.Id,
+            cr2After.CourseParticipant__c,
+            'Should be contactCourse2 relation for cr2'
+        );
+        System.assertEquals(null, cr3After.CourseParticipant__c, 'Should be no contact relation for cr3');
+        System.assertEquals(
+            contactCourse3.Id,
+            cr4After.CourseParticipant__c,
+            'Should be contactCourse3 relation for cr4'
+        );
+    }
+
     public static CourseRegistration__c getCourseRegistration(String courseId, String contactId) {
         CourseRegistration__c cr = new CourseRegistration__c(
             CourseParticipant__c = contactId,
