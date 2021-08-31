@@ -16,6 +16,7 @@ export default class courseRegistrationInformation extends LightningElement {
     @track registrationDeadline;
     @track place;
     @track type;
+    @track seats;
     @track courseStart;
 
     connectedCallback() {
@@ -38,6 +39,7 @@ export default class courseRegistrationInformation extends LightningElement {
                     moment(result.RegistrationDeadline__c).format('LT');
                 this.place = result.RegistrationPlaceName__c;
                 this.type = result.Type__c;
+                this.seats = result.MaxNumberOfParticipants__c - result.NumberOfParticipants__c;
             } else {
             }
         });

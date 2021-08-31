@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailAfterContent__c</fullName>
     <externalId>false</externalId>
-    <label>Content</label>
+    <label>Content After</label>
     <length>32768</length>
     <trackTrending>false</trackTrending>
     <type>Html</type>
