@@ -18,7 +18,8 @@ public with sharing class CourseScheduledDeleteContacts {
         return [
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
-            WHERE CourseParticipant__c != NULL AND DAY_ONLY(Course__r.RegistrationToDateTime__c) <= :date12WeeksInPast LIMIT 200
+            WHERE CourseParticipant__c != NULL AND Course__r.RegistrationToDateTime__c <= :date12WeeksInPast
+            LIMIT 200
         ];
     }
 
@@ -70,25 +71,24 @@ public with sharing class CourseScheduledDeleteContacts {
         //Check if contacts listed for deletion are not registered as contacts for other companies than COURSE_ACCOUNT
 
         Set<Id> contactsOtherThanCourseParticipants = new Set<Id>();
-        for (AccountContactRelation acr : [
+        List<AccountContactRelation> accountContactsOtherThanCourseParticipants = [
             SELECT Id, ContactId
             FROM AccountContactRelation
             WHERE ContactId IN :contactIds AND AccountId != :COURSE_ACCOUNT
-        ]) {
+        ];
+
+        for (AccountContactRelation acr : accountContactsOtherThanCourseParticipants) {
             contactsOtherThanCourseParticipants.add(acr.ContactId);
         }
         return contactsOtherThanCourseParticipants;
     }
 
     public static Set<Id> checkIfSameContactsSoonerCourses(Set<Id> contactsToDelete) {
-        List<CourseRegistration__c> registrationsSoonerThan12Weeks = new List<CourseRegistration__c>();
-        for (CourseRegistration__c cr : [
+        List<CourseRegistration__c> registrationsSoonerThan12Weeks = [
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
-            WHERE CourseParticipant__c != NULL AND DAY_ONLY(Course__r.RegistrationToDateTime__c) > :date12WeeksInPast
-        ]) {
-            registrationsSoonerThan12Weeks.add(cr);
-        }
+            WHERE CourseParticipant__c != NULL AND Course__r.RegistrationToDateTime__c > :date12WeeksInPast
+        ];
 
         Set<Id> contactsSoonerThan12Weeks = fetchContactIds(registrationsSoonerThan12Weeks);
 
