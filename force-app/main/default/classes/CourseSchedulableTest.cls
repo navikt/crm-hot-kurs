@@ -9,7 +9,7 @@ public class CourseSchedulableTest {
         String cronExpr = '0 0 0 15 3 ? 2022';
 
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-84);
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
         update course1;
 
         Account accountCourse = new Account(Name = 'Kontakter uten konto');
