@@ -7,7 +7,7 @@ public with sharing class CourseScheduledDeleteContactsTest {
     @isTest
     private static void testContactsForDeletion() {
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-84);
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
         update course1;
 
         Account accountCourse = new Account(Name = 'Kontakter uten konto');
@@ -50,7 +50,7 @@ public with sharing class CourseScheduledDeleteContactsTest {
     @isTest
     private static void testContactWithRelationToOtherAccounts() {
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-84);
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
         update course1;
 
         Account accountCourse = new Account(Name = 'Kontakter uten konto');
@@ -113,7 +113,7 @@ public with sharing class CourseScheduledDeleteContactsTest {
     private static void testContactAttendingSoonerCourse() {
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
         Course__c course2 = CourseRegistrationHandlerTest.getCourse('Testkurs2');
-        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-84);
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
         course2.RegistrationToDateTime__c = Datetime.Now().addDays(-83);
         update new List<Course__c>{ course1, course2 };
 
