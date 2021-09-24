@@ -15,26 +15,12 @@ public with sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------------------------------------------------------------- //
 
     public static List<CourseRegistration__c> fetchCourseRegistrationsToClean() {
-
-        Set<Id> courseIdsToClean = new Set<Id>();
-        List<Course__c> coursesToClean = [
-            SELECT Id
-            FROM Course__c
-            WHERE RegistrationToDateTime__c <= :date12WeeksInPast
-        ];
-
-        for(Course__c c: coursesToClean) {
-            courseIdsToClean.add(c.Id);
-        }
-
-        List<CourseRegistration__c> courseRegistrationsToClean = [
+        return [
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
-            WHERE CourseParticipant__c != NULL AND Course__c IN :courseIdsToClean
+            WHERE CourseParticipant__c != NULL AND Course__r.RegistrationToDateTime__c <= :date12WeeksInPast
             LIMIT 200
         ];
-
-        return courseRegistrationsToClean;
     }
 
     public static Set<Id> fetchContactsToDelete(List<CourseRegistration__c> courseRegistrationsToClean) {
@@ -61,6 +47,7 @@ public with sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------- DELETE/CLEAN ---------------------------------------- //
     // ---------------------------------------------------------------------------------------------- //
 
+    @future
     public static void deleteContacts(Set<Id> contactIdsForDeletion) {
         List<Contact> contactsForDeletion = [SELECT Id FROM Contact WHERE Id IN :contactIdsForDeletion];
         if (contactsForDeletion.size() > 0) {
