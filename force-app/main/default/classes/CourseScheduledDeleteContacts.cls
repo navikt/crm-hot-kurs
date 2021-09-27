@@ -18,8 +18,7 @@ public with sharing class CourseScheduledDeleteContacts {
         return [
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
-            WHERE CourseParticipant__c != NULL AND Course__r.RegistrationToDateTime__c <= :date12WeeksInPast
-            LIMIT 1000
+            WHERE CourseParticipant__c != NULL AND DAY_ONLY(Course__r.RegistrationToDateTime__c) <= :date12WeeksInPast
         ];
     }
 
