@@ -19,6 +19,7 @@ public with sharing class CourseScheduledDeleteContacts {
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
             WHERE CourseParticipant__c != NULL AND DAY_ONLY(Course__r.RegistrationToDateTime__c) <= :date12WeeksInPast
+            LIMIT 1000
         ];
     }
 
@@ -27,8 +28,13 @@ public with sharing class CourseScheduledDeleteContacts {
 
         Set<Id> contactsThatShouldNotBeDeleted = findContactsWithDefaultAccount(contactsToDelete);
         Set<Id> sameContactsOnSoonerCourse = checkIfSameContactsSoonerCourses(contactsToDelete);
+        Set<Id> sameContactsOnLaterCourse = checkIfSameContactsLaterCourses(
+            contactsToDelete,
+            courseRegistrationsToClean
+        );
 
         contactsThatShouldNotBeDeleted.addAll(sameContactsOnSoonerCourse);
+        contactsThatShouldNotBeDeleted.addAll(sameContactsOnLaterCourse);
         contactsToDelete.removeAll(contactsThatShouldNotBeDeleted);
 
         return contactsToDelete;
@@ -99,5 +105,27 @@ public with sharing class CourseScheduledDeleteContacts {
             }
         }
         return sameContactsOnSoonerCourse;
+    }
+
+    public static Set<Id> checkIfSameContactsLaterCourses(
+        Set<Id> contactsToDelete,
+        List<CourseRegistration__c> courseRegistrationsToBeCleaned
+    ) {
+        List<CourseRegistration__c> registrationsLaterThan12WeeksForContactsToDelete = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE
+                CourseParticipant__c IN :contactsToDelete
+                AND Id NOT IN :courseRegistrationsToBeCleaned
+                AND DAY_ONLY(Course__r.RegistrationToDateTime__c) <= :date12WeeksInPast
+        ];
+
+        Set<Id> contactsToDeleteOnOtherLaterCourses = new Set<Id>();
+        if (registrationsLaterThan12WeeksForContactsToDelete.size() > 0) {
+            for (CourseRegistration__c cr : registrationsLaterThan12WeeksForContactsToDelete) {
+                contactsToDeleteOnOtherLaterCourses.add(cr.CourseParticipant__c);
+            }
+        }
+        return contactsToDeleteOnOtherLaterCourses;
     }
 }
