@@ -54,7 +54,7 @@ public with sharing class CourseScheduledDeleteContacts {
 
     @future
     public static void deleteContacts(Set<Id> contactIdsForDeletion) {
-        List<Contact> contactsForDeletion = [SELECT Id FROM Contact WHERE Id IN :contactIdsForDeletion];
+        List<Contact> contactsForDeletion = [SELECT Id FROM Contact WHERE Id IN :contactIdsForDeletion AND IsPersonAccount = false];
         if (contactsForDeletion.size() > 0) {
             delete contactsForDeletion;
         }
