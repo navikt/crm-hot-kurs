@@ -36,6 +36,15 @@
     <columns>
         <field>CourseRegistration__c.Participant_phone__c</field>
     </columns>
+    <columns>
+        <field>CourseRegistration__c.County__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.Role__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.CompanyName__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
