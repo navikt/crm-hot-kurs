@@ -35,6 +35,9 @@
         "omniChannelSettings": {
             "enableOmniChannel": true
         },
+        "liveAgentSettings": {
+            "enableLiveAgent": true
+        },
         "languageSettings": {
             "enableTranslationWorkbench": true
         },
