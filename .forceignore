@@ -121,7 +121,8 @@
 **/pages/CommunitiesSelfReg.page
 **/pages/ForgotPasswordConfirm.page
 **/pages/SiteRegisterConfirm.page
-**/main/default/customMetadata/*
+**/main/default/customMetadata/ActivityTimelineChild.TAG_CourseTask.md-meta.xml
+**/main/default/customMetadata/ActivityTimelineParent.TAG_Course_Task.md-meta.xml
 **/staticresources/SiteSamples*
 
 
