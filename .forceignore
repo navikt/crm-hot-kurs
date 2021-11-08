@@ -121,7 +121,7 @@
 **/pages/CommunitiesSelfReg.page
 **/pages/ForgotPasswordConfirm.page
 **/pages/SiteRegisterConfirm.page
-
+**/main/default/customMetadata/*
 **/staticresources/SiteSamples*
 
 
