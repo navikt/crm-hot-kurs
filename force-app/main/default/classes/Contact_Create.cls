@@ -11,7 +11,7 @@ global class Contact_Create extends MyTriggers {
 
         for (CourseRegistration__c reg : registrations) {
             CourseRegistration__c cr = new CourseRegistration__c(Id = reg.id);
-            cr.EncryptedId__c = CryptoService.encryptString(cr.Id);
+            cr.EncryptedId__c = EncodingUtil.urlEncode(CryptoService.encryptString(cr.Id), 'UTF-8');
             recordsToUpdate.add(cr);
         }
         update recordsToUpdate;

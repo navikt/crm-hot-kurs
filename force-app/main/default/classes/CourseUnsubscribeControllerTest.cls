@@ -24,7 +24,7 @@ private with sharing class CourseUnsubscribeControllerTest {
         );
         insert courseReg;
 
-        String encrypted = [SELECT EncryptedId__c FROM CourseRegistration__c LIMIT 1].EncryptedId__c;
+        String encrypted = EncodingUtil.urlDecode([SELECT EncryptedId__c FROM CourseRegistration__c LIMIT 1].EncryptedId__c, 'UTF-8');
 
         Test.startTest();
         CourseRegistration__c result = CourseUnsubscribeController.getCourseRegistrationFields(encrypted);
