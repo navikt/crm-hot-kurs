@@ -207,7 +207,7 @@
                                 alt="NAV Logo"
                                 border="0"
                                 class="center fixedwidth"
-                                src="https://EU25.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&oid=00D2o000000aANV"
+                                src="https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&oid=00D2o000000aANV"
                                 style="
                                   text-decoration: none;
                                   -ms-interpolation-mode: bicubic;
