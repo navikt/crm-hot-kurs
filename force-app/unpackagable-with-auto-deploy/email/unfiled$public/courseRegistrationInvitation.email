@@ -148,7 +148,7 @@
                           padding-left: 0px;">
 			<div align="center" class="img-container center fixedwidth" style="padding-right: 0px; padding-left: 10px"><br />
 			<br />
-			<img align="center" alt="NAV Logo" border="0" class="center fixedwidth" src="https://EU25.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&oid=00D2o000000aANV" style="text-decoration: none;
+			<img align="center" alt="NAV Logo" border="0" class="center fixedwidth" src="https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&oid=00D2o000000aANV" style="text-decoration: none;
                               -ms-interpolation-mode: bicubic;
                               border: 0;
                               height: auto;
