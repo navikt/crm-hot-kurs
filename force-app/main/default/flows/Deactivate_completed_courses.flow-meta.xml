@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
     <interviewLabel>Deactivate courses {!$Flow.CurrentDateTime}</interviewLabel>
@@ -29,7 +29,7 @@
         <locationY>276</locationY>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>RegistrationFromDateTime__c</field>
+            <field>RegistrationToDateTime__c</field>
             <operator>LessThanOrEqualTo</operator>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
