@@ -1,10 +1,10 @@
 {
-    "cmsSettings": {},
-    "currentThemeId": "559b379b-f947-48c5-b0db-c50c57db1d3e",
-    "headMarkup": null,
-    "id": "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-    "isRelaxedCSPLevel": false,
-    "label": "main",
-    "templateName": "Starter Template",
-    "type": "appPage"
+  "cmsSettings" : { },
+  "currentThemeId" : "559b379b-f947-48c5-b0db-c50c57db1d3e",
+  "headMarkup" : "<link rel=\"shortcut icon\" href=\"https://force-site-3919.cs100.my.salesforce.com/_ui/networks/setup/SetupNetworksPage?retURL=%2F0DM1x0000008esK\" />",
+  "id" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "isRelaxedCSPLevel" : false,
+  "label" : "main",
+  "templateName" : "Starter Template",
+  "type" : "appPage"
 }
