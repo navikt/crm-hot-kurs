@@ -200,7 +200,7 @@ public with sharing class EmailSchedulingHelper {
 
         try {
             insert tasks;
-        } catch (Exception) {
+        } catch (Exception e) {
             LoggerUtility logger = new LoggerUtility();
             logger.exception(e);
             logger.publishSynch();
