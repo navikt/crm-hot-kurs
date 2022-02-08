@@ -198,7 +198,13 @@ public with sharing class EmailSchedulingHelper {
             tasks.add(task);
         }
 
-        insert tasks;
+        try {
+            insert tasks;
+        } catch (Exception) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e);
+            logger.publishSynch();
+        }
     }
 
     // ------------------------------------------------
