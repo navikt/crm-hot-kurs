@@ -160,7 +160,13 @@ public with sharing class EmailSchedulingHelper {
             courses.add(course);
         }
 
-        update courses;
+        try {
+            update courses;
+        } catch (Exception e) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e);
+            logger.publishSynch();
+        }
     }
 
     public static void createTasks(Map<Id, Course__c> courseMap, Map<Id, List<String>> coursesWithEmailQueue) {
