@@ -3,6 +3,6 @@
     <fullName>Title_can_not_exceed_73_characters</fullName>
     <active>true</active>
     <description>Tittel kan ikke overgå 73 tegn, pga course_cancel klassen som legger til &quot;AVLYST&quot; foran tittelnavnet når et kurs blir kansellert</description>
-    <errorConditionFormula>IF( Cancel__c = false &amp;&amp; LEN( Name ) &gt; 73, true, false)</errorConditionFormula>
+    <errorConditionFormula>IF(  Active__c = true &amp;&amp; Cancel__c = false &amp;&amp; LEN( Name ) &gt; 73, true, false)</errorConditionFormula>
     <errorMessage>Tittel kan ikke inneholde mer enn 73 tegn</errorMessage>
 </ValidationRule>
