@@ -5,7 +5,7 @@
             "default": true,
             "package": "crm-arbeidsgiver-kurs",
             "versionName": "ver 0.1",
-            "versionNumber": "1.36.0.NEXT",
+            "versionNumber": "1.39.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
@@ -44,7 +44,7 @@
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "50.0",
+    "sourceApiVersion": "52.0",
     "packageAliases": {
         "crm-arbeidsgiver-kurs": "0Ho2o000000KylvCAC",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
