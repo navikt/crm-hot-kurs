@@ -34,6 +34,28 @@ Pakken er avhengig av følgende pakker:
     - macOS: `/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home`
     - Windows: `C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.3.7-hotspot` (merk at versjonsnummer kan endre seg)
 
+## Bygg
+
+For å bygge lokalt uten SSDX, bruk føglende
+
+1. Hvis du ikke har autentisert en DevHub, kjør `sfdx auth:web:login -d -a production` og så logge inn.
+2. Installer sfdx plugin `echo y | sfdx plugins:install sfpowerkit@2.0.1`
+3. Opprette en fil i prosjekets root directory med navn `env.json`
+
+```
+{
+    "PACKAGE_KEY": "Your Package Key"
+}
+
+```
+
+4. Opprette scratch org, installer avhengigheter og så pushe metadata:
+
+```
+npm install
+npm run mac:build
+```
+
 ## Utvikling
 
 Utvikling foregår i hovedsak på to fronter, i nettleseren i din scratch org og på din maskin i din prefererte IDE. Ved endringer i nettleseren på din scratch org (som lever i skyen), så må alle endringer pulles til din maskin. Ved endringer av metadata i din IDE, må endringer pushes til din scratch org.
