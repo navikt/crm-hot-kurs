@@ -37,7 +37,7 @@ public with sharing class EmailConfirmationModalHelperPreview {
 
             if (isDateTimeField(sObjectType, sObjectField)) {
                 Datetime dateGMT = Datetime.valueOf(data[0].get(sObjectField));
-                String value = dateGMT.format('dd/MM/yyyy hh:mm');
+                String value = dateGMT.format('dd/MM/yyyy HH:mm');
                 replacingMap.put(key, value);
             } else {
                 String value = String.valueOf(data[0].get(sObjectField));
