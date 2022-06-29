@@ -14,6 +14,9 @@
         "ProcessBuilder",
         "API",
         "ContactsToMultipleAccounts",
+        "Knowledge",
+        "ServiceCloud",
+        "LightningServiceConsole",
         "FieldService:1"
     ],
     "country": "NO",
@@ -39,7 +42,12 @@
             "enableTranslationWorkbench": true
         },
         "accountSettings": {
-            "enableAccountTeams": true
+            "enableAccountTeams": true,
+            "enableRelateContactToMultipleAccounts": true
+        },
+        "knowledgeSettings": {
+            "enableKnowledge": true,
+            "enableLightningKnowledge": true
         },
         "emailAdministrationSettings": {
             "enableEnhancedEmailEnabled": true
