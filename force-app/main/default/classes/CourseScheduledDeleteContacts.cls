@@ -1,4 +1,4 @@
-public with sharing class CourseScheduledDeleteContacts {
+public without sharing class CourseScheduledDeleteContacts {
     private static final Date date12WeeksInPast = date.today().addDays(-84);
     public static final Id COURSE_ACCOUNT = [SELECT Id FROM Account WHERE Name = 'Kontakter uten konto'].Id;
     private static final LoggerUtility logger = new LoggerUtility();

@@ -51,7 +51,7 @@ public without sharing class EmailSchedulingServiceTest {
         createData(new List<EmailSchedulingHelper.EmailTypes>{ EmailSchedulingHelper.EmailTypes.MANUAL }, false);
 
         Test.StartTest();
-        String CRON_EXP = '0 0 0 3 9 ? 2022';
+        String CRON_EXP = '0 0 0 3 9 ?';
         System.schedule('EmailSchedulingServiceTest', CRON_EXP, new EmailSchedulingService());
         Test.StopTest();
 
