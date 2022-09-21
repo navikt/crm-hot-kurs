@@ -53,7 +53,7 @@ public without sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------- DELETE/CLEAN ---------------------------------------- //
     // ---------------------------------------------------------------------------------------------- //
 
-    @future
+    //@future
     public static void deleteContacts(Set<Id> contactIdsForDeletion) {
         List<Contact> contactsForDeletion = [SELECT Id FROM Contact WHERE Id IN :contactIdsForDeletion AND IsPersonAccount = false];
         if (contactsForDeletion.size() > 0) {
