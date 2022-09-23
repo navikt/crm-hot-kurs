@@ -38,20 +38,52 @@ public without sharing class CourseScheduledDeleteContacts {
     }
 
     public static Set<Id> fetchContactsToDelete(List<CourseRegistration__c> courseRegistrationsToClean) {
-        Set<Id> contactsToDelete = fetchContactIds(courseRegistrationsToClean);
+        Set<Id> contactIdsToDelete = fetchContactIds(courseRegistrationsToClean);
 
-        Set<Id> contactsThatShouldNotBeDeleted = findContactsWithDefaultAccount(contactsToDelete);
-        Set<Id> sameContactsOnSoonerCourse = checkIfSameContactsSoonerCourses(contactsToDelete);
+        Set<Id> contactsThatShouldNotBeDeleted = findContactsWithDefaultAccount(contactIdsToDelete);
+        Set<Id> sameContactsOnSoonerCourse = checkIfSameContactsSoonerCourses(contactIdsToDelete);
         Set<Id> sameContactsOnLaterCourse = checkIfSameContactsLaterCourses(
-            contactsToDelete,
+            contactIdsToDelete,
             courseRegistrationsToClean
         );
 
+        logger.logMessage(
+            LoggerUtility.LogLevel.Info,
+            '',
+            null,
+            contactIdsToDelete.size() +
+            ' contactIds to delete from fetch method & ' +
+            contactsThatShouldNotBeDeleted.size() +
+            ' contactsThatShouldNotBeDeleted before add/remove & ' +
+            sameContactsOnSoonerCourse.size() +
+            ' sameContactsOnSoonerCourse & ' +
+            sameContactsOnLaterCourse.size() +
+            ' sameContactsOnLaterCourse & ',
+            null,
+            null,
+            CRM_ApplicationDomain.Domain.POAB
+        );
+        logger.publish();
+
         contactsThatShouldNotBeDeleted.addAll(sameContactsOnSoonerCourse);
         contactsThatShouldNotBeDeleted.addAll(sameContactsOnLaterCourse);
-        contactsToDelete.removeAll(contactsThatShouldNotBeDeleted);
+        contactIdsToDelete.removeAll(contactsThatShouldNotBeDeleted);
 
-        return contactsToDelete;
+        logger.logMessage(
+            LoggerUtility.LogLevel.Info,
+            '',
+            null,
+            contactsThatShouldNotBeDeleted.size() +
+            ' contactsThatShouldNotBeDeleted after add/remove & ' +
+            contactIdsToDelete.size() +
+            ' contactIdsToDelete after add/remove & ',
+            null,
+            null,
+            CRM_ApplicationDomain.Domain.POAB
+        );
+        logger.publish();
+
+        return contactIdsToDelete;
     }
 
     public static Set<Id> fetchContactIds(List<CourseRegistration__c> courseRegistrationsToClean) {
