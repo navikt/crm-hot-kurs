@@ -23,17 +23,6 @@ public without sharing class CourseScheduledDeleteContacts {
             LIMIT 1000
         ];
 
-        logger.logMessage(
-            LoggerUtility.LogLevel.Info,
-            '',
-            null,
-            courseRegistrationsToClean.size() + ' courses to clean',
-            null,
-            null,
-            CRM_ApplicationDomain.Domain.POAB
-        );
-        logger.publish();
-
         return courseRegistrationsToClean;
     }
 
@@ -47,41 +36,9 @@ public without sharing class CourseScheduledDeleteContacts {
             courseRegistrationsToClean
         );
 
-        logger.logMessage(
-            LoggerUtility.LogLevel.Info,
-            '',
-            null,
-            contactIdsToDelete.size() +
-            ' contactIds to delete from fetch method & ' +
-            contactsThatShouldNotBeDeleted.size() +
-            ' contactsThatShouldNotBeDeleted before add/remove & ' +
-            sameContactsOnSoonerCourse.size() +
-            ' sameContactsOnSoonerCourse & ' +
-            sameContactsOnLaterCourse.size() +
-            ' sameContactsOnLaterCourse & ',
-            null,
-            null,
-            CRM_ApplicationDomain.Domain.POAB
-        );
-        logger.publish();
-
         contactsThatShouldNotBeDeleted.addAll(sameContactsOnSoonerCourse);
         contactsThatShouldNotBeDeleted.addAll(sameContactsOnLaterCourse);
         contactIdsToDelete.removeAll(contactsThatShouldNotBeDeleted);
-
-        logger.logMessage(
-            LoggerUtility.LogLevel.Info,
-            '',
-            null,
-            contactsThatShouldNotBeDeleted.size() +
-            ' contactsThatShouldNotBeDeleted after add/remove & ' +
-            contactIdsToDelete.size() +
-            ' contactIdsToDelete after add/remove & ',
-            null,
-            null,
-            CRM_ApplicationDomain.Domain.POAB
-        );
-        logger.publish();
 
         return contactIdsToDelete;
     }
@@ -98,27 +55,13 @@ public without sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------- DELETE/CLEAN ---------------------------------------- //
     // ---------------------------------------------------------------------------------------------- //
 
-    //@future
+    @future
     public static void deleteContacts(Set<Id> contactIdsForDeletion) {
         List<Contact> contactsForDeletion = [
             SELECT Id
             FROM Contact
             WHERE Id IN :contactIdsForDeletion AND IsPersonAccount = FALSE
         ];
-
-        logger.logMessage(
-            LoggerUtility.LogLevel.Info,
-            '',
-            null,
-            contactIdsForDeletion.size() +
-            ' contactIds for deletion & ' +
-            contactsForDeletion.size() +
-            ' contacts to delete',
-            null,
-            null,
-            CRM_ApplicationDomain.Domain.POAB
-        );
-        logger.publish();
 
         try {
             delete contactsForDeletion;
@@ -162,7 +105,7 @@ public without sharing class CourseScheduledDeleteContacts {
         List<CourseRegistration__c> registrationsSoonerThan12Weeks = [
             SELECT Id, CourseParticipant__c
             FROM CourseRegistration__c
-            WHERE CourseParticipant__c != NULL AND Course__r.RegistrationToDateTime__c > :date12WeeksInPast
+            WHERE CourseParticipant__c != NULL AND DAY_ONLY(Course__r.RegistrationToDateTime__c) > :date12WeeksInPast
         ];
 
         Set<Id> contactsSoonerThan12Weeks = fetchContactIds(registrationsSoonerThan12Weeks);
