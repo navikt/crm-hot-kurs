@@ -15,11 +15,9 @@ public without sharing class CourseDeleteContactBatch_Batch implements Database.
     
             List<Contact> contactsForDeletion = [SELECT Id FROM Contact WHERE Id IN :contactsMayBeDeleted AND IsPersonAccount = false];
     
-            List<Contact> contactsToDelete = CourseDeleteContactBatch.courseDeleteContact(scope);
+            recordsToDelete = contactsForDeletion.size();
 
-            recordsToDelete = contactsToDelete.size();
-
-            Delete contactsToDelete;          
+            Delete contactsForDeletion;          
         }
       
         public void finish(Database.BatchableContext bc){
