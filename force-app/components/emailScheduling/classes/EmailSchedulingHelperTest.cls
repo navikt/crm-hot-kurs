@@ -371,11 +371,11 @@ private without sharing class EmailSchedulingHelperTest {
         /*System.assert(
             beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[0].Id),
             'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[0].Id
-        ); */
+        ); 
         System.assert(
             beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[1].Id),
             'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[1].Id
-        );
+        ); */
 
         System.assert(
             afterCourse.EmailAfterEmailQueueId__c.contains(afterQueue[0].Id),
