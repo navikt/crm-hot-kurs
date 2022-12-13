@@ -368,41 +368,42 @@ private without sharing class EmailSchedulingHelperTest {
         List<EmailQueue__c> reminderQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :reminderCourse.Id];
         List<EmailQueue__c> manualQueue = [SELECT Id FROM EmailQueue__c WHERE WhatId__c = :manualCourse.Id];
 
-        /*System.assert(
-            beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[0].Id),
+        //Only check row 2 and 3 of the beforeQueue list, because process builder has already created email-confirmation, which occupies row 0 and 1
+        System.assert(
+            beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[2].Id),
             'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[0].Id
         );
         System.assert(
-            beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[1].Id),
+            beforeCourse.EmailBeforeEmailQueueId__c.contains(beforeQueue[3].Id),
             'EmailBeforeEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + beforeQueue[1].Id
         );
 
         System.assert(
-            afterCourse.EmailAfterEmailQueueId__c.contains(afterQueue[0].Id),
+            afterCourse.EmailAfterEmailQueueId__c.contains(afterQueue[2].Id),
             'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[0].Id
         );
         System.assert(
-            afterCourse.EmailAfterEmailQueueId__c.contains(afterQueue[1].Id),
+            afterCourse.EmailAfterEmailQueueId__c.contains(afterQueue[3].Id),
             'EmailAfterEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + afterQueue[1].Id
         );
 
         System.assert(
-            reminderCourse.EmailReminderEmailQueueId__c.contains(reminderQueue[0].Id),
+            reminderCourse.EmailReminderEmailQueueId__c.contains(reminderQueue[2].Id),
             'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[0].Id
         );
         System.assert(
-            reminderCourse.EmailReminderEmailQueueId__c.contains(reminderQueue[1].Id),
+            reminderCourse.EmailReminderEmailQueueId__c.contains(reminderQueue[3].Id),
             'EmailReminderEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + reminderQueue[1].Id
         );
 
         System.assert(
-            manualCourse.EmailManualEmailQueueId__c.contains(manualQueue[0].Id),
+            manualCourse.EmailManualEmailQueueId__c.contains(manualQueue[2].Id),
             'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[0].Id
         );
         System.assert(
-            manualCourse.EmailManualEmailQueueId__c.contains(manualQueue[1].Id),
+            manualCourse.EmailManualEmailQueueId__c.contains(manualQueue[3].Id),
             'EmailManualEmailQueueId__c should contain one of two EmailQueue__c Id\'s: ' + manualQueue[1].Id
-        ); */
+        );
     }
 
     @isTest
