@@ -137,3 +137,7 @@
 # **/siteDotComSites/*
 # **/sites/*
 # **/community/pages/*
+
+# Temporary Changes
+# ----------------------------------------------------------------------------------------
+**/unpackagable-with-auto-deploy
