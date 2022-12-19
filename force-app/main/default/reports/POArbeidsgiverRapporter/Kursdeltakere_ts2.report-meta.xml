@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
@@ -44,6 +44,9 @@
     </columns>
     <columns>
         <field>CourseRegistration__c.CompanyName__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.CreatedDate</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>
