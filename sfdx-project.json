@@ -9,11 +9,11 @@
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.178.0.LATEST"
+                    "versionNumber": "0.184.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.106.0.LATEST"
+                    "versionNumber": "0.107.0.LATEST"
                 },
                 {
                     "package": "crm-shared-base",
@@ -21,23 +21,23 @@
                 },
                 {
                     "package": "crm-thread-view",
-                    "versionNumber": "0.1.0.LATEST"
+                    "versionNumber": "0.2.0.LATEST"
                 },
                 {
                     "package": "crm-shared-timeline",
-                    "versionNumber": "1.18.0.LATEST"
+                    "versionNumber": "1.19.0.LATEST"
                 },
                 {
                     "package": "crm-platform-integration",
-                    "versionNumber": "0.92.0.LATEST"
+                    "versionNumber": "0.96.0.LATEST"
                 },
                 {
                     "package": "crm-arbeidsgiver-base",
-                    "versionNumber": "1.273.0.LATEST"
+                    "versionNumber": "1.288.0.LATEST"
                 },
                 {
                     "package": "crm-community-base",
-                    "versionNumber": "0.76.0.LATEST"
+                    "versionNumber": "0.79.0.LATEST"
                 },
                 {
                     "package": "crm-platform-email-scheduling",
