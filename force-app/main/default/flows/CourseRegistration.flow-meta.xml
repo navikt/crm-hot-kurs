@@ -37,7 +37,7 @@
                 <stringValue>[CourseRegistration__c].CourseParticipant__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_5501101786</name>
+        <name>formula_2_myRule_1_A1_1791295064</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.CourseParticipant__c}</expression>
     </formulas>
@@ -58,7 +58,7 @@ AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Påmeldt&quot;) ),
 AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Påmeldt&quot;))
 )</expression>
     </formulas>
-    <interviewLabel>CourseRegistration-3_InterviewLabel</interviewLabel>
+    <interviewLabel>CourseRegistration-2_InterviewLabel</interviewLabel>
     <label>Course Registration + Email Ver4</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -189,7 +189,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>TargetObjectId__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_5501101786</elementReference>
+                <elementReference>formula_2_myRule_1_A1_1791295064</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -261,7 +261,7 @@ AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.S
             </processMetadataValues>
             <field>WhatId__c</field>
             <value>
-                <elementReference>myVariable_current.Course__c</elementReference>
+                <elementReference>myVariable_current.Id</elementReference>
             </value>
         </inputAssignments>
         <object>EmailQueue__c</object>
