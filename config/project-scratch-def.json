@@ -66,6 +66,13 @@
             "isGeoCodeSyncEnabled": false,
             "isLocationHistoryEnabled": false,
             "fieldServiceNotificationsOrgPref": true
+        },
+        "securitySettings": {
+            "sessionSettings": {
+                "forceRelogin": false,
+                "lockerServiceNext": false
+            },
+            "enableAdminLoginAsAnyUser": true
         }
     }
 }
