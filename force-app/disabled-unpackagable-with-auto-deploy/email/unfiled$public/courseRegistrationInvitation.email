@@ -253,7 +253,7 @@
 			<p style="font-size: 20px;
                                 line-height: 1.5;
                                 word-break: break-word;
-                                margin: 0px 20px;"><span style="font-size: 18px">{{{Sender.Name}}}&nbsp;har&nbsp;invitert deg til &aring; delta p&aring; kurset &quot;<strong>{{{Course__c.Name}}}</strong>&quot;.</span><br />
+                                margin: 0px 20px;"><span style="font-size: 18px">{{{Sender.Name}}}&nbsp;har&nbsp;invitert deg til &aring; delta p&aring; kurs &quot;<strong>{{{Course__c.Name}}}</strong>&quot;.</span><br />
 			<br />
 			<span style="font-size: 18px"><a href="{{{Course__c.RegistrationUrl2__c}}}" style="-webkit-text-size-adjust: none;
                                     text-decoration: none;
