@@ -36,6 +36,11 @@
                 <label>Konferanse</label>
             </value>
             <value>
+                <fullName>Seminar</fullName>
+                <default>false</default>
+                <label>Seminar</label>
+            </value>
+            <value>
                 <fullName>Nettverks- og erfaringssamling</fullName>
                 <default>false</default>
                 <label>Nettverks- og erfaringssamling</label>
