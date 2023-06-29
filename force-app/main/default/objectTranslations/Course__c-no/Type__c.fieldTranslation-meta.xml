@@ -19,6 +19,10 @@
         <translation><!-- Kurs --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Seminar</masterLabel>
+        <translation><!-- Seminar--></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Nettverks- og erfaringssamling</masterLabel>
         <translation><!-- Nettverks- og erfaringssamling --></translation>
     </picklistValues>
