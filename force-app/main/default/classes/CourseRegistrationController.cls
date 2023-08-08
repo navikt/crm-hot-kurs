@@ -39,7 +39,8 @@ public with sharing class CourseRegistrationController {
                 Cancel__c,
                 ShowInvoiceAdress__c,
                 ShowInvoiceReference__c,
-                ShowAllergies__c
+                ShowAllergies__c,
+                ShowWorkplace__c
             FROM Course__c
             WHERE Id = :courseId
         ];
