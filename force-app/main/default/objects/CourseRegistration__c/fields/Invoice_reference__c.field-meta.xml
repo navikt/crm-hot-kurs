@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Invoice_reference__c</fullName>
     <externalId>false</externalId>
-    <label>Invoice reference</label>
+    <label>Faktura referanse</label>
     <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
