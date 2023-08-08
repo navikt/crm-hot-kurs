@@ -8,6 +8,10 @@ public with sharing class CourseRegistrationModel {
     public String county;
     public String companyName;
     public String role;
+    public String workplace;
+    public String invoiceAdress;
+    public String invoiceReference;
+    public String allergies;
 
     public static CourseRegistrationModel parse(String json) {
         return (CourseRegistrationModel) System.JSON.deserialize(json, CourseRegistrationModel.class);
