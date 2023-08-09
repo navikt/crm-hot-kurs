@@ -23,6 +23,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track dueDate;
     @track title;
     @track canceled = false;
+    @track allergies = false;
+    @track invoiceAdress = false;
+    @track invoiceReference = false;
+    @track workplace = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -56,6 +60,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.county = result.ShowCounty__c;
                 this.role = result.ShowRole__c;
                 this.canceled = result.Cancel__c;
+                this.allergies = result.ShowAllergies__c;
+                this.invoiceAdress = result.ShowInvoiceAdress__c;
+                this.invoiceReference = result.ShowInvoiceReference__c;
+                this.workplace = result.ShowWorkplace__c;
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);

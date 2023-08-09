@@ -36,7 +36,11 @@ public with sharing class CourseRegistrationController {
                 ShowCompany__c,
                 ShowCounty__c,
                 ShowRole__c,
-                Cancel__c
+                Cancel__c,
+                ShowInvoiceAdress__c,
+                ShowInvoiceReference__c,
+                ShowAllergies__c,
+                ShowWorkplace__c
             FROM Course__c
             WHERE Id = :courseId
         ];
@@ -65,6 +69,11 @@ public with sharing class CourseRegistrationController {
             registration.County__c = model.county;
             registration.CompanyName__c = model.companyName;
             registration.Role__c = model.role;
+
+            registration.Allergies__c=model.allergies;
+            registration.Workplace__c=model.workplace;
+            registration.Invoice_address__c=model.invoiceAdress;
+            registration.Invoice_reference__c=model.invoiceReference;
 
             if (courseIsFull) {
                 registration.Status__c = 'Venteliste';

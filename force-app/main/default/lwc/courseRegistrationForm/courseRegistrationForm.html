@@ -238,6 +238,57 @@
                                             required
                                         />
                                     </div>
+                                    <div if:true={workplace} class="felt">
+                                        <label class="skjemaelement__label" for="workplace">
+                                            <p class="typo-element">Arbeidsplass</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="workplace"
+                                            id="workplace"
+                                            onchange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div if:true={invoiceAdress} class="felt">
+                                        <label class="skjemaelement__label" for="invoiceAdress">
+                                            <p class="typo-element">Faktura adresse</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="invoiceAdress"
+                                            id="invoiceAdress"
+                                            onchange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div if:true={invoiceReference} class="felt">
+                                        <label class="skjemaelement__label" for="invoiceReference">
+                                            <p class="typo-element">Faktura referanse</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="invoiceReference"
+                                            id="invoiceReference"
+                                            onchange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div if:true={allergies} class="felt">
+                                        <label class="skjemaelement__label" for="allergies">
+                                            <p class="typo-element">Matallergi</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="allergies"
+                                            id="allergies"
+                                            onchange={handleChange}
+                                        />
+                                    </div>
                                 </div>
 
                                 <div class="navno-dekorator alertstripe">
