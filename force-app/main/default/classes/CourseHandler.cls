@@ -34,7 +34,7 @@ global with sharing class CourseHandler {
             wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
             //temp fix for timezone problems
-            Datetime summer = DateTime.newInstance(2023, 3, 26, 0, 0, 0);
+            Datetime summer = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
             Datetime winter = DateTime.newInstance(2023, 10, 29, 0, 0, 0);
 
             Datetime fromTime = course.RegistrationFromDateTime__c;
