@@ -35,7 +35,7 @@ global with sharing class CourseHandler {
 
             //temp fix for timezone problems
             Datetime summer = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
-            Datetime winter = DateTime.newInstance(2023, 10, 29, 0, 0, 0);
+            Datetime winter = DateTime.newInstance(2024, 10, 27, 0, 0, 0);
 
             Datetime fromTime = course.RegistrationFromDateTime__c;
             if (fromTime > summer && fromTime < winter) {
