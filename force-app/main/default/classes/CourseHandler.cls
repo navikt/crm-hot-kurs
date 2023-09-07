@@ -33,34 +33,45 @@ global with sharing class CourseHandler {
             wrapper.Title = course.Name;
             wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
-            //temp fix for timezone problems
-            Datetime summer = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
-            Datetime winter = DateTime.newInstance(2024, 10, 27, 0, 0, 0);
-
-            Datetime fromTime = course.RegistrationFromDateTime__c;
-            if (fromTime > summer && fromTime < winter) {
-                fromTime = fromTime.addHours(2);
-            } else {
-                fromTime = fromTime.addHours(1);
-            }
+            //permanent timezone fix
+            Timezone userTimeZone = Timezone.getTimeZone('Europe/Oslo');
+            Integer timeZoneOffsetMinutes = userTimeZone.getOffset(DateTime.now());
+            Datetime fromTime = course.RegistrationFromDateTime__c.addMinutes(timeZoneOffsetMinutes);
+            Datetime toTime = course.RegistrationToDateTime__c.addMinutes(timeZoneOffsetMinutes);
+            Datetime deadline = course.RegistrationDeadline__c.addMinutes(timeZoneOffsetMinutes);
 
             wrapper.RegistrationFromDateTime = fromTime;
-
-            Datetime toTime = course.RegistrationToDateTime__c;
-            if (toTime > summer && toTime < winter) {
-                toTime = toTime.addHours(2);
-            } else {
-                toTime = toTime.addHours(1);
-            }
             wrapper.RegistrationToDateTime = toTime;
-
-            Datetime deadline = course.RegistrationDeadline__c;
-            if (deadline > summer && deadline < winter) {
-                deadline = deadline.addHours(2);
-            } else {
-                deadline = deadline.addHours(1);
-            }
             wrapper.RegistrationDeadline = deadline;
+
+            //temp fix for timezone problems
+            // Datetime summer = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
+            // Datetime winter = DateTime.newInstance(2024, 10, 27, 0, 0, 0);
+
+            // Datetime fromTime = course.RegistrationFromDateTime__c;
+            // if (fromTime > summer && fromTime < winter) {
+            //     fromTime = fromTime.addHours(2);
+            // } else {
+            //     fromTime = fromTime.addHours(1);
+            // }
+
+            // wrapper.RegistrationFromDateTime = fromTime;
+
+            // Datetime toTime = course.RegistrationToDateTime__c;
+            // if (toTime > summer && toTime < winter) {
+            //     toTime = toTime.addHours(2);
+            // } else {
+            //     toTime = toTime.addHours(1);
+            // }
+            // wrapper.RegistrationToDateTime = toTime;
+
+            // Datetime deadline = course.RegistrationDeadline__c;
+            // if (deadline > summer && deadline < winter) {
+            //     deadline = deadline.addHours(2);
+            // } else {
+            //     deadline = deadline.addHours(1);
+            // }
+            // wrapper.RegistrationDeadline = deadline;
             // --------------------------------------------- //
             wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
             wrapper.FrontPageDescription = course.DescriptionFormatted__c;
