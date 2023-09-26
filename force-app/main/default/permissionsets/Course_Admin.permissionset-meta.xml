@@ -168,6 +168,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CourseRegistration__c.ContactFirstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.ContactLastName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.firstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.lastName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CourseRegistration__c.InvalidEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
