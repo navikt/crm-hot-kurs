@@ -46,13 +46,13 @@ global with sharing class CourseHandler {
             // wrapper.RegistrationDeadline = deadline;
 
             //temp fix for timezone problems
-            Datetime summer23 = DateTime.newInstance(2023, 3, 26, 0, 0, 0);
-            Datetime winter23 = DateTime.newInstance(2023, 10, 29, 0, 0, 0);
+            Datetime summer25 = DateTime.newInstance(2025, 3, 30, 0, 0, 0);
+            Datetime winter25 = DateTime.newInstance(2025, 10, 26, 0, 0, 0);
             Datetime summer24 = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
-            Datetime winter24 = DateTime.newInstance(2023, 10, 27, 0, 0, 0);
+            Datetime winter24 = DateTime.newInstance(2024, 10, 27, 0, 0, 0);
 
             Datetime fromTime = course.RegistrationFromDateTime__c;
-            if (fromTime > summer24 && fromTime < winter24 || fromTime > summer23 && fromTime < winter23) {
+            if (fromTime > summer24 && fromTime < winter24 || fromTime > summer25 && fromTime < winter25) {
                 fromTime = fromTime.addHours(2);
             } else {
                 fromTime = fromTime.addHours(1);
@@ -61,7 +61,7 @@ global with sharing class CourseHandler {
             wrapper.RegistrationFromDateTime = fromTime;
 
             Datetime toTime = course.RegistrationToDateTime__c;
-            if (toTime > summer24 && toTime < winter24 || toTime > summer23 && toTime < winter23 ) {
+            if (toTime > summer24 && toTime < winter24 || toTime > summer25 && toTime < winter25 ) {
                 toTime = toTime.addHours(2);
             } else {
                 toTime = toTime.addHours(1);
@@ -69,7 +69,7 @@ global with sharing class CourseHandler {
             wrapper.RegistrationToDateTime = toTime;
 
             Datetime deadline = course.RegistrationDeadline__c;
-            if (deadline > summer24 && deadline < winter24 || deadline > summer23 && deadline < winter23) {
+            if (deadline > summer24 && deadline < winter24 || deadline > summer25 && deadline < winter25) {
                 deadline = deadline.addHours(2);
             } else {
                 deadline = deadline.addHours(1);
