@@ -1,35 +1,30 @@
 {
-    "appPageId": "78612492-74f5-4c2b-aee8-232a174b332f",
-    "componentName": "siteforce:sldsOneColLayout",
-    "id": "b22daa62-8cc8-4ed6-a515-5e88289b6a75",
-    "label": "Register",
-    "regions": [
-        {
-            "id": "8f7cdfbf-81e3-4093-9af0-c15c1155aaf7",
-            "regionName": "content",
-            "type": "region"
-        },
-        {
-            "components": [
-                {
-                    "componentAttributes": {
-                        "description": "",
-                        "metaTags": "",
-                        "title": "Finnes ikke (404)"
-                    },
-                    "componentName": "forceCommunity:seoAssistant",
-                    "id": "cb9e8bee-bdfa-4d3a-a536-3224850c5940",
-                    "renderPriority": "NEUTRAL",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
-            "id": "9a9a6aa6-37fc-42bc-8cbb-1aabc006965e",
-            "regionName": "sfdcHiddenRegion",
-            "type": "region"
-        }
-    ],
-    "themeLayoutType": "Login",
-    "type": "view",
-    "viewType": "self-register"
+  "appPageId" : "78612492-74f5-4c2b-aee8-232a174b332f",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "b22daa62-8cc8-4ed6-a515-5e88289b6a75",
+  "label" : "Register",
+  "regions" : [ {
+    "id" : "8f7cdfbf-81e3-4093-9af0-c15c1155aaf7",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Finnes ikke (404)"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "cb9e8bee-bdfa-4d3a-a536-3224850c5940",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "9a9a6aa6-37fc-42bc-8cbb-1aabc006965e",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Login",
+  "type" : "view",
+  "viewType" : "self-register"
 }

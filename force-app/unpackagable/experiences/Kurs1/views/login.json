@@ -1,35 +1,30 @@
 {
-    "appPageId": "78612492-74f5-4c2b-aee8-232a174b332f",
-    "componentName": "siteforce:sldsOneColLayout",
-    "id": "fdf9522c-017c-49d1-b04c-12134bda086d",
-    "label": "Login",
-    "regions": [
-        {
-            "id": "3e9c1f3e-a663-4d02-84ed-57e6dd552922",
-            "regionName": "content",
-            "type": "region"
-        },
-        {
-            "components": [
-                {
-                    "componentAttributes": {
-                        "description": "",
-                        "metaTags": "",
-                        "title": "Finnes ikke (404)"
-                    },
-                    "componentName": "forceCommunity:seoAssistant",
-                    "id": "2b1f4687-9e83-4867-893e-6d479391c819",
-                    "renderPriority": "NEUTRAL",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
-            "id": "e5ea5b27-6e4a-490b-944a-5919a18c34c1",
-            "regionName": "sfdcHiddenRegion",
-            "type": "region"
-        }
-    ],
-    "themeLayoutType": "Login",
-    "type": "view",
-    "viewType": "login-home"
+  "appPageId" : "78612492-74f5-4c2b-aee8-232a174b332f",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "fdf9522c-017c-49d1-b04c-12134bda086d",
+  "label" : "Login",
+  "regions" : [ {
+    "id" : "3e9c1f3e-a663-4d02-84ed-57e6dd552922",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Finnes ikke (404)"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "2b1f4687-9e83-4867-893e-6d479391c819",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "e5ea5b27-6e4a-490b-944a-5919a18c34c1",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Login",
+  "type" : "view",
+  "viewType" : "login-home"
 }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>
+    <allowGuestPaymentsApi>false</allowGuestPaymentsApi>
     <allowHomePage>false</allowHomePage>
     <allowStandardAnswersPages>false</allowStandardAnswersPages>
     <allowStandardIdeasPages>false</allowStandardIdeasPages>
     <allowStandardLookups>false</allowStandardLookups>
-    <allowStandardPortalPages>true</allowStandardPortalPages>
+    <allowStandardPortalPages>false</allowStandardPortalPages>
     <allowStandardSearch>false</allowStandardSearch>
     <authorizationRequiredPage>CommunitiesLogin</authorizationRequiredPage>
     <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
     <browserXssProtection>true</browserXssProtection>
+    <cachePublicVisualforcePagesInProxyServers>true</cachePublicVisualforcePagesInProxyServers>
     <clickjackProtectionLevel>SameOriginOnly</clickjackProtectionLevel>
     <contentSniffingProtection>true</contentSniffingProtection>
-    <cspUpgradeInsecureRequests>true</cspUpgradeInsecureRequests>
     <enableAuraRequests>true</enableAuraRequests>
     <favoriteIcon>NAVFavicon</favoriteIcon>
     <fileNotFoundPage>FileNotFound</fileNotFoundPage>
@@ -20,11 +21,18 @@
     <inMaintenancePage>InMaintenance</inMaintenancePage>
     <indexPage>CommunitiesLanding</indexPage>
     <masterLabel>Kurs</masterLabel>
+    <redirectToCustomDomain>false</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
-    <requireHttps>true</requireHttps>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>test-ksq5dl2zzdfz@example.com</siteAdmin>
-    <siteGuestRecordDefaultOwner>test-ksq5dl2zzdfz@example.com</siteGuestRecordDefaultOwner>
+    <siteAdmin>frode.hoen@nav.no</siteAdmin>
+    <siteGuestRecordDefaultOwner>frode.hoen@nav.no</siteGuestRecordDefaultOwner>
+    <siteRedirectMappings>
+        <action>Permanent</action>
+        <isActive>false</isActive>
+        <source>/</source>
+        <target>https://arbeidsgiver.nav.no/kursoversikt/</target>
+    </siteRedirectMappings>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>force-site-3919-17e25f4e35b</subdomain>
+    <subdomain>navdialog</subdomain>
+    <urlPathPrefix>pamelding</urlPathPrefix>
 </CustomSite>

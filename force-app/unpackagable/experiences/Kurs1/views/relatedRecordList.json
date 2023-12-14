@@ -1,38 +1,33 @@
 {
-    "appPageId": "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-    "componentName": "siteforce:sldsOneColLayout",
-    "id": "3d002947-b0be-4794-9f9b-3cec3177eb57",
-    "label": "Related Record List",
-    "regions": [
-        {
-            "id": "ad2bdd54-a534-4342-9af3-40a1b184c552",
-            "regionName": "header",
-            "type": "region"
-        },
-        {
-            "components": [
-                {
-                    "componentAttributes": {
-                        "richTextValue": "<h1>Finner ikke siden</h1><p><br></p><p>Vi kan ikke finne siden eller tjenesten du etterspør.</p><p><br></p><p><a href=\"https://www.nav.no/\" target=\"null\">Gå til forsiden av nav.no</a>&nbsp;-&nbsp;<a href=\"https://www.nav.no/person/kontakt-oss/tilbakemeldinger/feil-og-mangler\" target=\"null\">Melde feil og mangler</a></p><p><br></p><p>Feilkode 404</p>"
-                    },
-                    "componentName": "forceCommunity:richTextInline",
-                    "id": "27149748-5928-4576-9dfb-69eca2042fb4",
-                    "renderPriority": "NEUTRAL",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
-            "id": "741cfaf1-14db-4942-87a9-64a6d9e62ce9",
-            "regionName": "content",
-            "type": "region"
-        },
-        {
-            "id": "a1c2de55-c9f0-4d76-bb66-299314fd96d2",
-            "regionName": "footer",
-            "type": "region"
-        }
-    ],
-    "themeLayoutType": "Inner",
-    "type": "view",
-    "viewType": "relatedlist"
+  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "3d002947-b0be-4794-9f9b-3cec3177eb57",
+  "label" : "Related Record List",
+  "regions" : [ {
+    "id" : "ad2bdd54-a534-4342-9af3-40a1b184c552",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<h1>Finner ikke siden</h1><p><br></p><p>Vi kan ikke finne siden eller tjenesten du etterspør.</p><p><br></p><p><a href=\"https://www.nav.no/\" target=\"null\">Gå til forsiden av nav.no</a>&nbsp;-&nbsp;<a href=\"https://www.nav.no/person/kontakt-oss/tilbakemeldinger/feil-og-mangler\" target=\"null\">Melde feil og mangler</a></p><p><br></p><p>Feilkode 404</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "27149748-5928-4576-9dfb-69eca2042fb4",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "741cfaf1-14db-4942-87a9-64a6d9e62ce9",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "a1c2de55-c9f0-4d76-bb66-299314fd96d2",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "relatedlist"
 }
