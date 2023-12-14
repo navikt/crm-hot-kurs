@@ -29,6 +29,7 @@
     <siteRedirectMappings>
         <action>Permanent</action>
         <isActive>false</isActive>
+        <isDynamic>false</isDynamic>
         <source>/</source>
         <target>https://arbeidsgiver.nav.no/kursoversikt/</target>
     </siteRedirectMappings>
