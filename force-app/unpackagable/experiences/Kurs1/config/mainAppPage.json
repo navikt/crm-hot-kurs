@@ -3,6 +3,7 @@
   "currentThemeId" : "559b379b-f947-48c5-b0db-c50c57db1d3e",
   "headMarkup" : "<link rel=\"shortcut icon\" href=\"https://kurs.nav.no/favicon.ico?v=2\" />",
   "id" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "isLockerServiceEnabled" : true,
   "isRelaxedCSPLevel" : false,
   "label" : "main",
   "templateName" : "Starter Template",

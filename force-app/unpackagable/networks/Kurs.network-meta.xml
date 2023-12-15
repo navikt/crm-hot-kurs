@@ -1,33 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Network xmlns="http://soap.sforce.com/2006/04/metadata">
     <allowInternalUserLogin>false</allowInternalUserLogin>
     <allowMembersToFlag>false</allowMembersToFlag>
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
-    <communityRoles />
-    <disableReputationRecordConversations>true</disableReputationRecordConversations>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
     <emailSenderAddress>fakeemail@nav.no.scratchorg</emailSenderAddress>
     <emailSenderName>Kurs</emailSenderName>
-    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
-    <enableDirectMessages>true</enableDirectMessages>
+    <enableApexCDNCaching>true</enableApexCDNCaching>
+    <enableCustomVFErrorPageOverrides>true</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableExperienceBundleBasedSnaOverrideEnabled>true</enableExperienceBundleBasedSnaOverrideEnabled>
     <enableGuestChatter>false</enableGuestChatter>
-    <enableGuestFileAccess>true</enableGuestFileAccess>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
     <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
+    <enableImageOptimizationCDN>true</enableImageOptimizationCDN>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
+    <enableLWRExperienceConnectedApp>false</enableLWRExperienceConnectedApp>
     <enableMemberVisibility>false</enableMemberVisibility>
-    <enableNicknameDisplay>true</enableNicknameDisplay>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
     <enablePrivateMessages>false</enablePrivateMessages>
     <enableReputation>false</enableReputation>
     <enableShowAllNetworkSettings>false</enableShowAllNetworkSettings>
     <enableSiteAsContainer>true</enableSiteAsContainer>
-    <enableTalkingAboutStats>true</enableTalkingAboutStats>
+    <enableTalkingAboutStats>false</enableTalkingAboutStats>
     <enableTopicAssignmentRules>true</enableTopicAssignmentRules>
     <enableTopicSuggestions>false</enableTopicSuggestions>
     <enableUpDownVote>false</enableUpDownVote>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <headlessForgotPasswordTemplate>unfiled$public/CommunityHeadlessForgotPasswordTemplate</headlessForgotPasswordTemplate>
     <networkMemberGroups>
-        <profile>Admin</profile>
+        <permissionSet>Kurs_Salesforce_Admin</permissionSet>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
@@ -40,10 +45,12 @@
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Kurs</site>
-    <status>UnderConstruction</status>
+    <siteArchiveStatus>NotArchived</siteArchiveStatus>
+    <status>Live</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>
     </tabs>
+    <urlPathPrefix>pamelding</urlPathPrefix>
     <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
 </Network>

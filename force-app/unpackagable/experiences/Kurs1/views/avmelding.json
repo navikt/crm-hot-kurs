@@ -1,54 +1,46 @@
 {
-    "appPageId": "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
-    "componentName": "siteforce:sldsOneColLayout",
-    "id": "64583ae1-4e0a-45d5-b034-ef6aaa5ddfb8",
-    "label": "Avmelding",
-    "regions": [
-        {
-            "id": "09de9ed4-51ff-490f-ac55-4f07887892f5",
-            "regionName": "header",
-            "type": "region"
-        },
-        {
-            "components": [
-                {
-                    "componentAttributes": {},
-                    "componentName": "c:courseUnsubscribe",
-                    "id": "198a781b-9cf7-4acb-bcfa-d9c26414bdf2",
-                    "renderPriority": "NEUTRAL",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
-            "id": "23137f53-411c-4623-b66f-d1e85d37cc7b",
-            "regionName": "content",
-            "type": "region"
-        },
-        {
-            "id": "512b26f7-8ef5-43b0-a40e-8d1cfbe87b21",
-            "regionName": "footer",
-            "type": "region"
-        },
-        {
-            "components": [
-                {
-                    "componentAttributes": {
-                        "description": "",
-                        "metaTags": "<meta name=\"robots\" content=\"noindex\">",
-                        "title": "Avmelding"
-                    },
-                    "componentName": "forceCommunity:seoAssistant",
-                    "id": "b109c53a-3eeb-4278-9bca-4ecc4820bffc",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
-            "id": "7af973d7-6454-465d-8fc7-6ad83394a75b",
-            "regionName": "sfdcHiddenRegion",
-            "type": "region"
-        }
-    ],
-    "themeLayoutType": "Inner",
-    "type": "view",
-    "viewType": "custom-avmelding"
+  "appPageId" : "cb9e40c7-011a-4ff4-beca-31a17b141ae3",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "64583ae1-4e0a-45d5-b034-ef6aaa5ddfb8",
+  "label" : "Avmelding",
+  "regions" : [ {
+    "id" : "09de9ed4-51ff-490f-ac55-4f07887892f5",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:courseUnsubscribe",
+      "id" : "198a781b-9cf7-4acb-bcfa-d9c26414bdf2",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "23137f53-411c-4623-b66f-d1e85d37cc7b",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "512b26f7-8ef5-43b0-a40e-8d1cfbe87b21",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "<meta name=\"robots\" content=\"noindex\">",
+        "description" : "",
+        "title" : "Avmelding"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "b109c53a-3eeb-4278-9bca-4ecc4820bffc",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "7af973d7-6454-465d-8fc7-6ad83394a75b",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-avmelding"
 }

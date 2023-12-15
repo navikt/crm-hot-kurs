@@ -26,6 +26,7 @@ jobs:
           echo "Org: ${{ inputs.org }}"
           echo "Package ID: ${{ inputs.packageId }}"
           echo "Initiator: ${{ github.actor }}"
+
   deploy-package:
     name: Deploy Package
     uses: navikt/crm-workflows-base/.github/workflows/deployPackage.yml@master

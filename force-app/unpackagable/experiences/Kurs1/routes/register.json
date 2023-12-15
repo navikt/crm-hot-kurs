@@ -1,9 +1,11 @@
 {
-    "activeViewId": "b22daa62-8cc8-4ed6-a515-5e88289b6a75",
-    "appPageId": "78612492-74f5-4c2b-aee8-232a174b332f",
-    "id": "36f1e3cd-699b-4ce2-a91c-3aff0045fb34",
-    "label": "Register",
-    "routeType": "self-register",
-    "type": "route",
-    "urlPrefix": "SelfRegister"
+  "activeViewId" : "b22daa62-8cc8-4ed6-a515-5e88289b6a75",
+  "appPageId" : "78612492-74f5-4c2b-aee8-232a174b332f",
+  "configurationTags" : [ ],
+  "devName" : "Register",
+  "id" : "36f1e3cd-699b-4ce2-a91c-3aff0045fb34",
+  "label" : "Register",
+  "routeType" : "self-register",
+  "type" : "route",
+  "urlPrefix" : "SelfRegister"
 }

@@ -33,6 +33,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>NavKontorLoginFlowController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Process_SendEmail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -157,16 +161,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>CourseRegistration__c.County__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CourseRegistration__c.CourseParticipant__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>CourseRegistration__c.ContactFirstName__c</field>
         <readable>true</readable>
@@ -177,13 +171,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>CourseRegistration__c.firstName__c</field>
+        <editable>true</editable>
+        <field>CourseRegistration__c.County__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CourseRegistration__c.lastName__c</field>
+        <field>CourseRegistration__c.CourseParticipant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -224,6 +218,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CourseRegistration__c.Workplace__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.firstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.lastName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -574,6 +578,10 @@
         <object>Course__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>NavKontorLoginFlow</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.Employer</recordType>
         <visible>true</visible>
