@@ -5,7 +5,7 @@
             "default": true,
             "package": "crm-arbeidsgiver-kurs",
             "versionName": "ver 0.1",
-            "versionNumber": "1.61.0.NEXT",
+            "versionNumber": "1.62.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
