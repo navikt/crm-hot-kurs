@@ -6,7 +6,7 @@ ORG_ALIAS="arbeidsgiver-kurs"
 
 
 echo ""
-echo "Installing crm-arbeidsgiver-kurs scratch org ($ORG_ALIAS)"
+echo "Installing crm-hot-kurs scratch org ($ORG_ALIAS)"
 echo ""
 
 echo "Cleaning previous scratch org..."

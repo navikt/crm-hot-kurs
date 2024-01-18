@@ -3,8 +3,7 @@
         {
             "path": "force-app",
             "default": true,
-            "package": "crm-arbeidsgiver-kurs",
-            "versionName": "ver 0.1",
+            "package": "crm-hot-kurs",
             "versionNumber": "1.62.0.NEXT",
             "dependencies": [
                 {
@@ -70,7 +69,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "59.0",
     "packageAliases": {
-        "crm-arbeidsgiver-kurs": "0Ho2o000000KylvCAC",
+        "crm-hot-kurs": "0Ho2o000000KylvCAC",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
         "crm-platform-email-scheduling": "0Ho2o000000fxWwCAI",
