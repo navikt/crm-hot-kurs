@@ -407,14 +407,19 @@
 .decorator-wrapper .brodsmulesti li > * {
     margin: 0.25rem 0.25rem 0.25rem 0;
 }
-
-.decorator-wrapper .brodsmulesti li .chevron--hoyre {
+.chevron {
     color: #78706a;
     display: inline-block;
     margin: 0 0.5em;
+    display: inline-block;
+    width: 10px; /* Adjust width as needed */
+    height: 10px; /* Adjust height as needed */
+    border-top: 2px solid #78706a; /* Adjust color and thickness as needed */
+    border-right: 2px solid #78706a; /* Adjust color and thickness as needed */
+    transform: rotate(45deg); /* Rotate the chevron */
 }
 
-.decorator-wrapper .chevron--hoyre {
+.chevron--hoyre {
     display: inline-block;
     flex-shrink: 0;
     height: 2px;
