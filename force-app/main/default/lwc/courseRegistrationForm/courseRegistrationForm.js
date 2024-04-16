@@ -3,6 +3,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
+import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
@@ -46,7 +47,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     successicon = icons + '/successicon.svg';
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
-    houseicon = icons + '/houseicon.svg';
+    houseicon = houseIconNew;
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
