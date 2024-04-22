@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <decisions>
+        <name>notify_owner_or_not</name>
+        <label>notify owner or not</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>notify_owner_is_true</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_course.Notify_me_on_new_participants__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>create_email_to_course_owner</targetReference>
+            </connector>
+            <label>notify owner is true</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Notify course owner on new participant registration {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Notify course owner on new participant registration</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>create_email_to_course_owner</name>
+        <label>create email to course owner</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>HTMLBody__c</field>
+            <value>
+                <elementReference>emailbody</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SaveAsActivity__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject__c</field>
+            <value>
+                <stringValue>Ny påmelding til kurs</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TargetObjectId__c</field>
+            <value>
+                <elementReference>$Record.Course__r.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TemplateName__c</field>
+            <value>
+                <stringValue>courseNewParticipant</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ToAddress__c</field>
+            <value>
+                <elementReference>$Record.Course__r.Owner:User.Email</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmailQueue__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>get_course</name>
+        <label>get course</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>notify_owner_or_not</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Course__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Course__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_course</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Påmeldt</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Venteliste</stringValue>
+            </value>
+        </filters>
+        <object>CourseRegistration__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>emailbody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;style&gt;
+    body { margin: 0; padding: 0; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot; bgcolor=&quot;#FFFFFF&quot;&gt;
+    &lt;tr&gt;
+        &lt;td align=&quot;center&quot;&gt;
+            &lt;img src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; alt=&quot;NAV Logo&quot; width=&quot;134&quot; style=&quot;display:block; margin: 0 auto;&quot;&gt;
+            &lt;p style=&quot;font-family: &apos;Source Sans Pro&apos;, Tahoma, Verdana, Segoe, sans-serif; font-size: 20px; color: #3e3832; line-height: 1.5; text-align: center;&quot;&gt;En ny deltaker har meldt seg på kurset {!courseName}&lt;/p&gt;
+            &lt;p style=&quot;font-family: &apos;Source Sans Pro&apos;, Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; color: #3e3832; line-height: 1.5; text-align: center;&quot;&gt;[Dette er en automatisk generert epost. Du får dette varselet fordi du er eier av et kurs og ønsket varsel ved hver påmelding]&lt;/p&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>courseName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Record.Course__r.Name</elementReference>
+        </value>
+    </variables>
+</Flow>
