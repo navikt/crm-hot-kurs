@@ -252,6 +252,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.CourseSubject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.DescriptionFormatted__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -433,6 +438,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.IsNew__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Notify_me_on_new_participants__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
