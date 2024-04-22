@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
     <inlineHelpText>Velg om du ønsker å bli varslet for hver nye påmelding. Eposten blir sendt til eier av kurset.</inlineHelpText>
-    <label>Notify me on new participants</label>
+    <label>Notify me on new participants?</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
