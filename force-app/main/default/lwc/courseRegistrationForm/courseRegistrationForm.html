@@ -289,6 +289,18 @@
                                             onchange={handleChange}
                                         />
                                     </div>
+                                    <div if:true={additionalInformation} class="felt">
+                                        <label class="skjemaelement__label" for="additionalInformation">
+                                            <p class="typo-element">Tilleggsinformasjon</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="additionalInformation"
+                                            id="additionalInformation"
+                                            onchange={handleChange}
+                                        />
+                                    </div>
                                 </div>
 
                                 <div class="navno-dekorator alertstripe">

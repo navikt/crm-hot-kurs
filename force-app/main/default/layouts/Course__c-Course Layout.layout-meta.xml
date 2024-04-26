@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>ShowRole__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ShowAdditionalInformation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
