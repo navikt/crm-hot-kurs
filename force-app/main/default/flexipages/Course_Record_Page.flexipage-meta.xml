@@ -60,12 +60,20 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Type__c</fieldItem>
                 <identifier>RecordType__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.MaxNumberOfParticipants__c</fieldItem>
                 <identifier>RecordMaxNumberOfParticipants__cField</identifier>
             </fieldInstance>
@@ -86,6 +94,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Cancel__c</fieldItem>
                 <identifier>RecordCancel__cField</identifier>
             </fieldInstance>
@@ -112,6 +124,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.NumberOfParticipants__c</fieldItem>
                 <identifier>RecordNumberOfParticipants__cField</identifier>
                 <visibilityRule>
@@ -125,6 +141,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Waitinglist__c</fieldItem>
                 <identifier>RecordWaitinglist__cField</identifier>
                 <visibilityRule>
@@ -166,6 +186,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionInternal__c</fieldItem>
                 <identifier>RecordDescriptionInternal__cField</identifier>
             </fieldInstance>
@@ -190,12 +214,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionShort2__c</fieldItem>
                 <identifier>RecordDescriptionShort2__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionFormatted__c</fieldItem>
                 <identifier>RecordDescriptionFormatted__cField</identifier>
             </fieldInstance>
@@ -282,6 +314,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.RegistrationPlaceName__c</fieldItem>
                 <identifier>RecordRegistrationPlaceName__cField</identifier>
             </fieldInstance>
@@ -330,6 +366,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.GenerateInvitationCode__c</fieldItem>
                 <identifier>RecordGenerateInvitationCode__cField</identifier>
             </fieldInstance>
@@ -340,6 +380,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.InvitationCode__c</fieldItem>
                 <identifier>RecordInvitationCode__cField</identifier>
             </fieldInstance>
@@ -379,6 +423,10 @@
                     <value>Facet-cd424b70-b32d-4660-a56a-0e9a9efdbd11</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Generelt</value>
                 </componentInstanceProperties>
@@ -391,6 +439,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-18a0cb3f-3a73-438a-80bd-2efc28a4697b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -407,6 +459,10 @@
                     <value>Facet-76bd053f-2cd2-4f37-b74c-955aa29292b4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Kursbeskrivelse</value>
                 </componentInstanceProperties>
@@ -419,6 +475,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-06adc4db-5a7d-42a3-bc28-d24e67144d62</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -435,6 +495,10 @@
                     <value>Facet-9acda128-cd34-48f9-93fc-fabc74f172c3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Sted</value>
                 </componentInstanceProperties>
@@ -447,6 +511,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-ce6d2b1f-5897-4e3b-9cf8-bf037602807b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -535,6 +603,16 @@
                 <identifier>RecordShowInvoiceReference__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ShowAdditionalInformation__c</fieldItem>
+                <identifier>RecordShowAdditionalInformation_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-4ce9dcee-5f5d-4ab4-8a97-c60926c27b77</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -590,6 +668,10 @@
                     <value>Facet-e2809c43-8c8e-49a1-865e-0a4186ed80f6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Tilleggsfelter</value>
                 </componentInstanceProperties>
@@ -620,6 +702,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <identifier>RecordEmailBeforeStatus__cField</identifier>
                 <visibilityRule>
@@ -650,6 +736,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeDate__c</fieldItem>
                 <identifier>RecordEmailBeforeDate__cField</identifier>
             </fieldInstance>
@@ -684,6 +774,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
                 <identifier>RecordEmailReminderStatus__cField</identifier>
                 <visibilityRule>
@@ -714,6 +808,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderDate__c</fieldItem>
                 <identifier>RecordEmailReminderDate__cField</identifier>
             </fieldInstance>
@@ -748,12 +846,20 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterURL__c</fieldItem>
                 <identifier>RecordEmailAfterURL__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <identifier>RecordEmailAfterStatus__cField</identifier>
                 <visibilityRule>
@@ -784,6 +890,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterDate__c</fieldItem>
                 <identifier>RecordEmailAfterDate__cField</identifier>
             </fieldInstance>
@@ -818,6 +928,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <identifier>RecordEmailManualStatus__cField</identifier>
                 <visibilityRule>
@@ -848,6 +962,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualDate__c</fieldItem>
                 <identifier>RecordEmailManualDate__cField</identifier>
             </fieldInstance>
@@ -896,6 +1014,10 @@
                     <value>Facet-262e8db9-efeb-40ea-80bd-d5477b267307</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Informasjon før kurset (sendes en uke før kurset)</value>
                 </componentInstanceProperties>
@@ -935,6 +1057,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c3e42f34-5d41-40d9-9d27-fc5c7a51ce5f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -978,6 +1104,10 @@
                     <value>Facet-ab7e3140-97d4-45d3-9606-f2c389bda66d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Evaluering av kurset (sendes dagen etter kurset)</value>
                 </componentInstanceProperties>
@@ -1017,6 +1147,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-60b499b9-da89-4ac4-8c1e-6558ce7b085d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

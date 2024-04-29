@@ -12,6 +12,7 @@ public with sharing class CourseRegistrationModel {
     public String invoiceAdress;
     public String invoiceReference;
     public String allergies;
+    public String additionalInformation;
 
     public static CourseRegistrationModel parse(String json) {
         return (CourseRegistrationModel) System.JSON.deserialize(json, CourseRegistrationModel.class);
