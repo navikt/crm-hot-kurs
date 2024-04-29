@@ -28,6 +28,12 @@
         <field>CourseRegistration__c.CourseParticipant__c</field>
     </columns>
     <columns>
+        <field>CourseRegistration__c.firstName__c</field>
+    </columns>
+        <columns>
+        <field>CourseRegistration__c.lastName__c</field>
+    </columns>
+    <columns>
         <field>CourseRegistration__c.Participant_email__c</field>
     </columns>
     <columns>
@@ -44,6 +50,21 @@
     </columns>
     <columns>
         <field>CourseRegistration__c.CompanyName__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.Workplace__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.Invoice_reference__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.Invoice_address__c</field>
+    </columns>
+      <columns>
+        <field>CourseRegistration__c.Allergies__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.AdditionalInformation__c</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>
