@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DescriptionShort2__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Kort beskrivelse av kurset som vises i kursoversikt listen</inlineHelpText>
     <label>Kort beskrivelse</label>
     <length>500</length>
     <trackTrending>false</trackTrending>

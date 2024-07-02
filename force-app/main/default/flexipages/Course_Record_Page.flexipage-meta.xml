@@ -216,7 +216,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionShort2__c</fieldItem>
                 <identifier>RecordDescriptionShort2__cField</identifier>
@@ -226,7 +226,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionFormatted__c</fieldItem>
                 <identifier>RecordDescriptionFormatted__cField</identifier>
