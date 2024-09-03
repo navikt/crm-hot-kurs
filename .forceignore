@@ -141,7 +141,3 @@
 # Temporary Changes
 # ----------------------------------------------------------------------------------------
 **/disabled-unpackagable-with-auto-deploy
-
-**/tsconfig.json
-
-**/*.ts
