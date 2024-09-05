@@ -1,24 +1,24 @@
-public with sharing class CourseRegistrationController {
+public without sharing class CourseRegistrationController {
     @AuraEnabled
     public static String createRegistration(String fields, String courseId) {
         try {
-            /*  Boolean duplicate = checkForDuplicates( contactId, courseId );
-			   if ( duplicate ) { return 'Du er allerede påmeldt dette kurset'; }
-			   insertRegistration( contactId, courseId );*/
+            Boolean duplicate = checkForDuplicates(fields, courseId );
+            if ( duplicate ) { 
+                return 'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.'; 
+            }
             Boolean courseIsFull = checkIfCourseIsFull(courseId);
-
             if (fields != null) {
                 insertRegistration(fields, courseId);
             }
             if (courseIsFull) {
                 return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på e-post dersom du blir tildelt en plass.';
             }
-
             return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post';
         } catch (Exception e) {
             return 'Det oppsto en feil. Prøv igjen senere.';
         }
     }
+    
     @AuraEnabled
     public static Course__c getCourseFields(String courseId) {
         return [
@@ -86,17 +86,15 @@ public with sharing class CourseRegistrationController {
             insert registration;
         }
     }
-
-    /*
-       public static Boolean checkForDuplicates( Id contactId, Id courseId ) {
+    
+       public static Boolean checkForDuplicates( String fields, Id courseId ) {
+        CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
         List<CourseRegistration__c> existingRecord =
-        [SELECT Id, Course__c, CourseParticipant__c
+        [SELECT Id, Course__c, CourseParticipant__r.Email
          FROM CourseRegistration__c
          WHERE Course__c =: courseId
-                           AND CourseParticipant__c =: contactId LIMIT 1];
+                           AND CourseParticipant__r.Email =: model.email LIMIT 1];
 
-        Boolean exists = existingRecord.size() > 0 ? true : false;
-
-        return exists;
-       }*/
+        return existingRecord.size() > 0;
+       }
 }
