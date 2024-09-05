@@ -18,6 +18,7 @@ public without sharing class CourseRegistrationController {
             return 'Det oppsto en feil. Prøv igjen senere.';
         }
     }
+    
     @AuraEnabled
     public static Course__c getCourseFields(String courseId) {
         return [
