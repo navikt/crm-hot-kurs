@@ -7,36 +7,6 @@ call sf package install --package 04t7U000000Y3esQAC --no-prompt --installation-
 echo "Installerer crm-platform-access-control ver. 0.125"
 call sf package install --package 04t7U000000Y3V7QAK --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-platform-reporting ver. 0.37"
-call sf package install --package 04t7U000000Y2VoQAK --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-shared-base ver. 1.1"
-call sf package install --package 04t2o000000ySqpAAE --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-thread-view ver. 0.2"
-call sf package install --package 04t7U000000TqvIQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-shared-timeline ver. 1.22"
-call sf package install --package 04t7U000000Y2OEQA0 --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-shared-flowComponents ver. 0.4"
-call sf package install --package 04t7U0000008qz4QAA --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-henvendelse-base ver. 0.18"
-call sf package install --package 04t7U000000LPPAQA4 --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-platform-integration ver. 0.110"
-call sf package install --package 04t7U000000Y3pWQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-journal-utilities ver. 0.28"
-call sf package install --package 04t7U000000Y3iGQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-platform-oppgave ver. 0.53"
-call sf package install --package 04t7U000000Y3r3QAC --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
-echo "Installerer crm-arbeidsgiver-base ver. 1.411"
-call sf package install --package 04t7U000000Y3qFQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
-
 echo "Installerer crm-community-base ver. 0.102"
 call sf package install --package 04t7U000000Y3eTQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
