@@ -22,6 +22,7 @@ global with sharing class CourseHandler {
                 MaxNumberOfParticipants__c,
                 NumberOfParticipants__c
             FROM Course__c
+            WHERE Active__c = TRUE
         ];
 
         List<CourseApiModel> wrapperList = new List<CourseApiModel>();
@@ -61,7 +62,7 @@ global with sharing class CourseHandler {
             wrapper.RegistrationFromDateTime = fromTime;
 
             Datetime toTime = course.RegistrationToDateTime__c;
-            if (toTime > summer24 && toTime < winter24 || toTime > summer25 && toTime < winter25 ) {
+            if (toTime > summer24 && toTime < winter24 || toTime > summer25 && toTime < winter25) {
                 toTime = toTime.addHours(2);
             } else {
                 toTime = toTime.addHours(1);

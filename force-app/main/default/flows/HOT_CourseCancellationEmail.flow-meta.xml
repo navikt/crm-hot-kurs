@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Legg_til_email_i_collection</name>
+        <label>Legg til email i collection</label>
+        <locationX>264</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>emails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_email_to_all_participants_loop</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Opprett_email</name>
+        <label>Opprett email</label>
+        <locationX>264</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>email.SaveAsActivity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>email.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>email.TargetObjectId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Send_email_to_all_participants_loop.CourseParticipant__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>email.TemplateName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>courseCancellation</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>email.WhatId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Send_email_to_all_participants_loop.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Legg_til_email_i_collection</targetReference>
+        </connector>
+    </assignments>
     <description>Sends emails to participants when course is cancelled</description>
     <environments>Default</environments>
     <interviewLabel>Course Cancellation email {!$Flow.CurrentDateTime}</interviewLabel>
@@ -13,8 +73,11 @@
         <collectionReference>Get_all_participants</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Create_emails</targetReference>
+            <targetReference>Opprett_email</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Records1</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -36,45 +99,11 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_emails</name>
-        <label>Create emails</label>
-        <locationX>264</locationX>
-        <locationY>539</locationY>
-        <connector>
-            <targetReference>Send_email_to_all_participants_loop</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>SaveAsActivity__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Instant</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TargetObjectId__c</field>
-            <value>
-                <elementReference>Send_email_to_all_participants_loop.CourseParticipant__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TemplateName__c</field>
-            <value>
-                <stringValue>courseCancellation</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>WhatId__c</field>
-            <value>
-                <elementReference>Send_email_to_all_participants_loop.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <object>EmailQueue__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <name>Create_Records1</name>
+        <label>Create Records</label>
+        <locationX>176</locationX>
+        <locationY>839</locationY>
+        <inputReference>emails</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_all_participants</name>
@@ -124,4 +153,20 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>email</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
+    <variables>
+        <name>emails</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
 </Flow>

@@ -65,6 +65,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceAdress = result.ShowInvoiceAdress__c;
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
+                this.additionalInformation = result.ShowAdditionalInformation__c;
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
