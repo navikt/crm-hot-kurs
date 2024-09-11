@@ -60,8 +60,8 @@ global with sharing class CourseHandler {
         RestContext.response.responseBody = Blob.valueOf(JSON.serialize(wrapperList));
     }
 
-    private static Datetime toOsloTimeZone(Datetime local){
+    private static Datetime toOsloTimeZone(Datetime local) {
         TimeZone osloTimeZone = TimeZone.getTimeZone('Europe/Oslo');
-        return local.addMinutes(osloTimeZone.getOffset(local)/60000);
+        return local.addMinutes(osloTimeZone.getOffset(local) / 60000);
     }
 }
