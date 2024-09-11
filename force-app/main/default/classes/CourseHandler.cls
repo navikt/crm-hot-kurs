@@ -34,48 +34,9 @@ global with sharing class CourseHandler {
             wrapper.Title = course.Name;
             wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 
-            //permanent DST fix
-            // DateTime currentDateTime = DateTime.now();
-            // Timezone userTimeZone = Timezone.getTimeZone('Europe/Oslo');
-            // Integer timeZoneOffsetMinutes = userTimeZone.getOffset(DateTime.now());
-            // Datetime fromTime = course.RegistrationFromDateTime__c.addMinutes(timeZoneOffsetMinutes);
-            // Datetime toTime = course.RegistrationToDateTime__c.addMinutes(timeZoneOffsetMinutes);
-            // Datetime deadline = course.RegistrationDeadline__c.addMinutes(timeZoneOffsetMinutes);
-
-            // wrapper.RegistrationFromDateTime = fromTime;
-            // wrapper.RegistrationToDateTime = toTime;
-            // wrapper.RegistrationDeadline = deadline;
-
-            //temp fix for timezone problems
-            Datetime summer25 = DateTime.newInstance(2025, 3, 30, 0, 0, 0);
-            Datetime winter25 = DateTime.newInstance(2025, 10, 26, 0, 0, 0);
-            Datetime summer24 = DateTime.newInstance(2024, 3, 31, 0, 0, 0);
-            Datetime winter24 = DateTime.newInstance(2024, 10, 27, 0, 0, 0);
-
-            Datetime fromTime = course.RegistrationFromDateTime__c;
-            if (fromTime > summer24 && fromTime < winter24 || fromTime > summer25 && fromTime < winter25) {
-                fromTime = fromTime.addHours(2);
-            } else {
-                fromTime = fromTime.addHours(1);
-            }
-
-            wrapper.RegistrationFromDateTime = fromTime;
-
-            Datetime toTime = course.RegistrationToDateTime__c;
-            if (toTime > summer24 && toTime < winter24 || toTime > summer25 && toTime < winter25) {
-                toTime = toTime.addHours(2);
-            } else {
-                toTime = toTime.addHours(1);
-            }
-            wrapper.RegistrationToDateTime = toTime;
-
-            Datetime deadline = course.RegistrationDeadline__c;
-            if (deadline > summer24 && deadline < winter24 || deadline > summer25 && deadline < winter25) {
-                deadline = deadline.addHours(2);
-            } else {
-                deadline = deadline.addHours(1);
-            }
-            wrapper.RegistrationDeadline = deadline;
+            wrapper.RegistrationFromDateTime = toOsloTimeZone(course.RegistrationFromDateTime__c);
+            wrapper.RegistrationToDateTime = toOsloTimeZone(course.RegistrationToDateTime__c);
+            wrapper.RegistrationDeadline = toOsloTimeZone(course.RegistrationDeadline__c);
             // --------------------------------------------- //
             wrapper.RegistrationPlaceName = course.RegistrationPlaceName__c;
             wrapper.FrontPageDescription = course.DescriptionFormatted__c;
@@ -97,5 +58,10 @@ global with sharing class CourseHandler {
 
         RestContext.response.addHeader('Content-Type', 'application/json');
         RestContext.response.responseBody = Blob.valueOf(JSON.serialize(wrapperList));
+    }
+
+    private static Datetime toOsloTimeZone(Datetime local) {
+        TimeZone osloTimeZone = TimeZone.getTimeZone('Europe/Oslo');
+        return local.addMinutes(osloTimeZone.getOffset(local) / 60000);
     }
 }
