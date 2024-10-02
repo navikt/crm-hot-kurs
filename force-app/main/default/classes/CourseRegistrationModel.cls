@@ -5,6 +5,7 @@ public with sharing class CourseRegistrationModel {
     public String phone;
     public String companyNumber;
     public String source;
+    public String status;
     public String county;
     public String companyName;
     public String role;
