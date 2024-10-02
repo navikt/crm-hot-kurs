@@ -77,7 +77,6 @@ public without sharing class CourseRegistrationController {
             }
 
             CourseRegistration__c registration = new CourseRegistration__c();
-
             registration.ContactFirstName__c = model.firstName;
             registration.ContactLastName__c = model.lastName;
             registration.ContactEmail__c = model.email;
