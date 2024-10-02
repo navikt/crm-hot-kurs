@@ -2,9 +2,9 @@ public without sharing class CourseRegistrationController {
     @AuraEnabled
     public static String createRegistration(String fields, String courseId) {
         try {
-            Boolean duplicate = checkForDuplicates(fields, courseId );
-            if ( duplicate ) { 
-                return 'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.'; 
+            Boolean duplicate = checkForDuplicates(fields, courseId);
+            if (duplicate) {
+                return 'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.';
             }
             Boolean courseIsFull = checkIfCourseIsFull(courseId);
             if (fields != null) {
@@ -18,7 +18,7 @@ public without sharing class CourseRegistrationController {
             return 'Det oppsto en feil. Prøv igjen senere.';
         }
     }
-    
+
     @AuraEnabled
     public static Course__c getCourseFields(String courseId) {
         return [
@@ -56,12 +56,27 @@ public without sharing class CourseRegistrationController {
         return courseIsFull;
     }
 
+    private static List<CourseRegistration__c> getAlreadyInvited(CourseRegistrationModel model, String courseId) {
+        List<CourseRegistration__c> alreadyInvited = [
+            SELECT Id, Course__c, CourseParticipant__r.Email
+            FROM CourseRegistration__c
+            WHERE Course__c = :courseId AND CourseParticipant__r.Email = :model.email AND Status__c = 'Invitert'
+            LIMIT 1
+        ];
+
+        return alreadyInvited;
+    }
+
     public static void insertRegistration(String fields, Id courseId) {
         if (fields != null) {
             Boolean courseIsFull = checkIfCourseIsFull(courseId);
             CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
-            CourseRegistration__c registration = new CourseRegistration__c();
+            List<CourseRegistration__c> registrations = getAlreadyInvited(model, courseId);
+            if (registrations.size() > 0) {
+                delete registrations;
+            }
 
+            CourseRegistration__c registration = new CourseRegistration__c();
             registration.ContactFirstName__c = model.firstName;
             registration.ContactLastName__c = model.lastName;
             registration.ContactEmail__c = model.email;
@@ -70,12 +85,11 @@ public without sharing class CourseRegistrationController {
             registration.County__c = model.county;
             registration.CompanyName__c = model.companyName;
             registration.Role__c = model.role;
-
-            registration.Allergies__c=model.allergies;
-            registration.Workplace__c=model.workplace;
-            registration.Invoice_address__c=model.invoiceAdress;
-            registration.Invoice_reference__c=model.invoiceReference;
-            registration.AdditionalInformation__c=model.additionalInformation;
+            registration.Allergies__c = model.allergies;
+            registration.Workplace__c = model.workplace;
+            registration.Invoice_address__c = model.invoiceAdress;
+            registration.Invoice_reference__c = model.invoiceReference;
+            registration.AdditionalInformation__c = model.additionalInformation;
 
             if (courseIsFull) {
                 registration.Status__c = 'Venteliste';
@@ -86,15 +100,16 @@ public without sharing class CourseRegistrationController {
             insert registration;
         }
     }
-    
-       public static Boolean checkForDuplicates( String fields, Id courseId ) {
+
+    public static Boolean checkForDuplicates(String fields, Id courseId) {
         CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
-        List<CourseRegistration__c> existingRecord =
-        [SELECT Id, Course__c, CourseParticipant__r.Email
-         FROM CourseRegistration__c
-         WHERE Course__c =: courseId
-                           AND CourseParticipant__r.Email =: model.email LIMIT 1];
+        List<CourseRegistration__c> existingRecord = [
+            SELECT Id, Course__c, CourseParticipant__r.Email
+            FROM CourseRegistration__c
+            WHERE Course__c = :courseId AND CourseParticipant__r.Email = :model.email AND Status__c = 'Påmeldt'
+            LIMIT 1
+        ];
 
         return existingRecord.size() > 0;
-       }
+    }
 }
