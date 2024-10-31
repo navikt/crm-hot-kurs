@@ -74,6 +74,13 @@
         },
         "liveMessageSettings": {
             "enableLiveMessage": true
+        },
+        "accountSettings": {
+            "enableAccountTeams": true,
+            "enableRelateContactToMultipleAccounts": true
+        },
+        "emailAdministrationSettings": {
+            "enableEnhancedEmailEnabled": true
         }
     }
 }
