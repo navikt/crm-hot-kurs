@@ -708,13 +708,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <identifier>RecordEmailBeforeStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -725,13 +718,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeConfirmation__c</fieldItem>
                 <identifier>RecordEmailBeforeConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -780,13 +766,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
                 <identifier>RecordEmailReminderStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -797,13 +776,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderConfirmation__c</fieldItem>
                 <identifier>RecordEmailReminderConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -862,13 +834,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <identifier>RecordEmailAfterStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -879,13 +844,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterConfirmation__c</fieldItem>
                 <identifier>RecordEmailAfterConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -934,13 +892,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <identifier>RecordEmailManualStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -951,13 +902,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualConfirmation__c</fieldItem>
                 <identifier>RecordEmailManualConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1024,12 +968,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection8</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1069,12 +1007,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection9</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1114,12 +1046,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection10</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1159,12 +1085,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection11</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
