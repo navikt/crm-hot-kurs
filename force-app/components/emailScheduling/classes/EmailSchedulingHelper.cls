@@ -216,7 +216,7 @@ public with sharing class EmailSchedulingHelper {
             return EmailTypes.AFTER;
         } else if (Date.today() == course.EmailBeforeDate__c) {
             return EmailTypes.BEFORE;
-        } else if (Date.today() == course.EmailManualDate__c) {
+        } else if (Date.today() >= course.EmailManualDate__c) {
             return EmailTypes.MANUAL;
         } else if (Date.today() == course.EmailReminderDate__c) {
             return EmailTypes.REMINDER;
