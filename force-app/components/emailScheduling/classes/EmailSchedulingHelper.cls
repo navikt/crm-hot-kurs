@@ -43,7 +43,7 @@ public with sharing class EmailSchedulingHelper {
                 OR (EmailBeforeDate__c = TODAY
                 AND EmailBeforeSent__c = FALSE
                 AND EmailBeforeConfirmation__c = TRUE)
-                OR (EmailManualDate__c = LAST_N_DAYS:10
+                OR (EmailManualDate__c = TODAY
                 AND EmailManualSent__c = FALSE
                 AND EmailManualConfirmation__c = TRUE)
                 OR (EmailReminderDate__c = TODAY
