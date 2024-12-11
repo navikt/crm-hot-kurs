@@ -76,6 +76,9 @@ public without sharing class CourseScheduledDeleteContacts {
         List<CourseRegistration__c> crListToUpdate = new List<CourseRegistration__c>();
         for (CourseRegistration__c cr : courseRegistrationsToClean) {
             cr.CourseParticipant__c = null;
+            cr.AdditionalInformation__c = null;
+            cr.Allergies__c = null;
+
             crListToUpdate.add(cr);
         }
         update crListToUpdate;
