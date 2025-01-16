@@ -144,10 +144,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             this.showError = true;
             return;
         }
-        if (this.allergies && !this.theRecord.allergies) {
-            this.showError = true;
-            return;
-        }
         if (this.invoiceAdress && !this.theRecord.invoiceAdress) {
             this.showError = true;
             return;
