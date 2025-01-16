@@ -124,19 +124,53 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.theRecord.firstName && this.theRecord.lastName && this.theRecord.email && this.theRecord.phone) {
-            let output = JSON.stringify(this.theRecord, null);
-            createRegistration({
-                fields: output,
-                courseId: this.courseId
-            }).then((result) => {
-                this.showForm = false;
-                this.showConfirmation = true;
-                this.message = result;
-            });
-        } else {
+
+        // Basis felter som alltid vises
+        if (!this.theRecord.firstName || !this.theRecord.lastName || !this.theRecord.email || !this.theRecord.phone) {
             this.showError = true;
+            return;
         }
+
+        // Tillegs felter sjekk om de er satt
+        if (this.companyName && !this.theRecord.companyName) {
+            this.showError = true;
+            return;
+        }
+        if (this.county && !this.theRecord.county) {
+            this.showError = true;
+            return;
+        }
+        if (this.role && !this.theRecord.role) {
+            this.showError = true;
+            return;
+        }
+        if (this.allergies && !this.theRecord.allergies) {
+            this.showError = true;
+            return;
+        }
+        if (this.invoiceAdress && !this.theRecord.invoiceAdress) {
+            this.showError = true;
+            return;
+        }
+        if (this.invoiceReference && !this.theRecord.invoiceReference) {
+            this.showError = true;
+            return;
+        }
+        if (this.workplace && !this.theRecord.workplace) {
+            this.showError = true;
+            return;
+        }
+
+        // Alle sjekker er passert om vi kommer hit
+        let output = JSON.stringify(this.theRecord, null);
+        createRegistration({
+            fields: output,
+            courseId: this.courseId
+        }).then((result) => {
+            this.showForm = false;
+            this.showConfirmation = true;
+            this.message = result;
+        });
     }
 
     validateCode(event) {
