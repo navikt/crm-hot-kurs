@@ -112,8 +112,13 @@ public with sharing class EmailSchedulingHelper {
             email.SaveAsActivity__c = false;
             emailQueue.add(email);
         }
-
-        insert emailQueue;
+        try {
+            insert emailQueue;
+        } catch (Exception e) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+        }
 
         return emailQueue;
     }
@@ -164,7 +169,7 @@ public with sharing class EmailSchedulingHelper {
             update courses;
         } catch (Exception e) {
             LoggerUtility logger = new LoggerUtility();
-            logger.exception(e);
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
             logger.publishSynch();
         }
     }
@@ -202,7 +207,7 @@ public with sharing class EmailSchedulingHelper {
             insert tasks;
         } catch (Exception e) {
             LoggerUtility logger = new LoggerUtility();
-            logger.exception(e);
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
             logger.publishSynch();
         }
     }
