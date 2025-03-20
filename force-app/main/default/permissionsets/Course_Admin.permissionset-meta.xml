@@ -593,6 +593,10 @@
         <recordType>Account.Employer</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Task.HOT_course</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>Course__c</tab>
         <visibility>Visible</visibility>
