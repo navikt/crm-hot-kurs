@@ -112,11 +112,18 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>EqualTo</operator>
+            <value>
+                <dateTimeValue>2024-01-01T05:00:00.000Z</dateTimeValue>
+            </value>
+        </filters>
         <object>Task</object>
         <schedule>
             <frequency>Once</frequency>
-            <startDate>2025-03-21</startDate>
-            <startTime>20:30:00.000Z</startTime>
+            <startDate>2025-03-22</startDate>
+            <startTime>22:30:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
