@@ -114,7 +114,7 @@
         </filters>
         <filters>
             <field>CreatedDate</field>
-            <operator>EqualTo</operator>
+            <operator>GreaterThan</operator>
             <value>
                 <dateTimeValue>2024-01-01T05:00:00.000Z</dateTimeValue>
             </value>
