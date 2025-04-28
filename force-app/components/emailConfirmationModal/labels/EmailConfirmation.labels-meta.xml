@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>EmailConfirmation_loadMoreRecipients</fullName>
@@ -76,5 +76,12 @@
         <protected>false</protected>
         <shortDescription>[EmailConfirmation] To Field</shortDescription>
         <value>To</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation_CancelledCourse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>[EmailConfirmation] CancelledCourse</shortDescription>
+        <value>No email will be sent because the course is cancelled</value>
     </labels>
 </CustomLabels>

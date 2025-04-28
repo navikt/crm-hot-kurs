@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Registrerte deltakere</label>
@@ -23,5 +23,9 @@
     <customLabels>
         <label>Feil! Du kan ikke laste opp bilder.</label>
         <name>EmailConfirmation_ImageUploadError</name>
+    </customLabels>
+    <customLabels>
+        <label>Ingen eposter blir sendt fordi kurset er avlyst</label>
+        <name>EmailConfirmation_CancelledCourse</name>
     </customLabels>
 </Translations>
