@@ -27,6 +27,7 @@ public with sharing class EmailSchedulingHelper {
         List<Course__c> courses = [
             SELECT
                 Id,
+                Cancel__c,
                 EmailAfterDate__c,
                 EmailBeforeDate__c,
                 EmailManualDate__c,
@@ -37,7 +38,8 @@ public with sharing class EmailSchedulingHelper {
                 EmailReminderContent__c
             FROM Course__c
             WHERE
-                (EmailAfterDate__c = TODAY
+                Cancel__c = FALSE
+                AND ((EmailAfterDate__c = TODAY
                 AND EmailAfterSent__c = FALSE
                 AND EmailAfterConfirmation__c = TRUE)
                 OR (EmailBeforeDate__c = TODAY
@@ -48,7 +50,7 @@ public with sharing class EmailSchedulingHelper {
                 AND EmailManualConfirmation__c = TRUE)
                 OR (EmailReminderDate__c = TODAY
                 AND EmailReminderSent__c = FALSE
-                AND EmailReminderConfirmation__c = TRUE)
+                AND EmailReminderConfirmation__c = TRUE))
         ];
 
         return new Map<Id, Course__c>(courses);
