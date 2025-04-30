@@ -145,7 +145,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {
                 this.showError = true;
-                this.errorMessage = `Vennligst fyll ut ${fieldLabels[field]}.`;
+                this.errorMessage = `Vennligst fyll ut alle feltene.`;
                 return;
             }
     
