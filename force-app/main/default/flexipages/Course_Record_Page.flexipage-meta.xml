@@ -940,12 +940,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255,
-                        255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut
-                        automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color:
-                        rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av
-                        &quot;Klar for utsending&quot; for at mailen skal bli
-                        sendt.&lt;/b&gt;&lt;/p&gt;</value>
+                    <value>&lt;p class=&quot;ql-indent-1&quot;&gt;Her kan du planlegge e-poster som sendes ut automatisk ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;Dersom kurset blir avlyst vil deltakere få epost om dette. Planlagte eposter som informasjon før kurset, påminnelsen, og evaluering vil ikke bli sendt ut dersom kurset blir avlyst.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;strong&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/strong&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
