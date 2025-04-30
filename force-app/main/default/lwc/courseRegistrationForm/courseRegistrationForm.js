@@ -125,9 +125,20 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     handleSubmit(event) {
         event.preventDefault();
 
-        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'companyName', 'county', 'role', 'invoiceAdress','invoiceReference','workplace']; // List of required fields
+        const requiredFields = [
+            'firstName',
+            'lastName',
+            'email',
+            'phone',
+            'companyName',
+            'county',
+            'role',
+            'invoiceAdress',
+            'invoiceReference',
+            'workplace'
+        ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
-        
+
         const fieldLabels = {
             firstName: 'Fornavn',
             lastName: 'Etternavn',
@@ -148,7 +159,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.errorMessage = `Vennligst fyll ut alle feltene.`;
                 return;
             }
-    
+
             // Validate field lengths (less than 255 characters)
             if (this.theRecord[field] && this.theRecord[field].length > 255) {
                 this.showError = true;
@@ -156,14 +167,14 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
         }
-         // Validate field lengths (less than 255 characters)
-         for (const field of nonRequiredFields) {
-         if (this.theRecord[field] && this.theRecord[field].length > 255) {
-            this.showError = true;
-            this.errorMessage = `${fieldLabels[field]} kan ikke være lengre enn 255 tegn.`;
-            return;
+        // Validate field lengths (less than 255 characters)
+        for (const field of nonRequiredFields) {
+            if (this.theRecord[field] && this.theRecord[field].length > 255) {
+                this.showError = true;
+                this.errorMessage = `${fieldLabels[field]} kan ikke være lengre enn 255 tegn.`;
+                return;
+            }
         }
-    }
         // Validate phone number (example: phone should be a number and not empty)
         const phoneRegex = /^[0-9]{8,}$/; // Example: Validates 8 digits or more
         if (this.theRecord.phone && !phoneRegex.test(this.theRecord.phone)) {
