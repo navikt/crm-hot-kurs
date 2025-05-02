@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-horizontal_medium">
+            <div class="slds-grid slds-grid_align-end">
+                <lightning-button
+                    label="Kopier lenke til kurs"
+                    title="Kopier lenke til kurs"
+                    onclick={handleCopyClick}
+                    icon-name="utility:copy"
+                    variant="neutral"
+                >
+                </lightning-button>
+            </div>
+            <template if:true={copied}>
+                <div class="slds-text-align_right slds-p-top_small">
+                    <p class="slds-text-color_success slds-p-top_small">Link kopiert til utklippstavlen!</p>
+                    <p>
+                        <a href={generatedLink} target="_blank">{generatedLink}</a>
+                    </p>
+                </div>
+            </template>
+            <!-- Error message if course is inactive -->
+            <template if:true={copyNotAllowed}>
+                <div class="slds-text-align_right slds-p-top_small">
+                    <p class="slds-text-color_error slds-p-top_small">
+                        Linken kan ikke kopieres fordi kurset er ikke aktivt.
+                    </p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
