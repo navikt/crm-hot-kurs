@@ -42,7 +42,7 @@ public without sharing class CourseRegistrationController {
                 ShowAllergies__c,
                 ShowWorkplace__c,
                 ShowAdditionalInformation__c,
-                ShowOrganizationNumber
+                ShowOrganizationNumber__c
             FROM Course__c
             WHERE Id = :courseId
         ];
