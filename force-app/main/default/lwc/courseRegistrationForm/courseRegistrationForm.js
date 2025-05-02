@@ -156,7 +156,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
             additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
-            organization: 'Bedriftsnummer/Organisasjonsnummer'
+            organization: 'Bedriftsnummer'
         };
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {
