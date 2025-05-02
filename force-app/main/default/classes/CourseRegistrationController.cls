@@ -112,4 +112,13 @@ public without sharing class CourseRegistrationController {
 
         return existingRecord.size() > 0;
     }
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getOrganizationInfo(String organizationNumber) {
+        List<Account> account = [
+            SELECT Id, Name, INT_OrganizationNumber__c
+            FROM Account
+            WHERE INT_OrganizationNumber__c = :organizationNumber
+        ];
+        return account;
+    }
 }
