@@ -91,7 +91,7 @@ public without sharing class CourseRegistrationController {
             registration.Invoice_address__c = model.invoiceAdress;
             registration.Invoice_reference__c = model.invoiceReference;
             registration.AdditionalInformation__c = model.additionalInformation;
-            registration.Organization = model.organizationNumber;
+            registration.Organization__c = model.organizationNumber;
 
             if (courseIsFull) {
                 registration.Status__c = 'Venteliste';
