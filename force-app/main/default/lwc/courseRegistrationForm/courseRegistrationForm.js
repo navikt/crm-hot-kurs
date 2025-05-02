@@ -1,6 +1,7 @@
 import { LightningElement, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
+import getOrganizationInfo from '@salesforce/apex/CourseRegistrationController.getOrganizationInfo';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
@@ -28,6 +29,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track invoiceAdress = false;
     @track invoiceReference = false;
     @track workplace = false;
+    @track organization = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -66,6 +68,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
+                this.organization = result.ShowOrganizationNumber__c;
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
@@ -135,7 +138,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             'role',
             'invoiceAdress',
             'invoiceReference',
-            'workplace'
+            'workplace',
+            'organization'
         ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
 
@@ -151,7 +155,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             invoiceReference: 'Faktura referanse',
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
-            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)'
+            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
+            organization: 'Bedriftsnummer/Organisasjonsnummer'
         };
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {
@@ -211,6 +216,34 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         } else {
             this.displayErrorMessage = true;
             this.errorMessage = 'Koden er ikke gyldig. Vennligst prøv igjen';
+        }
+    }
+    @track organizationNumberSearch;
+    @track organizationName = 'Feltet fylles automatisk';
+    handleOrganizationNumberInput(event) {
+        this.organizationNumberSearch = event.target.value;
+        if (this.organizationNumberSearch.length == 9) {
+            this.organizationName = 'Henter organisasjon...';
+            try {
+                getOrganizationInfo({
+                    organizationNumber: this.organizationNumberSearch
+                }).then((result) => {
+                    if (result.length == 1) {
+                        //this.theRecord.organization = result[0].Id;
+                        this.organizationName = result[0].Name;
+                        this.theRecord.organization = result[0].Id;
+                    } else {
+                        this.organizationName = 'Kunne ikke finne organisasjon';
+                        this.theRecord.organization = null;
+                    }
+                });
+            } catch (error) {
+                this.organizationName = error;
+                this.theRecord.organization = null;
+            }
+        } else {
+            this.organizationName = 'Feltet fylles automatisk';
+            this.theRecord.organization = null;
         }
     }
 }

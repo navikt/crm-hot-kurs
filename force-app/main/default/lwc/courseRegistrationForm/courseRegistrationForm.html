@@ -302,6 +302,33 @@
                                         />
                                     </div>
                                 </div>
+                                <div class="kontaktskjema-felter__bolk" if:true={organization}>
+                                    <div class="felt">
+                                        <label class="skjemaelement__label" for="additionalInformation">
+                                            <p class="typo-element">Bedriftsnummer/Organisasjonsnummer</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="organizationNumber"
+                                            id="organizationNumber"
+                                            oninput={handleOrganizationNumberInput}
+                                        />
+                                    </div>
+                                    <div class="felt">
+                                        <label class="skjemaelement__label" for="additionalInformation">
+                                            <p class="typo-element">&nbsp;</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="organization"
+                                            id="organization"
+                                            value={organizationName}
+                                            disabled
+                                        />
+                                    </div>
+                                </div>
 
                                 <div class="navno-dekorator alertstripe">
                                     <img
