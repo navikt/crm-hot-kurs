@@ -13,9 +13,3 @@ public with sharing class CourseController {
         return course.Active__c;
     }
 }
-
-
-
-
-
-
