@@ -2,7 +2,11 @@
 private class CourseControllerTest {
     @isTest
     static void testIsCourseActive_true() {
-        Course__c activeCourse = new Course__c(Name = 'Active Course', Active__c = true,  MaxNumberOfParticipants__c = 100);
+        Course__c activeCourse = new Course__c(
+            Name = 'Active Course',
+            Active__c = true,
+            MaxNumberOfParticipants__c = 100
+        );
         insert activeCourse;
         System.assertNotEquals(null, activeCourse.Id, 'Inserted course should have an ID');
         Test.startTest();
@@ -12,7 +16,11 @@ private class CourseControllerTest {
     }
     @isTest
     static void testIsCourseActive_false() {
-        Course__c inactiveCourse = new Course__c(Name = 'Inactive Course', Active__c = false,  MaxNumberOfParticipants__c = 100);
+        Course__c inactiveCourse = new Course__c(
+            Name = 'Inactive Course',
+            Active__c = false,
+            MaxNumberOfParticipants__c = 100
+        );
         insert inactiveCourse;
         System.assertNotEquals(null, inactiveCourse.Id, 'Inserted course should have an ID');
         Test.startTest();
