@@ -3,7 +3,6 @@ import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
-import navStyling from '@salesforce/resourceUrl/navStyling';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
@@ -51,10 +50,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
-
-    renderedCallback() {
-        loadStyle(this, navStyling);
-    }
 
     generateSubscribeEmailText(theme, category) {
         if (theme && !category) {
