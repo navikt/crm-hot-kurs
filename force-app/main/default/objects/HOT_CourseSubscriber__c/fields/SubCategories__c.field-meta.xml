@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubCategories__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub Categories</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bevegelse</fullName>
+                <default>false</default>
+                <label>Bevegelse</label>
+            </value>
+            <value>
+                <fullName>Bolig</fullName>
+                <default>false</default>
+                <label>Bolig</label>
+            </value>
+            <value>
+                <fullName>Hørsel</fullName>
+                <default>false</default>
+                <label>Hørsel</label>
+            </value>
+            <value>
+                <fullName>Kognisjon</fullName>
+                <default>false</default>
+                <label>Kognisjon</label>
+            </value>
+            <value>
+                <fullName>Kommunikasjon (ASK)</fullName>
+                <default>false</default>
+                <label>Kommunikasjon (ASK)</label>
+            </value>
+            <value>
+                <fullName>Service og reperasjon</fullName>
+                <default>false</default>
+                <label>Service og reperasjon</label>
+            </value>
+            <value>
+                <fullName>Syn</fullName>
+                <default>false</default>
+                <label>Syn</label>
+            </value>
+            <value>
+                <fullName>Tilrettelegging i arbeid</fullName>
+                <default>false</default>
+                <label>Tilrettelegging i arbeid</label>
+            </value>
+            <value>
+                <fullName>Varsling</fullName>
+                <default>false</default>
+                <label>Varsling</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
