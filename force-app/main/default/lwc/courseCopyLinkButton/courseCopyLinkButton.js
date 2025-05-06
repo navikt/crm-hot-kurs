@@ -1,27 +1,26 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import isCourseActive from '@salesforce/apex/CourseController.isCourseActive';
 
 export default class CourseCopyLinkButton extends LightningElement {
     @api recordId;
-    isActive = false;
-    copied = false;
-    copyNotAllowed = false;
 
     get generatedLink() {
         return `https://arbeidsgiver.nav.no/kursoversikt/${this.recordId}`;
     }
 
     async handleCopyClick() {
-        // Reset messages
-        this.copied = false;
-        this.copyNotAllowed = false;
-
         try {
-            const result = await isCourseActive({ courseId: this.recordId });
-            this.isActive = result;
+            const isActive = await isCourseActive({ courseId: this.recordId });
 
-            if (!this.isActive) {
-                this.copyNotAllowed = true;
+            if (!isActive) {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Ikke mulig å kopiere',
+                        message: 'Kurset er ikke aktivt og kan ikke kopieres.',
+                        variant: 'warning'
+                    })
+                );
                 return;
             }
 
@@ -32,20 +31,34 @@ export default class CourseCopyLinkButton extends LightningElement {
 
             try {
                 document.execCommand('copy');
-                this.copied = true;
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Lenke kopiert',
+                        message: 'Kurslenken ble kopiert til utklippstavlen.',
+                        variant: 'success'
+                    })
+                );
             } catch (err) {
                 console.error('Failed to copy: ', err);
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Feil',
+                        message: 'Klarte ikke å kopiere lenken.',
+                        variant: 'error'
+                    })
+                );
             }
 
             document.body.removeChild(textArea);
-
-            setTimeout(() => {
-                this.copied = false;
-                this.copyNotAllowed = false;
-            }, 20000);
         } catch (error) {
-            console.error('Error refreshing course status:', error);
-            this.copyNotAllowed = true;
+            console.error('Error checking course status:', error);
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Feil',
+                    message: 'Kunne ikke hente kursstatus.',
+                    variant: 'error'
+                })
+            );
         }
     }
 }
