@@ -3,6 +3,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
 import icons from '@salesforce/resourceUrl/icons';
+import navStyling from '@salesforce/resourceUrl/navStyling';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
@@ -41,6 +42,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track companyName = false;
     @track role = false;
 
+    @track subscribeEmailText;
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
@@ -48,6 +51,22 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
+
+    renderedCallback() {
+        loadStyle(this, navStyling);
+    }
+
+    generateSubscribeEmailText(theme, category) {
+        if (theme && !category) {
+            if (theme !== 'Annet') {
+                return `Jeg ønsker å få epost når Nav legger ut nye kurs om lignende tema: ${theme}.`;
+            }
+        } else if (theme && category) {
+            const formattedCategory = category.replace(/;/g, ', ');
+            return `Jeg ønsker å få epost når Nav legger ut nye kurs om lignende tema: ${formattedCategory}.`;
+        }
+        return ''; // fallback hvis ingen av betingelsene oppfylles
+    }
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
@@ -66,6 +85,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
+                this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);

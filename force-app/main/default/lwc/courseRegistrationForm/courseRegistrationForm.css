@@ -101,6 +101,11 @@
     color: #3e3832;
 }
 
+.navno-dekorator.alertstripe--info {
+    border: 1px solid #368da8;
+    background-color: #d8f9ff;
+}
+
 .navno-dekorator.alertstripe--advarsel {
     border: 1px solid #ff9100;
     background-color: #ffe9cc;

@@ -41,7 +41,9 @@ public without sharing class CourseRegistrationController {
                 ShowInvoiceReference__c,
                 ShowAllergies__c,
                 ShowWorkplace__c,
-                ShowAdditionalInformation__c
+                ShowAdditionalInformation__c,
+                Sub_category__c,
+                Theme__c
             FROM Course__c
             WHERE Id = :courseId
         ];
