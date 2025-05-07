@@ -303,17 +303,33 @@
                                     </div>
                                 </div>
 
-                                <div class="navno-dekorator alertstripe">
+                                <div class="navno-dekorator alertstripe alertstripe--info">
                                     <img
                                         class="navno-dekorator alertstripe__ikon"
                                         src={informationicon}
                                         alt="informasjon-ikon"
                                     />
                                     <p class="typo-normal">
-                                        NAV bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
+                                        Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
                                         Opplysningene blir ikke delt eller brukt til andre formål.
                                     </p>
                                 </div>
+                                <br />
+                                <div class="subscribeContainer">
+                                    <p class="typo-element">Abboner på kurs</p>
+                                    <c-checkbox
+                                        oncheckboxclick={handleAllCheckboxesClick}
+                                        label={subscribeEmailText}
+                                    ></c-checkbox>
+                                    <br />
+                                    <p class="typo-normal">
+                                        For å fullføre registreringen må du bekrefte ved å trykke på lenken i e-posten
+                                        som umiddelbart blir sendt til e-postadressen du oppgir. <br />
+                                        Alle e-poster vil inneholde lenke hvor du kan endre dine preferanser på hvilket
+                                        type kurs du ønsker varsler om.
+                                    </p>
+                                </div>
+                                <br />
                                 <div if:true={showError}>
                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
                                         <img

@@ -52,13 +52,14 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     houseicon = houseIconNew;
 
     generateSubscribeEmailText(theme, category) {
+        const preText = 'Jeg ønsker å få e-post når Nav legger ut nye kurs om lignende tema:';
         if (theme && !category) {
             if (theme !== 'Annet') {
-                return `Jeg ønsker å få epost når Nav legger ut nye kurs om lignende tema: ${theme}.`;
+                return `${preText}${theme}.`;
             }
         } else if (theme && category) {
             const formattedCategory = category.replace(/;/g, ', ');
-            return `Jeg ønsker å få epost når Nav legger ut nye kurs om lignende tema: ${formattedCategory}.`;
+            return `${preText} ${formattedCategory}.`;
         }
         return ''; // fallback hvis ingen av betingelsene oppfylles
     }
