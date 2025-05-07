@@ -2,10 +2,10 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <assignments>
-        <name>addCourseLineToEmail</name>
-        <label>addCourseLineToEmail</label>
-        <locationX>264</locationX>
-        <locationY>468</locationY>
+        <name>Copy_1_of_addCourseLineToEmail</name>
+        <label>Copy 1 of addCourseLineToEmail</label>
+        <locationX>578</locationX>
+        <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>emailText</assignToReference>
             <operator>Add</operator>
@@ -14,38 +14,165 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>emailLoop</targetReference>
+            <targetReference>loop_courses</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>createEmail</name>
+        <label>createEmail</label>
+        <locationX>490</locationX>
+        <locationY>1176</locationY>
+        <assignmentItems>
+            <assignToReference>singleEmail.HTMLBody__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.Subject__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Nye kurs du kan melde deg på</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.TargetObjectId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>loop_subsrcribers.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.ToAddress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>loop_subsrcribers.Email__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_subsrcribers</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Sjekker om temaet eller kategorien er det abbonent har registrert seg på, og legger det til i eposten</description>
+        <name>add_courses_to_email_based_on_subscriber</name>
+        <label>add courses to email based on subscriber</label>
+        <locationX>710</locationX>
+        <locationY>792</locationY>
+        <defaultConnector>
+            <targetReference>loop_courses</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>check_if_subscribe_theme_category_matches_course</name>
+            <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Arbeidssøkeraktivitet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Arbeidssøkeraktivitet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Inkluderende arbeidsliv (IA)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Inkluderende arbeidsliv (IA)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hjelpemidler og tilrettelegging</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hjelpemidler og tilrettelegging</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_addCourseLineToEmail</targetReference>
+            </connector>
+            <label>check if subscribe theme category matches course</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>checkIfNewCourses</name>
+        <label>checkIfNewCourses</label>
+        <locationX>182</locationX>
+        <locationY>360</locationY>
+        <defaultConnectorLabel>no new courses</defaultConnectorLabel>
+        <rules>
+            <name>isNewCourses</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getNewCourse</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getCourseSubscribers</targetReference>
+            </connector>
+            <label>isNewCourses</label>
+        </rules>
+    </decisions>
     <description>Generate emails for subscribers</description>
     <environments>Default</environments>
     <formulas>
         <name>courseEndFormatted</name>
         <dataType>String</dataType>
-        <expression>TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationToDateTime__c}), 12, 2))) &amp; &quot;.&quot; &amp;
-TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationToDateTime__c}), 15, 2)))</expression>
+        <expression>TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2))) &amp; &quot;.&quot; &amp;
+TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 15, 2)))</expression>
     </formulas>
     <formulas>
         <name>courseLink</name>
         <dataType>String</dataType>
-        <expression>&quot;https://arbeidsgiver.nav.no/kursoversikt/&quot; &amp; {!emailLoop.Id}</expression>
+        <expression>&quot;https://arbeidsgiver.nav.no/kursoversikt/&quot;&amp;{!loop_courses.Id}</expression>
     </formulas>
     <formulas>
         <name>courseName</name>
         <dataType>String</dataType>
-        <expression>{!emailLoop.Name}</expression>
+        <expression>{!loop_courses.Name}</expression>
     </formulas>
     <formulas>
         <name>courseShortDescription</name>
         <dataType>String</dataType>
-        <expression>{!emailLoop.DescriptionShort2__c}</expression>
+        <expression>{!loop_courses.DescriptionShort2__c}</expression>
     </formulas>
     <formulas>
         <name>courseStartFormatted</name>
         <dataType>String</dataType>
-        <expression>TEXT(DAY(DATEVALUE({!emailLoop.RegistrationFromDateTime__c}))) &amp; &quot;. &quot; &amp;
+        <expression>TEXT(DAY(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp; &quot;. &quot; &amp;
 CASE(
-  MONTH(DATEVALUE({!emailLoop.RegistrationFromDateTime__c})),
+  MONTH(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),
   1, &quot;januar&quot;,
   2, &quot;februar&quot;,
   3, &quot;mars&quot;,
@@ -60,23 +187,36 @@ CASE(
   12, &quot;desember&quot;,
   &quot;ukjent&quot;
 ) &amp; &quot; &quot; &amp;
-TEXT(YEAR(DATEVALUE({!emailLoop.RegistrationFromDateTime__c}))) &amp;
+TEXT(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp;
 &quot; kl &quot; &amp;
-TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 12, 2))) &amp; &quot;.&quot; &amp;
-TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</expression>
+TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2))) &amp; &quot;.&quot; &amp;
+TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2)))</expression>
     </formulas>
     <interviewLabel>HOT_NotifyCourseSubscribers {!$Flow.CurrentDateTime}</interviewLabel>
     <label>HOT Notify Course Subscribers</label>
     <loops>
-        <description>Loop gjennom alle kursene og generer epost teksten</description>
-        <name>emailLoop</name>
-        <label>emailLoop</label>
-        <locationX>176</locationX>
-        <locationY>360</locationY>
+        <name>loop_courses</name>
+        <label>loop courses</label>
+        <locationX>490</locationX>
+        <locationY>684</locationY>
         <collectionReference>getNewCourse</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>addCourseLineToEmail</targetReference>
+            <targetReference>add_courses_to_email_based_on_subscriber</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>createEmail</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>loop_subsrcribers</name>
+        <label>loop subsrcribers</label>
+        <locationX>50</locationX>
+        <locationY>576</locationY>
+        <collectionReference>getCourseSubscribers</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>loop_courses</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>sendemail</targetReference>
@@ -104,50 +244,41 @@ TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</express
     <recordCreates>
         <name>sendemail</name>
         <label>sendemail</label>
-        <locationX>176</locationX>
-        <locationY>660</locationY>
-        <inputAssignments>
-            <field>HTMLBody__c</field>
-            <value>
-                <elementReference>emailText</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Instant</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Subject__c</field>
-            <value>
-                <stringValue>Nye kurs du kan melde deg på</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TargetObjectId__c</field>
-            <value>
-                <elementReference>$User.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ToAddress__c</field>
-            <value>
-                <stringValue>rasmus.steine.olsen@nav.no</stringValue>
-            </value>
-        </inputAssignments>
-        <object>EmailQueue__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <locationX>50</locationX>
+        <locationY>1368</locationY>
+        <inputReference>emailCollection</inputReference>
     </recordCreates>
+    <recordLookups>
+        <description>Henter alle abbonenter som abbonnerer på kurs</description>
+        <name>getCourseSubscribers</name>
+        <label>getCourseSubscribers</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>loop_subsrcribers</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>HOT_CourseSubscriber__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <description>Hent alle kurs nye kurs som det ikke er blitt sendt ut eposter om</description>
         <name>getNewCourse</name>
         <label>getNewCourse</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>252</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>emailLoop</targetReference>
+            <targetReference>checkIfNewCourses</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -157,13 +288,6 @@ TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</express
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>Theme__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Annet</stringValue>
-            </value>
-        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Course__c</object>
         <sortField>RegistrationFromDateTime__c</sortField>
@@ -171,7 +295,7 @@ TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</express
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>getNewCourse</targetReference>
@@ -195,6 +319,14 @@ TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</express
         <text>&lt;p&gt;{!emailText}&lt;/p&gt;</text>
     </textTemplates>
     <variables>
+        <name>emailCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
+    <variables>
         <name>emailText</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -210,5 +342,13 @@ TEXT(VALUE(MID(TEXT({!emailLoop.RegistrationFromDateTime__c}), 15, 2)))</express
         <value>
             <stringValue>rasmus.steine.olsen@nav.no</stringValue>
         </value>
+    </variables>
+    <variables>
+        <name>singleEmail</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
     </variables>
 </Flow>
