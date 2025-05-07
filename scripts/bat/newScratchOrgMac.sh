@@ -51,7 +51,13 @@ sf project deploy start
 echo "Tildeler tilatelsessett til brukeren"
 sf org assign permset --name Kurs_Salesforce_Admin
 
+echo "Tildeler tilatelsessett til brukeren"
+sf org assign permset --name Course_Admin
+
 echo "Publish Experience Site"
-sf community publish --name Kurs1
+sf community publish --name Kurs
+
+echo "Kjører assignGuestUserPerm.sh…"
+bash "$(dirname "$0")/assignGuestUserPerm.sh"
 
 echo "Ferdig"
