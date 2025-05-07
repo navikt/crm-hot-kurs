@@ -1,5 +1,5 @@
-public with sharing class CourseSubscriberHandler {
-    global override void onAfterInsert() {
+public without sharing class CourseSubscriberHandler extends MyTriggers {
+    public override void onAfterInsert() {
         addEncryptedString((List<HOT_CourseSubscriber__c>) records);
     }
 
