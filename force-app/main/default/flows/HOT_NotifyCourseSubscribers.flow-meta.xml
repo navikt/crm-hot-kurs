@@ -307,7 +307,7 @@ TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2)))</expr
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>courseLineEachCourse</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
