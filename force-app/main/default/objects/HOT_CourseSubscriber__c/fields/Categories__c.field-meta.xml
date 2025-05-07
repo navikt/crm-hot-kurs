@@ -20,6 +20,11 @@
                 <default>false</default>
                 <label>Inkluderende arbeidsliv (IA)</label>
             </value>
+            <value>
+                <fullName>Hjelpemidler og tilrettelegging</fullName>
+                <default>false</default>
+                <label>Hjelpemidler og tilrettelegging</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>4</visibleLines>
