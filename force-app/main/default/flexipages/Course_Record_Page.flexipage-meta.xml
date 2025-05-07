@@ -1241,6 +1241,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>courseCopyLinkButton</componentName>
+                <identifier>c_courseCopyLinkButton</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>courseInvitation</componentName>
                 <identifier>courseInvitation</identifier>
             </componentInstance>
