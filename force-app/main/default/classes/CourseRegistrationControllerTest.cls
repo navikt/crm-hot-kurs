@@ -47,6 +47,22 @@ private with sharing class CourseRegistrationControllerTest {
             'Registration successfull'
         );
         System.assertEquals('Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing');
-        System.assertEquals('Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.', resultOfDuplicateReg, 'Duplicate registration');
+        System.assertEquals(
+            'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.',
+            resultOfDuplicateReg,
+            'Duplicate registration'
+        );
+    }
+    @IsTest
+    static void getOrganizationInfoTest() {
+        Account acc = new Account();
+        acc.Name = '987654321';
+        acc.INT_OrganizationNumber__c = '987654321';
+        insert acc;
+
+        Test.startTest();
+        List<Account> accounts = CourseRegistrationController.getOrganizationInfo('987654321');
+        Test.stopTest();
+        System.assertEquals(1, accounts.size());
     }
 }
