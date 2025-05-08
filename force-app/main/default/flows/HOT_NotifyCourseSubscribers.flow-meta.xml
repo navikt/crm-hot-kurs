@@ -6,7 +6,7 @@
         <name>addCourseLineToEmail</name>
         <label>addCourseLineToEmail</label>
         <locationX>578</locationX>
-        <locationY>900</locationY>
+        <locationY>1008</locationY>
         <assignmentItems>
             <assignToReference>emailText</assignToReference>
             <operator>Add</operator>
@@ -22,7 +22,7 @@
         <name>addEmailToEmailCollection</name>
         <label>addEmailToEmailCollection</label>
         <locationX>490</locationX>
-        <locationY>1284</locationY>
+        <locationY>1392</locationY>
         <assignmentItems>
             <assignToReference>emailCollection</assignToReference>
             <operator>Add</operator>
@@ -39,7 +39,7 @@
         <name>createEmail</name>
         <label>createEmail</label>
         <locationX>490</locationX>
-        <locationY>1176</locationY>
+        <locationY>1284</locationY>
         <assignmentItems>
             <assignToReference>singleEmail.HTMLBody__c</assignToReference>
             <operator>Assign</operator>
@@ -65,7 +65,7 @@
             <assignToReference>singleEmail.TargetObjectId__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>loop_subsrcribers.Id</elementReference>
+                <elementReference>get_Kurs_site_user.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -84,7 +84,7 @@
         <name>add_courses_to_email_based_on_subscriber</name>
         <label>add courses to email based on subscriber</label>
         <locationX>710</locationX>
-        <locationY>792</locationY>
+        <locationY>900</locationY>
         <defaultConnector>
             <targetReference>loop_courses</targetReference>
         </defaultConnector>
@@ -374,7 +374,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>loop_courses</name>
         <label>loop courses</label>
         <locationX>490</locationX>
-        <locationY>684</locationY>
+        <locationY>792</locationY>
         <collectionReference>getNewCourse</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -389,7 +389,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>loop_subsrcribers</name>
         <label>loop subsrcribers</label>
         <locationX>50</locationX>
-        <locationY>576</locationY>
+        <locationY>684</locationY>
         <collectionReference>getCourseSubscribers</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -422,9 +422,30 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>sendemail</name>
         <label>sendemail</label>
         <locationX>50</locationX>
-        <locationY>1476</locationY>
+        <locationY>1584</locationY>
         <inputReference>emailCollection</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>get_Kurs_site_user</name>
+        <label>get Kurs site user</label>
+        <locationX>50</locationX>
+        <locationY>576</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>loop_subsrcribers</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Kurs Site Guest User</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <description>Henter alle subscribers records som abbonnerer på kurs og som har kategorier og subkategorier som de abbonerer på</description>
         <name>getCourseSubscribers</name>
@@ -433,7 +454,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <locationY>468</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>loop_subsrcribers</targetReference>
+            <targetReference>get_Kurs_site_user</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
@@ -505,7 +526,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>courseLineEachCourse</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
