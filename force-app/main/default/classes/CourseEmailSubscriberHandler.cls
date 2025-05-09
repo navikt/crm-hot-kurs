@@ -1,4 +1,4 @@
-public without sharing class CourseSubscriberHandler extends MyTriggers {
+public without sharing class CourseEmailSubscriberHandler extends MyTriggers {
     public override void onAfterInsert() {
         System.debug('går den inn her?');
         for (HOT_CourseSubscriber__c reg : (List<HOT_CourseSubscriber__c>) records) {
