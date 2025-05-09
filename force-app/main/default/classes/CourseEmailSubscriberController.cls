@@ -21,4 +21,19 @@ public without sharing class CourseEmailSubscriberController {
 
         update recordToUpdate;
     }
+    @AuraEnabled
+    public static void createCourseEmailSubscriber(Id courseId, String email) {
+        Course__c course = [SELECT Id, Theme__c, Sub_category__c FROM Course__c WHERE Id = :courseId];
+
+        HOT_CourseSubscriber__c newRecord = new HOT_CourseSubscriber__c(
+            Email__c = email,
+            Categories__c = course.Theme__c,
+            SubCategories__c = course.Sub_category__c
+        );
+        try {
+            insert newRecord;
+        } catch (DmlException e) {
+            System.debug('Feil ved innsetting av ny post: ' + e.getMessage());
+        }
+    }
 }
