@@ -61,4 +61,8 @@
         <object>HOT_CourseSubscriber__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>HOT_CourseSubscriber__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
