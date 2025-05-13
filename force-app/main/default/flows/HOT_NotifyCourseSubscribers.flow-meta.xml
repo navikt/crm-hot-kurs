@@ -15,14 +15,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>loop_courses</targetReference>
+            <targetReference>countNewCourses</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>addEmailToEmailCollection</name>
         <label>addEmailToEmailCollection</label>
-        <locationX>490</locationX>
-        <locationY>1392</locationY>
+        <locationX>358</locationX>
+        <locationY>1608</locationY>
         <assignmentItems>
             <assignToReference>emailCollection</assignToReference>
             <operator>Add</operator>
@@ -35,11 +35,27 @@
         </connector>
     </assignments>
     <assignments>
+        <name>countNewCourses</name>
+        <label>countNewCourses</label>
+        <locationX>578</locationX>
+        <locationY>1116</locationY>
+        <assignmentItems>
+            <assignToReference>numberOfNewCourses</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_courses</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <description>Eposten lages. Lav prioritet og kan settes i kø</description>
         <name>createEmail</name>
         <label>createEmail</label>
-        <locationX>490</locationX>
-        <locationY>1284</locationY>
+        <locationX>358</locationX>
+        <locationY>1500</locationY>
         <assignmentItems>
             <assignToReference>singleEmail.HTMLBody__c</assignToReference>
             <operator>Assign</operator>
@@ -289,6 +305,31 @@
             <label>isNewCourses</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>new_courses_to_notify_this_subscriber</name>
+        <label>new courses to notify this subscriber</label>
+        <locationX>490</locationX>
+        <locationY>1392</locationY>
+        <defaultConnector>
+            <targetReference>loop_subsrcribers</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>new_courses</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>numberOfNewCourses</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>createEmail</targetReference>
+            </connector>
+            <label>new courses</label>
+        </rules>
+    </decisions>
     <description>Generate emails for subscribers</description>
     <environments>Default</environments>
     <formulas>
@@ -381,7 +422,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
             <targetReference>add_courses_to_email_based_on_subscriber</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>createEmail</targetReference>
+            <targetReference>new_courses_to_notify_this_subscriber</targetReference>
         </noMoreValuesConnector>
     </loops>
     <loops>
@@ -422,7 +463,10 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>sendemail</name>
         <label>sendemail</label>
         <locationX>50</locationX>
-        <locationY>1584</locationY>
+        <locationY>1884</locationY>
+        <connector>
+            <targetReference>update_Courses_When_Notified_Subscribers</targetReference>
+        </connector>
         <inputReference>emailCollection</inputReference>
     </recordCreates>
     <recordLookups>
@@ -513,6 +557,41 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>update_Courses_When_Notified_Subscribers</name>
+        <label>update Courses</label>
+        <locationX>50</locationX>
+        <locationY>1992</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>NotifiedSubscribers__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Cancel__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>NotifiedSubscribers__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Course__c</object>
+    </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
@@ -538,6 +617,22 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <text>&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser her&lt;/p&gt;</text>
     </textTemplates>
     <variables>
+        <name>courseSingleRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>coursesToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+    <variables>
         <name>emailCollection</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -560,6 +655,17 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <isOutput>false</isOutput>
         <value>
             <stringValue>rasmus.steine.olsen@nav.no</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>numberOfNewCourses</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
         </value>
     </variables>
     <variables>
