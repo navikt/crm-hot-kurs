@@ -100,6 +100,9 @@ public without sharing class CourseRegistrationController {
             }
 
             insert registration;
+            //if (model.subscribeEmail == 'true') {
+            CourseEmailSubscriberController.createCourseEmailSubscriber(courseId, model.email);
+            //}
         }
     }
 
