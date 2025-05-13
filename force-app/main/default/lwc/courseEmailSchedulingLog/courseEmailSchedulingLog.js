@@ -1,5 +1,5 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import getLogData from '@salesforce/apex/CourseEmailSchedulingLog.getLogData';
+import getLogData from '@salesforce/apex/CourseEmailSchedulingLog.getLogDataWithCanceledEmails';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class CourseEmailSchedulingLog extends NavigationMixin(LightningElement) {
