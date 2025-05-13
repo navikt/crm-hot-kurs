@@ -8,7 +8,10 @@ import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
 
-    @track theRecord = {};
+    @track theRecord = {
+        subscribeEmail: false
+    };
+
     @track output;
 
     @track showForm = false;
@@ -132,6 +135,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     handleChange(event) {
         this.theRecord[event.target.name] = event.target.value;
         this.showError = false;
+    }
+    handleCheckboxClick(event) {
+        this.theRecord[event.target.name] = event.detail;
+        console.log('name ' + event.target.name);
+        console.log('value ' + event.detail);
     }
 
     handleChange2(event) {
