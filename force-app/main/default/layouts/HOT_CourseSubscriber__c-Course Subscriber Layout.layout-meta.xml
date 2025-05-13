@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>EncryptedId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>MangageEmailSubscriptionUrl__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
