@@ -1,23 +1,38 @@
 public without sharing class CourseEmailSubscriberController {
-    @AuraEnabled
-    public static HOT_CourseSubscriber__c getCourseEmailSubscriber(Id Id) {
+    @AuraEnabled(cacheable=true)
+    public static HOT_CourseSubscriber__c getCourseEmailSubscriber(String Id) {
+        String courseEmailSubscriberId = CryptoService.decryptString(Id);
         HOT_CourseSubscriber__c emailCourseSubscriber = [
             SELECT Id, Categories__c, SubCategories__c, isActive__c, Email__c, EncryptedId__c
             FROM HOT_CourseSubscriber__c
-            WHERE Id = :Id
+            WHERE Id = :courseEmailSubscriberId
         ];
         return emailCourseSubscriber;
     }
     @AuraEnabled
-    public static void updateCourseEmailSubscriber(Id subscriberId, String categories, String subCategories) {
+    public static void updateCourseEmailSubscriber(String Id, String categories, String subCategories) {
+        String courseEmailSubscriberId = CryptoService.decryptString(Id);
         HOT_CourseSubscriber__c recordToUpdate = [
             SELECT Id, Categories__c, SubCategories__c, isActive__c
             FROM HOT_CourseSubscriber__c
-            WHERE Id = :subscriberId
+            WHERE Id = :courseEmailSubscriberId
         ];
 
         recordToUpdate.Categories__c = categories;
         recordToUpdate.SubCategories__c = subCategories;
+
+        update recordToUpdate;
+    }
+    @AuraEnabled
+    public static void activateCourseEmailSubscriber(String Id) {
+        String courseEmailSubscriberId = CryptoService.decryptString(Id);
+        HOT_CourseSubscriber__c recordToUpdate = [
+            SELECT Id, isActive__c
+            FROM HOT_CourseSubscriber__c
+            WHERE Id = :courseEmailSubscriberId
+        ];
+
+        recordToUpdate.isActive__c = true;
 
         update recordToUpdate;
     }
