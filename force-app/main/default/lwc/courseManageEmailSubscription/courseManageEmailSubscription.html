@@ -1,5 +1,5 @@
 <template>
-    <div class="center-screen" lwc:if={isActive}>
+    <div class="center-screen" lwc:if={showCheckboxes}>
         <p class="info-text">
             Velg temaene du ønsker å følge. Du vil motta e-post når Nav legger ut nye kurs innen disse temaene.
         </p>
@@ -54,16 +54,29 @@
             <c-checkbox oncheckboxclick={handleCheckboxClick} label="Varsling" name="Varsling"></c-checkbox>
 
             <br />
-            <c-button
-                button-label="Lagre"
-                disabled={isSubmitButtonDisabled}
-                onbuttonclick={handleSubmit}
-                desktop-style="width: 8rem; justify-content: center"
-                mobile-style="width: 8rem; justify-content: center"
-            ></c-button>
+            <!-- <div if:true={showConfirmation} class="confirmationContainer">
+                <h2 class="typo-systemtittel">Endringene er lagret</h2>
+            </div> -->
+            <div style="display: flex; gap: 1rem">
+                <c-button
+                    button-label="Lagre"
+                    disabled={isSubmitButtonDisabled}
+                    onbuttonclick={handleSubmit}
+                    button-styling="primary"
+                    desktop-style="width: 8rem; justify-content: center"
+                    mobile-style="width: 8rem; justify-content: center"
+                ></c-button>
+                <c-button
+                    button-styling="danger"
+                    button-label="Slett"
+                    onbuttonclick={handleSubmitDelete}
+                    desktop-style="width: 8rem; justify-content: center"
+                    mobile-style="width: 8rem; justify-content: center"
+                ></c-button>
+            </div>
         </div>
     </div>
-    <div class="center-screen" lwc:else>
+    <div class="center-screen" lwc:if={isNotActive}>
         <p class="info-text">Bekreft at du ønsker å motta epost fra Nav når nye kurs legges ut</p>
         <c-button
             button-label="Bekreft"
@@ -73,7 +86,10 @@
             mobile-style="width: 8rem; justify-content: center"
         ></c-button>
     </div>
-    <div if:true={showConfirmation}>
-        <h2 class="typo-systemtittel">Du er nå meldt av kurset</h2>
+    <div class="center-screen" lwc:if={showConfirmation}>
+        <h2 class="typo-systemtittel">{displayMessage}</h2>
+    </div>
+    <div class="center-screen" lwc:if={noRecord}>
+        <p class="info-text">Ooopss....Her er det ingenting</p>
     </div>
 </template>
