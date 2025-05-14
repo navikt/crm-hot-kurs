@@ -95,7 +95,7 @@
             <assignToReference>singleEmail.TemplateName__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>navEmpty</stringValue>
+                <stringValue>courseNavEmpty</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -626,7 +626,17 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
     <textTemplates>
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser, eller slette abboneringen ved å klikke &lt;a href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
+        <text>&lt;img 
+  alt=&quot;NAV Logo&quot; 
+  border=&quot;0&quot; 
+  class=&quot;fixedwidth&quot; 
+  src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; 
+  style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width: 134px; display: block; margin: 0 auto;&quot; 
+  title=&quot;NAV Logo&quot; 
+  width=&quot;134&quot; 
+/&gt;
+
+&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser, eller slette abboneringen ved å klikke &lt;a href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>courseSingleRecord</name>
