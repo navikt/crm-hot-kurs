@@ -91,6 +91,13 @@
                 <elementReference>loop_subsrcribers.Email__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.TemplateName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>navEmpty</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>addEmailToEmailCollection</targetReference>
         </connector>
@@ -359,6 +366,11 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDate
         <expression>&quot;https://arbeidsgiver.nav.no/kursoversikt/&quot;&amp;{!loop_courses.Id}</expression>
     </formulas>
     <formulas>
+        <name>courseManageEmailUrl</name>
+        <dataType>String</dataType>
+        <expression>{!loop_subsrcribers.MangageEmailSubscriptionUrl__c}</expression>
+    </formulas>
+    <formulas>
         <name>courseName</name>
         <dataType>String</dataType>
         <expression>{!loop_courses.Name}</expression>
@@ -614,7 +626,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
     <textTemplates>
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser her&lt;/p&gt;</text>
+        <text>&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser, eller slette abboneringen ved å klikke &lt;a href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>courseSingleRecord</name>
