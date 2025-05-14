@@ -1,4 +1,4 @@
-import { LightningElement, wire, api, track } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 import getLogData from '@salesforce/apex/CourseEmailSchedulingLog.getLogDataWithCanceledEmails';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -15,52 +15,50 @@ export default class CourseEmailSchedulingLog extends NavigationMixin(LightningE
         this.isLoading = true;
         getLogData({ recordId: this.recordId })
             .then((result) => {
-                var tempData = JSON.parse(JSON.stringify(result));
-                for (var i = 0; i < tempData.length; i++) {
-                    tempData[i]._children = tempData[i]['Children'];
-                    delete tempData[i].Children;
-                }
+                const tempData = JSON.parse(JSON.stringify(result));
+                tempData.forEach((item) => {
+                    item._children = item.Children;
+                    delete item.Children;
+                });
                 this.data = tempData;
                 this.isLoading = false;
             })
-            .catch((error) => {});
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     handleOnselect(event) {
-        let selectedItemValue = event.detail.name;
+        const selectedItemValue = event.detail.name;
 
         if (!this.data) {
             return;
         }
 
-        for (var i = 0; i < this.data.length; i++) {
-            if (this.data[i].name == selectedItemValue) {
-                this.data[i].expanded = !this.data[i].expanded;
-                this.template.querySelector('lightning-tree').items[i].expanded = this.data[i].expanded;
+        this.data.forEach((item, i) => {
+            if (item.name === selectedItemValue) {
+                item.expanded = !item.expanded;
+                this.template.querySelector('lightning-tree').items[i].expanded = item.expanded;
             }
 
-            if (this.data[i].items) {
-                for (var j = 0; j < this.data[i].items.length; j++) {
-                    if (this.data[i].items[j].name == selectedItemValue) {
+            if (item.items) {
+                item.items.forEach((subItem) => {
+                    if (subItem.name === selectedItemValue) {
                         this[NavigationMixin.Navigate]({
                             type: 'standard__recordPage',
                             attributes: {
-                                recordId: this.data[i].items[j].TargetObjectId,
+                                recordId: subItem.TargetObjectId,
                                 objectApiName: 'Contact',
                                 actionName: 'view'
                             }
                         });
                     }
-                }
+                });
             }
-        }
+        });
     }
 
     get isEmpty() {
-        if (this.data) {
-            return this.data.length == 0;
-        } else {
-            return true;
-        }
+        return !this.data || this.data.length === 0;
     }
 }
