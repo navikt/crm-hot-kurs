@@ -44,7 +44,7 @@
 .checkbox-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Venstrejusterer innholdet inni */
+    align-items: flex-start;
 }
 
 .typo-systemtittel {
@@ -53,4 +53,8 @@
     font-size: 1.375rem;
     line-height: 1.625rem;
     font-weight: 600;
+}
+.confirmationContainer {
+    text-align: center;
+    padding: 0.5rem;
 }
