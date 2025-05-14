@@ -4,8 +4,8 @@
     <assignments>
         <name>createEmail</name>
         <label>createEmail</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <assignmentItems>
             <assignToReference>email.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -24,7 +24,7 @@
             <assignToReference>email.TemplateName__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>courseNewEmailSubscriber</stringValue>
+                <stringValue>navEmpty</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -41,11 +41,23 @@
                 <elementReference>get_Kurs_site_user.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>email.HTMLBody__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailTemplate</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>sendEmail</targetReference>
         </connector>
     </assignments>
     <environments>Default</environments>
+    <formulas>
+        <name>emailSubscriberUrl</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.MangageEmailSubscriptionUrl__c}</expression>
+    </formulas>
     <interviewLabel>HOT Confirm Course Email Subscription {!$Flow.CurrentDateTime}</interviewLabel>
     <label>HOT Confirm Course Email Subscription</label>
     <processMetadataValues>
@@ -70,15 +82,15 @@
     <recordCreates>
         <name>sendEmail</name>
         <label>sendEmail</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
         <inputReference>email</inputReference>
     </recordCreates>
     <recordLookups>
         <name>get_Kurs_site_user</name>
         <label>get Kurs site user</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>createEmail</targetReference>
@@ -96,16 +108,61 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>0</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>get_Kurs_site_user</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MangageEmailSubscriptionUrl__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>MangageEmailSubscriptionUrl__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>isActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <object>HOT_CourseSubscriber__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>emailTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;img class=&quot;fixedwidth&quot; 
+
+  src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; 
+
+  style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width: 134px; display: block; margin: 0 auto;&quot; 
+
+  title=&quot;NAV Logo&quot; 
+
+  width=&quot;134&quot;
+
+/&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Hei. Vennligst &lt;a href=&quot;https://flow-speed-5539.scratch.lightning.force.com/builder_platform_interaction/{!emailSubscriberUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider. Du kan også bruke samme lenke til å velge hvilken temaer du ønsker å motta varsel om.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Om du ikke kjenner deg igjen i dette, ignorer denne eposten&lt;/p&gt;</text>
+    </textTemplates>
     <variables>
         <name>email</name>
         <dataType>SObject</dataType>
