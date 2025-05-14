@@ -2,15 +2,21 @@ import { LightningElement, track, wire } from 'lwc';
 import getCourseEmailSubscriber from '@salesforce/apex/CourseEmailSubscriberController.getCourseEmailSubscriber';
 import updateCourseEmailSubscriber from '@salesforce/apex/CourseEmailSubscriberController.updateCourseEmailSubscriber';
 import activateCourseEmailSubscriber from '@salesforce/apex/CourseEmailSubscriberController.activateCourseEmailSubscriber';
+import deleteCourseEmailSubscriber from '@salesforce/apex/CourseEmailSubscriberController.deleteCourseEmailSubscriber';
+
 import { refreshApex } from '@salesforce/apex';
 
 export default class CourseManageEmailSubscription extends LightningElement {
     @track emailSubscriberId;
     parameters = {};
 
-    @track isActive = true;
+    @track showCheckboxes = false;
     @track showConfirmation = false;
     @track emailSubcriber;
+    @track isSubmitButtonDisabled = false;
+    @track isNotActive = false;
+    @track displayMessage = '';
+    @track noRecord = false;
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
@@ -33,30 +39,48 @@ export default class CourseManageEmailSubscription extends LightningElement {
         //     }
         // });
     }
+    _checkboxesInitialized = false;
+
+    renderedCallback() {
+        if (this.showCheckboxes && !this._checkboxesInitialized) {
+            const allCheckboxes = this.template.querySelectorAll('c-checkbox');
+            if (allCheckboxes.length > 0) {
+                const categories = this.emailSubcriber?.Categories__c
+                    ? this.emailSubcriber.Categories__c.split(';').map((item) => item.trim())
+                    : [];
+                const subCategories = this.emailSubcriber?.SubCategories__c
+                    ? this.emailSubcriber.SubCategories__c.split(';').map((item) => item.trim())
+                    : [];
+
+                this.setCheckboxes(categories, subCategories);
+                this._checkboxesInitialized = true;
+            }
+        }
+    }
 
     wiredSubscriberResult;
 
     @wire(getCourseEmailSubscriber, { Id: '$emailSubscriberId' })
     wiredSubscriber(result) {
-        this.wiredSubscriberResult = result; // store for refresh
+        this.wiredSubscriberResult = result;
         const { data, error } = result;
         if (data) {
             this.emailSubcriber = data;
-            if (data.isActive__c === false) {
-                this.isActive = false;
-            } else {
-                this.isActive = true;
-                const categories = data.Categories__c ? data.Categories__c.split(';').map((item) => item.trim()) : [];
-                const subCategories = data.SubCategories__c
-                    ? data.SubCategories__c.split(';').map((item) => item.trim())
-                    : [];
 
-                this.setCheckboxes(categories, subCategories);
+            if (data.isActive__c === false) {
+                this.isNotActive = true;
+                this.showCheckboxes = false;
+            } else {
+                this.showCheckboxes = true;
+                this._checkboxesInitialized = false; // reset hvis vi laster på nytt
             }
         } else if (error) {
+            this.showCheckboxes = false;
+            this.noRecord = true;
             console.error('Error fetching subscriber:', error);
         }
     }
+
     setCheckboxes(categories, subCategories) {
         const allCheckboxes = this.template.querySelectorAll('c-checkbox');
         allCheckboxes.forEach((checkbox) => {
@@ -81,12 +105,12 @@ export default class CourseManageEmailSubscription extends LightningElement {
         return params;
     }
     handleActivaEmailSubscription() {
+        this.isNotActive = false;
         activateCourseEmailSubscriber({
             Id: this.emailSubscriberId
         })
             .then(() => {
-                //this.showConfirmation = true;
-                this.isActive = true;
+                this.showCheckboxes = true;
                 refreshApex(this.wiredSubscriberResult);
             })
             .catch((error) => {
@@ -94,8 +118,21 @@ export default class CourseManageEmailSubscription extends LightningElement {
                 console.error('Feil ved lagring:', error);
             });
     }
+    handleSubmitDelete() {
+        deleteCourseEmailSubscriber({
+            Id: this.emailSubscriberId
+        })
+            .then(() => {
+                this.showCheckboxes = false;
+                this.displayMessage =
+                    'Din e-postadresse og valgte kategorier ble slettet. Du vil ikke lenger motta epost om nye kurs.';
+                this.showConfirmation = true;
+            })
+            .catch((error) => {
+                this.displayMessage('Feil ved lagring:', error);
+            });
+    }
     handleSubmit() {
-        alert('går inn her' + this.emailSubscriberId);
         const allCheckboxes = this.template.querySelectorAll('c-checkbox');
         const selectedCategories = [];
         const selectedSubCategories = [];
@@ -117,7 +154,6 @@ export default class CourseManageEmailSubscription extends LightningElement {
             'Tilrettelegging i arbeid',
             'Varsling'
         ];
-        console.log('hei');
         allCheckboxes.forEach((checkbox) => {
             if (checkbox.getValue()) {
                 const name = checkbox.name;
@@ -138,12 +174,13 @@ export default class CourseManageEmailSubscription extends LightningElement {
             subCategories: subCategoriesStr
         })
             .then(() => {
-                console.log('Lagret!');
-                //this.showConfirmation = true;
+                this.displayMessage = 'Endringene ble lagret';
+                this.showConfirmation = true;
+                this.isSubmitButtonDisabled = true;
+                this.showCheckboxes = false;
             })
             .catch((error) => {
-                alert('feil');
-                console.error('Feil ved lagring:', error);
+                this.displayMessage('Feil ved lagring:', error);
             });
     }
 }

@@ -55,7 +55,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     houseicon = houseIconNew;
 
     generateSubscribeEmailText(theme, category) {
-        const preText = 'Jeg ønsker å få e-post når Nav legger ut nye kurs om lignende tema:';
+        const preText = 'Jeg ønsker å få e-post når Nav legger ut nye kurs om lignende tema: ';
         if (theme && !category) {
             if (theme !== 'Annet') {
                 return `${preText}${theme}.`;
