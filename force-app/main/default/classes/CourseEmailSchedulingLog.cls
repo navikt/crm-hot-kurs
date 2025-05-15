@@ -29,7 +29,10 @@ public with sharing class CourseEmailSchedulingLog {
         return [
             SELECT Id, TargetObjectId__c, Status__c, TemplateId__c, LastModifiedDate
             FROM EmailQueue__c
-            WHERE WhatId__c = :recordId OR WhatId__c IN :courseRegistrationIds
+            WHERE
+                WhatId__c = :recordId
+                OR (WhatId__c IN :courseRegistrationIds
+                AND TemplateName__c = 'courseCancellation')
             ORDER BY LastModifiedDate DESC
         ];
     }
