@@ -1,0 +1,27 @@
+<template>
+    <!-- LIGHTNING-CARD -->
+    <lightning-card title="E-postlogg" icon-name="standard:email_chatter">
+        <!-- REFRESH -->
+        <lightning-button-icon
+            icon-name="utility:refresh"
+            onclick={load}
+            slot="actions"
+            variant="border-filled"
+            alternative-text="Oppdater"
+            title="Oppdater"
+        ></lightning-button-icon>
+
+        <!-- LIGHTNING-SPINNER -->
+        <lightning-spinner alternative-text="Laster" size="medium" if:true={isLoading}></lightning-spinner>
+
+        <!-- LIGHTNING-TREE -->
+        <div class="slds-p-horizontal_large">
+            <lightning-tree if:true={data} items={data} onselect={handleOnselect}> </lightning-tree>
+        </div>
+
+        <!-- EMPTY -->
+        <div if:true={isEmpty} class="slds-text-heading_medium slds-p-vertical_large slds-align_absolute-center">
+            Ingen e-poster er sendt
+        </div>
+    </lightning-card>
+</template>
