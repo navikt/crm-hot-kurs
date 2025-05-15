@@ -1253,8 +1253,8 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>emailSchedulingLog</componentName>
-                <identifier>emailSchedulingLog</identifier>
+                <componentName>courseEmailSchedulingLog</componentName>
+                <identifier>c_courseEmailSchedulingLog</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
