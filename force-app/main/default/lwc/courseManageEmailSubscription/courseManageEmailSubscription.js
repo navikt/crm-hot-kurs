@@ -21,23 +21,6 @@ export default class CourseManageEmailSubscription extends LightningElement {
     connectedCallback() {
         this.parameters = this.getQueryParameters();
         this.emailSubscriberId = this.parameters.id;
-
-        // getCourseEmailSubscriber({ Id: this.emailSubscriberId }).then((result) => {
-        //     this.emailSubcriber = result;
-        //     if (this.emailSubcriber.isActive__c == false) {
-        //         this.isActive = false;
-        //     } else {
-        //         const categories = result.Categories__c
-        //             ? result.Categories__c.split(';').map((item) => item.trim())
-        //             : [];
-
-        //         const subCategories = result.SubCategories__c
-        //             ? result.SubCategories__c.split(';').map((item) => item.trim())
-        //             : [];
-
-        //         this.setCheckboxes(categories, subCategories);
-        //     }
-        // });
     }
     _checkboxesInitialized = false;
 
