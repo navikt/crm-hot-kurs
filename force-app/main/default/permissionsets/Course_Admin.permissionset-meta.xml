@@ -8,8 +8,16 @@
         <apexClass>CourseEmailSubscribeHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+     <classAccesses>
+        <apexClass>CourseController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>CourseEmailSubscriberController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CourseEmailSchedulingLog</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
