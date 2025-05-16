@@ -8,8 +8,8 @@
 .center-screen {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Sentrerer hele innholdet horisontalt */
-    align-items: center; /* Sentrerer hele innholdet vertikalt */
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     text-align: left;
 }
