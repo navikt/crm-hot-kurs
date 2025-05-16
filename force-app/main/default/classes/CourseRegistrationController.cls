@@ -41,7 +41,8 @@ public without sharing class CourseRegistrationController {
                 ShowInvoiceReference__c,
                 ShowAllergies__c,
                 ShowWorkplace__c,
-                ShowAdditionalInformation__c
+                ShowAdditionalInformation__c,
+                ShowOrganizationNumber__c
             FROM Course__c
             WHERE Id = :courseId
         ];
@@ -90,6 +91,7 @@ public without sharing class CourseRegistrationController {
             registration.Invoice_address__c = model.invoiceAdress;
             registration.Invoice_reference__c = model.invoiceReference;
             registration.AdditionalInformation__c = model.additionalInformation;
+            registration.Organization__c = model.organization;
 
             if (courseIsFull) {
                 registration.Status__c = 'Venteliste';
@@ -111,5 +113,14 @@ public without sharing class CourseRegistrationController {
         ];
 
         return existingRecord.size() > 0;
+    }
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getOrganizationInfo(String organizationNumber) {
+        List<Account> account = [
+            SELECT Id, Name, INT_OrganizationNumber__c
+            FROM Account
+            WHERE INT_OrganizationNumber__c = :organizationNumber
+        ];
+        return account;
     }
 }
