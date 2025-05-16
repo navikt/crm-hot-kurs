@@ -45,6 +45,19 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track role = false;
 
     @track subscribeEmailText;
+    @track showEmailSubscribeContainer = false;
+
+    @track subCategoryNames = [
+        'Bevegelse',
+        'Bolig',
+        'Hørsel',
+        'Kognisjon',
+        'Kommunikasjon (ASK)',
+        'Syn',
+        'Service og reperasjon',
+        'Tilrettelegging i arbeid',
+        'Varsling'
+    ];
 
     //icons
     warningicon = icons + '/warningicon.svg';
@@ -85,6 +98,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.workplace = result.ShowWorkplace__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
                 this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
+                this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
 
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
@@ -118,6 +132,13 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             } else {
             }
         });
+    }
+
+    shouldShowEmailSubscribe(categoryField) {
+        if (!categoryField) return false;
+
+        const categories = categoryField.split(';').map((s) => s.trim());
+        return categories.some((cat) => this.subCategoryNames.includes(cat));
     }
 
     getQueryParameters() {
