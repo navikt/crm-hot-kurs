@@ -61,7 +61,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
-            Sub_Categories__c = 'Hørsel'
+            SubCategories__c = 'Hørsel'
         );
         insert course;
         HOT_CourseSubscriber__c courseSubscriber = new HOT_CourseSubscriber__c(
@@ -87,7 +87,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
-            Sub_Categories__c = 'Hørsel'
+            SubCategories__c = 'Hørsel'
         );
         insert course;
         Test.startTest();
@@ -96,7 +96,6 @@ public with sharing class CourseEmailSubscriberControllerTest {
         HOT_CourseSubscriber__c result = [
             SELECT Id, Categories__c
             FROM HOT_CourseSubscriber__c
-            WHERE Id = :courseSubscriber.Id
             LIMIT 1
         ];
         Assert.areEqual('Hørsel', result.Categories__c, 'Should have created a new subscriber with only one category');
