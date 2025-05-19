@@ -7,8 +7,16 @@ public with sharing class CourseEmailSubscriberControllerTest {
             SubCategories__c = 'Bolig;Syn'
         );
         insert courseSubscriber;
+        HOT_CourseSubscriber__c insertedCourseSubscriber = [
+            SELECT Id, EncryptedId__c
+            FROM HOT_CourseSubscriber__c
+            LIMIT 1
+        ];
+
         Test.startTest();
-        HOT_CourseSubscriber__c result = CourseEmailSubscriberController.getCourseEmailSubscriber(courseSubscriber.Id);
+        HOT_CourseSubscriber__c result = CourseEmailSubscriberController.getCourseEmailSubscriber(
+            insertedCourseSubscriber.EncryptedId__c
+        );
         Test.stopTest();
         HOT_CourseSubscriber__c insertedSubscriber = [
             SELECT Id, EncryptedId__c
@@ -25,8 +33,18 @@ public with sharing class CourseEmailSubscriberControllerTest {
             SubCategories__c = 'Bolig;Syn'
         );
         insert courseSubscriber;
+        HOT_CourseSubscriber__c insertedCourseSubscriber = [
+            SELECT Id, EncryptedId__c
+            FROM HOT_CourseSubscriber__c
+            LIMIT 1
+        ];
+
         Test.startTest();
-        CourseEmailSubscriberController.updateCourseEmailSubscriber(courseSubscriber.Id, '', 'Hørsel;Syn;Bolig');
+        CourseEmailSubscriberController.updateCourseEmailSubscriber(
+            insertedCourseSubscriber.EncryptedId__c,
+            '',
+            'Hørsel;Syn;Bolig'
+        );
         Test.stopTest();
         HOT_CourseSubscriber__c result = [
             SELECT Id, SubCategories__c
@@ -43,8 +61,14 @@ public with sharing class CourseEmailSubscriberControllerTest {
             SubCategories__c = 'Bolig;Syn'
         );
         insert courseSubscriber;
+        HOT_CourseSubscriber__c insertedCourseSubscriber = [
+            SELECT Id, EncryptedId__c
+            FROM HOT_CourseSubscriber__c
+            LIMIT 1
+        ];
+
         Test.startTest();
-        CourseEmailSubscriberController.activateCourseEmailSubscriber(courseSubscriber.Id);
+        CourseEmailSubscriberController.activateCourseEmailSubscriber(insertedCourseSubscriber.EncryptedId__c);
         Test.stopTest();
         HOT_CourseSubscriber__c result = [
             SELECT Id, isActive__c
@@ -61,7 +85,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
-            SubCategories__c = 'Hørsel'
+            Sub_category__c = 'Hørsel'
         );
         insert course;
         HOT_CourseSubscriber__c courseSubscriber = new HOT_CourseSubscriber__c(
@@ -87,7 +111,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
-            SubCategories__c = 'Hørsel'
+            Sub_category__c = 'Hørsel'
         );
         insert course;
         Test.startTest();
@@ -107,8 +131,13 @@ public with sharing class CourseEmailSubscriberControllerTest {
             SubCategories__c = 'Bolig;Syn'
         );
         insert courseSubscriber;
+        HOT_CourseSubscriber__c insertedCourseSubscriber = [
+            SELECT Id, EncryptedId__c
+            FROM HOT_CourseSubscriber__c
+            LIMIT 1
+        ];
         Test.startTest();
-        CourseEmailSubscriberController.createCourseEmailSubscriber(courseSubscriber.Id);
+        CourseEmailSubscriberController.deleteCourseEmailSubscriber(insertedCourseSubscriber.EncryptedId__c);
         Test.stopTest();
         List<HOT_CourseSubscriber__c> result = [
             SELECT Id, Categories__c
