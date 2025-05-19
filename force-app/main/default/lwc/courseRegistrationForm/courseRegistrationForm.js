@@ -135,7 +135,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     }
 
     shouldShowEmailSubscribe(categoryField) {
-        /* Bare vise mulighet for å abbonere på subcategories foreløpig */
+        /* Bare vise mulighet for å abonnere på subcategories foreløpig */
         if (!categoryField) return false;
 
         const categories = categoryField.split(';').map((s) => s.trim());
