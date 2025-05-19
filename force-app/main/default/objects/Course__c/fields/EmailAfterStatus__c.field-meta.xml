@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailAfterStatus__c</fullName>
     <externalId>false</externalId>
     <formula>IF ( EmailAfterSendDatePassed__c,
 
-IF ( EmailAfterConfirmation__c,
+        IF ( EmailAfterConfirmation__c,
 
-    IF ( EmailAfterSent__c, &apos;✅ &apos; + $Label.EmailConfirmation_Sent , 
+        IF ( EmailAfterSent__c, &apos;✅ &apos; + $Label.EmailConfirmation_Sent ,
 
-    IF ( TODAY() = EmailAfterDate__c, 
-        IF ( TIMENOW() &gt;= TIMEVALUE(&quot;09:15:00.000&quot;),
-            &apos;❌ &apos; + $Label.EmailConfirmation_SendError,
-            &apos;⏳ &apos; + $Label.EmailConfirmation_Scheduled),
+        IF ( TODAY() = EmailAfterDate__c,
+        IF ( TIMENOW() &gt;= TIMEVALUE(&quot;18:00:00.000&quot;),
+        &apos;❌ &apos; + $Label.EmailConfirmation_SendError,
+        &apos;⏳ &apos; + $Label.EmailConfirmation_Scheduled),
         &apos;❌ &apos; + $Label.EmailConfirmation_SendError)
-    ), &apos;💤 &apos; + $Label.EmailConfirmation_NotScheduled ),
-&apos;&apos;)</formula>
+        ), &apos;💤 &apos; + $Label.EmailConfirmation_NotScheduled ),
+        &apos;&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Status</label>
     <required>false</required>

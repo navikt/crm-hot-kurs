@@ -2,10 +2,58 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
     <assignments>
+        <name>disable_after_email</name>
+        <label>disable after email</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.EmailAfterConfirmation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_cancelled_scheduled_emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>disable_before_email</name>
+        <label>disable before email</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.EmailBeforeConfirmation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_cancelled_scheduled_emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>disable_reminder_email</name>
+        <label>disable reminder email</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.EmailReminderConfirmation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_cancelled_scheduled_emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Legg_til_email_i_collection</name>
         <label>Legg til email i collection</label>
-        <locationX>264</locationX>
-        <locationY>647</locationY>
+        <locationX>534</locationX>
+        <locationY>1055</locationY>
         <assignmentItems>
             <assignToReference>emails</assignToReference>
             <operator>Add</operator>
@@ -20,8 +68,8 @@
     <assignments>
         <name>Opprett_email</name>
         <label>Opprett email</label>
-        <locationX>264</locationX>
-        <locationY>539</locationY>
+        <locationX>534</locationX>
+        <locationY>947</locationY>
         <assignmentItems>
             <assignToReference>email.SaveAsActivity__c</assignToReference>
             <operator>Assign</operator>
@@ -61,15 +109,92 @@
             <targetReference>Legg_til_email_i_collection</targetReference>
         </connector>
     </assignments>
-    <description>Sends emails to participants when course is cancelled</description>
+    <decisions>
+        <description>Forhindre at skedulerte eposter sendes ut når kurset er blitt avlyst</description>
+        <name>stop_scheduled_emails</name>
+        <label>stop scheduled emails</label>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>update_cancelled_scheduled_emails</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>stop_before_email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.EmailBeforeSent__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.EmailBeforeConfirmation__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>disable_before_email</targetReference>
+            </connector>
+            <label>stop before email</label>
+        </rules>
+        <rules>
+            <name>stop_reminder_email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.EmailReminderSent__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.EmailReminderConfirmation__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>disable_reminder_email</targetReference>
+            </connector>
+            <label>stop reminder email</label>
+        </rules>
+        <rules>
+            <name>stop_after_email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.EmailAfterSent__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.EmailAfterConfirmation__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>disable_after_email</targetReference>
+            </connector>
+            <label>stop after email</label>
+        </rules>
+    </decisions>
+    <description>Sends emails to participants when course is cancelled, and prevents future emails to be sent</description>
     <environments>Default</environments>
     <interviewLabel>Course Cancellation email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Course Cancellation email</label>
     <loops>
         <name>Send_email_to_all_participants_loop</name>
         <label>Send email to all participants loop</label>
-        <locationX>176</locationX>
-        <locationY>431</locationY>
+        <locationX>446</locationX>
+        <locationY>839</locationY>
         <collectionReference>Get_all_participants</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -101,15 +226,15 @@
     <recordCreates>
         <name>Create_Records1</name>
         <label>Create Records</label>
-        <locationX>176</locationX>
-        <locationY>839</locationY>
+        <locationX>446</locationX>
+        <locationY>1247</locationY>
         <inputReference>emails</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_all_participants</name>
         <label>Get all participants</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
+        <locationX>446</locationX>
+        <locationY>731</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_email_to_all_participants_loop</targetReference>
@@ -133,11 +258,21 @@
         <object>CourseRegistration__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+    <recordUpdates>
+        <name>update_cancelled_scheduled_emails</name>
+        <label>update cancelled scheduled emails</label>
+        <locationX>446</locationX>
+        <locationY>623</locationY>
         <connector>
             <targetReference>Get_all_participants</targetReference>
+        </connector>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>stop_scheduled_emails</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>

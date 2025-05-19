@@ -124,19 +124,82 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.theRecord.firstName && this.theRecord.lastName && this.theRecord.email && this.theRecord.phone) {
-            let output = JSON.stringify(this.theRecord, null);
-            createRegistration({
-                fields: output,
-                courseId: this.courseId
-            }).then((result) => {
-                this.showForm = false;
-                this.showConfirmation = true;
-                this.message = result;
-            });
-        } else {
-            this.showError = true;
+
+        const requiredFields = [
+            'firstName',
+            'lastName',
+            'email',
+            'phone',
+            'companyName',
+            'county',
+            'role',
+            'invoiceAdress',
+            'invoiceReference',
+            'workplace'
+        ]; // List of required fields
+        const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
+
+        const fieldLabels = {
+            firstName: 'Fornavn',
+            lastName: 'Etternavn',
+            email: 'E-post',
+            phone: 'Telefon',
+            companyName: 'Firma',
+            county: 'Fylke',
+            role: 'Rolle',
+            invoiceAdress: 'Faktura adresse',
+            invoiceReference: 'Faktura referanse',
+            workplace: 'Arbeidsplass',
+            allergies: 'Matallergi',
+            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)'
+        };
+        for (const field of requiredFields) {
+            if (this[field] && !this.theRecord[field]) {
+                this.showError = true;
+                this.errorMessage = `Vennligst fyll ut alle feltene.`;
+                return;
+            }
+
+            // Validate field lengths (less than 255 characters)
+            if (this.theRecord[field] && this.theRecord[field].length > 255) {
+                this.showError = true;
+                this.errorMessage = `${fieldLabels[field]} kan ikke være lengre enn 255 tegn.`;
+                return;
+            }
         }
+        // Validate field lengths (less than 255 characters)
+        for (const field of nonRequiredFields) {
+            if (this.theRecord[field] && this.theRecord[field].length > 255) {
+                this.showError = true;
+                this.errorMessage = `${fieldLabels[field]} kan ikke være lengre enn 255 tegn.`;
+                return;
+            }
+        }
+        // Validate phone number (example: phone should be a number and not empty)
+        const phoneRegex = /^[0-9]{8,}$/; // Example: Validates 8 digits or more
+        if (this.theRecord.phone && !phoneRegex.test(this.theRecord.phone)) {
+            this.showError = true;
+            this.errorMessage = 'Vennligst oppgi et gyldig telefonnummer (minst 8 sifre).';
+            return;
+        }
+        // Validate email
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (this.theRecord.email && !emailRegex.test(this.theRecord.email)) {
+            this.showError = true;
+            this.errorMessage = 'Vennligst oppgi en gyldig e-postadresse.';
+            return;
+        }
+
+        // Alle sjekker er passert om vi kommer hit
+        let output = JSON.stringify(this.theRecord, null);
+        createRegistration({
+            fields: output,
+            courseId: this.courseId
+        }).then((result) => {
+            this.showForm = false;
+            this.showConfirmation = true;
+            this.message = result;
+        });
     }
 
     validateCode(event) {

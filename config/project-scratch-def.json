@@ -8,16 +8,22 @@
         "ForceComPlatform",
         "Communities",
         "CustomerCommunity",
+        "CustomerCommunityLogin",
         "CustomerCommunityPlus",
+        "CustomerCommunityPlusLogin",
         "PersonAccounts",
-        "LiveAgent",
         "ProcessBuilder",
-        "API",
-        "ContactsToMultipleAccounts",
         "Knowledge",
+        "API",
         "ServiceCloud",
+        "LiveAgent",
         "LightningServiceConsole",
-        "FieldService:1"
+        "ContactsToMultipleAccounts",
+        "FieldService:5",
+        "FieldServiceDispatcherUser:5",
+        "FieldServiceMobileUser:5",
+        "FieldServiceSchedulingUser:5",
+        "LiveMessage"
     ],
     "country": "NO",
     "language": "en_US",
@@ -32,31 +38,8 @@
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
         },
-        "mobileSettings": {
-            "enableS1EncryptedStoragePref2": false
-        },
-        "omniChannelSettings": {
-            "enableOmniChannel": true
-        },
         "languageSettings": {
             "enableTranslationWorkbench": true
-        },
-        "accountSettings": {
-            "enableAccountTeams": true,
-            "enableRelateContactToMultipleAccounts": true
-        },
-        "knowledgeSettings": {
-            "enableKnowledge": true,
-            "enableLightningKnowledge": true
-        },
-        "emailAdministrationSettings": {
-            "enableEnhancedEmailEnabled": true
-        },
-        "nameSettings": {
-            "enableMiddleName": true
-        },
-        "liveAgentSettings": {
-            "enableLiveAgent": true
         },
         "fieldServiceSettings": {
             "fieldServiceOrgPref": true,
@@ -67,12 +50,37 @@
             "isLocationHistoryEnabled": false,
             "fieldServiceNotificationsOrgPref": true
         },
-        "securitySettings": {
-            "sessionSettings": {
-                "forceRelogin": false,
-                "lockerServiceNext": false
-            },
-            "enableAdminLoginAsAnyUser": true
+        "nameSettings": {
+            "enableMiddleName": true
+        },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
+        },
+        "apexSettings": {
+            "enableDisableParallelApexTesting": true
+        },
+        "liveAgentSettings": {
+            "enableLiveAgent": true
+        },
+        "knowledgeSettings": {
+            "enableKnowledge": true,
+            "enableLightningKnowledge": true
+        },
+        "omniChannelSettings": {
+            "enableOmniChannel": true
+        },
+        "userManagementSettings": {
+            "permsetsInFieldCreation": true
+        },
+        "liveMessageSettings": {
+            "enableLiveMessage": true
+        },
+        "accountSettings": {
+            "enableAccountTeams": true,
+            "enableRelateContactToMultipleAccounts": true
+        },
+        "emailAdministrationSettings": {
+            "enableEnhancedEmailEnabled": true
         }
     }
 }

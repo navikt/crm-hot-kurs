@@ -718,13 +718,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeStatus__c</fieldItem>
                 <identifier>RecordEmailBeforeStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -735,13 +728,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailBeforeConfirmation__c</fieldItem>
                 <identifier>RecordEmailBeforeConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -790,13 +776,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderStatus__c</fieldItem>
                 <identifier>RecordEmailReminderStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -807,13 +786,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailReminderConfirmation__c</fieldItem>
                 <identifier>RecordEmailReminderConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -872,13 +844,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterStatus__c</fieldItem>
                 <identifier>RecordEmailAfterStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -889,13 +854,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailAfterConfirmation__c</fieldItem>
                 <identifier>RecordEmailAfterConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -944,13 +902,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualStatus__c</fieldItem>
                 <identifier>RecordEmailManualStatus__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -961,13 +912,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailManualConfirmation__c</fieldItem>
                 <identifier>RecordEmailManualConfirmation__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1006,12 +950,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 255,
-                        255);&quot;&gt;....&lt;/b&gt;Her kan du planlegge e-poster som sendes ut
-                        automatisk, ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color:
-                        rgb(255, 255, 255);&quot;&gt;....&lt;/b&gt;&lt;b&gt;Merk at du må huke av
-                        &quot;Klar for utsending&quot; for at mailen skal bli
-                        sendt.&lt;/b&gt;&lt;/p&gt;</value>
+                    <value>&lt;p class=&quot;ql-indent-1&quot;&gt;Her kan du planlegge e-poster som sendes ut automatisk ved angitt tidspunkt.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;Dersom kurset blir avlyst vil deltakere få epost om dette. Planlagte eposter som informasjon før kurset, påminnelsen, og evaluering vil ikke bli sendt ut dersom kurset blir avlyst.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;strong&gt;Merk at du må huke av &quot;Klar for utsending&quot; for at mailen skal bli sendt.&lt;/strong&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
@@ -1034,12 +973,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection8</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailBeforeSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1079,12 +1012,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection9</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailReminderSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1124,12 +1051,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection10</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailAfterSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1169,12 +1090,6 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection11</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.EmailManualSendDatePassed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.IsNew__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1336,14 +1251,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>courseCopyLinkButton</componentName>
+                <identifier>c_courseCopyLinkButton</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>courseInvitation</componentName>
                 <identifier>courseInvitation</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>emailSchedulingLog</componentName>
-                <identifier>emailSchedulingLog</identifier>
+                <componentName>courseEmailSchedulingLog</componentName>
+                <identifier>c_courseEmailSchedulingLog</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
