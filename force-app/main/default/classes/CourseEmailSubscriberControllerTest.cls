@@ -118,12 +118,12 @@ public with sharing class CourseEmailSubscriberControllerTest {
         CourseEmailSubscriberController.createCourseEmailSubscriber(course.Id, 'fakeemail@nav.no.scratchorg');
         Test.stopTest();
         HOT_CourseSubscriber__c result = [
-            SELECT Id, Categories__c
+            SELECT Id, SubCategories__c
             FROM HOT_CourseSubscriber__c
             WHERE Id = :courseSubscriber.Id
             LIMIT 1
         ];
-        Assert.areEqual('Bolig;Syn;Hørsel', result.Categories__c, 'Should have added new category to list');
+        Assert.areEqual('Bolig;Syn;Hørsel', result.SubCategories__c, 'Should have added new category to list');
     }
     @isTest
     public static void testCreateCourseEmailSubscriberNewSubscriber() {
@@ -140,11 +140,15 @@ public with sharing class CourseEmailSubscriberControllerTest {
         CourseEmailSubscriberController.createCourseEmailSubscriber(course.Id, 'fakeemail@nav.no.scratchorg');
         Test.stopTest();
         HOT_CourseSubscriber__c result = [
-            SELECT Id, Categories__c
+            SELECT Id, SubCategories__c
             FROM HOT_CourseSubscriber__c
             LIMIT 1
         ];
-        Assert.areEqual('Hørsel', result.Categories__c, 'Should have created a new subscriber with only one category');
+        Assert.areEqual(
+            'Hørsel',
+            result.SubCategories__c,
+            'Should have created a new subscriber with only one category'
+        );
     }
     @isTest
     public static void testDeleteCourseEmailSubscriber() {
