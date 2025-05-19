@@ -58,7 +58,7 @@ public without sharing class CourseEmailSubscriberController {
         if (!existingEmailSubscribers.isEmpty()) {
             HOT_CourseSubscriber__c subscriber = existingEmailSubscribers[0];
 
-            subscriber.Categories__c = mergeMultiSelectValues(subscriber.Categories__c, course.Theme__c);
+            //subscriber.Categories__c = mergeMultiSelectValues(subscriber.Categories__c, course.Theme__c);
 
             subscriber.SubCategories__c = mergeMultiSelectValues(subscriber.SubCategories__c, course.Sub_category__c);
 
@@ -72,7 +72,7 @@ public without sharing class CourseEmailSubscriberController {
         } else {
             HOT_CourseSubscriber__c newRecord = new HOT_CourseSubscriber__c(
                 Email__c = email,
-                Categories__c = course.Theme__c,
+                //Categories__c = course.Theme__c,
                 SubCategories__c = course.Sub_category__c
             );
             try {
