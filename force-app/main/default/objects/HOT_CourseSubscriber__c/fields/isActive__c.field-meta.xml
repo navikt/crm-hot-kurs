@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>isActive__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Er påmeldingen til å abonnere på kurs bekreftet?</description>
+    <description>Er påmeldingen til å abbonere på kurs bekreftet?</description>
     <externalId>false</externalId>
     <label>isActive</label>
     <trackTrending>false</trackTrending>

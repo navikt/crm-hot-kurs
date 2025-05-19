@@ -2,8 +2,7 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <assignments>
-        <description>Det blir opprettet en html template som inneholder all informasjon om kurset.
-            Hver kurs får en linje. Her legges det til i den totale epost teksten.</description>
+        <description>Det blir opprettet en html template som inneholder all informasjon om kurset. Hver kurs får en linje. Her legges det til i den totale epost teksten.</description>
         <name>addCourseLineToEmail</name>
         <label>addCourseLineToEmail</label>
         <locationX>578</locationX>
@@ -104,8 +103,7 @@
         </connector>
     </assignments>
     <decisions>
-        <description>Sjekker om temaet eller kategorien er det subscriber har registrert seg til å
-            abonnere på, og legger det til i eposten med formeler</description>
+        <description>Sjekker om temaet eller kategorien er det subscriber har registrert seg til å abbonere på, og legger det til i eposten med formeler</description>
         <name>add_courses_to_email_based_on_subscriber</name>
         <label>add courses to email based on subscriber</label>
         <locationX>710</locationX>
@@ -116,9 +114,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>check_if_subscribe_theme_category_matches_course</name>
-            <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10) OR (11
-                AND 12) OR (13 AND 14) OR (15 AND 16) OR (17 AND 18) OR (19 AND 20) OR (21 AND 22)
-                OR (23 AND 24)</conditionLogic>
+            <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10) OR (11 AND 12) OR (13 AND 14) OR (15 AND 16) OR (17 AND 18) OR (19 AND 20) OR (21 AND 22) OR (23 AND 24)</conditionLogic>
             <conditions>
                 <leftValueReference>loop_courses.Theme__c</leftValueReference>
                 <operator>Contains</operator>
@@ -294,8 +290,7 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Sjekker om det er laget nye kurs. Ellers er det ikke nødvendig å fortsette
-            flyten</description>
+        <description>Sjekker om det er laget nye kurs. Ellers er det ikke nødvendig å fortsette flyten</description>
         <name>checkIfNewCourses</name>
         <label>checkIfNewCourses</label>
         <locationX>182</locationX>
@@ -348,23 +343,22 @@
         <name>courseEndFormatted</name>
         <dataType>String</dataType>
         <expression>RIGHT(
-            &quot;00&quot; &amp;
-            TEXT(
-            MOD(
-            VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 12, 2)) +
-            IF(
-            DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
-            DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &lt; DATE(2025, 10, 26),
-            2, /* Oslo is in CEST (UTC+2) */
-            1 /* Oslo is in CET (UTC+1) */
-            ),
-            24
-            )
-            ),
-            2
-            ) &amp; &quot;.&quot; &amp;
-            RIGHT(&quot;00&quot; &amp;
-            TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 15, 2))), 2)</expression>
+  &quot;00&quot; &amp;
+  TEXT(
+    MOD(
+      VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 12, 2)) +
+      IF(
+        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
+        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &lt; DATE(2025, 10, 26),
+        2,  /* Oslo is in CEST (UTC+2) */
+        1   /* Oslo is in CET (UTC+1) */
+      ),
+      24
+    )
+  ),
+  2
+) &amp; &quot;.&quot; &amp;
+RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 15, 2))), 2)</expression>
     </formulas>
     <formulas>
         <name>courseLink</name>
@@ -389,46 +383,42 @@
     <formulas>
         <name>courseStartFormatted</name>
         <dataType>String</dataType>
-        <expression>RIGHT(&quot;00&quot; &amp;
-            TEXT(DAY(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))), 2) &amp; &quot;.
-            &quot; &amp;
-            CASE(
-            MONTH(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),
-            1, &quot;januar&quot;,
-            2, &quot;februar&quot;,
-            3, &quot;mars&quot;,
-            4, &quot;april&quot;,
-            5, &quot;mai&quot;,
-            6, &quot;juni&quot;,
-            7, &quot;juli&quot;,
-            8, &quot;august&quot;,
-            9, &quot;september&quot;,
-            10, &quot;oktober&quot;,
-            11, &quot;november&quot;,
-            12, &quot;desember&quot;,
-            &quot;ukjent&quot;
-            ) &amp; &quot; &quot; &amp;
-            TEXT(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp;
-            &quot; kl &quot; &amp;
-            RIGHT(
-            &quot;00&quot; &amp;
-            TEXT(
-            MOD(
-            VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2)) +
-            IF(
-            DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &gt;= DATE(2025, 3, 30)
-            &amp;&amp;
-            DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &lt; DATE(2025, 10, 26),
-            2, /* CEST */
-            1 /* CET */
-            ),
-            24
-            )
-            ),
-            2
-            ) &amp; &quot;.&quot; &amp;
-            RIGHT(&quot;00&quot; &amp;
-            TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2))), 2)</expression>
+        <expression>RIGHT(&quot;00&quot; &amp; TEXT(DAY(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))), 2) &amp; &quot;. &quot; &amp;
+CASE(
+  MONTH(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),
+  1, &quot;januar&quot;,
+  2, &quot;februar&quot;,
+  3, &quot;mars&quot;,
+  4, &quot;april&quot;,
+  5, &quot;mai&quot;,
+  6, &quot;juni&quot;,
+  7, &quot;juli&quot;,
+  8, &quot;august&quot;,
+  9, &quot;september&quot;,
+  10, &quot;oktober&quot;,
+  11, &quot;november&quot;,
+  12, &quot;desember&quot;,
+  &quot;ukjent&quot;
+) &amp; &quot; &quot; &amp;
+TEXT(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp;
+&quot; kl &quot; &amp;
+RIGHT(
+  &quot;00&quot; &amp;
+  TEXT(
+    MOD(
+      VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2)) +
+      IF(
+        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
+        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &lt; DATE(2025, 10, 26),
+        2,  /* CEST */
+        1   /* CET */
+      ),
+      24
+    )
+  ),
+  2
+) &amp; &quot;.&quot; &amp;
+RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2))), 2)</expression>
     </formulas>
     <interviewLabel>HOT_NotifyCourseSubscribers {!$Flow.CurrentDateTime}</interviewLabel>
     <label>HOT Notify Course Subscribers</label>
@@ -448,8 +438,7 @@
         </noMoreValuesConnector>
     </loops>
     <loops>
-        <description>Looper gjennom alle subscriber og fyller ut epost med alle nye kurs som
-            personen abonnerer på</description>
+        <description>Looper gjennom alle subscriber og fyller ut epost med alle nye kurs som personen abbonerer på</description>
         <name>loop_subsrcribers</name>
         <label>loop subsrcribers</label>
         <locationX>50</locationX>
@@ -514,8 +503,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Henter alle subscribers records som abbonnerer på kurs og som har kategorier og
-            subkategorier som de abonnerer på</description>
+        <description>Henter alle subscribers records som abbonnerer på kurs og som har kategorier og subkategorier som de abbonerer på</description>
         <name>getCourseSubscribers</name>
         <label>getCourseSubscribers</label>
         <locationX>50</locationX>
@@ -544,8 +532,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Hent alle kurs nye kurs som det ikke er blitt sendt ut eposter om. Kurset må
-            være aktivt, ikke vært sendt ut epost om tidligere, og må ikke være satt til avlyst.</description>
+        <description>Hent alle kurs nye kurs som det ikke er blitt sendt ut eposter om. Kurset må være aktivt, ikke vært sendt ut epost om tidligere, og må ikke være satt til avlyst.</description>
         <name>getNewCourse</name>
         <label>getNewCourse</label>
         <locationX>182</locationX>
@@ -634,34 +621,22 @@
     <textTemplates>
         <name>courseLineEachCourse</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName}
-            &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseStartFormatted} –
-            {!courseEndFormatted}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a
-            href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot;
-            target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;img
-            alt=&quot;NAV Logo&quot;
-            border=&quot;0&quot;
-            class=&quot;fixedwidth&quot;
-            src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot;
-            style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width:
-            134px; display: block; margin: 0 auto;&quot;
-            title=&quot;NAV Logo&quot;
-            width=&quot;134&quot;
-            /&gt;
+        <text>&lt;img 
+  alt=&quot;NAV Logo&quot; 
+  border=&quot;0&quot; 
+  class=&quot;fixedwidth&quot; 
+  src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; 
+  style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width: 134px; display: block; margin: 0 auto;&quot; 
+  title=&quot;NAV Logo&quot; 
+  width=&quot;134&quot; 
+/&gt;
 
-            &lt;p&gt;Nye kurs lagt ut på
-            nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du
-            får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut
-            på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot;
-            target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine
-            preferanser, eller slette abboneringen ved å klikke &lt;a
-            href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot;
-            target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
+&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser, eller slette abboneringen ved å klikke &lt;a href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>courseSingleRecord</name>
