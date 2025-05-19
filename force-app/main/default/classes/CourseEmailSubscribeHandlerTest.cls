@@ -1,5 +1,9 @@
 @isTest
 public with sharing class CourseEmailSubscribeHandlerTest {
+    @TestSetup
+    static void makeData() {
+        TestDataFactory.insertEncryptionKey();
+    }
     @isTest
     public static void testInsert() {
         HOT_CourseSubscriber__c courseSubscriber = new HOT_CourseSubscriber__c(
