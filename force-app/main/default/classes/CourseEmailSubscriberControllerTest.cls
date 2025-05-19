@@ -89,6 +89,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
+            Theme__c = 'Hjelpemidler og tilrettelegging',
             Sub_category__c = 'Hørsel'
         );
         insert course;
@@ -115,6 +116,7 @@ public with sharing class CourseEmailSubscriberControllerTest {
             MaxNumberOfParticipants__c = 10,
             DescriptionFormatted__c = 'Testkurs',
             Active__c = true,
+            Theme__c = 'Hjelpemidler og tilrettelegging',
             Sub_category__c = 'Hørsel'
         );
         insert course;
