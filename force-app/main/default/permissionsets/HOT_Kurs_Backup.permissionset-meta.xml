@@ -488,7 +488,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>HOT_CourseSubscriber__c.MangageEmailSubscriptionUrl__c</field>
+        <field>HOT_CourseSubscriber__c.ManageEmailSubscriptionUrl__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

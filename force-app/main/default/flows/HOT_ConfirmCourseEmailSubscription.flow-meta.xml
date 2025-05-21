@@ -56,7 +56,7 @@
     <formulas>
         <name>emailSubscriberUrl</name>
         <dataType>String</dataType>
-        <expression>{!$Record.MangageEmailSubscriptionUrl__c}</expression>
+        <expression>{!$Record.ManageEmailSubscriptionUrl__c}</expression>
     </formulas>
     <interviewLabel>HOT Confirm Course Email Subscription {!$Flow.CurrentDateTime}</interviewLabel>
     <label>HOT Confirm Course Email Subscription</label>
@@ -115,14 +115,14 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>MangageEmailSubscriptionUrl__c</field>
+            <field>ManageEmailSubscriptionUrl__c</field>
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
         <filters>
-            <field>MangageEmailSubscriptionUrl__c</field>
+            <field>ManageEmailSubscriptionUrl__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -150,7 +150,13 @@
     <textTemplates>
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hei. Vennligst &lt;a href=&quot;https://flow-speed-5539.scratch.lightning.force.com/builder_platform_interaction/{!emailSubscriberUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider. Du kan også bruke samme lenke til å velge hvilket kategorier du ønsker å motta varsel om.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Om du ikke kjenner deg igjen i dette, ignorer denne eposten.&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hei. Vennligst &lt;a
+            href=&quot;https://flow-speed-5539.scratch.lightning.force.com/builder_platform_interaction/{!emailSubscriberUrl}&quot;
+            rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for
+            å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider.
+            Du kan også bruke samme lenke til å velge hvilket kategorier du ønsker å motta varsel
+            om.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Om du ikke kjenner deg igjen i dette,
+            ignorer denne eposten.&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>email</name>
