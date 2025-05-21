@@ -38,10 +38,10 @@ public without sharing class CourseRegistrationController {
                 return result;
             }
 
-            Integer num = (model.numberOfParticipants != null &&
-                model.numberOfParticipants > 0)
-                ? model.numberOfParticipants
-                : 1;
+            Integer num = (model.numberOfParticipants == null ||
+                model.numberOfParticipants < 1)
+                ? 1
+                : model.numberOfParticipants;
 
             CourseRegistration__c reg = new CourseRegistration__c(
                 ContactFirstName__c = model.firstName,
