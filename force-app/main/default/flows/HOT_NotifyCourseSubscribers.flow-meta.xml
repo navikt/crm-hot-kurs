@@ -31,7 +31,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>loop_subsrcribers</targetReference>
+            <targetReference>loop_subscribers</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -88,7 +88,7 @@
             <assignToReference>singleEmail.ToAddress__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>loop_subsrcribers.Email__c</elementReference>
+                <elementReference>loop_subscribers.Email__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -123,7 +123,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Arbeidssøkeraktivitet</stringValue>
@@ -137,7 +137,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Inkluderende arbeidsliv (IA)</stringValue>
@@ -151,7 +151,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.Categories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Hjelpemidler og tilrettelegging</stringValue>
@@ -165,7 +165,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Bevegelse</stringValue>
@@ -179,7 +179,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Bolig</stringValue>
@@ -193,7 +193,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Hørsel</stringValue>
@@ -207,7 +207,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Kognisjon</stringValue>
@@ -221,7 +221,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Kommunikasjon (ASK)</stringValue>
@@ -235,7 +235,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Service og reperasjon</stringValue>
@@ -249,7 +249,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Syn</stringValue>
@@ -263,7 +263,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Tilrettelegging i arbeid</stringValue>
@@ -277,7 +277,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>loop_subsrcribers.SubCategories__c</leftValueReference>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Varsling</stringValue>
@@ -318,7 +318,7 @@
         <locationX>490</locationX>
         <locationY>1392</locationY>
         <defaultConnector>
-            <targetReference>loop_subsrcribers</targetReference>
+            <targetReference>loop_subscribers</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -368,7 +368,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDate
     <formulas>
         <name>courseManageEmailUrl</name>
         <dataType>String</dataType>
-        <expression>{!loop_subsrcribers.ManageEmailSubscriptionUrl__c}</expression>
+        <expression>{!loop_subscribers.ManageEmailSubscriptionUrl__c}</expression>
     </formulas>
     <formulas>
         <name>courseName</name>
@@ -439,7 +439,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
     </loops>
     <loops>
         <description>Looper gjennom alle subscriber og fyller ut epost med alle nye kurs som personen abbonerer på</description>
-        <name>loop_subsrcribers</name>
+        <name>loop_subscribers</name>
         <label>loop subsrcribers</label>
         <locationX>50</locationX>
         <locationY>684</locationY>
@@ -488,7 +488,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <locationY>576</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>loop_subsrcribers</targetReference>
+            <targetReference>loop_subscribers</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
