@@ -17,7 +17,7 @@
             <assignToReference>email.Subject__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Bekreft abbonering på kurs fra Nav</stringValue>
+                <stringValue>Bekreft abonnering på kurs fra Nav</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -150,18 +150,11 @@
     <textTemplates>
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;img class=&quot;fixedwidth&quot; 
-
-  src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; 
-
-  style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width: 134px; display: block; margin: 0 auto;&quot; 
-
-  title=&quot;NAV Logo&quot; 
-
-  width=&quot;134&quot;
-
+        <text>&lt;img src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; style=&quot;text-decoration: none; border: 0px; height: auto; width: 100%; max-width: 134px; display: block; margin: 0 auto;&quot; 
+title=&quot;NAV Logo&quot; 
+width=&quot;134&quot;
 /&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Hei. Vennligst &lt;a href=&quot;https://flow-speed-5539.scratch.lightning.force.com/builder_platform_interaction/{!emailSubscriberUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider. Du kan også bruke samme lenke til å velge hvilken temaer du ønsker å motta varsel om.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Om du ikke kjenner deg igjen i dette, ignorer denne eposten&lt;/p&gt;</text>
+&lt;p&gt;Hei. Vennligst &lt;a href=&quot;https://flow-speed-5539.scratch.lightning.force.com/builder_platform_interaction/{!emailSubscriberUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider. Du kan også bruke samme lenke til å velge hvilket kategorier du ønsker å motta varsel om.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Om du ikke kjenner deg igjen i dette, ignorer denne eposten.&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>email</name>
