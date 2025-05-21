@@ -77,7 +77,7 @@ public without sharing class CourseScheduledDeleteContacts {
             delete contactsForDeletion;
         } catch (Exception e) {
             LoggerUtility logger = new LoggerUtility();
-            logger.exception(e, recordToDelete, CRM_ApplicationDomain.Domain.HOT);
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
             logger.publishSynch();
         }
     }
@@ -93,7 +93,7 @@ public without sharing class CourseScheduledDeleteContacts {
             delete emailMessagesForDeletion;
         } catch (Exception e) {
             LoggerUtility logger = new LoggerUtility();
-            logger.exception(e, recordToDelete, CRM_ApplicationDomain.Domain.HOT);
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
             logger.publishSynch();
         }
     }
