@@ -67,7 +67,7 @@
             <assignToReference>singleEmail.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Instant</stringValue>
+                <stringValue>Queued</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
