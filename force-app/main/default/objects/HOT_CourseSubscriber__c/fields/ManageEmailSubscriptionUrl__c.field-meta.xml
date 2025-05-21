@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>&apos;https://kurs.nav.no/s/epostvalg?id=&apos; + EncryptedId__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Mangage Email Subscription Url</label>
+    <label>Manage Email Subscription Url</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
