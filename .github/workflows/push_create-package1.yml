@@ -14,14 +14,17 @@ jobs:
       contents: write
     secrets: inherit
 
-  install-in-uat:
-    name: Install in UAT
+  install-in-org:
+    name: Deploy package to ${{ matrix.org }}
     needs: [create-package]
     uses: navikt/crm-workflows-base/.github/workflows/deployPackage.yml@master
+    strategy:
+      matrix:
+        org: [preprod, uat]
     permissions:
       contents: read
     with:
       packageId: ${{ needs.create-package.outputs.packageId }}
-      org: uat
+      org: ${{ matrix.org }}
       unpackagable: ./force-app/unpackagable-with-auto-deploy
     secrets: inherit
