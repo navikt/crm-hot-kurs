@@ -60,4 +60,10 @@ sf community publish --name Kurs
 echo "Kjører assignGuestUserPerm.sh…"
 bash "$(dirname "$0")/assignGuestUserPerm.sh"
 
+#Trenger dette for at course registration skal fungere.
+echo "Oppretter EncryptionKey"
+sf data create record \
+  --sobject EncryptionKey__c \
+  --values "Name='encryptionKey' Value__c='FkU94SvM4cn0jBhYXkgb9dLuFSh3+qtoVWmuW/0elB8='"
+
 echo "Ferdig"
