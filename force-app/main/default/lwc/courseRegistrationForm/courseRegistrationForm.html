@@ -277,6 +277,23 @@
                                             required
                                         />
                                     </div>
+                                    <div if:true={typeOfAttendance} class="felt">
+                                        <label class="skjemaelement__label" for="typeOfAttendance">
+                                            <p class="typo-element">Deltakelse</p>
+                                        </label>
+                                        <div class="selectContainer input--fullbredde">
+                                            <select
+                                                class="skjemaelement__input"
+                                                id="typeOfAttendance"
+                                                name="typeOfAttendance"
+                                                onchange={handleChange}
+                                            >
+                                                <option value></option>
+                                                <option value="Physical">Fysisk</option>
+                                                <option value="Digital">Digitalt</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div if:true={allergies} class="felt">
                                         <label class="skjemaelement__label" for="allergies">
                                             <p class="typo-element">Matallergi</p>

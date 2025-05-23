@@ -221,6 +221,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CourseRegistration__c.TypeOfAttendance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CourseRegistration__c.UnsubscriptionUrl__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -527,6 +532,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.ShowRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.ShowTypeOfAttendance__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
