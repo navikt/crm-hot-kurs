@@ -10,7 +10,7 @@ public with sharing class HOT_KursUpdateExistingRecords implements Database.Batc
         );
     }
 
-    public void execute(Database.BatchableContext bc, List<ServiceAppointment> records) {
+    public void execute(Database.BatchableContext bc, List<EmailMessage> records) {
         delete records;
     }
     public void finish(Database.BatchableContext bc) {
