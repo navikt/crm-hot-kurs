@@ -31,11 +31,11 @@ call sf package install --package 04tQC000000lBhZYAU --no-prompt --installation-
 echo "Installerer crm-journal-utilities ver. 0.28"
 call sf package install --package 04t7U000000Y3iGQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-platform-oppgave ver. 0.53"
-call sf package install --package 04t7U000000Y3r3QAC --no-prompt --installation-key %3 --wait 30 --publish-wait 30
+echo "Installerer crm-platform-oppgave ver. 0.64"
+call sf package install --package 04tKB000000YB09YAG --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-arbeidsgiver-base ver. 1.411"
-call sf package install --package 04t7U000000Y3qFQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
+echo "Installerer crm-arbeidsgiver-base ver. 1.561"
+call sf package install --package 04tQC000000kCSnYAM --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
 echo "Installerer crm-community-base ver. 0.121"
 call sf package install --package 04tQC000000ieEfYAI --no-prompt --installation-key %3 --wait 30 --publish-wait 30

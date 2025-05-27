@@ -33,11 +33,11 @@ sf package install --package 04tQC000000lBhZYAU --no-prompt --installation-key "
 "Installerer crm-journal-utilities ver. 0.28"
 sf package install --package 04t7U000000Y3iGQAS --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
 
-"Installerer crm-platform-oppgave ver. 0.53"
-sf package install --package 04t7U000000Y3r3QAC --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
+"Installerer crm-platform-oppgave ver. 0.64"
+sf package install --package 04tKB000000YB09YAG --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
 
-"Installerer crm-arbeidsgiver-base ver. 1.411"
-sf package install --package 04t7U000000Y3qFQAS --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
+"Installerer crm-arbeidsgiver-base ver. 1.561"
+sf package install --package 04tQC000000kCSnYAM --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
 
 "Installerer crm-community-base ver. 0.121"
 sf package install --package 04tQC000000ieEfYAI --no-prompt --installation-key "$3" --wait 30 --publish-wait 30
