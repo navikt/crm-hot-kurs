@@ -13,11 +13,11 @@ call sf package install --package 04tKB000000YAWDYA4 --no-prompt --installation-
 echo "Installerer crm-shared-base ver. 1.1"
 call sf package install --package 04t2o000000ySqpAAE --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-thread-view ver. 0.2"
-call sf package install --package 04t7U000000TqvIQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
+echo "Installerer crm-thread-view ver. 0.6"
+call sf package install --package 04tKB000000YEDVYA4 --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-shared-timeline ver. 1.22"
-call sf package install --package 04t7U000000Y2OEQA0 --no-prompt --installation-key %3 --wait 30 --publish-wait 30
+echo "Installerer crm-shared-timeline ver. 1.32"
+call sf package install --package 04tQC000000kTYTYA2 --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
 echo "Installerer crm-shared-flowComponents ver. 0.4"
 call sf package install --package 04t7U0000008qz4QAA --no-prompt --installation-key %3 --wait 30 --publish-wait 30
@@ -28,8 +28,8 @@ call sf package install --package 04tKB000000Y9AdYAK --no-prompt --installation-
 echo "Installerer crm-platform-integration ver. 0.155"
 call sf package install --package 04tQC000000lBhZYAU --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
-echo "Installerer crm-journal-utilities ver. 0.28"
-call sf package install --package 04t7U000000Y3iGQAS --no-prompt --installation-key %3 --wait 30 --publish-wait 30
+echo "Installerer crm-journal-utilities ver. 0.43"
+call sf package install --package 04tKB000000Y9WtYAK --no-prompt --installation-key %3 --wait 30 --publish-wait 30
 
 echo "Installerer crm-platform-oppgave ver. 0.64"
 call sf package install --package 04tKB000000YB09YAG --no-prompt --installation-key %3 --wait 30 --publish-wait 30
