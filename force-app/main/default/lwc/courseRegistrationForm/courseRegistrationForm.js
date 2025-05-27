@@ -55,7 +55,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         'Kognisjon',
         'Kommunikasjon (ASK)',
         'Syn',
-        'Service og reperasjon',
+        'Service og reparasjon',
         'Tilrettelegging i arbeid',
         'Varsling'
     ];

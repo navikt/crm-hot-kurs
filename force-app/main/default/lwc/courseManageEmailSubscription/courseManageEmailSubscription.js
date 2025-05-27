@@ -133,7 +133,7 @@ export default class CourseManageEmailSubscription extends LightningElement {
             'Kognisjon',
             'Kommunikasjon (ASK)',
             'Syn',
-            'Service og reperasjon',
+            'Service og reparasjon',
             'Tilrettelegging i arbeid',
             'Varsling'
         ];
