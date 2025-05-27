@@ -8,15 +8,15 @@
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.218.0.LATEST"
+                    "versionNumber": "0.270.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.125.0.LATEST"
+                    "versionNumber": "0.160.0.LATEST"
                 },
                 {
                     "package": "crm-platform-reporting",
-                    "versionNumber": "0.37.0.LATEST"
+                    "versionNumber": "0.41.0.LATEST"
                 },
                 {
                     "package": "crm-shared-base",
@@ -36,11 +36,11 @@
                 },
                 {
                     "package": "crm-henvendelse-base",
-                    "versionNumber": "0.18.0.LATEST"
+                    "versionNumber": "0.31.0.LATEST"
                 },
                 {
                     "package": "crm-platform-integration",
-                    "versionNumber": "0.110.0.LATEST"
+                    "versionNumber": "0.155.0.LATEST"
                 },
                 {
                     "package": "crm-journal-utilities",
@@ -56,7 +56,7 @@
                 },
                 {
                     "package": "crm-community-base",
-                    "versionNumber": "0.102.0.LATEST"
+                    "versionNumber": "0.121.0.LATEST"
                 },
                 {
                     "package": "crm-platform-email-scheduling",
