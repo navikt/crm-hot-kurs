@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
@@ -31,6 +31,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track invoiceAdress = false;
     @track invoiceReference = false;
     @track workplace = false;
+    @track typeOfAttendance = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -99,13 +100,13 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.additionalInformation = result.ShowAdditionalInformation__c;
                 this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
-
+                this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
-                if (registrationDeadline > dateNow && this.canceled == false) {
+                if (registrationDeadline > dateNow && this.canceled === false) {
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
@@ -125,11 +126,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.courseIsFullWarning = true;
                 }
 
-                if (this.code != undefined) {
+                if (this.code !== undefined) {
                     this.showForm = false;
                     this.showValidationInput = true;
                 }
-            } else {
             }
         });
     }
@@ -144,7 +144,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     getQueryParameters() {
         var params = {};
-        var search = location.search.substring(1);
+        var search = window.location.search.substring(1);
 
         if (search) {
             params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
@@ -181,7 +181,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             'role',
             'invoiceAdress',
             'invoiceReference',
-            'workplace'
+            'workplace',
+            'typeOfAttendance'
         ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
 
@@ -197,7 +198,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             invoiceReference: 'Faktura referanse',
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
-            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)'
+            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
+            typeOfAttendance: 'Deltakelse'
         };
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {

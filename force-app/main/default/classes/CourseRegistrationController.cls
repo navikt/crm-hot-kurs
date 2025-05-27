@@ -43,7 +43,10 @@ public without sharing class CourseRegistrationController {
                 ShowWorkplace__c,
                 ShowAdditionalInformation__c,
                 Sub_category__c,
-                Theme__c
+                Theme__c,
+                ShowTypeOfAttendance__c,
+                ShowAdditionalInformation__c
+
             FROM Course__c
             WHERE Id = :courseId
         ];
@@ -92,6 +95,7 @@ public without sharing class CourseRegistrationController {
             registration.Invoice_address__c = model.invoiceAdress;
             registration.Invoice_reference__c = model.invoiceReference;
             registration.AdditionalInformation__c = model.additionalInformation;
+            registration.TypeOfAttendance__c = model.typeOfAttendance;
 
             if (courseIsFull) {
                 registration.Status__c = 'Venteliste';
