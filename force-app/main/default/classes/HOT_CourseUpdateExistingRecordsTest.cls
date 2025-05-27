@@ -39,8 +39,22 @@ private class HOT_CourseUpdateExistingRecordsTest {
 
     @isTest
     static void testEmailsAreNotDeletedWhenCriteriaDoNotMatch() {
-        CourseRegistration__c registration = new CourseRegistration__c(CourseParticipant__c = 'DummyParticipantId');
-        insert registration;
+        DateTime d = Date.today().addDays(1);
+        Course__c course = new Course__c(
+            Active__c = true,
+            MaxNumberOfParticipants__c = 4,
+            CommunityUrl__c = 'test',
+            Region__c = 'Oslo',
+            RegistrationDeadline__c = d,
+            RegistrationFromDateTime__c = d,
+            RegistrationToDateTime__c = d.addDays(1)
+        );
+        Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
+        CourseRegistration__c registration = new CourseRegistration__c(
+            Course__c = course.Id,
+            CourseParticipant__c = c1.Id,
+            Status__c = 'Påmeldt'
+        );
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
