@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ShowTypeOfAttendance__c</fullName>
     <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
+    <inlineHelpText>Velg denne om deltaker skal kunne velge mellom å delta fysisk eller digitialt.</inlineHelpText>
     <label>Show Type Of Attendance</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
