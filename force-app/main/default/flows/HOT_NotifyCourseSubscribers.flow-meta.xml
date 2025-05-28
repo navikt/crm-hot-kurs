@@ -238,7 +238,7 @@
                 <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
-                    <stringValue>Service og reperasjon</stringValue>
+                    <stringValue>Service og reparasjon</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
