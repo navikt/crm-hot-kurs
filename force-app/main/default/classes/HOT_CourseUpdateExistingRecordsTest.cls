@@ -22,7 +22,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
-                Subject = 'Du er påmeldt kurset',
+                Subject = 'Bekreftelse på kurspåmelding',
                 RelatedToId = registration.Id,
                 Status = '3',
                 FromAddress = 'test@example.com',
@@ -65,7 +65,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
-                Subject = 'Du er påmeldt kurset',
+                Subject = 'Bekreftelse på kurspåmelding',
                 RelatedToId = registration.Id,
                 Status = '3',
                 FromAddress = 'test@example.com',
