@@ -10,7 +10,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
             Region__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
-            RegistrationToDateTime__c = d.addDays(1)
+            RegistrationToDateTime__c = d.addDays(-100)
         );
         Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
         CourseRegistration__c registration = new CourseRegistration__c(
