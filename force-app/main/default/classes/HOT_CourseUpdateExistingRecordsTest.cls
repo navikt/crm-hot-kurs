@@ -30,6 +30,8 @@ private class HOT_CourseUpdateExistingRecordsTest {
             )
         };
         insert emails;
+        registration.CourseParticipant__c = null;
+        update registration;
         delete c1;
 
         Test.startTest();
