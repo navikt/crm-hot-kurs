@@ -2,31 +2,34 @@
 private class HOT_CourseUpdateExistingRecordsTest {
     @isTest
     static void testEmailsAreDeletedWhenCriteriaMatch() {
-        // Opprett en CourseRegistration__c uten CourseParticipant__c
-        CourseRegistration__c registration = new CourseRegistration__c();
-        insert registration;
+        DateTime d = Date.today().addDays(1);
+        Course__c course = new Course__c(
+            Active__c = true,
+            MaxNumberOfParticipants__c = 4,
+            CommunityUrl__c = 'test',
+            Region__c = 'Oslo',
+            RegistrationDeadline__c = d,
+            RegistrationFromDateTime__c = d,
+            RegistrationToDateTime__c = d.addDays(1)
+        );
+        Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
+        CourseRegistration__c registration = new CourseRegistration__c(
+            Course__c = course.Id,
+            CourseParticipant__c = c1.Id,
+            Status__c = 'Påmeldt'
+        );
 
-        // Opprett EmailMessages som matcher kriteriene
-        List<EmailMessage> emails = new List<EmailMessage>();
-        for (
-            String subject : new List<String>{
-                'Bekreftelse på kurspåmelding',
-                'Ny påmelding til kurs',
-                'Invitasjon til kurs',
-                'Kurs avlyst'
-            }
-        ) {
-            emails.add(
-                new EmailMessage(
-                    Subject = subject,
-                    RelatedToId = registration.Id,
-                    Status = '3',
-                    FromAddress = 'test@example.com',
-                    ToAddress = 'user@example.com'
-                )
-            );
-        }
+        List<EmailMessage> emails = new List<EmailMessage>{
+            new EmailMessage(
+                Subject = 'Du er påmeldt kurset',
+                RelatedToId = registration.Id,
+                Status = '3',
+                FromAddress = 'test@example.com',
+                ToAddress = 'user@example.com'
+            )
+        };
         insert emails;
+        delete c1;
 
         Test.startTest();
         HOT_CourseUpdateExistingRecords job = new HOT_CourseUpdateExistingRecords();
@@ -58,7 +61,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
-                Subject = 'Annet emne',
+                Subject = 'Du er påmeldt kurset',
                 RelatedToId = registration.Id,
                 Status = '3',
                 FromAddress = 'test@example.com',
