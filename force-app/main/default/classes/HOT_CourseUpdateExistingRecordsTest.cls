@@ -12,6 +12,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(-100)
         );
+        insert course;
         Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
         insert c1;
         CourseRegistration__c registration = new CourseRegistration__c(
@@ -56,6 +57,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
         );
+        insert course;
         Contact c1 = new Contact(LastName = 'test', email = 'ola.nordmann@test.com', TAG_Informed__c = true);
         insert c1;
         CourseRegistration__c registration = new CourseRegistration__c(
