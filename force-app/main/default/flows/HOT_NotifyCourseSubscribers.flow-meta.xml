@@ -31,7 +31,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>loop_subscribers</targetReference>
+            <targetReference>emtpyEmailAndCounter</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -100,6 +100,23 @@
         </assignmentItems>
         <connector>
             <targetReference>addEmailToEmailCollection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>emtpyEmailAndCounter</name>
+        <label>emtpyEmailAndCounter</label>
+        <locationX>490</locationX>
+        <locationY>1800</locationY>
+        <assignmentItems>
+            <assignToReference>emailText</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>numberOfNewCourses</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_subscribers</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -318,7 +335,7 @@
         <locationX>490</locationX>
         <locationY>1392</locationY>
         <defaultConnector>
-            <targetReference>loop_subscribers</targetReference>
+            <targetReference>emtpyEmailAndCounter</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -376,6 +393,11 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDate
         <expression>{!loop_courses.Name}</expression>
     </formulas>
     <formulas>
+        <name>coursePlace</name>
+        <dataType>String</dataType>
+        <expression>{!loop_courses.RegistrationPlaceName__c}</expression>
+    </formulas>
+    <formulas>
         <name>courseShortDescription</name>
         <dataType>String</dataType>
         <expression>{!loop_courses.DescriptionShort2__c}</expression>
@@ -419,6 +441,11 @@ RIGHT(
   2
 ) &amp; &quot;.&quot; &amp;
 RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2))), 2)</expression>
+    </formulas>
+    <formulas>
+        <name>someDaysAgo</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() - 2</expression>
     </formulas>
     <interviewLabel>HOT_NotifyCourseSubscribers {!$Flow.CurrentDateTime}</interviewLabel>
     <label>HOT Notify Course Subscribers</label>
@@ -475,7 +502,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>sendemail</name>
         <label>sendemail</label>
         <locationX>50</locationX>
-        <locationY>1884</locationY>
+        <locationY>1992</locationY>
         <connector>
             <targetReference>update_Courses_When_Notified_Subscribers</targetReference>
         </connector>
@@ -563,6 +590,13 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>someDaysAgo</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Course__c</object>
         <sortField>RegistrationFromDateTime__c</sortField>
@@ -573,7 +607,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
         <name>update_Courses_When_Notified_Subscribers</name>
         <label>update Courses</label>
         <locationX>50</locationX>
-        <locationY>1992</locationY>
+        <locationY>2100</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Active__c</field>
@@ -611,8 +645,8 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
             <targetReference>getNewCourse</targetReference>
         </connector>
         <schedule>
-            <frequency>Once</frequency>
-            <startDate>2025-05-15</startDate>
+            <frequency>Daily</frequency>
+            <startDate>2025-05-31</startDate>
             <startTime>07:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
@@ -621,7 +655,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
     <textTemplates>
         <name>courseLineEachCourse</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sted: {!coursePlace}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>emailTemplate</name>
