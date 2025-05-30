@@ -14,6 +14,7 @@ public with sharing class CourseRegistrationModel {
     public String invoiceReference;
     public String allergies;
     public String additionalInformation;
+    public String subscribeEmail;
     public String typeOfAttendance;
 
     public static CourseRegistrationModel parse(String json) {

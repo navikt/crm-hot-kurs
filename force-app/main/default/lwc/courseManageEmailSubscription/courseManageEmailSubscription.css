@@ -1,0 +1,33 @@
+.info-text {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #333;
+    max-width: 400px;
+}
+
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: left;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.typo-systemtittel {
+    margin: 0;
+    font-family: Source Sans Pro, Arial, sans-serif;
+    font-size: 1.375rem;
+    line-height: 1.625rem;
+    font-weight: 600;
+}
+.confirmationContainer {
+    text-align: center;
+    padding: 0.5rem;
+}
