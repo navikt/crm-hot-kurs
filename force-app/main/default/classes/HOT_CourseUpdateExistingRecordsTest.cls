@@ -19,6 +19,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
             CourseParticipant__c = c1.Id,
             Status__c = 'Påmeldt'
         );
+        insert registration;
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
@@ -62,6 +63,7 @@ private class HOT_CourseUpdateExistingRecordsTest {
             CourseParticipant__c = c1.Id,
             Status__c = 'Påmeldt'
         );
+        insert registration;
 
         List<EmailMessage> emails = new List<EmailMessage>{
             new EmailMessage(
