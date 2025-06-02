@@ -106,28 +106,33 @@ public without sharing class CourseRegistrationController {
     }
 
     public static Boolean checkForDuplicates(CourseRegistrationModel model, Id courseId) {
-        if (model == null || String.isBlank(model.email) || courseId == null)
+        if (model == null || String.isBlank(model.email) || courseId == null) {
             return false;
+        }
         List<CourseRegistration__c> recs = [
             SELECT Id
             FROM CourseRegistration__c
-            WHERE Course__c = :courseId AND ContactEmail__c = :model.email AND Status__c = 'Påmeldt'
+            WHERE
+                Course__c = :courseId
+                AND Participant_email__c = :model.email
+                AND Status__c IN ('Påmeldt', 'Venteliste')
             LIMIT 1
         ];
-        System.debug('recs mathias >>' + recs);
         return !recs.isEmpty();
     }
 
     private static Course__c getCourseDetailsForRegistration(String courseId) {
-        if (String.isBlank(courseId))
+        if (String.isBlank(courseId)) {
             return null;
+        }
         try {
-            return [
+            Course__c course = [
                 SELECT Name, NumberOfParticipants__c, MaxNumberOfParticipants__c, Cancel__c
                 FROM Course__c
                 WHERE Id = :courseId
                 LIMIT 1
             ];
+            return course;
         } catch (Exception e) {
             return null;
         }

@@ -301,6 +301,30 @@
                                             onchange={handleChange}
                                         />
                                     </div>
+                                    <template if:true={addMultipleParticipants}>
+                                        <div class="felt">
+                                            <c-checkbox
+                                                oncheckboxclick={toggleMultipleParticipants}
+                                                label="Legg til flere deltakere"
+                                                name="subscribeEmail"
+                                            ></c-checkbox>
+                                        </div>
+
+                                        <div class="felt" if:true={showNumberInput}>
+                                            <label class="skjemaelement__label" for="numberOfParticipants">
+                                                <p class="typo-element">Totalt antall deltakere (inkl. deg selv)</p>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value="1"
+                                                id="numberOfParticipants"
+                                                name="numberOfParticipants"
+                                                class="skjemaelement__input input--fullbredde"
+                                                onchange={handleChange}
+                                            />
+                                        </div>
+                                    </template>
                                 </div>
 
                                 <div class="navno-dekorator alertstripe">
