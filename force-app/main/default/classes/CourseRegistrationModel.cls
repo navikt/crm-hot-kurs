@@ -15,6 +15,7 @@ public with sharing class CourseRegistrationModel {
     public String allergies;
     public String additionalInformation;
     public Integer numberOfParticipants;
+    public String typeOfAttendance;
 
     public static CourseRegistrationModel parse(String json) {
         return (CourseRegistrationModel) System.JSON.deserialize(json, CourseRegistrationModel.class);

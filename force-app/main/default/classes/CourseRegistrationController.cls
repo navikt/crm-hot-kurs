@@ -163,6 +163,7 @@ public without sharing class CourseRegistrationController {
                     ShowInvoiceReference__c,
                     ShowAllergies__c,
                     ShowWorkplace__c,
+                    ShowTypeOfAttendance__c,
                     ShowAdditionalInformation__c,
                     ShowAddMultipleParticipants__c
                 FROM Course__c
