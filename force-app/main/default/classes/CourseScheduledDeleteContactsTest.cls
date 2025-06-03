@@ -47,6 +47,70 @@ public with sharing class CourseScheduledDeleteContactsTest {
         System.assertEquals(null, cr1After.CourseParticipant__c, 'Should be no contact for cr1');
         System.assertEquals(null, cr2After.CourseParticipant__c, 'Should be no contact for cr2');
     }
+
+    @isTest
+    private static void testEmailForDeletion() {
+        Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);
+        update course1;
+
+        Account accountCourse = new Account(Name = 'Kontakter uten konto');
+        insert accountCourse;
+
+        Contact contact1 = getContact(accountCourse.Id, 'test1@test.no');
+        Contact contact2 = getContact(accountCourse.Id, 'test2@test.no');
+
+        CourseRegistration__c cr1 = getCourseRegistration(course1.Id, contact1.Id);
+        CourseRegistration__c cr2 = getCourseRegistration(course1.Id, contact2.Id);
+
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        List<CourseRegistration__c> crList = [SELECT Id FROM CourseRegistration__c];
+        EmailMessage email1 = new EmailMessage();
+        email1.Subject = 'Test';
+        email1.FromAddress = 'fakeemail@nav.no.scratchorg';
+        email1.ToAddress = 'fakeemail@nav.no.scratchorg';
+        email1.TextBody = 'Test';
+        email1.RelatedToId = cr1.Id;
+        email1.Status = '3';
+        insert email1;
+
+        EmailMessage email2 = new EmailMessage();
+        email2.Subject = 'Test';
+        email2.FromAddress = 'fakeemail@nav.no.scratchorg';
+        email2.ToAddress = 'fakeemail@nav.no.scratchorg';
+        email2.TextBody = 'Test';
+        email2.Status = '3';
+        email2.RelatedToId = cr2.Id;
+        insert email2;
+
+        List<EmailMessage> emailList = [SELECT Id FROM EmailMessage WHERE RelatedToId IN :crList];
+        System.assertEquals(2, contacts.size(), 'Should be 2 contacts');
+        System.assertEquals(2, crList.size(), 'Should be 2 registrations');
+        System.assertEquals(2, emailList.size(), 'Should be 2 emails');
+
+        Test.StartTest();
+        CourseScheduledDeleteContacts.courseScheduledDeleteContacts();
+        Test.StopTest();
+
+        List<Contact> contactsAfter = [SELECT Id FROM Contact];
+        List<CourseRegistration__c> crListAfter = [SELECT Id FROM CourseRegistration__c];
+        List<AccountContactRelation> acrList = [SELECT Id FROM AccountContactRelation];
+        CourseRegistration__c cr1After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr1.Id
+        ];
+        CourseRegistration__c cr2After = [
+            SELECT Id, CourseParticipant__c
+            FROM CourseRegistration__c
+            WHERE Id = :cr2.Id
+        ];
+        List<EmailMessage> emailListAfter = [SELECT Id FROM EmailMessage WHERE RelatedToId IN :crList];
+        System.assertEquals(0, contactsAfter.size(), 'Should be 0 contacts');
+        System.assertEquals(2, crListAfter.size(), 'Should be 2 registrations');
+        System.assertEquals(0, emailListAfter.size(), 'Should be 0 Email messages');
+    }
+
     @isTest
     private static void testContactWithRelationToOtherAccounts() {
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
