@@ -29,7 +29,21 @@ global class CourseRegistrationHandler extends MyTriggers {
     }
 
     global override void onAfterDelete() {
-        CourseRegistrationHelper.getCourseIdToReduce((List<CourseRegistration__c>) records);
+        List<CourseRegistration__c> deletedRegistrations = (List<CourseRegistration__c>) records;
+        if (deletedRegistrations != null && !deletedRegistrations.isEmpty()) {
+            CourseRegistrationHelper.getCourseIdToReduce(deletedRegistrations);
+        }
+        Set<Id> courseIdsToCheckForPromotion = new Set<Id>();
+        if (deletedRegistrations != null) {
+            for (CourseRegistration__c reg : deletedRegistrations) {
+                if (reg.Course__c != null) {
+                    courseIdsToCheckForPromotion.add(reg.Course__c);
+                }
+            }
+        }
+        if (!courseIdsToCheckForPromotion.isEmpty()) {
+            CourseRegistrationHelper.countCourseIdsToCheckWaiting(courseIdsToCheckForPromotion);
+        }
     }
     global override void onAfterUndelete() {
         CourseRegistrationHelper.getCourseIdToIncrease((List<CourseRegistration__c>) records);

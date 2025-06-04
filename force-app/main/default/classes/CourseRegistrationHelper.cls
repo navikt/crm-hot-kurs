@@ -350,13 +350,6 @@ public class CourseRegistrationHelper {
         if (!registrationsToPromote.isEmpty()) {
             try {
                 update registrationsToPromote;
-
-                /* if (!courseParticipantIncreases.isEmpty()) {
-                    updateCoursesParticipants(courseParticipantIncreases);
-                }
-                if (!courseWaitlistDecreases.isEmpty()) {
-                    updateCourseWaiting(courseWaitlistDecreases);
-                } */
             } catch (Exception e) {
                 System.debug(
                     LoggingLevel.ERROR,

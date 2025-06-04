@@ -2,18 +2,7 @@
 private with sharing class CourseRegistrationControllerTest {
     @TestSetup
     static void setupData() {
-        Course__c c = new Course__c(Name = 'Duplicate', MaxNumberOfParticipants__c = 2);
-        insert c;
-
-        CourseRegistrationModel crDuplicate = new CourseRegistrationModel();
-        crDuplicate.firstName = 'dup';
-        crDuplicate.lastName = 'dup';
-        crDuplicate.email = 'duplicate@duplicate.com';
-        crDuplicate.phone = '99999999';
-        crDuplicate.county = 'Agder';
-        crDuplicate.numberOfParticipants = 1;
-        String j2 = JSON.serialize(crDuplicate);
-        CourseRegistrationController.RegistrationResult r2 = CourseRegistrationController.createRegistration(j2, c.Id);
+        TestDataFactory.insertEncryptionKey();
     }
 
     @isTest
@@ -85,13 +74,25 @@ private with sharing class CourseRegistrationControllerTest {
     }
     @isTest
     static void testDuplicate() {
-        Course__c c = [
-            SELECT Id, Name, MaxNumberOfParticipants__c, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Name = 'Duplicate'
-            LIMIT 1
-        ];
+        Course__c c = new Course__c(
+            Name = 'duplicateCourseTest',
+            MaxNumberOfParticipants__c = 10,
+            DescriptionFormatted__c = 'description',
+            Active__c = true
+        );
+        insert c;
 
+        CourseRegistrationModel crDuplicate = new CourseRegistrationModel();
+        crDuplicate.firstName = 'dup';
+        crDuplicate.lastName = 'dup';
+        crDuplicate.email = 'duplicate@duplicate.com';
+        crDuplicate.phone = '99999999';
+        crDuplicate.county = 'Agder';
+        crDuplicate.numberOfParticipants = 1;
+        String j1 = JSON.serialize(crDuplicate);
+        CourseRegistrationController.RegistrationResult r1 = CourseRegistrationController.createRegistration(j1, c.Id);
+
+        Test.startTest();
         CourseRegistrationModel crDuplicate2 = new CourseRegistrationModel();
         crDuplicate2.firstName = 'dup';
         crDuplicate2.lastName = 'dup';
@@ -100,6 +101,7 @@ private with sharing class CourseRegistrationControllerTest {
         crDuplicate2.county = 'Agder';
         String j2 = JSON.serialize(crDuplicate2);
         CourseRegistrationController.RegistrationResult r2 = CourseRegistrationController.createRegistration(j2, c.Id);
+        Test.stopTest();
         System.assertEquals(false, r2.success);
         System.assert(r2.message.contains('allerede påmeldt'));
     }

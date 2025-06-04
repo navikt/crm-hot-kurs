@@ -577,6 +577,14 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ShowAddMultipleParticipants__c</fieldItem>
                 <identifier>RecordShowAddMultipleParticipants_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.ShowTypeOfAttendance__c</fieldItem>
                 <identifier>RecordShow_type_of_participation_cField</identifier>
             </fieldInstance>
