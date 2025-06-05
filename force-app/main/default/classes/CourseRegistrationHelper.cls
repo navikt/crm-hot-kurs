@@ -28,7 +28,7 @@ public class CourseRegistrationHelper {
         }
 
         if (regsRequiringValidation.isEmpty()) {
-            return; // No registrations require this specific validation.
+            return;
         }
 
         // Query for course capacities
@@ -251,42 +251,25 @@ public class CourseRegistrationHelper {
     }
 
     public static void updateCourseWaitlistPromotions(Set<Id> courseIdsToProcess) {
-        if (courseIdsToProcess == null || courseIdsToProcess.isEmpty()) {
+        if (courseIdsToProcess == null || courseIdsToProcess.isEmpty())
             return;
-        }
 
         List<CourseRegistration__c> registrationsToPromote = new List<CourseRegistration__c>();
-        Map<Id, Integer> courseParticipantIncreases = new Map<Id, Integer>();
-        Map<Id, Integer> courseWaitlistDecreases = new Map<Id, Integer>();
 
         List<Course__c> courses = [
             SELECT Id, NumberOfParticipants__c, Waitinglist__c, MaxNumberOfParticipants__c
             FROM Course__c
             WHERE Id IN :courseIdsToProcess
         ];
-
         Map<Id, Course__c> courseMap = new Map<Id, Course__c>(courses);
 
         for (Id courseId : courseIdsToProcess) {
             Course__c currentCourse = courseMap.get(courseId);
-
-            if (currentCourse == null) {
-                System.debug(
-                    LoggingLevel.WARN,
-                    'Course not found for ID: ' +
-                    courseId +
-                    '. Skipping waitlist promotion.'
-                );
-                continue;
-            }
-            if (currentCourse.MaxNumberOfParticipants__c == null || currentCourse.MaxNumberOfParticipants__c <= 0) {
-                // MaxNumberOfParticipants__c must be positive
-                System.debug(
-                    LoggingLevel.WARN,
-                    'MaxNumberOfParticipants__c is null or not positive for Course ID: ' +
-                    courseId +
-                    '. Skipping waitlist promotion.'
-                );
+            if (
+                currentCourse == null ||
+                currentCourse.MaxNumberOfParticipants__c == null ||
+                currentCourse.MaxNumberOfParticipants__c <= 0
+            ) {
                 continue;
             }
 
@@ -298,14 +281,12 @@ public class CourseRegistrationHelper {
                 : currentCourse.Waitinglist__c;
             Decimal maxCapacity = currentCourse.MaxNumberOfParticipants__c;
 
-            if (currentWaitlistParticipants <= 0) {
+            if (currentWaitlistParticipants <= 0)
                 continue;
-            }
 
             Decimal availableSlots = maxCapacity - currentParticipants;
-            if (availableSlots <= 0) {
+            if (availableSlots <= 0)
                 continue;
-            }
 
             List<CourseRegistration__c> waitlistedRegistrations = [
                 SELECT Id, Status__c, Course__c, CreatedDate, NumberOfParticipants__c
@@ -313,37 +294,23 @@ public class CourseRegistrationHelper {
                 WHERE Course__c = :courseId AND Status__c = 'Venteliste'
                 ORDER BY CreatedDate ASC
             ];
-
-            if (waitlistedRegistrations.isEmpty()) {
+            if (waitlistedRegistrations.isEmpty())
                 continue;
-            }
 
-            Integer participantsPromotedForThisCourse = 0;
-            Integer waitlistParticipantsRemovedForThisCourse = 0;
-
+            Integer availableSlotsInt = Integer.valueOf(availableSlots);
             for (CourseRegistration__c crWait : waitlistedRegistrations) {
                 Integer numParticipantsInRegistration = (crWait.NumberOfParticipants__c == null ||
                     crWait.NumberOfParticipants__c < 1)
                     ? 1
                     : crWait.NumberOfParticipants__c.intValue();
 
-                if (availableSlots >= numParticipantsInRegistration) {
+                if (availableSlotsInt >= numParticipantsInRegistration) {
                     crWait.Status__c = 'Påmeldt';
                     registrationsToPromote.add(crWait);
-
-                    availableSlots -= numParticipantsInRegistration;
-                    participantsPromotedForThisCourse += numParticipantsInRegistration;
-                    waitlistParticipantsRemovedForThisCourse += numParticipantsInRegistration;
+                    availableSlotsInt -= numParticipantsInRegistration;
                 } else {
                     break;
                 }
-            }
-
-            if (participantsPromotedForThisCourse > 0) {
-                courseParticipantIncreases.put(courseId, participantsPromotedForThisCourse);
-            }
-            if (waitlistParticipantsRemovedForThisCourse > 0) {
-                courseWaitlistDecreases.put(courseId, -waitlistParticipantsRemovedForThisCourse);
             }
         }
 
@@ -351,13 +318,7 @@ public class CourseRegistrationHelper {
             try {
                 update registrationsToPromote;
             } catch (Exception e) {
-                System.debug(
-                    LoggingLevel.ERROR,
-                    'Error promoting waitlisted registrations or updating course counts: ' +
-                    e.getMessage() +
-                    ' Stacktrace: ' +
-                    e.getStackTraceString()
-                );
+                System.debug(LoggingLevel.ERROR, 'Error promoting waitlisted registrations: ' + e.getMessage());
             }
         }
     }
