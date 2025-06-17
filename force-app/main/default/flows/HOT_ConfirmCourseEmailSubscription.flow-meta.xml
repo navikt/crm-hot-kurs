@@ -151,7 +151,7 @@
         <name>emailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;Hei. Vennligst &lt;a
-            href=&quot;https://kurs.nav.no/s/{!emailSubscriberUrl}&quot;
+            href=&quot;{!emailSubscriberUrl}&quot;
             rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;klikk her&lt;/a&gt; for
             å bekrefte at du ønsker å motta eposter om nye kurs som legges ut på nav sine nettsider.
             Du kan også bruke samme lenke til å velge hvilket kategorier du ønsker å motta varsel
