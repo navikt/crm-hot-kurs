@@ -100,6 +100,20 @@
     border-radius: 0.25rem;
     color: #3e3832;
 }
+.subscribeContainer {
+    display: block;
+    padding: 1rem;
+    border-radius: 4px;
+    border-radius: 0.25rem;
+    color: #3e3832;
+    border: 1px solid #ff9100;
+    background-color: #ffe9cc;
+}
+
+.navno-dekorator.alertstripe--info {
+    border: 1px solid #368da8;
+    background-color: #d8f9ff;
+}
 
 .navno-dekorator.alertstripe--advarsel {
     border: 1px solid #ff9100;

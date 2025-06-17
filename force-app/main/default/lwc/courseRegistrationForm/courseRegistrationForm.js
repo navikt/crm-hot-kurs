@@ -8,7 +8,10 @@ import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
 
-    @track theRecord = {};
+    @track theRecord = {
+        subscribeEmail: false
+    };
+
     @track output;
 
     @track showForm = false;
@@ -42,6 +45,21 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track companyName = false;
     @track role = false;
 
+    @track subscribeEmailText;
+    @track showEmailSubscribeContainer = false;
+
+    @track subCategoryNames = [
+        'Bevegelse',
+        'Bolig',
+        'Hørsel',
+        'Kognisjon',
+        'Kommunikasjon (ASK)',
+        'Syn',
+        'Service og reparasjon',
+        'Tilrettelegging i arbeid',
+        'Varsling'
+    ];
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
@@ -49,6 +67,19 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
+
+    generateSubscribeEmailText(theme, category) {
+        const preText = 'Jeg ønsker å få e-post når Nav legger ut nye kurs om lignende tema: ';
+        if (theme && !category) {
+            if (theme !== 'Annet') {
+                return `${preText}${theme}.`;
+            }
+        } else if (theme && category) {
+            const formattedCategory = category.replace(/;/g, ', ');
+            return `${preText} ${formattedCategory}.`;
+        }
+        return '';
+    }
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
@@ -67,8 +98,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
+                this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
+                this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
-
                 this.dueDate = result.RegistrationDeadline__c;
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
@@ -102,6 +134,14 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         });
     }
 
+    shouldShowEmailSubscribe(categoryField) {
+        /* Bare vise mulighet for å abbonere på subcategories foreløpig */
+        if (!categoryField) return false;
+
+        const categories = categoryField.split(';').map((s) => s.trim());
+        return categories.some((cat) => this.subCategoryNames.includes(cat));
+    }
+
     getQueryParameters() {
         var params = {};
         var search = window.location.search.substring(1);
@@ -117,6 +157,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     handleChange(event) {
         this.theRecord[event.target.name] = event.target.value;
         this.showError = false;
+    }
+    handleCheckboxClick(event) {
+        this.theRecord[event.target.name] = event.detail;
+        console.log('name ' + event.target.name);
+        console.log('value ' + event.detail);
     }
 
     handleChange2(event) {
