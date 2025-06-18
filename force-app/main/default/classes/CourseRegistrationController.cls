@@ -37,42 +37,6 @@ public without sharing class CourseRegistrationController {
                 result.message = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på.';
                 return result;
             }
-            return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post';
-        } catch (Exception e) {
-            return 'Det oppsto en feil. Prøv igjen senere.';
-        }
-    }
-
-    @AuraEnabled
-    public static Course__c getCourseFields(String courseId) {
-        return [
-            SELECT
-                Name,
-                RegistrationDeadline__c,
-                RegistrationFromDateTime__c,
-                RegistrationToDateTime__c,
-                InvitationCode__c,
-                RegistrationPlaceName__c,
-                Type__c,
-                MaxNumberOfParticipants__c,
-                NumberOfParticipants__c,
-                Waitinglist__c,
-                ShowCompany__c,
-                ShowCounty__c,
-                ShowRole__c,
-                Cancel__c,
-                ShowInvoiceAdress__c,
-                ShowInvoiceReference__c,
-                ShowAllergies__c,
-                ShowWorkplace__c,
-                Sub_category__c,
-                Theme__c,
-                ShowTypeOfAttendance__c,
-                ShowAdditionalInformation__c
-            FROM Course__c
-            WHERE Id = :courseId
-        ];
-    }
 
             Integer num = (model.numberOfParticipants == null ||
                 model.numberOfParticipants < 1)
@@ -139,6 +103,37 @@ public without sharing class CourseRegistrationController {
             result.message = 'En uventet feil oppstod under registrering. Feilmelding: ' + e.getMessage();
             return result;
         }
+    }
+
+    @AuraEnabled
+    public static Course__c getCourseFields(String courseId) {
+        return [
+            SELECT
+                Name,
+                RegistrationDeadline__c,
+                RegistrationFromDateTime__c,
+                RegistrationToDateTime__c,
+                InvitationCode__c,
+                RegistrationPlaceName__c,
+                Type__c,
+                MaxNumberOfParticipants__c,
+                NumberOfParticipants__c,
+                Waitinglist__c,
+                ShowCompany__c,
+                ShowCounty__c,
+                ShowRole__c,
+                Cancel__c,
+                ShowInvoiceAdress__c,
+                ShowInvoiceReference__c,
+                ShowAllergies__c,
+                ShowWorkplace__c,
+                Sub_category__c,
+                Theme__c,
+                ShowTypeOfAttendance__c,
+                ShowAdditionalInformation__c
+            FROM Course__c
+            WHERE Id = :courseId
+        ];
     }
 
     public static Boolean checkForDuplicates(CourseRegistrationModel model, Id courseId) {
