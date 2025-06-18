@@ -1,0 +1,95 @@
+<template>
+    <div class="center-screen" lwc:if={showCheckboxes}>
+        <p class="info-text">
+            Velg kategorier du ønsker å følge. Du vil motta e-post når Nav legger ut nye kurs innen disse kategoriene:
+        </p>
+        <div class="checkbox-wrapper">
+            <br />
+            <!-- <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Hjelpemidler og tilrettelegging"
+                name="Hjelpemidler og tilrettelegging"
+            ></c-checkbox>
+
+            <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Inkluderende arbeidsliv (IA)"
+                name="Inkluderende arbeidsliv (IA)"
+            ></c-checkbox>
+
+            <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Arbeidssøkeraktivitet"
+                name="Arbeidssøkeraktivitet"
+            ></c-checkbox> -->
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Bevegelse" name="Bevegelse"></c-checkbox>
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Bolig" name="Bolig"></c-checkbox>
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Hørsel" name="Hørsel"></c-checkbox>
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Kognisjon" name="Kognisjon"></c-checkbox>
+
+            <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Kommunikasjon (ASK)"
+                name="Kommunikasjon (ASK)"
+            ></c-checkbox>
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Syn" name="Syn"></c-checkbox>
+
+            <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Service og reparasjon"
+                name="Service og reparasjon"
+            ></c-checkbox>
+
+            <c-checkbox
+                oncheckboxclick={handleCheckboxClick}
+                label="Tilrettelegging i arbeid"
+                name="Tilrettelegging i arbeid"
+            ></c-checkbox>
+
+            <c-checkbox oncheckboxclick={handleCheckboxClick} label="Varsling" name="Varsling"></c-checkbox>
+
+            <br />
+            <!-- <div if:true={showConfirmation} class="confirmationContainer">
+                <h2 class="typo-systemtittel">Endringene er lagret</h2>
+            </div> -->
+            <div style="display: flex; gap: 1rem">
+                <c-button
+                    button-label="Lagre"
+                    disabled={isSubmitButtonDisabled}
+                    onbuttonclick={handleSubmit}
+                    button-styling="primary"
+                    desktop-style="width: 8rem; justify-content: center"
+                    mobile-style="width: 8rem; justify-content: center"
+                ></c-button>
+                <c-button
+                    button-styling="danger"
+                    button-label="Stopp abonnement"
+                    onbuttonclick={handleSubmitDelete}
+                    desktop-style="width: 8rem; justify-content: center"
+                    mobile-style="width: 8rem; justify-content: center"
+                ></c-button>
+            </div>
+        </div>
+    </div>
+    <div class="center-screen" lwc:if={isNotActive}>
+        <p class="info-text">Bekreft at du ønsker å motta epost fra Nav når nye kurs legges ut</p>
+        <c-button
+            button-label="Bekreft"
+            disabled={isSubmitButtonDisabled}
+            onbuttonclick={handleActivaEmailSubscription}
+            desktop-style="width: 8rem; justify-content: center"
+            mobile-style="width: 8rem; justify-content: center"
+        ></c-button>
+    </div>
+    <div class="center-screen" lwc:if={showConfirmation}>
+        <h2 class="typo-systemtittel">{displayMessage}</h2>
+    </div>
+    <div class="center-screen" lwc:if={noRecord}>
+        <p class="info-text">Ooopss....Her er det ingenting</p>
+    </div>
+</template>
