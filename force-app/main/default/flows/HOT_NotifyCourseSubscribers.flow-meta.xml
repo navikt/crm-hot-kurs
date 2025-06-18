@@ -655,7 +655,7 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDa
     <textTemplates>
         <name>courseLineEachCourse</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sted: {!coursePlace}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Tid: &lt;/strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sted: &lt;/strong&gt;{!coursePlace}&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>emailTemplate</name>
