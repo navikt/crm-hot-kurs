@@ -56,7 +56,7 @@ public without sharing class CourseRegistrationController {
                 Invoice_address__c = model.invoiceAdress,
                 Invoice_reference__c = model.invoiceReference,
                 AdditionalInformation__c = model.additionalInformation,
-                NumberofParticipants__c = num,
+                NumberOfParticipants__c = num,
                 Course__c = courseId
             );
 

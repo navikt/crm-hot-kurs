@@ -7,7 +7,7 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>CourseRegistration__c.NumberofParticipants__c</column>
+            <column>CourseRegistration__c.NumberOfParticipants__c</column>
         </chartSummaries>
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
@@ -30,7 +30,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>CourseRegistration__c.NumberofParticipants__c</field>
+        <field>CourseRegistration__c.NumberOfParticipants__c</field>
     </columns>
     <columns>
         <field>CourseRegistration__c.firstName__c</field>

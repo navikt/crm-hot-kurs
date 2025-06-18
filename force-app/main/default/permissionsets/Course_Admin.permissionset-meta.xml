@@ -210,7 +210,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CourseRegistration__c.NumberofParticipants__c</field>
+        <field>CourseRegistration__c.NumberOfParticipants__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
