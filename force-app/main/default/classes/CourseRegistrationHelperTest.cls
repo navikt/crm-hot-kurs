@@ -4,140 +4,178 @@ public with sharing class CourseRegistrationHelperTest {
     static void makeData() {
         TestDataFactory.insertEncryptionKey();
     }
+
+    private static CourseRegistration__c newReg(String status, Id courseId, Integer participants) {
+        CourseRegistration__c cr = CourseRegistrationHandlerTest.getCourseRegistration(status, courseId);
+        if (participants != null) {
+            cr.NumberOfParticipants__c = participants;
+            update cr;
+        }
+        return cr;
+    }
+    /* ---------- capacity validation ---------- */
     @isTest
-    private static void testCountCourseIdsToReduceAttending() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course.NumberOfParticipants__c = 5;
-        update course;
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+    static void testValidateRegistrationsAgainstCourseCapacity() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        c.MaxNumberOfParticipants__c = 2;
+        update c;
 
-        List<String> courseIds = new List<String>();
-        courseIds.add(cr1.Course__c);
-        courseIds.add(cr2.Course__c);
+        CourseRegistration__c regOk = new CourseRegistration__c(
+            Course__c = c.Id,
+            Status__c = 'Invitert',
+            NumberOfParticipants__c = 2
+        );
+        CourseRegistration__c regOver = new CourseRegistration__c(
+            Course__c = c.Id,
+            Status__c = 'Invitert',
+            NumberOfParticipants__c = 3
+        );
 
-        Test.StartTest();
-        CourseRegistrationHelper.countCourseIdsToReduceAttending(courseIds);
+        List<CourseRegistration__c> regs = new List<CourseRegistration__c>{ regOk, regOver };
+
+        Test.startTest();
+        CourseRegistrationHelper.validateRegistrationsAgainstCourseCapacity(regs, null);
         Test.stopTest();
 
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(3, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 3 participants');
+        System.assertEquals(0, regOk.getErrors().size(), 'Registration at or below capacity should pass validation');
+        System.assertEquals(1, regOver.getErrors().size(), 'Registration exceeding capacity should be blocked');
+        System.assert(
+            regOver.getErrors()[0].getMessage().contains('overstiger'),
+            'Error message should mention capacity exceeded'
+        );
+    }
+
+    /* ---------- ATTENDING counters ---------- */
+
+    @isTest
+    static void testCountCourseIdsToReduceAttending() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        c.NumberOfParticipants__c = 5;
+        update c;
+
+        List<CourseRegistration__c> regs = new List<CourseRegistration__c>{
+            newReg('Invitert', c.Id, 1),
+            newReg('Invitert', c.Id, 1)
+        };
+
+        Test.startTest();
+        CourseRegistrationHelper.countCourseIdsToReduceAttending(regs);
+        Test.stopTest();
+
+        System.assertEquals(
+            3,
+            Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').NumberOfParticipants__c)
+        );
     }
 
     @isTest
-    private static void testCountCourseIdsToIncreaseAttending() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+    static void testCountCourseIdsToIncreaseAttending() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
 
-        List<String> courseIds = new List<String>();
-        courseIds.add(cr1.Course__c);
-        courseIds.add(cr2.Course__c);
+        List<CourseRegistration__c> regs = new List<CourseRegistration__c>{
+            newReg('Invitert', c.Id, 1),
+            newReg('Invitert', c.Id, 1)
+        };
 
-        Test.StartTest();
-        CourseRegistrationHelper.countCourseIdsToIncreaseAttending(courseIds);
+        Test.startTest();
+        CourseRegistrationHelper.countCourseIdsToIncreaseAttending(regs);
         Test.stopTest();
 
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(2, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 2 participants');
+        System.assertEquals(
+            2,
+            Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').NumberOfParticipants__c)
+        );
+    }
+
+    /* ---------- WAITLIST counters ---------- */
+
+    @isTest
+    static void testCountCourseIdsToReduceWaiting() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        c.Waitinglist__c = 5;
+        update c;
+
+        List<CourseRegistration__c> regs = new List<CourseRegistration__c>{
+            newReg('Invitert', c.Id, 1),
+            newReg('Invitert', c.Id, 1)
+        };
+
+        Test.startTest();
+        CourseRegistrationHelper.countCourseIdsToReduceWaiting(regs);
+        Test.stopTest();
+
+        System.assertEquals(3, Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').Waitinglist__c));
     }
 
     @isTest
-    private static void testCountCourseIdsToReduceWaiting() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course.Waitinglist__c = 5;
-        update course;
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+    static void testCountCourseIdsToIncreaseWaiting() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
 
-        List<String> courseIds = new List<String>();
-        courseIds.add(cr1.Course__c);
-        courseIds.add(cr2.Course__c);
+        List<CourseRegistration__c> regs = new List<CourseRegistration__c>{
+            newReg('Invitert', c.Id, 1),
+            newReg('Invitert', c.Id, 1)
+        };
 
-        Test.StartTest();
-        CourseRegistrationHelper.countCourseIdsToReduceWaiting(courseIds);
+        Test.startTest();
+        CourseRegistrationHelper.countCourseIdsToIncreaseWaiting(regs);
         Test.stopTest();
 
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
+        System.assertEquals(2, Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').Waitinglist__c));
+    }
+
+    /* ---------- direct update helpers ---------- */
+
+    @isTest
+    static void testUpdateCoursesParticipants() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
+
+        Test.startTest();
+        CourseRegistrationHelper.updateCoursesParticipants(new Map<Id, Integer>{ c.Id => 5 });
+        Test.stopTest();
+
+        System.assertEquals(
+            5,
+            Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').NumberOfParticipants__c)
+        );
     }
 
     @isTest
-    private static void testCountCourseIdsToIncreaseWaiting() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+    static void testUpdateCourseWaiting() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
+        c.Waitinglist__c = 5;
+        update c;
 
-        List<String> courseIds = new List<String>();
-        courseIds.add(cr1.Course__c);
-        courseIds.add(cr2.Course__c);
-
-        Test.StartTest();
-        CourseRegistrationHelper.countCourseIdsToIncreaseWaiting(courseIds);
+        Test.startTest();
+        CourseRegistrationHelper.updateCourseWaiting(new Map<Id, Integer>{ c.Id => -2 });
         Test.stopTest();
 
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(2, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 2 on waiting list');
+        System.assertEquals(3, Integer.valueOf(CourseRegistrationHandlerTest.fetchCourse('Testkurs').Waitinglist__c));
     }
 
+    /* ---------- wait-list promotion end-to-end ---------- */
+
     @isTest
-    private static void testUpdateCoursesParticipants() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
+    static void testWaitingListFunction() {
+        Course__c c = CourseRegistrationHandlerTest.getCourse('Testkurs');
 
-        Map<String, Integer> testParticipant = new Map<String, Integer>();
-        testParticipant.put(course.Id, 5);
+        // 2 attending, 2 wait-listed
+        CourseRegistration__c r1 = newReg('Påmeldt', c.Id, 1);
+        CourseRegistration__c r2 = newReg('Påmeldt', c.Id, 1);
+        CourseRegistration__c r3 = newReg('Venteliste', c.Id, 1);
+        CourseRegistration__c r4 = newReg('Venteliste', c.Id, 1);
 
-        Test.StartTest();
-        CourseRegistrationHelper.updateCoursesParticipants(testParticipant);
+        Course__c before = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
+        System.assertEquals(2, before.NumberOfParticipants__c);
+        System.assertEquals(2, before.Waitinglist__c);
+
+        Test.startTest();
+        CourseRegistrationHelper.countCourseIdsToCheckWaiting(new Set<Id>{ c.Id });
         Test.stopTest();
 
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(5, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 5 participants');
-    }
-
-    @isTest
-    private static void testUpdateCourseWaiting() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        course.Waitinglist__c = 5;
-        update course;
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Invitert', course.Id);
-
-        Map<String, Integer> testWaiting = new Map<String, Integer>();
-        testWaiting.put(course.Id, -2);
-
-        Test.StartTest();
-        CourseRegistrationHelper.updateCourseWaiting(testWaiting);
-        Test.stopTest();
-
-        Course__c courseAfter = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(3, Integer.valueOf(courseAfter.Waitinglist__c), 'Should be 3 on waiting list');
-    }
-
-    @isTest
-    private static void testWaitingListFunction() {
-        Course__c course = CourseRegistrationHandlerTest.getCourse('Testkurs');
-        CourseRegistration__c cr1 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', course.Id);
-        CourseRegistration__c cr2 = CourseRegistrationHandlerTest.getCourseRegistration('Påmeldt', course.Id);
-        CourseRegistration__c cr3 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
-        CourseRegistration__c cr4 = CourseRegistrationHandlerTest.getCourseRegistration('Venteliste', course.Id);
-
-        Course__c courseBefore = CourseRegistrationHandlerTest.fetchCourse('Testkurs');
-        System.assertEquals(2, courseBefore.NumberOfParticipants__c, 'Should be 2 participants');
-        System.assertEquals(2, courseBefore.Waitinglist__c, 'Should be 2 on waiting list');
-
-        List<String> courseIdsUpdated = new List<String>();
-        courseIdsUpdated.add(cr1.Course__c);
-        courseIdsUpdated.add(cr2.Course__c);
-
-        CourseRegistrationHelper.countCourseIdsToCheckWaiting(courseIdsUpdated);
-
-        String cr3Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr3.Id LIMIT 1].Status__c;
-        String cr4Status = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
-
-        System.assertEquals('Påmeldt', cr3Status, 'cr3 should have status Påmeldt');
-        System.assertEquals('Påmeldt', cr4Status, 'cr4 should have status Påmeldt');
+        Map<Id, CourseRegistration__c> afterRegs = new Map<Id, CourseRegistration__c>(
+            [SELECT Status__c FROM CourseRegistration__c WHERE Id IN :new List<Id>{ r3.Id, r4.Id }]
+        );
+        System.assertEquals('Påmeldt', afterRegs.get(r3.Id).Status__c);
+        System.assertEquals('Påmeldt', afterRegs.get(r4.Id).Status__c);
     }
 }
