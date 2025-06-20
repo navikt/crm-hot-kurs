@@ -47,6 +47,10 @@ private with sharing class CourseRegistrationControllerTest {
             'Registration successfull'
         );
         System.assertEquals('Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing');
-        System.assertEquals('Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.', resultOfDuplicateReg, 'Duplicate registration');
+        System.assertEquals(
+            'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.',
+            resultOfDuplicateReg,
+            'Duplicate registration'
+        );
     }
 }
