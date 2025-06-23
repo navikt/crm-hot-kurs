@@ -1,21 +1,107 @@
 public without sharing class CourseRegistrationController {
+    public class RegistrationResult {
+        @AuraEnabled
+        public Boolean success;
+        @AuraEnabled
+        public String message;
+    }
+
     @AuraEnabled
-    public static String createRegistration(String fields, String courseId) {
+    public static RegistrationResult createRegistration(String fields, String courseId) {
+        RegistrationResult result = new RegistrationResult();
         try {
-            Boolean duplicate = checkForDuplicates(fields, courseId);
-            if (duplicate) {
-                return 'Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.';
+            if (String.isBlank(fields) || String.isBlank(courseId)) {
+                result.success = false;
+                result.message = 'Nødvendig informasjon mangler (kurs-ID eller påmeldingsdata).';
+                return result;
             }
-            Boolean courseIsFull = checkIfCourseIsFull(courseId);
-            if (fields != null) {
-                insertRegistration(fields, courseId);
+            CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
+            if (model == null) {
+                result.success = false;
+                result.message = 'Påmeldingsdata er ugyldige eller kunne ikke behandles.';
+                return result;
             }
-            if (courseIsFull) {
-                return 'Registrering vellykket! Du er nå satt på venteliste og vil motta bekreftelse på e-post dersom du blir tildelt en plass.';
+            if (checkForDuplicates(model, courseId)) {
+                result.success = false;
+                result.message = 'Du er allerede påmeldt dette kurset med denne e-postadressen.';
+                return result;
             }
-            return 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post';
+            Course__c course = getCourseDetailsForRegistration(courseId);
+            if (course == null) {
+                result.success = false;
+                result.message = 'Kunne ikke hente kursdetaljer. Kurset finnes kanskje ikke eller er utilgjengelig.';
+                return result;
+            }
+            if (course.Cancel__c) {
+                result.success = false;
+                result.message = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på.';
+                return result;
+            }
+
+            Integer num = (model.numberOfParticipants == null ||
+                model.numberOfParticipants < 1)
+                ? 1
+                : model.numberOfParticipants;
+
+            CourseRegistration__c reg = new CourseRegistration__c(
+                ContactFirstName__c = model.firstName,
+                ContactLastName__c = model.lastName,
+                ContactEmail__c = model.email,
+                ContactPhone__c = model.phone,
+                County__c = model.county,
+                CompanyName__c = model.companyName,
+                Role__c = model.role,
+                Allergies__c = model.allergies,
+                Workplace__c = model.workplace,
+                Invoice_address__c = model.invoiceAdress,
+                Invoice_reference__c = model.invoiceReference,
+                AdditionalInformation__c = model.additionalInformation,
+                NumberOfParticipants__c = num,
+                Course__c = courseId
+            );
+
+            Decimal current = (course.NumberOfParticipants__c != null) ? course.NumberOfParticipants__c : 0;
+            Decimal maxCap = (course.MaxNumberOfParticipants__c != null) ? course.MaxNumberOfParticipants__c : 0;
+            Decimal avail = maxCap - current;
+
+            if (num <= avail) {
+                reg.Status__c = 'Påmeldt';
+                insert reg;
+                result.success = true;
+                result.message = 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post.';
+                return result;
+            }
+
+            if (current >= maxCap) {
+                if (num > 1) {
+                    result.success = false;
+                    result.message = 'Det er kun mulig å melde på én deltaker om gangen til ventelisten ettersom kurset er fullt. Vennligst registrer én deltaker.';
+                    return result;
+                }
+                reg.Status__c = 'Venteliste';
+                insert reg;
+                result.success = true;
+                result.message = 'Registrering vellykket! Kurset er fullt, så du er nå satt på venteliste med 1 deltaker.';
+                return result;
+            }
+
+            result.success = false;
+            result.message =
+                'Det er ikke nok ledige plasser på kurset for ' +
+                num +
+                ' deltaker(e). Det er for øyeblikket ' +
+                String.valueOf(avail.intValue()) +
+                ' ledige plasser. Vennligst reduser antall deltakere for å sikre en plass. ' +
+                'For påmelding til venteliste, må kurset først være fullt og kun én deltaker kan meldes på om gangen til ventelisten.';
+            return result;
         } catch (Exception e) {
-            return 'Det oppsto en feil. Prøv igjen senere.';
+            result.success = false;
+            if (e instanceof AuraHandledException) {
+                result.message = e.getMessage();
+                return result;
+            }
+            result.message = 'En uventet feil oppstod under registrering. Feilmelding: ' + e.getMessage();
+            return result;
         }
     }
 
@@ -50,73 +136,36 @@ public without sharing class CourseRegistrationController {
         ];
     }
 
-    public static Boolean checkIfCourseIsFull(String courseId) {
-        Course__c c = getCourseFields(courseId);
-        Double maxNumber = c.MaxNumberOfParticipants__c;
-        Double numberOfParticipants = c.NumberOfParticipants__c;
-        Boolean courseIsFull = numberOfParticipants >= maxNumber ? true : false;
-
-        return courseIsFull;
-    }
-
-    private static List<CourseRegistration__c> getAlreadyInvited(CourseRegistrationModel model, String courseId) {
-        List<CourseRegistration__c> alreadyInvited = [
-            SELECT Id, Course__c, CourseParticipant__r.Email
-            FROM CourseRegistration__c
-            WHERE Course__c = :courseId AND CourseParticipant__r.Email = :model.email AND Status__c = 'Invitert'
-            LIMIT 1
-        ];
-
-        return alreadyInvited;
-    }
-
-    public static void insertRegistration(String fields, Id courseId) {
-        if (fields != null) {
-            Boolean courseIsFull = checkIfCourseIsFull(courseId);
-            CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
-            List<CourseRegistration__c> registrations = getAlreadyInvited(model, courseId);
-            if (registrations.size() > 0) {
-                delete registrations;
-            }
-
-            CourseRegistration__c registration = new CourseRegistration__c();
-            registration.ContactFirstName__c = model.firstName;
-            registration.ContactLastName__c = model.lastName;
-            registration.ContactEmail__c = model.email;
-            registration.ContactPhone__c = model.phone;
-            registration.Course__c = courseId;
-            registration.County__c = model.county;
-            registration.CompanyName__c = model.companyName;
-            registration.Role__c = model.role;
-            registration.Allergies__c = model.allergies;
-            registration.Workplace__c = model.workplace;
-            registration.Invoice_address__c = model.invoiceAdress;
-            registration.Invoice_reference__c = model.invoiceReference;
-            registration.AdditionalInformation__c = model.additionalInformation;
-            registration.TypeOfAttendance__c = model.typeOfAttendance;
-
-            if (courseIsFull) {
-                registration.Status__c = 'Venteliste';
-            } else {
-                registration.Status__c = 'Påmeldt';
-            }
-
-            insert registration;
-            if (model.subscribeEmail == 'true') {
-                CourseEmailSubscriberController.createCourseEmailSubscriber(courseId, model.email);
-            }
+    public static Boolean checkForDuplicates(CourseRegistrationModel model, Id courseId) {
+        if (model == null || String.isBlank(model.email) || courseId == null) {
+            return false;
         }
-    }
-
-    public static Boolean checkForDuplicates(String fields, Id courseId) {
-        CourseRegistrationModel model = CourseRegistrationModel.parse(fields);
-        List<CourseRegistration__c> existingRecord = [
-            SELECT Id, Course__c, CourseParticipant__r.Email
+        List<CourseRegistration__c> recs = [
+            SELECT Id
             FROM CourseRegistration__c
-            WHERE Course__c = :courseId AND CourseParticipant__r.Email = :model.email AND Status__c = 'Påmeldt'
+            WHERE
+                Course__c = :courseId
+                AND Participant_email__c = :model.email
+                AND Status__c IN ('Påmeldt', 'Venteliste')
             LIMIT 1
         ];
+        return !recs.isEmpty();
+    }
 
-        return existingRecord.size() > 0;
+    private static Course__c getCourseDetailsForRegistration(String courseId) {
+        if (String.isBlank(courseId)) {
+            return null;
+        }
+        try {
+            Course__c course = [
+                SELECT Name, NumberOfParticipants__c, MaxNumberOfParticipants__c, Cancel__c
+                FROM Course__c
+                WHERE Id = :courseId
+                LIMIT 1
+            ];
+            return course;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

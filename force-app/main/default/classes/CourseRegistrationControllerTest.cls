@@ -1,52 +1,180 @@
 @isTest
 private with sharing class CourseRegistrationControllerTest {
     @TestSetup
-    static void makeData() {
+    static void setupData() {
         TestDataFactory.insertEncryptionKey();
     }
 
     @isTest
-    private static void testCreateRegistration() {
-        Course__c course = new Course__c(
-            Name = 'Testkurs',
+    static void testMissingParameters() {
+        CourseRegistrationController.RegistrationResult res1 = CourseRegistrationController.createRegistration(
+            null,
+            null
+        );
+        System.assertEquals(false, res1.success);
+        System.assert(res1.message.contains('Nødvendig informasjon mangler'));
+
+        String dummy = '{"email":"x@y.com"}';
+        CourseRegistrationController.RegistrationResult res2 = CourseRegistrationController.createRegistration(
+            dummy,
+            ''
+        );
+        System.assertEquals(false, res2.success);
+        System.assert(res2.message.contains('Nødvendig informasjon mangler'));
+    }
+
+    @isTest
+    static void testInvalidJson() {
+        // Invalid JSON yields failure
+        CourseRegistrationController.RegistrationResult res = CourseRegistrationController.createRegistration(
+            'not a json',
+            '001000000000001'
+        );
+        System.assertEquals(false, res.success);
+        // Message should indicate either parsing error or unexpected error
+        System.assert(
+            res.message.contains('ugyldige') || res.message.contains('feil'),
+            'Expected error message for invalid JSON'
+        );
+    }
+
+    @isTest
+    static void testCourseCancelled() {
+        Course__c c = new Course__c(Name = 'Cancelled', MaxNumberOfParticipants__c = 5, Cancel__c = true);
+        insert c;
+
+        CourseRegistrationModel m = new CourseRegistrationModel();
+        m.firstName = 'F';
+        m.lastName = 'L';
+        m.email = 'a@b.com';
+        String json = JSON.serialize(m);
+
+        CourseRegistrationController.RegistrationResult res = CourseRegistrationController.createRegistration(
+            json,
+            c.Id
+        );
+        System.assertEquals(false, res.success);
+        System.assert(res.message.contains('Kurset er avlyst'));
+    }
+
+    @isTest
+    static void testSuccessful() {
+        Course__c c = new Course__c(Name = 'Open', MaxNumberOfParticipants__c = 2);
+        insert c;
+
+        CourseRegistrationModel m1 = new CourseRegistrationModel();
+        m1.firstName = 'A';
+        m1.lastName = 'A';
+        m1.email = 'a@a.com';
+        m1.numberOfParticipants = 1;
+        String j1 = JSON.serialize(m1);
+        CourseRegistrationController.RegistrationResult r1 = CourseRegistrationController.createRegistration(j1, c.Id);
+        System.assertEquals(true, r1.success);
+        System.assert(r1.message.contains('Påmelding vellykket'));
+    }
+    @isTest
+    static void testDuplicate() {
+        Course__c c = new Course__c(
+            Name = 'duplicateCourseTest',
             MaxNumberOfParticipants__c = 10,
-            DescriptionFormatted__c = 'Testkurs',
+            DescriptionFormatted__c = 'description',
             Active__c = true
         );
-        insert course;
+        insert c;
 
-        String courseId = [SELECT Id FROM Course__c WHERE Name = 'Testkurs' LIMIT 1].Id;
-        String noCourseId;
+        CourseRegistrationModel crDuplicate = new CourseRegistrationModel();
+        crDuplicate.firstName = 'dup';
+        crDuplicate.lastName = 'dup';
+        crDuplicate.email = 'duplicate@duplicate.com';
+        crDuplicate.phone = '99999999';
+        crDuplicate.county = 'Agder';
+        crDuplicate.numberOfParticipants = 1;
+        String j1 = JSON.serialize(crDuplicate);
+        CourseRegistrationController.RegistrationResult r1 = CourseRegistrationController.createRegistration(j1, c.Id);
 
-        CourseRegistrationModel wrapper = new CourseRegistrationModel();
-        wrapper.firstName = 'test';
-        wrapper.lastName = 'etternavn';
-        wrapper.phone = '90080900';
-        wrapper.email = 'test@test.com';
-        wrapper.companyNumber = '677777';
-        wrapper.source = 'Kurs';
-        String fields = JSON.serialize(wrapper);
+        Test.startTest();
+        CourseRegistrationModel crDuplicate2 = new CourseRegistrationModel();
+        crDuplicate2.firstName = 'dup';
+        crDuplicate2.lastName = 'dup';
+        crDuplicate2.email = 'duplicate@duplicate.com';
+        crDuplicate2.phone = '99999999';
+        crDuplicate2.county = 'Agder';
+        String j2 = JSON.serialize(crDuplicate2);
+        CourseRegistrationController.RegistrationResult r2 = CourseRegistrationController.createRegistration(j2, c.Id);
+        Test.stopTest();
+        System.assertEquals(false, r2.success);
+        System.assert(r2.message.contains('allerede påmeldt'));
+    }
 
-        CourseRegistrationModel wrapperDuplicate = new CourseRegistrationModel();
-        wrapperDuplicate.firstName = 'test2';
-        wrapperDuplicate.lastName = 'etternavn2';
-        wrapperDuplicate.phone = '90080902';
-        wrapperDuplicate.email = 'test@test.com';
-        wrapperDuplicate.companyNumber = '677777';
-        wrapperDuplicate.source = 'Kurs';
-        String fieldsOnDuplicate = JSON.serialize(wrapperDuplicate);
+    @isTest
+    static void testInsufficientCapacity() {
+        Course__c c = new Course__c(Name = 'Small', MaxNumberOfParticipants__c = 1, NumberOfParticipants__c = 0);
+        insert c;
 
-        Test.StartTest();
-        String resultOfInitialReg = CourseRegistrationController.createRegistration(fields, courseId);
-        String result2 = CourseRegistrationController.createRegistration(fields, noCourseId);
-        String resultOfDuplicateReg = CourseRegistrationController.createRegistration(fieldsOnDuplicate, courseId);
-        Test.StopTest();
-        System.assertEquals(
-            'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post',
-            resultOfInitialReg,
-            'Registration successfull'
+        CourseRegistrationModel m = new CourseRegistrationModel();
+        m.firstName = 'X';
+        m.lastName = 'Y';
+        m.email = 'x@y.com';
+        m.numberOfParticipants = 2;
+        String j = JSON.serialize(m);
+
+        CourseRegistrationController.RegistrationResult res = CourseRegistrationController.createRegistration(j, c.Id);
+        System.assertEquals(false, res.success);
+        System.assert(res.message.contains('ikke nok ledige plasser'));
+    }
+
+    @isTest
+    static void testWaitlistLogic() {
+        Course__c c = new Course__c(Name = 'Full', MaxNumberOfParticipants__c = 1, NumberOfParticipants__c = 1);
+        insert c;
+
+        CourseRegistrationModel mw = new CourseRegistrationModel();
+        mw.firstName = 'M';
+        mw.lastName = 'W';
+        mw.email = 'm@w.com';
+        mw.numberOfParticipants = 2;
+        String jm = JSON.serialize(mw);
+        CourseRegistrationController.RegistrationResult rm = CourseRegistrationController.createRegistration(jm, c.Id);
+        System.assertEquals(false, rm.success);
+        System.assert(rm.message.contains('én deltaker'));
+
+        CourseRegistrationModel sw = new CourseRegistrationModel();
+        sw.firstName = 'S';
+        sw.lastName = 'W';
+        sw.email = 's@w.com';
+        sw.numberOfParticipants = 1;
+        String js = JSON.serialize(sw);
+        CourseRegistrationController.RegistrationResult rs = CourseRegistrationController.createRegistration(js, c.Id);
+        System.assertEquals(true, rs.success);
+        System.assert(rs.message.contains('venteliste'));
+    }
+
+    @isTest
+    static void testGetCourseFields() {
+        DateTime fromDT = System.now().addDays(1);
+        DateTime toDT = System.now().addDays(5);
+        Course__c c = new Course__c(
+            Name = 'Fields',
+            RegistrationDeadline__c = Date.today().addDays(10),
+            RegistrationFromDateTime__c = fromDT,
+            RegistrationToDateTime__c = toDT,
+            Type__c = 'Kurs',
+            MaxNumberOfParticipants__c = 50,
+            Waitinglist__c = 1,
+            ShowCompany__c = true,
+            ShowCounty__c = true,
+            ShowRole__c = true,
+            Cancel__c = false
         );
-        System.assertEquals('Det oppsto en feil. Prøv igjen senere.', result2, 'Course id missing');
-        System.assertEquals('Du er allerede påmeldt dette kurset, vennligst bruk en annen e-postadresse.', resultOfDuplicateReg, 'Duplicate registration');
+        insert c;
+
+        Course__c f = CourseRegistrationController.getCourseFields(c.Id);
+        System.assertEquals(c.Name, f.Name);
+        System.assertEquals(c.Type__c, f.Type__c);
+        System.assertEquals(c.MaxNumberOfParticipants__c, f.MaxNumberOfParticipants__c);
+        System.assertEquals(c.RegistrationDeadline__c, f.RegistrationDeadline__c);
+        System.assertEquals(c.RegistrationFromDateTime__c, f.RegistrationFromDateTime__c);
+        System.assertEquals(c.RegistrationToDateTime__c, f.RegistrationToDateTime__c);
+        System.assertEquals(c.Waitinglist__c, f.Waitinglist__c);
     }
 }
