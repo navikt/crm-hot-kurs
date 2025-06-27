@@ -6,9 +6,11 @@ public without sharing class CourseScheduledDeleteContacts {
     public static void courseScheduledDeleteContacts() {
         List<CourseRegistration__c> courseRegistrationsToClean = fetchCourseRegistrationsToClean();
         Set<Id> contactsToDelete = fetchContactsToDelete(courseRegistrationsToClean);
+        Set<Id> emailMessagesToDelete = fetchEmaiMessagesToDelete(courseRegistrationsToClean);
 
         removePersonalDataFromCr(courseRegistrationsToClean);
         deleteContacts(contactsToDelete);
+        deleteEmailMessages(emailMessagesToDelete);
     }
 
     // ---------------------------------------------------------------------------------------------- //
@@ -42,6 +44,14 @@ public without sharing class CourseScheduledDeleteContacts {
 
         return contactIdsToDelete;
     }
+    public static Set<Id> fetchEmaiMessagesToDelete(List<CourseRegistration__c> courseRegistrations) {
+        Set<Id> emailMessagesId = new Set<Id>();
+        List<EmailMessage> emailMessages = [SELECT Id FROM EmailMessage WHERE RelatedToId IN :courseRegistrations];
+        for (EmailMessage emailMessage : emailMessages) {
+            emailMessagesId.add(emailMessage.Id);
+        }
+        return emailMessagesId;
+    }
 
     public static Set<Id> fetchContactIds(List<CourseRegistration__c> courseRegistrationsToClean) {
         Set<Id> contactsFromRegistrations = new Set<Id>();
@@ -66,9 +76,23 @@ public without sharing class CourseScheduledDeleteContacts {
         try {
             delete contactsForDeletion;
         } catch (Exception e) {
-            LoggerUtility.LogLevel logLevel = LoggerUtility.LogLevel.Error;
-            logger.logMessage(logLevel, '', null, e.getMessage(), null, null, CRM_ApplicationDomain.Domain.POAB);
-            logger.publish();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+        }
+    }
+    @future
+    public static void deleteEmailMessages(Set<Id> emailMessagesIdsForDeletion) {
+        List<EmailMessage> emailMessagesForDeletion = [
+            SELECT Id
+            FROM EmailMessage
+            WHERE Id IN :emailMessagesIdsForDeletion
+        ];
+
+        try {
+            delete emailMessagesForDeletion;
+        } catch (Exception e) {
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
         }
     }
 

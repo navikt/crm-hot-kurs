@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <description>Det blir opprettet en html template som inneholder all informasjon om kurset. Hver kurs får en linje. Her legges det til i den totale epost teksten.</description>
+        <name>addCourseLineToEmail</name>
+        <label>addCourseLineToEmail</label>
+        <locationX>578</locationX>
+        <locationY>1008</locationY>
+        <assignmentItems>
+            <assignToReference>emailText</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>courseLineEachCourse</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>countNewCourses</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>addEmailToEmailCollection</name>
+        <label>addEmailToEmailCollection</label>
+        <locationX>358</locationX>
+        <locationY>1608</locationY>
+        <assignmentItems>
+            <assignToReference>emailCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>singleEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>emtpyEmailAndCounter</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>countNewCourses</name>
+        <label>countNewCourses</label>
+        <locationX>578</locationX>
+        <locationY>1116</locationY>
+        <assignmentItems>
+            <assignToReference>numberOfNewCourses</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_courses</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Eposten lages. Lav prioritet og kan settes i kø</description>
+        <name>createEmail</name>
+        <label>createEmail</label>
+        <locationX>358</locationX>
+        <locationY>1500</locationY>
+        <assignmentItems>
+            <assignToReference>singleEmail.HTMLBody__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailTemplate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Queued</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.Subject__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Nye kurs du kan melde deg på</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.TargetObjectId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>get_Kurs_site_user.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.ToAddress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>loop_subscribers.Email__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singleEmail.TemplateName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>courseNavEmpty</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>addEmailToEmailCollection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>emtpyEmailAndCounter</name>
+        <label>emtpyEmailAndCounter</label>
+        <locationX>490</locationX>
+        <locationY>1800</locationY>
+        <assignmentItems>
+            <assignToReference>emailText</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>numberOfNewCourses</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_subscribers</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Sjekker om temaet eller kategorien er det subscriber har registrert seg til å abbonere på, og legger det til i eposten med formeler</description>
+        <name>add_courses_to_email_based_on_subscriber</name>
+        <label>add courses to email based on subscriber</label>
+        <locationX>710</locationX>
+        <locationY>900</locationY>
+        <defaultConnector>
+            <targetReference>loop_courses</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>check_if_subscribe_theme_category_matches_course</name>
+            <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10) OR (11 AND 12) OR (13 AND 14) OR (15 AND 16) OR (17 AND 18) OR (19 AND 20) OR (21 AND 22) OR (23 AND 24)</conditionLogic>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Arbeidssøkeraktivitet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Arbeidssøkeraktivitet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Inkluderende arbeidsliv (IA)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Inkluderende arbeidsliv (IA)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Theme__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hjelpemidler og tilrettelegging</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.Categories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hjelpemidler og tilrettelegging</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Bevegelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Bevegelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Bolig</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Bolig</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hørsel</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Hørsel</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Kognisjon</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Kognisjon</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Kommunikasjon (ASK)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Kommunikasjon (ASK)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Service og reparasjon</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Service og reparasjon</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Syn</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Syn</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Tilrettelegging i arbeid</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Tilrettelegging i arbeid</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_courses.Sub_category__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Varsling</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>loop_subscribers.SubCategories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Varsling</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>addCourseLineToEmail</targetReference>
+            </connector>
+            <label>check if subscribe theme category matches course</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Sjekker om det er laget nye kurs. Ellers er det ikke nødvendig å fortsette flyten</description>
+        <name>checkIfNewCourses</name>
+        <label>checkIfNewCourses</label>
+        <locationX>182</locationX>
+        <locationY>360</locationY>
+        <defaultConnectorLabel>no new courses</defaultConnectorLabel>
+        <rules>
+            <name>isNewCourses</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getNewCourse</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getCourseSubscribers</targetReference>
+            </connector>
+            <label>isNewCourses</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>new_courses_to_notify_this_subscriber</name>
+        <label>new courses to notify this subscriber</label>
+        <locationX>490</locationX>
+        <locationY>1392</locationY>
+        <defaultConnector>
+            <targetReference>emtpyEmailAndCounter</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>new_courses</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>numberOfNewCourses</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>createEmail</targetReference>
+            </connector>
+            <label>new courses</label>
+        </rules>
+    </decisions>
+    <description>Generate emails for subscribers</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>courseEndFormatted</name>
+        <dataType>String</dataType>
+        <expression>RIGHT(
+  &quot;00&quot; &amp;
+  TEXT(
+    MOD(
+      VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 12, 2)) +
+      IF(
+        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
+        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &lt; DATE(2025, 10, 26),
+        2,  /* Oslo is in CEST (UTC+2) */
+        1   /* Oslo is in CET (UTC+1) */
+      ),
+      24
+    )
+  ),
+  2
+) &amp; &quot;.&quot; &amp;
+RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 15, 2))), 2)</expression>
+    </formulas>
+    <formulas>
+        <name>courseLink</name>
+        <dataType>String</dataType>
+        <expression>&quot;https://arbeidsgiver.nav.no/kursoversikt/&quot;&amp;{!loop_courses.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>courseManageEmailUrl</name>
+        <dataType>String</dataType>
+        <expression>{!loop_subscribers.ManageEmailSubscriptionUrl__c}</expression>
+    </formulas>
+    <formulas>
+        <name>courseName</name>
+        <dataType>String</dataType>
+        <expression>{!loop_courses.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>coursePlace</name>
+        <dataType>String</dataType>
+        <expression>{!loop_courses.RegistrationPlaceName__c}</expression>
+    </formulas>
+    <formulas>
+        <name>courseShortDescription</name>
+        <dataType>String</dataType>
+        <expression>{!loop_courses.DescriptionShort2__c}</expression>
+    </formulas>
+    <formulas>
+        <name>courseStartFormatted</name>
+        <dataType>String</dataType>
+        <expression>RIGHT(&quot;00&quot; &amp; TEXT(DAY(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))), 2) &amp; &quot;. &quot; &amp;
+CASE(
+  MONTH(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),
+  1, &quot;januar&quot;,
+  2, &quot;februar&quot;,
+  3, &quot;mars&quot;,
+  4, &quot;april&quot;,
+  5, &quot;mai&quot;,
+  6, &quot;juni&quot;,
+  7, &quot;juli&quot;,
+  8, &quot;august&quot;,
+  9, &quot;september&quot;,
+  10, &quot;oktober&quot;,
+  11, &quot;november&quot;,
+  12, &quot;desember&quot;,
+  &quot;ukjent&quot;
+) &amp; &quot; &quot; &amp;
+TEXT(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp;
+&quot; kl &quot; &amp;
+RIGHT(
+  &quot;00&quot; &amp;
+  TEXT(
+    MOD(
+      VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2)) +
+      IF(
+        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
+        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &lt; DATE(2025, 10, 26),
+        2,  /* CEST */
+        1   /* CET */
+      ),
+      24
+    )
+  ),
+  2
+) &amp; &quot;.&quot; &amp;
+RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2))), 2)</expression>
+    </formulas>
+    <formulas>
+        <name>someDaysAgo</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() - 2</expression>
+    </formulas>
+    <interviewLabel>HOT_NotifyCourseSubscribers {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HOT Notify Course Subscribers</label>
+    <loops>
+        <description>Looper gjennom alle kurs</description>
+        <name>loop_courses</name>
+        <label>loop courses</label>
+        <locationX>490</locationX>
+        <locationY>792</locationY>
+        <collectionReference>getNewCourse</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>add_courses_to_email_based_on_subscriber</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>new_courses_to_notify_this_subscriber</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Looper gjennom alle subscriber og fyller ut epost med alle nye kurs som personen abbonerer på</description>
+        <name>loop_subscribers</name>
+        <label>loop subsrcribers</label>
+        <locationX>50</locationX>
+        <locationY>684</locationY>
+        <collectionReference>getCourseSubscribers</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>loop_courses</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>sendemail</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>sendemail</name>
+        <label>sendemail</label>
+        <locationX>50</locationX>
+        <locationY>1992</locationY>
+        <connector>
+            <targetReference>update_Courses_When_Notified_Subscribers</targetReference>
+        </connector>
+        <inputReference>emailCollection</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>get_Kurs_site_user</name>
+        <label>get Kurs site user</label>
+        <locationX>50</locationX>
+        <locationY>576</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>loop_subscribers</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Kurs Site Guest User</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Henter alle subscribers records som abbonnerer på kurs og som har kategorier og subkategorier som de abbonerer på</description>
+        <name>getCourseSubscribers</name>
+        <label>getCourseSubscribers</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>get_Kurs_site_user</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>Categories__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SubCategories__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>isActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>HOT_CourseSubscriber__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Hent alle kurs nye kurs som det ikke er blitt sendt ut eposter om. Kurset må være aktivt, ikke vært sendt ut epost om tidligere, og må ikke være satt til avlyst.</description>
+        <name>getNewCourse</name>
+        <label>getNewCourse</label>
+        <locationX>182</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>checkIfNewCourses</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>NotifiedSubscribers__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Cancel__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>someDaysAgo</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Course__c</object>
+        <sortField>RegistrationFromDateTime__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>update_Courses_When_Notified_Subscribers</name>
+        <label>update Courses</label>
+        <locationX>50</locationX>
+        <locationY>2100</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>NotifiedSubscribers__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Cancel__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>NotifiedSubscribers__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Course__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getNewCourse</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2025-05-31</startDate>
+            <startTime>07:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>courseLineEachCourse</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!courseName} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Tid: &lt;/strong&gt;{!courseStartFormatted} – {!courseEndFormatted}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sted: &lt;/strong&gt;{!coursePlace}&lt;/p&gt;&lt;p&gt;{!courseShortDescription}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!courseLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>emailTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;td align=&quot;center&quot;&gt;&lt;img alt=&quot;NAV Logo&quot; src=&quot;https://navdialog.my.salesforce.com/servlet/servlet.ImageServer?id=0152o000005v5nL&amp;oid=00D2o000000aANV&quot; style=&quot;display:block; margin: 0 auto;&quot;max- width=&quot;100&quot; /&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Nye kurs lagt ut på nav.no&lt;/p&gt;&lt;p&gt;{!emailText}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du får denne eposten fordi du har registrert deg til å motta epost når nye kurs legges ut på &lt;a href=&quot;http://nav.no&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;nav.no&lt;/a&gt;. Du kan når som helst endre dine preferanser, eller slette abonneringen ved å klikke &lt;a href=&quot;{!courseManageEmailUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;her&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>courseSingleRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>coursesToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>emailCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
+    <variables>
+        <name>emailText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>myemail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>rasmus.steine.olsen@nav.no</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>numberOfNewCourses</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>singleEmail</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
+</Flow>
