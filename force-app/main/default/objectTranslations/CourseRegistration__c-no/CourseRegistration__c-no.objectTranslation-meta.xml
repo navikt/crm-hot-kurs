@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <article>Definite</article>
@@ -34,22 +34,16 @@
     <layouts>
         <layout>Course Registration Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label><!-- Custom Links -->
+            </label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <nameFieldLabel>Kurspåmelding ID</nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Dette kurset er ikke aktivt --></errorMessage>
-        <name>Course_must_be_active</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage
-        ><!-- Maks antall deltagere er registrert på dette kurset. Deltakeren må settes på venteliste. --></errorMessage>
+        <errorMessage><!-- Maks antall deltagere er registrert på dette kurset. Deltakeren må settes
+            på venteliste. -->
+        </errorMessage>
         <name>Do_not_exceed_max_number_of_participants</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Påmeldingsfristen har utløpt --></errorMessage>
-        <name>Do_not_exceed_registration_deadline</name>
     </validationRules>
 </CustomObjectTranslation>
