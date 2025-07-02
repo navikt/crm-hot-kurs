@@ -31,6 +31,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track invoiceAdress = false;
     @track invoiceReference = false;
     @track workplace = false;
+    @track addMultipleParticipants = false;
+    @track showNumberInput = false;
+    @track maxNumberOfParticipants;
+    @track numberOfParticipants;
     @track typeOfAttendance = false;
 
     @track courseIsFullWarning = false;
@@ -97,6 +101,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceAdress = result.ShowInvoiceAdress__c;
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
+                this.addMultipleParticipants = result.ShowAddMultipleParticipants__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
                 this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
@@ -118,11 +123,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     }
                 }
 
-                let maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
-                let numberOfParticipants = result.NumberOfParticipants__c;
+                this.maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
+                this.numberOfParticipants = result.NumberOfParticipants__c;
                 this.numberOnWaitinglist = result.Waitinglist__c + 1;
 
-                if (numberOfParticipants >= maxNumberOfParticipants) {
+                if (this.numberOfParticipants >= this.maxNumberOfParticipants) {
                     this.courseIsFullWarning = true;
                 }
 
@@ -215,6 +220,27 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
         }
+        if (this.showNumberInput) {
+            const n = Number(this.theRecord.numberOfParticipants);
+            if (!n || !Number.isInteger(n) || n < 1) {
+                this.showError = true;
+                this.errorMessage = 'Oppgi et gyldig heltall ≥ 1 for antall deltakere.';
+                return;
+            }
+            const availableSlots = this.maxNumberOfParticipants - this.numberOfParticipants;
+            if (n > availableSlots) {
+                this.showError = true;
+                this.errorMessage =
+                    'Det er ikke nok ledige plasser på kurset for ' +
+                    n +
+                    ' deltaker(e). Det er for øyeblikket ' +
+                    availableSlots +
+                    ' ledige plasser. ' +
+                    'Vennligst reduser antall deltakere for å sikre en plass. For påmelding til venteliste, må kurset først være fullt og kun én deltaker kan meldes på om gangen til ventelisten.';
+                return;
+            }
+        }
+
         // Validate field lengths (less than 255 characters)
         for (const field of nonRequiredFields) {
             if (this.theRecord[field] && this.theRecord[field].length > 255) {
@@ -243,12 +269,36 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         createRegistration({
             fields: output,
             courseId: this.courseId
-        }).then((result) => {
-            this.showForm = false;
-            this.showConfirmation = true;
-            this.message = result;
-        });
+        })
+            .then((result) => {
+                if (result && result.success === false) {
+                    this.showForm = true;
+                    this.showError = true;
+                    this.errorMessage = result.message;
+                    this.showConfirmation = false;
+                } else if (result && result.success === true) {
+                    this.showForm = false;
+                    this.showConfirmation = true;
+                    this.message = result.message;
+                    this.showError = false;
+                } else {
+                    this.showForm = true;
+                    this.showError = true;
+                    this.errorMessage = 'Uventet svar fra server. Prøv igjen senere.';
+                    this.showConfirmation = false;
+                }
+            })
+            .catch((error) => {
+                this.showForm = true;
+                this.showError = true;
+                this.errorMessage = 'Teknisk feil ved innsending. Prøv igjen senere.';
+                this.showConfirmation = false;
+            });
     }
+
+    toggleMultipleParticipants = (event) => {
+        this.showNumberInput = event.detail;
+    };
 
     validateCode(event) {
         event.preventDefault();

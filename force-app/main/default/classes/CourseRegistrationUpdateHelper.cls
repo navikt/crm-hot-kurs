@@ -1,58 +1,66 @@
 public class CourseRegistrationUpdateHelper {
-    public static void UpdateHelper(List<CourseRegistration__c> records, Map<Id, sObject> triggerOldMap) {
-        List<String> fieldsToCheck = new List<String>{ 'Status__c' };
-        List<String> coursesReduceAttending = new List<String>();
-        List<String> coursesReduceWaiting = new List<String>();
-        List<String> coursesIncreaseAttending = new List<String>();
-        List<String> coursesIncreaseWaiting = new List<String>();
-        List<String> coursesToUpdateWaitingRegs = new List<String>();
+    public static void updateHelper(List<CourseRegistration__c> newRecords, Map<Id, sObject> triggerOldMap) {
+        Map<Id, CourseRegistration__c> oldMap = triggerOldMap == null
+            ? new Map<Id, CourseRegistration__c>()
+            : new Map<Id, CourseRegistration__c>((List<CourseRegistration__c>) triggerOldMap.values());
 
-        for (CourseRegistration__c cr : (List<CourseRegistration__c>) records) {
-            Boolean statusIsUpdated = MyTriggers.hasChangedFields(fieldsToCheck, cr, triggerOldMap.get(cr.Id));
+        List<CourseRegistration__c> crsToRemoveOldContribution = new List<CourseRegistration__c>();
+        List<CourseRegistration__c> crsToAddNewContribution = new List<CourseRegistration__c>();
 
-            if (!statusIsUpdated)
-                continue;
+        Set<Id> coursesToCheckWaitlist = new Set<Id>();
 
-            CourseRegistration__c oldCr = (CourseRegistration__c) triggerOldMap.get(cr.Id);
-            Boolean newIsAttending = cr.Status__c == 'Påmeldt';
-            Boolean newIsNotAttending = cr.Status__c == 'Avmeldt';
-            Boolean newIsWaitListed = cr.Status__c == 'Venteliste';
-            Boolean oldIsAttending = oldCr.Status__c == 'Påmeldt';
-            Boolean oldIsNotAttending = oldCr.Status__c == 'Avmeldt';
-            Boolean oldIsWaitListed = oldCr.Status__c == 'Venteliste';
+        for (CourseRegistration__c newCr : newRecords) {
+            CourseRegistration__c oldCr = oldMap.get(newCr.Id);
 
-            if (newIsAttending) {
-                coursesIncreaseAttending.add(cr.Course__c);
-                if (oldIsWaitListed) {
-                    coursesReduceWaiting.add(cr.Course__c);
-                }
-            } else if (oldIsAttending) {
-                coursesReduceAttending.add(cr.Course__c);
-                if (newIsNotAttending) {
-                    coursesToUpdateWaitingRegs.add(cr.Course__c);
-                } else if (newIsWaitListed) {
-                    coursesIncreaseWaiting.add(cr.Course__c);
-                }
-            } else if (oldIsWaitListed) {
-                coursesReduceWaiting.add(cr.Course__c);
-            } else if (newIsWaitListed) {
-                coursesIncreaseWaiting.add(cr.Course__c);
+            boolean relevantChangeOccurred = false;
+            if (newCr.Status__c != oldCr.Status__c) {
+                relevantChangeOccurred = true;
+            }
+            if (
+                (newCr.Status__c == 'Påmeldt' ||
+                newCr.Status__c == 'Venteliste' ||
+                oldCr.Status__c == 'Påmeldt' ||
+                oldCr.Status__c == 'Venteliste') && (newCr.NumberOfParticipants__c != oldCr.NumberOfParticipants__c)
+            ) {
+                relevantChangeOccurred = true;
+            }
+
+            if (!relevantChangeOccurred) {
+                continue; // Skip if no relevant fields changed
+            }
+
+            if (oldCr.Status__c == 'Påmeldt' || oldCr.Status__c == 'Venteliste') {
+                crsToRemoveOldContribution.add(oldCr);
+            }
+
+            if (newCr.Status__c == 'Påmeldt' || newCr.Status__c == 'Venteliste') {
+                crsToAddNewContribution.add(newCr);
+            }
+
+            if (oldCr.Status__c == 'Påmeldt' && newCr.Status__c != 'Påmeldt') {
+                coursesToCheckWaitlist.add(oldCr.Course__c); // Course ID from old record (should be same as new)
+            } else if (
+                oldCr.Status__c == 'Påmeldt' &&
+                newCr.Status__c == 'Påmeldt' &&
+                newCr.NumberOfParticipants__c != null &&
+                oldCr.NumberOfParticipants__c != null &&
+                newCr.NumberOfParticipants__c < oldCr.NumberOfParticipants__c
+            ) {
+                // Participants decreased while still attending
+                coursesToCheckWaitlist.add(oldCr.Course__c);
             }
         }
-        if (!coursesReduceAttending.isEmpty()) {
-            CourseRegistrationHelper.countCourseIdsToReduceAttending(coursesReduceAttending);
+
+        if (!crsToRemoveOldContribution.isEmpty()) {
+            CourseRegistrationHelper.getCourseIdToReduce(crsToRemoveOldContribution);
         }
-        if (!coursesReduceWaiting.isEmpty()) {
-            CourseRegistrationHelper.countCourseIdsToReduceWaiting(coursesReduceWaiting);
+
+        if (!crsToAddNewContribution.isEmpty()) {
+            CourseRegistrationHelper.getCourseIdToIncrease(crsToAddNewContribution);
         }
-        if (!coursesIncreaseAttending.isEmpty()) {
-            CourseRegistrationHelper.countCourseIdsToIncreaseAttending(coursesIncreaseAttending);
-        }
-        if (!coursesIncreaseWaiting.isEmpty()) {
-            CourseRegistrationHelper.countCourseIdsToIncreaseWaiting(coursesIncreaseWaiting);
-        }
-        if (!coursesToUpdateWaitingRegs.isEmpty()) {
-            CourseRegistrationHelper.countCourseIdsToCheckWaiting(coursesToUpdateWaitingRegs);
+
+        if (!coursesToCheckWaitlist.isEmpty()) {
+            CourseRegistrationHelper.countCourseIdsToCheckWaiting(coursesToCheckWaitlist);
         }
     }
 }
