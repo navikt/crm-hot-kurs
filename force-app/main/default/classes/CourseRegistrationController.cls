@@ -130,7 +130,8 @@ public without sharing class CourseRegistrationController {
                 Sub_category__c,
                 Theme__c,
                 ShowTypeOfAttendance__c,
-                ShowAdditionalInformation__c
+                ShowAdditionalInformation__c,
+                ShowAddMultipleParticipants__c
             FROM Course__c
             WHERE Id = :courseId
         ];
