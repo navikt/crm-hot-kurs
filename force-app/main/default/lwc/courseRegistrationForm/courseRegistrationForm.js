@@ -228,7 +228,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
             const availableSlots = this.maxNumberOfParticipants - this.numberOfParticipants;
-            if (n > availableSlots) {
+            if (n > availableSlots && !(availableSlots === 0 && n === 1)) {
                 this.showError = true;
                 this.errorMessage =
                     'Det er ikke nok ledige plasser på kurset for ' +
