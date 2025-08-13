@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
+    <description>Fjernet entry criteria for å kun kjøre ett flow interview. Så oppdaterer vi alle courses som er aktive og sluttdato er forbi, og setter de til inaktive</description>
+    <environments>Default</environments>
     <interviewLabel>Deactivate courses {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Deactivate completed courses</label>
     <processMetadataValues>
@@ -26,13 +28,20 @@
         <name>Update_courses</name>
         <label>Update courses</label>
         <locationX>176</locationX>
-        <locationY>276</locationY>
+        <locationY>252</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>RegistrationToDateTime__c</field>
             <operator>LessThanOrEqualTo</operator>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <inputAssignments>
@@ -49,15 +58,6 @@
         <connector>
             <targetReference>Update_courses</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Active__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <object>Course__c</object>
         <schedule>
             <frequency>Daily</frequency>
             <startDate>2021-02-09</startDate>
