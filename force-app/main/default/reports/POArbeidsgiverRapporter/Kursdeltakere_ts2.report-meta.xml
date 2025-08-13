@@ -74,16 +74,6 @@
     <columns>
         <field>CourseRegistration__c.Invoice_address__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>FK_CUSTENT_ID</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>a0mQI000001EjO5</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
