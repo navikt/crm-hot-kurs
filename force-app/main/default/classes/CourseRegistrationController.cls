@@ -67,6 +67,9 @@ public without sharing class CourseRegistrationController {
             if (num <= avail) {
                 reg.Status__c = 'Påmeldt';
                 insert reg;
+                if (model.subscribeEmail == 'true') {
+                    CourseEmailSubscriberController.createCourseEmailSubscriber(courseId, model.email);
+                }
                 result.success = true;
                 result.message = 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post.';
                 return result;
@@ -80,6 +83,9 @@ public without sharing class CourseRegistrationController {
                 }
                 reg.Status__c = 'Venteliste';
                 insert reg;
+                if (model.subscribeEmail == 'true') {
+                    CourseEmailSubscriberController.createCourseEmailSubscriber(courseId, model.email);
+                }
                 result.success = true;
                 result.message = 'Registrering vellykket! Kurset er fullt, så du er nå satt på venteliste med 1 deltaker.';
                 return result;
