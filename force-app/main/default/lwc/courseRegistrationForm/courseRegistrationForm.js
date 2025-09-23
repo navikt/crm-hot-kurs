@@ -258,7 +258,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         }
         // Validate email
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (this.theRecord.email && !emailRegex.test(this.theRecord.email)) {
+        if (!this.theRecord.email || !emailRegex.test(this.theRecord.email)) {
             this.showError = true;
             this.errorMessage = 'Vennligst oppgi en gyldig e-postadresse.';
             return;
