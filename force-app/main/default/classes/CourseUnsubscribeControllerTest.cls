@@ -28,7 +28,7 @@ private with sharing class CourseUnsubscribeControllerTest {
 
         Test.startTest();
         CourseRegistration__c result = CourseUnsubscribeController.getCourseRegistrationFields(encrypted);
-        CourseRegistration__c unsubscribed = CourseUnsubscribeController.updateCourseRegistration(encrypted);
+        CourseRegistration__c unsubscribed = CourseUnsubscribeController.updateCourseRegistrationStatusToAvmeldt(encrypted);
         Test.stopTest();
 
         System.assertEquals(unsubscribed.Status__c, 'Avmeldt', 'Participant is unsubscribed');
