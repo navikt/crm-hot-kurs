@@ -41,7 +41,7 @@
     filter: brightness(0.95);
 }
 .btn-secondary:hover {
-    background-color: rgba(0,103,197,0.08);
+    background-color: rgba(0, 103, 197, 0.08);
 }
 .btn-submit:focus-visible,
 .btn-secondary:focus-visible {
@@ -55,7 +55,6 @@
     color: #fff;
 }
 
-
 .center-screen {
     display: flex;
     flex-direction: column;
@@ -64,6 +63,7 @@
     text-align: center;
     min-height: 100vh;
 }
+p {
 
 .typo-systemtittel {
     margin: 0;
@@ -73,7 +73,6 @@
     font-weight: 600;
 }
 
-.help { margin: 12px 0; }
 .num-input {
     width: 120px;
     padding: 6px 8px;
@@ -83,13 +82,11 @@
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.25);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
 }
 
-.btn-row { display: flex; gap: .75rem; margin-top: .5rem; margin-bottom: .5rem; }
 
 
