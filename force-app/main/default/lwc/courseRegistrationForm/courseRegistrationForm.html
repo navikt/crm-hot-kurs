@@ -323,7 +323,7 @@
                                             <c-checkbox
                                                 oncheckboxclick={toggleMultipleParticipants}
                                                 label="Legg til flere deltakere"
-                                                name="subscribeEmail"
+                                                name="multipleParticipants"
                                             ></c-checkbox>
                                         </div>
 
@@ -338,7 +338,7 @@
                                                 id="numberOfParticipants"
                                                 name="numberOfParticipants"
                                                 class="skjemaelement__input input--fullbredde"
-                                                onchange={handleChange}
+                                                oninput={handleChange}
                                             />
                                         </div>
                                     </template>
