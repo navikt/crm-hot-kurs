@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>singleOrMultipleParticipants</name>
+        <label>singleOrMultipleParticipants</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Single_Create_EmailQueue_Send_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>singleParticipant</defaultConnectorLabel>
+        <rules>
+            <name>multipleParticipants</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.NumberOfParticipants__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Multiple_Create_EmailQueue_Send_Email</targetReference>
+            </connector>
+            <label>multipleParticipants</label>
+        </rules>
+    </decisions>
     <description>Migrated from the Course Registration + Email Ver4 process using Status is set to Påmeldt criteria.
 Sends email to confirm registration</description>
+    <environments>Default</environments>
     <formulas>
         <name>formula_1_myRule_1_A1_1487110129</name>
         <dataType>String</dataType>
         <expression>{!$Record.CourseParticipant__c}</expression>
     </formulas>
     <label>Course Registration + Email Ver4</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
@@ -17,10 +49,50 @@ Sends email to confirm registration</description>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>myRule_1_A1</name>
-        <label>Create EmailQueue (Send Email)</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <description>For multiple participants</description>
+        <name>Multiple_Create_EmailQueue_Send_Email</name>
+        <label>Multiple Create EmailQueue (Send Email)</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>SaveAsActivity__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TargetObjectId__c</field>
+            <value>
+                <elementReference>formula_1_myRule_1_A1_1487110129</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TemplateName__c</field>
+            <value>
+                <stringValue>courseRegistrationConfirmationMultiple</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmailQueue__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <description>For single participants</description>
+        <name>Single_Create_EmailQueue_Send_Email</name>
+        <label>Single Create EmailQueue (Send Email)</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
         <inputAssignments>
             <field>SaveAsActivity__c</field>
             <value>
@@ -55,10 +127,10 @@ Sends email to confirm registration</description>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <start>
-        <locationX>0</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>myRule_1_A1</targetReference>
+            <targetReference>singleOrMultipleParticipants</targetReference>
         </connector>
         <filterFormula>OR(
 AND(ISNEW(),ISPICKVAL({!$Record.Status__c},&quot;Påmeldt&quot;) ),
