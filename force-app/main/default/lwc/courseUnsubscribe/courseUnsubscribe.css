@@ -64,6 +64,8 @@
     min-height: 100vh;
 }
 p {
+    font-size: 1.125rem;
+}
 
 .typo-systemtittel {
     margin: 0;
@@ -73,6 +75,9 @@ p {
     font-weight: 600;
 }
 
+.help {
+    margin: 12px 0;
+}
 .num-input {
     width: 120px;
     padding: 6px 8px;
@@ -82,11 +87,16 @@ p {
 .overlay {
     position: fixed;
     inset: 0;
+    background: rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
 }
 
-
-
+.btn-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
