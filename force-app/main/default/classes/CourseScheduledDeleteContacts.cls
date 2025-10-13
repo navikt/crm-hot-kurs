@@ -9,8 +9,7 @@ public without sharing class CourseScheduledDeleteContacts {
         Set<Id> emailMessagesToDelete = fetchEmaiMessagesToDelete(courseRegistrationsToClean);
 
         removePersonalDataFromCr(courseRegistrationsToClean);
-        deleteContacts(contactsToDelete);
-        deleteEmailMessages(emailMessagesToDelete);
+        deleteEmailMessagesAndContacts(emailMessagesToDelete, contactsToDelete);
     }
 
     // ---------------------------------------------------------------------------------------------- //
@@ -66,30 +65,25 @@ public without sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------------------------------------------------------------- //
 
     @future
-    public static void deleteContacts(Set<Id> contactIdsForDeletion) {
-        List<Contact> contactsForDeletion = [
-            SELECT Id
-            FROM Contact
-            WHERE Id IN :contactIdsForDeletion AND IsPersonAccount = FALSE
-        ];
-
+    public static void deleteEmailMessagesAndContacts(Set<Id> emailMessagesIds, Set<Id> contactIds) {
         try {
-            delete contactsForDeletion;
-        } catch (Exception e) {
-            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
-            logger.publishSynch();
-        }
-    }
-    @future
-    public static void deleteEmailMessages(Set<Id> emailMessagesIdsForDeletion) {
-        List<EmailMessage> emailMessagesForDeletion = [
-            SELECT Id
-            FROM EmailMessage
-            WHERE Id IN :emailMessagesIdsForDeletion
-        ];
+            if (!emailMessagesIds.isEmpty()) {
+                List<EmailMessage> emailMessagesForDeletion = [
+                    SELECT Id
+                    FROM EmailMessage
+                    WHERE Id IN :emailMessagesIds
+                ];
+                delete emailMessagesForDeletion;
+            }
 
-        try {
-            delete emailMessagesForDeletion;
+            if (!contactIds.isEmpty()) {
+                List<Contact> contactsForDeletion = [
+                    SELECT Id
+                    FROM Contact
+                    WHERE Id IN :contactIds AND IsPersonAccount = FALSE
+                ];
+                delete contactsForDeletion;
+            }
         } catch (Exception e) {
             logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
             logger.publishSynch();
