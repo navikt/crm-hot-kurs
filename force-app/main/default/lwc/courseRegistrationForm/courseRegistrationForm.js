@@ -36,6 +36,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track maxNumberOfParticipants;
     @track numberOfParticipants;
     @track typeOfAttendance = false;
+    targetGroup= ''; 
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -107,6 +108,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
+                this.targetGroup = result.hot_targetGroup__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
@@ -157,6 +159,34 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             });
         }
         return params;
+    }
+
+    get targetGroupAlertText() {
+        if(!this.targetGroup) {
+            return 'Nav bruker disse opplysningene for å kontakte deg ang dette kurset.\n Opplysningene blir ikke delt eller brukt til andre formål.';
+        }
+
+        console.log('Target group: ' + this.targetGroup);
+
+        const selected = this.targetGroup.split(';').map(value => value.trim().toLowerCase());
+
+        const hasLinjetjeneste = selected.includes('1.linjetjeneste i bydel og kommune');
+        const hasErgoterapeuter = selected.includes('ergoterapeuter');
+        const hasTekniker = selected.includes('tekniker');
+
+        if (hasLinjetjeneste && hasErgoterapeuter) {
+            return 'Dette kurset er beregnet for kommunalt ansatte';
+        }
+
+        if (hasLinjetjeneste && hasTekniker) {
+            return 'Du har valgt 1.linjetjeneste i bydel og kommune og teknikere.';
+        }
+
+        if (hasErgoterapeuter && hasTekniker) {
+            return 'Du har valgt ergoterapeuter og teknikere.';
+        }
+
+        return 'Dette kurset er beregnet for kommunalt ansatte';
     }
 
     handleChange(event) {

@@ -344,15 +344,16 @@
                                     </template>
                                 </div>
 
+                               
                                 <div class="navno-dekorator alertstripe alertstripe--info">
                                     <img
                                         class="navno-dekorator alertstripe__ikon"
                                         src={informationicon}
                                         alt="informasjon-ikon"
                                     />
+                                     <!-- TODO: Create a conditional alerstripe based of targegroup -->
                                     <p class="typo-normal">
-                                        Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
-                                        Opplysningene blir ikke delt eller brukt til andre formål.
+                                        {targetGroupAlertText}
                                     </p>
                                 </div>
                                 <br />
