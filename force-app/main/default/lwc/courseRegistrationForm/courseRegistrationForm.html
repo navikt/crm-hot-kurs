@@ -108,17 +108,19 @@
                             <!--============================REGISTRATION FORM=========================================-->
                             <form if:true={showForm}>
                                 <!-- Alert banner -->
-                                <div class="navno-dekorator alertstripe alertstripe--info">
-                                    <img
-                                        class="navno-dekorator alertstripe__ikon"
-                                        src={informationicon}
-                                        alt="informasjon-ikon"
-                                    />
-                                    <p class="typo-normal">
-                                        {targetGroupAlertText}
-                                    </p>
-                                </div>
-                                <br />
+                                 <template if:true={showGroupTargetAlert}>
+                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                         <img
+                                         class="navno-dekorator alertstripe__ikon"
+                                         src={warningicon}
+                                         alt="advarsel-ikon"
+                                         />
+                                         <p class="typo-normal">
+                                             {targetGroupAlertText}
+                                            </p>
+                                        </div>
+                                        <br />
+                                </template>
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
@@ -355,6 +357,19 @@
                                         </div>
                                     </template>
                                 </div>
+
+                                  <div class="navno-dekorator alertstripe alertstripe--info">
+                                    <img
+                                        class="navno-dekorator alertstripe__ikon"
+                                        src={informationicon}
+                                        alt="informasjon-ikon"
+                                    />
+                                    <p class="typo-normal">
+                                        Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
+                                        Opplysningene blir ikke delt eller brukt til andre formål.
+                                    </p>
+                                </div>
+                                <br />
 
                                 <div class="subscribeContainer" lwc:if={showEmailSubscribeContainer}>
                                     <p class="typo-element">Abonner på kurs</p>

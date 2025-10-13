@@ -113,6 +113,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
+                this.showGroupTargetAlert = !!this.targetGroup;
                 if (registrationDeadline > dateNow && this.canceled === false) {
                     this.showForm = true;
                 } else {
@@ -161,11 +162,13 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         return params;
     }
 
+    showGroupTargetAlert = false;
     get targetGroupAlertText() {
         if (!this.targetGroup) {
-            return 'Nav bruker disse opplysningene for å kontakte deg ang dette kurset.\n Opplysningene blir ikke delt eller brukt til andre formål.';
+            return '';
         }
 
+        this.showGroupTargetAlert = true;
         const selected = this.targetGroup
             .split(';')
             .map(value => value.trim())
@@ -186,7 +189,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             .map(val => val.toLowerCase());
 
         if (matchedGroups.length === 0) {
-            return 'Dette kurset er beregnet for kommunalt ansatte.';
+            return '';
         }
 
         let targetGroupTextList = '';
@@ -200,8 +203,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 ' og ' +
                 matchedGroups[matchedGroups.length - 1];
         }
-
-        return `Dette kurset er beregnet for kommunalt ansatte i ${targetGroupTextList}.`;
+        return `Dette kurset er beregnet for ${targetGroupTextList}.`;
     }
 
     handleChange(event) {
