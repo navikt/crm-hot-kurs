@@ -175,15 +175,15 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         const hasTekniker = selected.includes('tekniker');
 
         if (hasLinjetjeneste && hasErgoterapeuter) {
-            return 'Dette kurset er beregnet for kommunalt ansatte';
+            return 'Dette kurset er beregnet for kommunalt ansatte i 1.linjetjeneste i bydel og kommune, for ergoterapeuter.';
         }
 
         if (hasLinjetjeneste && hasTekniker) {
-            return 'Du har valgt 1.linjetjeneste i bydel og kommune og teknikere.';
+            return 'Dette kurset er beregnet for kommunalt ansatte i 1.linjetjeneste i bydel og kommune, for teknikere.';
         }
 
         if (hasErgoterapeuter && hasTekniker) {
-            return 'Du har valgt ergoterapeuter og teknikere.';
+            return 'Dette kurset er beregnet for kommunalt ansatte ergoterapeuter og teknikere.';
         }
 
         return 'Dette kurset er beregnet for kommunalt ansatte';

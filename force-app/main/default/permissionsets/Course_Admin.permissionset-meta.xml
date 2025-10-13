@@ -5,19 +5,19 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>CourseEmailSubscribeHandler</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-     <classAccesses>
         <apexClass>CourseController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CourseEmailSubscriberController</apexClass>
+        <apexClass>CourseEmailSchedulingLog</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CourseEmailSchedulingLog</apexClass>
+        <apexClass>CourseEmailSubscribeHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CourseEmailSubscriberController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -589,6 +589,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Waitinglist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.hot_targetGroup__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
