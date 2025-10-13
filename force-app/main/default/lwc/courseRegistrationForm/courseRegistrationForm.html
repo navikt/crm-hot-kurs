@@ -107,6 +107,18 @@
 
                             <!--============================REGISTRATION FORM=========================================-->
                             <form if:true={showForm}>
+                                <!-- Alert banner -->
+                                <div class="navno-dekorator alertstripe alertstripe--info">
+                                    <img
+                                        class="navno-dekorator alertstripe__ikon"
+                                        src={informationicon}
+                                        alt="informasjon-ikon"
+                                    />
+                                    <p class="typo-normal">
+                                        {targetGroupAlertText}
+                                    </p>
+                                </div>
+                                <br />
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
@@ -344,19 +356,6 @@
                                     </template>
                                 </div>
 
-                               
-                                <div class="navno-dekorator alertstripe alertstripe--info">
-                                    <img
-                                        class="navno-dekorator alertstripe__ikon"
-                                        src={informationicon}
-                                        alt="informasjon-ikon"
-                                    />
-                                     <!-- TODO: Create a conditional alerstripe based of targegroup -->
-                                    <p class="typo-normal">
-                                        {targetGroupAlertText}
-                                    </p>
-                                </div>
-                                <br />
                                 <div class="subscribeContainer" lwc:if={showEmailSubscribeContainer}>
                                     <p class="typo-element">Abonner på kurs</p>
                                     <c-checkbox

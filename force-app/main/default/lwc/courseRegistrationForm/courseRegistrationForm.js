@@ -36,7 +36,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track maxNumberOfParticipants;
     @track numberOfParticipants;
     @track typeOfAttendance = false;
-    targetGroup= ''; 
+    targetGroup = '';
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -162,31 +162,46 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     }
 
     get targetGroupAlertText() {
-        if(!this.targetGroup) {
+        if (!this.targetGroup) {
             return 'Nav bruker disse opplysningene for å kontakte deg ang dette kurset.\n Opplysningene blir ikke delt eller brukt til andre formål.';
         }
 
-        console.log('Target group: ' + this.targetGroup);
+        const selected = this.targetGroup
+            .split(';')
+            .map(value => value.trim())
+            .filter(value => value.length > 0);
 
-        const selected = this.targetGroup.split(';').map(value => value.trim().toLowerCase());
+        console.log('Target group:', selected);
 
-        const hasLinjetjeneste = selected.includes('1.linjetjeneste i bydel og kommune');
-        const hasErgoterapeuter = selected.includes('ergoterapeuter');
-        const hasTekniker = selected.includes('tekniker');
+        const multiPicklistGroupList = [
+            '1.linjetjeneste i bydel og kommune',
+            'Ergoterapeuter',
+            'Tekniker'
+        ];
 
-        if (hasLinjetjeneste && hasErgoterapeuter) {
-            return 'Dette kurset er beregnet for kommunalt ansatte i 1.linjetjeneste i bydel og kommune, for ergoterapeuter.';
+        const matchedGroups = selected
+            .filter(val =>
+                multiPicklistGroupList.some(valid => val.toLowerCase() === valid.toLowerCase())
+            )
+            .map(val => val.toLowerCase());
+
+        if (matchedGroups.length === 0) {
+            return 'Dette kurset er beregnet for kommunalt ansatte.';
         }
 
-        if (hasLinjetjeneste && hasTekniker) {
-            return 'Dette kurset er beregnet for kommunalt ansatte i 1.linjetjeneste i bydel og kommune, for teknikere.';
+        let targetGroupTextList = '';
+        if (matchedGroups.length === 1) {
+            targetGroupTextList = matchedGroups[0];
+        } else if (matchedGroups.length === 2) {
+            targetGroupTextList = `${matchedGroups[0]} og ${matchedGroups[1]}`;
+        } else {
+            targetGroupTextList =
+                matchedGroups.slice(0, -1).join(', ') +
+                ' og ' +
+                matchedGroups[matchedGroups.length - 1];
         }
 
-        if (hasErgoterapeuter && hasTekniker) {
-            return 'Dette kurset er beregnet for kommunalt ansatte ergoterapeuter og teknikere.';
-        }
-
-        return 'Dette kurset er beregnet for kommunalt ansatte';
+        return `Dette kurset er beregnet for kommunalt ansatte i ${targetGroupTextList}.`;
     }
 
     handleChange(event) {
