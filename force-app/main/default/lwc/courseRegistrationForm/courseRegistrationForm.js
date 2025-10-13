@@ -37,6 +37,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track numberOfParticipants;
     @track typeOfAttendance = false;
     targetGroup = '';
+    showGroupTargetAlert = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -162,7 +163,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         return params;
     }
 
-    showGroupTargetAlert = false;
     get targetGroupAlertText() {
         if (!this.targetGroup) {
             return '';
@@ -173,8 +173,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             .split(';')
             .map(value => value.trim())
             .filter(value => value.length > 0);
-
-        console.log('Target group:', selected);
 
         const multiPicklistGroupList = [
             '1.linjetjeneste i bydel og kommune',
