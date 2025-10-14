@@ -3,31 +3,11 @@
     <fullName>TargetGroup__c</fullName>
     <description>Conditional banner based on which target group</description>
     <externalId>false</externalId>
-    <inlineHelpText>Velg hvem som skal få melde seg på kurs.</inlineHelpText>
+    <inlineHelpText>Skriv inn din egen tekst her som vil vises som et banner øverst i påmeldingsskjemaet. Eksempeltekst &quot;Dette kurset er kun egnet for ergoterapauter i kommunen&quot;. Banneret vil ikke vises om dette feltet er tomt.</inlineHelpText>
     <label>Velg målgruppe</label>
+    <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>MultiselectPicklist</type>
-    <valueSet>
-        <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>1.linjetjeneste i bydel og kommune</fullName>
-                <default>false</default>
-                <label>1.linjetjeneste i bydel og kommune</label>
-            </value>
-            <value>
-                <fullName>Ergoterapeuter</fullName>
-                <default>false</default>
-                <label>Ergoterapeuter</label>
-            </value>
-            <value>
-                <fullName>Tekniker</fullName>
-                <default>false</default>
-                <label>Tekniker</label>
-            </value>
-        </valueSetDefinition>
-    </valueSet>
-    <visibleLines>4</visibleLines>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>
