@@ -114,7 +114,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
-                this.showGroupTargetAlert = !!this.targetGroup;
                 if (registrationDeadline > dateNow && this.canceled === false) {
                     this.showForm = true;
                 } else {
@@ -161,47 +160,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             });
         }
         return params;
-    }
-
-    get targetGroupAlertText() {
-        if (!this.targetGroup) {
-            return '';
-        }
-
-        this.showGroupTargetAlert = true;
-        const selected = this.targetGroup
-            .split(';')
-            .map(value => value.trim())
-            .filter(value => value.length > 0);
-
-        const multiPicklistGroupList = [
-            '1.linjetjeneste i bydel og kommune',
-            'Ergoterapeuter',
-            'Tekniker'
-        ];
-
-        const matchedGroups = selected
-            .filter(val =>
-                multiPicklistGroupList.some(valid => val.toLowerCase() === valid.toLowerCase())
-            )
-            .map(val => val.toLowerCase());
-
-        if (matchedGroups.length === 0) {
-            return '';
-        }
-
-        let targetGroupTextList = '';
-        if (matchedGroups.length === 1) {
-            targetGroupTextList = matchedGroups[0];
-        } else if (matchedGroups.length === 2) {
-            targetGroupTextList = `${matchedGroups[0]} og ${matchedGroups[1]}`;
-        } else {
-            targetGroupTextList =
-                matchedGroups.slice(0, -1).join(', ') +
-                ' og ' +
-                matchedGroups[matchedGroups.length - 1];
-        }
-        return `Dette kurset er beregnet for ${targetGroupTextList}.`;
     }
 
     handleChange(event) {

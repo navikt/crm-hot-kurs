@@ -108,18 +108,16 @@
                             <!--============================REGISTRATION FORM=========================================-->
                             <form if:true={showForm}>
                                 <!-- Alert banner -->
-                                 <template if:true={showGroupTargetAlert}>
-                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                         <img
-                                         class="navno-dekorator alertstripe__ikon"
-                                         src={warningicon}
-                                         alt="advarsel-ikon"
-                                         />
-                                         <p class="typo-normal">
-                                             {targetGroupAlertText}
-                                            </p>
-                                        </div>
-                                        <br />
+                                <template if:true={targetGroup}>
+                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                        <img
+                                            class="navno-dekorator alertstripe__ikon"
+                                            src={warningicon}
+                                            alt="advarsel-ikon"
+                                        />
+                                        <p class="typo-normal">{targetGroup}</p>
+                                    </div>
+                                    <br />
                                 </template>
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
@@ -358,7 +356,7 @@
                                     </template>
                                 </div>
 
-                                  <div class="navno-dekorator alertstripe alertstripe--info">
+                                <div class="navno-dekorator alertstripe alertstripe--info">
                                     <img
                                         class="navno-dekorator alertstripe__ikon"
                                         src={informationicon}
