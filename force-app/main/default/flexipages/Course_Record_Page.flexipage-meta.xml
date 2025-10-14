@@ -84,7 +84,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.hot_targetGroup__c</fieldItem>
+                <fieldItem>Record.TargetGroup__c</fieldItem>
                 <identifier>Recordhot_targetGroup_cField</identifier>
             </fieldInstance>
         </itemInstances>
