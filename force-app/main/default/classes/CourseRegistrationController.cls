@@ -138,7 +138,8 @@ public without sharing class CourseRegistrationController {
                 Theme__c,
                 ShowTypeOfAttendance__c,
                 ShowAdditionalInformation__c,
-                ShowAddMultipleParticipants__c
+                ShowAddMultipleParticipants__c,
+                TargetGroup__c
             FROM Course__c
             WHERE Id = :courseId
         ];
