@@ -109,7 +109,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
-                this.targetGroup = result.hot_targetGroup__c || '';
+                this.targetGroup = result.TargetGroup__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;

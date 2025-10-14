@@ -139,7 +139,7 @@ public without sharing class CourseRegistrationController {
                 ShowTypeOfAttendance__c,
                 ShowAdditionalInformation__c,
                 ShowAddMultipleParticipants__c,
-                hot_targetGroup__c
+                TargetGroup__c
             FROM Course__c
             WHERE Id = :courseId
         ];
