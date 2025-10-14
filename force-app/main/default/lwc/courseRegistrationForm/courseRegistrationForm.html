@@ -90,6 +90,18 @@
 
                             <!--============================REGISTRATION FORM=========================================-->
                             <form if:true={showForm}>
+                                <!-- Alert banner -->
+                                <template if:true={targetGroup}>
+                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                        <img
+                                            class="navno-dekorator alertstripe__ikon"
+                                            src={warningicon}
+                                            alt="advarsel-ikon"
+                                        />
+                                        <p class="typo-normal">{targetGroup}</p>
+                                    </div>
+                                    <br />
+                                </template>
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
@@ -264,6 +276,7 @@
                                     </p>
                                 </div>
                                 <br />
+
                                 <div class="subscribeContainer" lwc:if={showEmailSubscribeContainer}>
                                     <p class="typo-element">Abonner på kurs</p>
                                     <c-checkbox oncheckboxclick={handleCheckboxClick} label={subscribeEmailText}
