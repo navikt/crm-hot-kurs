@@ -35,7 +35,7 @@
             "MaxNumberOfParticipants__c": 8,
             "Active__c": true,
             "Type__c": "Konferanse",
-            "Region__c": "Vest-Viken",
+            "Region__c": "Oslo",
             "Theme__c": "Hjelpemidler og tilrettelegging"
         },
         {
@@ -54,7 +54,7 @@
             "MaxNumberOfParticipants__c": 37,
             "Active__c": false,
             "Type__c": "Nettverks- og erfaringssamling",
-            "Region__c": "Vestfold og Telemark",
+            "Region__c": "Vestfold",
             "Theme__c": "Annet"
         },
         {
@@ -92,7 +92,7 @@
             "MaxNumberOfParticipants__c": 54,
             "Active__c": false,
             "Type__c": "E-læring",
-            "Region__c": "Troms og Finnmark",
+            "Region__c": "Troms",
             "Theme__c": "Inkluderende arbeidsliv (IA)"
         },
         {
@@ -111,7 +111,7 @@
             "MaxNumberOfParticipants__c": 59,
             "Active__c": true,
             "Type__c": "Informasjonsmøte",
-            "Region__c": "Vest-Viken",
+            "Region__c": "Østfold",
             "Theme__c": "Inkluderende arbeidsliv (IA)"
         },
         {
@@ -149,7 +149,7 @@
             "MaxNumberOfParticipants__c": 26,
             "Active__c": false,
             "Type__c": "E-læring",
-            "Region__c": "Troms og Finnmark",
+            "Region__c": "Finnmark",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
@@ -206,7 +206,7 @@
             "MaxNumberOfParticipants__c": 21,
             "Active__c": false,
             "Type__c": "Webinar",
-            "Region__c": "Vestfold og Telemark",
+            "Region__c": "Telemark",
             "Theme__c": "Inkluderende arbeidsliv (IA)"
         },
         {
@@ -339,7 +339,7 @@
             "MaxNumberOfParticipants__c": 73,
             "Active__c": true,
             "Type__c": "Konferanse",
-            "Region__c": "Vestfold og Telemark",
+            "Region__c": "Vestfold",
             "Theme__c": "Inkluderende arbeidsliv (IA)"
         },
         {
@@ -396,7 +396,7 @@
             "MaxNumberOfParticipants__c": 71,
             "Active__c": true,
             "Type__c": "E-læring",
-            "Region__c": "Troms og Finnmark",
+            "Region__c": "Finnmark",
             "Theme__c": "Hjelpemidler og tilrettelegging"
         },
         {
@@ -434,7 +434,7 @@
             "MaxNumberOfParticipants__c": 69,
             "Active__c": false,
             "Type__c": "Konferanse",
-            "Region__c": "Troms og Finnmark",
+            "Region__c": "Troms",
             "Theme__c": "Annet"
         },
         {
@@ -453,7 +453,7 @@
             "MaxNumberOfParticipants__c": 23,
             "Active__c": false,
             "Type__c": "Kurs",
-            "Region__c": "Øst-Viken",
+            "Region__c": "Oslo",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
@@ -491,7 +491,7 @@
             "MaxNumberOfParticipants__c": 45,
             "Active__c": true,
             "Type__c": "Informasjonsmøte",
-            "Region__c": "Vestfold og Telemark",
+            "Region__c": "Telemark",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
@@ -510,7 +510,7 @@
             "MaxNumberOfParticipants__c": 79,
             "Active__c": true,
             "Type__c": "E-læring",
-            "Region__c": "Øst-Viken",
+            "Region__c": "Østfold",
             "Theme__c": "Hjelpemidler og tilrettelegging"
         },
         {
@@ -548,7 +548,7 @@
             "MaxNumberOfParticipants__c": 73,
             "Active__c": true,
             "Type__c": "Konferanse",
-            "Region__c": "Vestfold og Telemark",
+            "Region__c": "Vestfold",
             "Theme__c": "Inkluderende arbeidsliv (IA)"
         },
         {
@@ -567,7 +567,7 @@
             "MaxNumberOfParticipants__c": 55,
             "Active__c": false,
             "Type__c": "Informasjonsmøte",
-            "Region__c": "Vest-Viken",
+            "Region__c": "Nordland",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
@@ -586,7 +586,7 @@
             "MaxNumberOfParticipants__c": 63,
             "Active__c": false,
             "Type__c": "Nettverks- og erfaringssamling",
-            "Region__c": "Vest-Viken",
+            "Region__c": "Vestland",
             "Theme__c": "Annet"
         },
         {
@@ -738,7 +738,7 @@
             "MaxNumberOfParticipants__c": 69,
             "Active__c": true,
             "Type__c": "Webinar",
-            "Region__c": "Vest-Viken",
+            "Region__c": "Vestland",
             "Theme__c": "Hjelpemidler og tilrettelegging"
         },
         {
@@ -776,7 +776,7 @@
             "MaxNumberOfParticipants__c": 55,
             "Active__c": false,
             "Type__c": "Nettverks- og erfaringssamling",
-            "Region__c": "Øst-Viken",
+            "Region__c": "Oslo",
             "Theme__c": "Annet"
         },
         {
@@ -814,7 +814,7 @@
             "MaxNumberOfParticipants__c": 24,
             "Active__c": false,
             "Type__c": "Konferanse",
-            "Region__c": "Øst-Viken",
+            "Region__c": "Oslo",
             "Theme__c": "Hjelpemidler og tilrettelegging"
         },
         {
@@ -852,7 +852,7 @@
             "MaxNumberOfParticipants__c": 67,
             "Active__c": true,
             "Type__c": "Nettverks- og erfaringssamling",
-            "Region__c": "Øst-Viken",
+            "Region__c": "Trøndelag",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
@@ -890,7 +890,7 @@
             "MaxNumberOfParticipants__c": 74,
             "Active__c": true,
             "Type__c": "Informasjonsmøte",
-            "Region__c": "Troms og Finnmark",
+            "Region__c": "Finnmark",
             "Theme__c": "Arbeidssøkeraktivitet"
         },
         {
