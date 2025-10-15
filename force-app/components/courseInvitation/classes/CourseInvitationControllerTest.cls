@@ -12,7 +12,7 @@ private without sharing class CourseInvitationControllerTest {
             Active__c = true,
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
@@ -50,7 +50,7 @@ private without sharing class CourseInvitationControllerTest {
             Active__c = true,
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
@@ -100,7 +100,7 @@ private without sharing class CourseInvitationControllerTest {
             Active__c = true,
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
