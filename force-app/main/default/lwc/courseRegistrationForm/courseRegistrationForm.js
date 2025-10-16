@@ -51,7 +51,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track county = false;
     @track companyName = false;
     @track role = false;
-    organizationNumber = '';
 
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
@@ -113,7 +112,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
                 this.targetGroup = result.TargetGroup__c || '';
-                this.organizationNumber = result.Organization_Number__c || '';
+                this.organization = result.Organization_Number__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
@@ -144,6 +143,36 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 }
             }
         });
+    }
+
+    organizationNumberSearch;
+    organization = '';
+    organizationName = 'Feltet fylles automatisk';
+
+    handleOrganizationNumberInput(event) {
+        this.organizationNumberSearch = event.target.value;
+        if (this.organizationNumberSearch.length == 9) {
+            this.organizationName = 'Henter organisasjon...';
+            try {
+                getOrganizationInfo({
+                    organizationNumber: this.organizationNumberSearch
+                }).then((result) => {
+                    if (result.length == 1) {
+                        this.organizationName = result[0].Name;
+                        this.theRecord.organization = result[0].Id;
+                    } else {
+                        this.organizationName = 'Kunne ikke finne organisasjon';
+                        this.theRecord.organization = null;
+                    }
+                });
+            } catch (error) {
+                this.organizationName = error;
+                this.theRecord.organization = null;
+            }
+        } else {
+            this.organizationName = 'Feltet fylles automatisk';
+            this.theRecord.organization = null;
+        }
     }
 
     shouldShowEmailSubscribe(categoryField) {
