@@ -59,7 +59,7 @@ public without sharing class CourseRegistrationController {
                 TypeOfAttendance__c = model.typeOfAttendance,
                 NumberOfParticipants__c = num,
                 Organisasjonsnavn__c = model.organizationName,
-                Organization_Number__c = model.organizationNumber,
+                OrganizationNumber__c = model.organizationNumber,
                 Course__c = courseId
             );
 

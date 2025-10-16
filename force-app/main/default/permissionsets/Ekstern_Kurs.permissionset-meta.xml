@@ -118,7 +118,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CourseRegistration__c.Organization_Number__c</field>
+        <field>CourseRegistration__c.OrganizationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

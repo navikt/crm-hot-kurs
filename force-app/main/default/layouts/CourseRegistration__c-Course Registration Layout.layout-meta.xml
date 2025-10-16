@@ -67,7 +67,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Organization_Number__c</field>
+                <field>OrganizationNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
