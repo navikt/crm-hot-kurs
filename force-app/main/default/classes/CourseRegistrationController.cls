@@ -58,6 +58,7 @@ public without sharing class CourseRegistrationController {
                 AdditionalInformation__c = model.additionalInformation,
                 TypeOfAttendance__c = model.typeOfAttendance,
                 NumberOfParticipants__c = num,
+                Organization_Number__c = model.organizationNumber,
                 Course__c = courseId
             );
 
@@ -176,5 +177,15 @@ public without sharing class CourseRegistrationController {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getOrganizationInfo(String organizationNumber) {
+        List<Account> account = [
+            SELECT Id, Name, INT_OrganizationNumber__c
+            FROM Account
+            WHERE INT_OrganizationNumber__c = :organizationNumber
+        ];
+        return account;
     }
 }

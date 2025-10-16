@@ -2,6 +2,7 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
+import getOrganizationInfo from '@salesforce/apex/CourseRegistrationController.getOrganizationInfo';
 import icons from '@salesforce/resourceUrl/icons';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
@@ -50,9 +51,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track county = false;
     @track companyName = false;
     @track role = false;
+    organizationNumber = '';
 
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
+
 
     @track subCategoryNames = [
         'Bevegelse',
@@ -110,6 +113,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
                 this.targetGroup = result.TargetGroup__c || '';
+                this.organizationNumber = result.Organization_Number__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;

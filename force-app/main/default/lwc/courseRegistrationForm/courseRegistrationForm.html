@@ -93,11 +93,8 @@
                                 <!-- Alert banner -->
                                 <template if:true={targetGroup}>
                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                        <img
-                                            class="navno-dekorator alertstripe__ikon"
-                                            src={warningicon}
-                                            alt="advarsel-ikon"
-                                        />
+                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon}
+                                            alt="advarsel-ikon" />
                                         <p class="typo-normal">{targetGroup}</p>
                                     </div>
                                     <br />
@@ -183,6 +180,24 @@
                                         <input type="text" class="skjemaelement__input input--fullbredde"
                                             name="companyName" id="companyName" onchange={handleChange} required />
                                     </div>
+                                    <!-- Arbeidsgiver org number and name Start -->
+                                    <template lwc:if={companyName}>
+                                        <div class="felt">
+                                            <label class="skjemaelement__label" for="orgNumber">
+                                                <p class="typo-element">Organisasjonsnummer</p>
+                                            </label>
+                                            <input type="text" class="skjemaelement__input input--fullbredde"
+                                                name="orgNumber" onchange={handleChange} />
+                                        </div>
+                                        <div class="felt">
+                                            <label class="skjemaelement__label" for="orgName">
+                                                <p class="typo-element">Arbeidsgiver navn</p>
+                                            </label>
+                                            <input type="text" class="skjemaelement__input input--fullbredde"
+                                                name="orgName" placeholder="Feltet fylles automatisk." readonly />
+                                        </div>
+                                    </template>
+                                    <!-- Arbeidsgiver navn END -->
                                     <div if:true={role} class="felt">
                                         <label class="skjemaelement__label" for="role">
                                             <p class="typo-element">Rolle</p>
@@ -240,15 +255,6 @@
                                             name="additionalInformation" id="additionalInformation"
                                             onchange={handleChange} />
                                     </div>
-                                    <!-- Arbeidsgiver navn Start -->
-                                    <div if:true={companyName} class="felt">
-                                        <label class="skjemaelement__label" for="companyName">
-                                            <p class="typo-element">Arbeidsgiver navn</p>
-                                        </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="companyName" placeholder="Feltet fylles automatisk." readonly />
-                                    </div>
-                                    <!-- Arbeidsgiver navn END -->
                                     <template if:true={addMultipleParticipants}>
                                         <div class="felt">
                                             <c-checkbox oncheckboxclick={toggleMultipleParticipants}
