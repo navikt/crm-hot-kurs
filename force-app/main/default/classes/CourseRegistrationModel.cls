@@ -17,6 +17,7 @@ public with sharing class CourseRegistrationModel {
     public Integer numberOfParticipants;
     public String subscribeEmail;
     public String typeOfAttendance;
+    public String organizationName;
     public String organizationNumber;
 
     public static CourseRegistrationModel parse(String json) {

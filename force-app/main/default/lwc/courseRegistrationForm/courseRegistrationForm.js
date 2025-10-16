@@ -112,7 +112,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
                 this.targetGroup = result.TargetGroup__c || '';
-                this.organization = result.Organization_Number__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
@@ -145,8 +144,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         });
     }
 
+    // organization = '';
     organizationNumberSearch;
-    organization = '';
     organizationName = 'Feltet fylles automatisk';
 
     handleOrganizationNumberInput(event) {
@@ -159,19 +158,23 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 }).then((result) => {
                     if (result.length == 1) {
                         this.organizationName = result[0].Name;
-                        this.theRecord.organization = result[0].Id;
+                        this.theRecord.organizationName = result[0].Name;
+                        this.theRecord.organizationNumber = this.organizationNumberSearch;
                     } else {
                         this.organizationName = 'Kunne ikke finne organisasjon';
-                        this.theRecord.organization = null;
+                        this.theRecord.organizationName = null;
+                        this.theRecord.organizationNumber = null;
                     }
                 });
             } catch (error) {
                 this.organizationName = error;
-                this.theRecord.organization = null;
+                this.theRecord.organizationName = null;
+                this.theRecord.organizationNumber = null;
             }
         } else {
             this.organizationName = 'Feltet fylles automatisk';
-            this.theRecord.organization = null;
+            this.theRecord.organizationName = null;
+            this.theRecord.organizationNumber = null;
         }
     }
 
