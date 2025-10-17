@@ -222,6 +222,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CourseRegistration__c.Organisasjonsnavn__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CourseRegistration__c.OrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CourseRegistration__c.Participant_email__c</field>
         <readable>true</readable>
@@ -488,6 +498,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.PublishWithoutRegistrationForm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.Region2__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -549,11 +564,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.ShowInvoiceReference__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.ShowOrganizationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
