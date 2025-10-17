@@ -3,6 +3,7 @@
     <fullName>PublishWithoutRegistrationForm__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
+    <inlineHelpText>Velg dette om det ikke skal være noe påmeldingsskjema til dette kurset</inlineHelpText>
     <label>Publish Without Registration Form</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
