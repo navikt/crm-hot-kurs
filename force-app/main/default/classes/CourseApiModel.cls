@@ -13,6 +13,7 @@ public class CourseApiModel {
     public String FrontPageDescription;
     public Integer ShowInActivityList;
     public Configurable_custom configurable_custom;
+    public Boolean PublishWithoutRegistrationForm;
 
     public class Configurable_custom {
         public String Fylke;
