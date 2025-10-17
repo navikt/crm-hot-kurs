@@ -257,6 +257,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
 
+            // Validate firstname, lastname and phone
             if (['firstName', 'lastName', 'phone'].includes(field)) {
                 if (!value || value.length < 2) {
                     this.showError = true;
