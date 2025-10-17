@@ -248,11 +248,16 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             typeOfAttendance: 'Deltakelse',
             organizationNumber: 'Organisasjonsnummer'
         };
+
         for (const field of requiredFields) {
-            if (this[field] && !this.theRecord[field]) {
-                this.showError = true;
-                this.errorMessage = `Vennligst fyll ut alle feltene.`;
-                return;
+            const value = this.theRecord[field] ? this.theRecord[field].trim() : '';
+
+            if (['firstName', 'lastName', 'phone'].includes(field)) {
+                if (!value || value.length < 2) {
+                    this.showError = true;
+                    this.errorMessage = `Vennligst fyll ut ${fieldLabels[field]}.`;
+                    return;
+                }
             }
 
             // Validate field lengths (less than 255 characters)
@@ -300,6 +305,26 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             ) {
                 this.showError = true;
                 this.errorMessage = 'Vennligst oppgi et gyldig organisasjonsnummer (9 sifre).';
+                return;
+            }
+        }
+
+        // Validate company field
+        if (this.companyName) {
+            const value = this.theRecord.companyName ? this.theRecord.companyName.trim() : '';
+            if (!value || value.length < 2) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi firmanavn.';
+                return;
+            }
+        }
+
+        // Validate role field 
+        if(this.role) {
+            const value = this.theRecord.role ? this.theRecord.role.trim() : '';
+            if (!value || value.length < 2) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi rolle.';
                 return;
             }
         }
