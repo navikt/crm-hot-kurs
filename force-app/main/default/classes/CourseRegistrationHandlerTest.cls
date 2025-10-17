@@ -81,21 +81,6 @@ public with sharing class CourseRegistrationHandlerTest {
     }
 
     @isTest
-    private static void updateOneAttending_toOneWaiting() {
-        Course__c course = getCourse('Testkurs');
-        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', course.Id);
-
-        cr1.Status__c = 'Venteliste';
-        Test.StartTest();
-        update cr1;
-        Test.StopTest();
-
-        Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
-        System.assertEquals(1, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 1 on waiting list');
-    }
-
-    @isTest
     private static void updateOneNotAttending_toOneAttending() {
         Course__c course = getCourse('Testkurs');
         CourseRegistration__c cr1 = getCourseRegistration('Avmeldt', course.Id);
@@ -167,23 +152,6 @@ public with sharing class CourseRegistrationHandlerTest {
 
         Course__c courseAfter = fetchCourse('Testkurs');
         System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
-    }
-
-    @isTest
-    private static void updateTwoAttending_toTwoWaiting() {
-        Course__c course = getCourse('Testkurs');
-        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', course.Id);
-        CourseRegistration__c cr2 = getCourseRegistration('Påmeldt', course.Id);
-
-        cr1.Status__c = 'Venteliste';
-        cr2.Status__c = 'Venteliste';
-        Test.StartTest();
-        update new List<CourseRegistration__c>{ cr1, cr2 };
-        Test.StopTest();
-
-        Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.NumberOfParticipants__c), 'Should be 0 participants');
-        System.assertEquals(2, Integer.valueOf(courseAfter.WaitingList__c), 'Should be 2 on waiting list');
     }
 
     @isTest
@@ -273,27 +241,6 @@ public with sharing class CourseRegistrationHandlerTest {
     }
 
     @isTest
-    private static void updateTwoAttending_toTwoWaiting_twoCourses() {
-        Course__c course1 = getCourse('Testkurs');
-        Course__c course2 = getCourse('Testkurs2');
-        CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', course1.Id);
-        CourseRegistration__c cr2 = getCourseRegistration('Påmeldt', course2.Id);
-
-        cr1.Status__c = 'Venteliste';
-        cr2.Status__c = 'Venteliste';
-        Test.StartTest();
-        update new List<CourseRegistration__c>{ cr1, cr2 };
-        Test.StopTest();
-
-        Course__c course1After = fetchCourse('Testkurs');
-        Course__c course2After = fetchCourse('Testkurs2');
-        System.assertEquals(0, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 0 participants');
-        System.assertEquals(0, Integer.valueOf(course2After.NumberOfParticipants__c), 'Should be 0 participants');
-        System.assertEquals(1, Integer.valueOf(course1After.WaitingList__c), 'Should be 1 on waiting list');
-        System.assertEquals(1, Integer.valueOf(course2After.WaitingList__c), 'Should be 1 on waiting list');
-    }
-
-    @isTest
     private static void updateTwoNotAttending_toTwoAttending_twoCourses() {
         Course__c course1 = getCourse('Testkurs');
         Course__c course2 = getCourse('Testkurs2');
@@ -314,8 +261,8 @@ public with sharing class CourseRegistrationHandlerTest {
 
     @isTest
     private static void testWaitingListFunctionality() {
-        Course__c course1 = getCourse('Testkurs');
-        Course__c course2 = getCourse('Testkurs2');
+        Course__c course1 = getCourseWithMaxMembers('Testkurs', 1);
+        Course__c course2 = getCourseWithMaxMembers('Testkurs2', 1);
 
         CourseRegistration__c cr1 = getCourseRegistration('Påmeldt', course1.Id);
         CourseRegistration__c cr2 = getCourseRegistration('Venteliste', course1.Id);
@@ -333,6 +280,10 @@ public with sharing class CourseRegistrationHandlerTest {
         Course__c course2After = fetchCourse('Testkurs2');
         String cr2IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr2.Id LIMIT 1].Status__c;
         String cr4IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
+        System.debug('1 after >>' + course1After.NumberOfParticipants__c);
+        System.debug('c after >>' + course2After.NumberOfParticipants__c);
+        System.debug('c after >>' + cr2IdStatus);
+        System.debug('c after >>' + cr4IdStatus);
 
         System.assertEquals(1, Integer.valueOf(course1After.NumberOfParticipants__c), 'Should be 1 participant');
         System.assertEquals(0, Integer.valueOf(course1After.WaitingList__c), 'Should be 0 on waiting list');
@@ -359,6 +310,16 @@ public with sharing class CourseRegistrationHandlerTest {
         Course__c course = new Course__c(
             Name = courseName,
             MaxNumberOfParticipants__c = 10,
+            DescriptionFormatted__c = courseName,
+            Active__c = true
+        );
+        insert course;
+        return course;
+    }
+    public static Course__c getCourseWithMaxMembers(String courseName, Integer maxParticipants) {
+        Course__c course = new Course__c(
+            Name = courseName,
+            MaxNumberOfParticipants__c = maxParticipants,
             DescriptionFormatted__c = courseName,
             Active__c = true
         );

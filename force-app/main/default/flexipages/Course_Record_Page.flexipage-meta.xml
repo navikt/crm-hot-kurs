@@ -78,6 +78,16 @@
                 <identifier>RecordMaxNumberOfParticipants__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TargetGroup__c</fieldItem>
+                <identifier>Recordhot_targetGroup_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-9aa53d00-a66e-4b36-a1e3-c0bc8f6a812f</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -577,6 +587,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ShowWorkplace__c</fieldItem>
                 <identifier>RecordShowWorkplace__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ShowAddMultipleParticipants__c</fieldItem>
+                <identifier>RecordShowAddMultipleParticipants_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ShowTypeOfAttendance__c</fieldItem>
+                <identifier>RecordShow_type_of_participation_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>

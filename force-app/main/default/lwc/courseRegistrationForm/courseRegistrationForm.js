@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
@@ -8,7 +8,10 @@ import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     @track courseId;
 
-    @track theRecord = {};
+    @track theRecord = {
+        subscribeEmail: false
+    };
+
     @track output;
 
     @track showForm = false;
@@ -28,6 +31,13 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track invoiceAdress = false;
     @track invoiceReference = false;
     @track workplace = false;
+    @track addMultipleParticipants = false;
+    @track showNumberInput = false;
+    @track maxNumberOfParticipants;
+    @track numberOfParticipants;
+    @track typeOfAttendance = false;
+    targetGroup = '';
+    showGroupTargetAlert = false;
 
     @track courseIsFullWarning = false;
     @track numberOnWaitinglist;
@@ -41,6 +51,21 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track companyName = false;
     @track role = false;
 
+    @track subscribeEmailText;
+    @track showEmailSubscribeContainer = false;
+
+    @track subCategoryNames = [
+        'Bevegelse',
+        'Bolig',
+        'Hørsel',
+        'Kognisjon',
+        'Kommunikasjon (ASK)',
+        'Syn',
+        'Service og reparasjon',
+        'Tilrettelegging i arbeid',
+        'Varsling'
+    ];
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
@@ -48,6 +73,19 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
+
+    generateSubscribeEmailText(theme, category) {
+        const preText = 'Jeg ønsker å få e-post når Nav legger ut nye kurs om lignende tema: ';
+        if (theme && !category) {
+            if (theme !== 'Annet') {
+                return `${preText}${theme}.`;
+            }
+        } else if (theme && category) {
+            const formattedCategory = category.replace(/;/g, ', ');
+            return `${preText} ${formattedCategory}.`;
+        }
+        return '';
+    }
 
     connectedCallback() {
         this.parameters = this.getQueryParameters();
@@ -65,14 +103,18 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.invoiceAdress = result.ShowInvoiceAdress__c;
                 this.invoiceReference = result.ShowInvoiceReference__c;
                 this.workplace = result.ShowWorkplace__c;
+                this.addMultipleParticipants = result.ShowAddMultipleParticipants__c;
                 this.additionalInformation = result.ShowAdditionalInformation__c;
-
+                this.subscribeEmailText = this.generateSubscribeEmailText(result.Theme__c, result.Sub_category__c);
+                this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
+                this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
+                this.targetGroup = result.TargetGroup__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
-                if (registrationDeadline > dateNow && this.canceled == false) {
+                if (registrationDeadline > dateNow && this.canceled === false) {
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
@@ -84,26 +126,33 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     }
                 }
 
-                let maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
-                let numberOfParticipants = result.NumberOfParticipants__c;
+                this.maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
+                this.numberOfParticipants = result.NumberOfParticipants__c;
                 this.numberOnWaitinglist = result.Waitinglist__c + 1;
 
-                if (numberOfParticipants >= maxNumberOfParticipants) {
+                if (this.numberOfParticipants >= this.maxNumberOfParticipants) {
                     this.courseIsFullWarning = true;
                 }
 
-                if (this.code != undefined) {
+                if (this.code !== undefined) {
                     this.showForm = false;
                     this.showValidationInput = true;
                 }
-            } else {
             }
         });
     }
 
+    shouldShowEmailSubscribe(categoryField) {
+        /* Bare vise mulighet for å abbonere på subcategories foreløpig */
+        if (!categoryField) return false;
+
+        const categories = categoryField.split(';').map((s) => s.trim());
+        return categories.some((cat) => this.subCategoryNames.includes(cat));
+    }
+
     getQueryParameters() {
         var params = {};
-        var search = location.search.substring(1);
+        var search = window.location.search.substring(1);
 
         if (search) {
             params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
@@ -116,6 +165,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     handleChange(event) {
         this.theRecord[event.target.name] = event.target.value;
         this.showError = false;
+    }
+    handleCheckboxClick(event) {
+        this.theRecord[event.target.name] = event.detail;
+        console.log('name ' + event.target.name);
+        console.log('value ' + event.detail);
     }
 
     handleChange2(event) {
@@ -135,7 +189,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             'role',
             'invoiceAdress',
             'invoiceReference',
-            'workplace'
+            'workplace',
+            'typeOfAttendance'
         ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
 
@@ -151,7 +206,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             invoiceReference: 'Faktura referanse',
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
-            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)'
+            additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
+            typeOfAttendance: 'Deltakelse'
         };
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {
@@ -167,6 +223,27 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
         }
+        if (this.showNumberInput) {
+            const n = Number(this.theRecord.numberOfParticipants);
+            if (!n || !Number.isInteger(n) || n < 1) {
+                this.showError = true;
+                this.errorMessage = 'Oppgi et gyldig heltall ≥ 1 for antall deltakere.';
+                return;
+            }
+            const availableSlots = this.maxNumberOfParticipants - this.numberOfParticipants;
+            if (n > availableSlots && !(availableSlots === 0 && n === 1)) {
+                this.showError = true;
+                this.errorMessage =
+                    'Det er ikke nok ledige plasser på kurset for ' +
+                    n +
+                    ' deltaker(e). Det er for øyeblikket ' +
+                    availableSlots +
+                    ' ledige plasser. ' +
+                    'Vennligst reduser antall deltakere for å sikre en plass. For påmelding til venteliste, må kurset først være fullt og kun én deltaker kan meldes på om gangen til ventelisten.';
+                return;
+            }
+        }
+
         // Validate field lengths (less than 255 characters)
         for (const field of nonRequiredFields) {
             if (this.theRecord[field] && this.theRecord[field].length > 255) {
@@ -184,7 +261,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         }
         // Validate email
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (this.theRecord.email && !emailRegex.test(this.theRecord.email)) {
+        if (!this.theRecord.email || !emailRegex.test(this.theRecord.email)) {
             this.showError = true;
             this.errorMessage = 'Vennligst oppgi en gyldig e-postadresse.';
             return;
@@ -195,12 +272,36 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         createRegistration({
             fields: output,
             courseId: this.courseId
-        }).then((result) => {
-            this.showForm = false;
-            this.showConfirmation = true;
-            this.message = result;
-        });
+        })
+            .then((result) => {
+                if (result && result.success === false) {
+                    this.showForm = true;
+                    this.showError = true;
+                    this.errorMessage = result.message;
+                    this.showConfirmation = false;
+                } else if (result && result.success === true) {
+                    this.showForm = false;
+                    this.showConfirmation = true;
+                    this.message = result.message;
+                    this.showError = false;
+                } else {
+                    this.showForm = true;
+                    this.showError = true;
+                    this.errorMessage = 'Uventet svar fra server. Prøv igjen senere.';
+                    this.showConfirmation = false;
+                }
+            })
+            .catch((error) => {
+                this.showForm = true;
+                this.showError = true;
+                this.errorMessage = 'Teknisk feil ved innsending. Prøv igjen senere.';
+                this.showConfirmation = false;
+            });
     }
+
+    toggleMultipleParticipants = (event) => {
+        this.showNumberInput = event.detail;
+    };
 
     validateCode(event) {
         event.preventDefault();

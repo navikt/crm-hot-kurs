@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Type deltakelse</label>
+    <name>TypeOfAttendance__c</name>
+    <picklistValues>
+        <masterLabel>Digital</masterLabel>
+        <translation>Digitalt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical</masterLabel>
+        <translation>Fysisk</translation>
+    </picklistValues>
+</CustomFieldTranslation>

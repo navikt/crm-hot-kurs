@@ -107,6 +107,18 @@
 
                             <!--============================REGISTRATION FORM=========================================-->
                             <form if:true={showForm}>
+                                <!-- Alert banner -->
+                                <template if:true={targetGroup}>
+                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
+                                        <img
+                                            class="navno-dekorator alertstripe__ikon"
+                                            src={warningicon}
+                                            alt="advarsel-ikon"
+                                        />
+                                        <p class="typo-normal">{targetGroup}</p>
+                                    </div>
+                                    <br />
+                                </template>
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
@@ -199,16 +211,20 @@
                                                 <!--<img src={chevrondown} alt="pil ned ikon" /> -->
                                                 <option value></option>
                                                 <option value="Agder">Agder</option>
+                                                <option value="Akershus">Akershus</option>
+                                                <option value="Buskerud">Buskerud</option>
+                                                <option value="Finnmark">Finnmark</option>
                                                 <option value="Innlandet">Innlandet</option>
                                                 <option value="Møre og Romsdal">Møre og Romsdal</option>
                                                 <option value="Nordland">Nordland</option>
                                                 <option value="Oslo">Oslo</option>
                                                 <option value="Rogaland">Rogaland</option>
-                                                <option value="Troms og Finnmark">Troms og Finnmark</option>
-                                                <option value="Trondelag">Trøndelag</option>
-                                                <option value="Vestfold og Telemark">Vestfold og Telemark</option>
+                                                <option value="Telemark">Telemark</option>
+                                                <option value="Troms">Troms</option>
+                                                <option value="Trøndelag">Trøndelag</option>
+                                                <option value="Vestfold">Vestfold</option>
                                                 <option value="Vestland">Vestland</option>
-                                                <option value="Viken">Viken</option>
+                                                <option value="Østfold">Østfold</option>
                                             </select>
                                         </div>
                                     </div>
@@ -277,6 +293,23 @@
                                             required
                                         />
                                     </div>
+                                    <div if:true={typeOfAttendance} class="felt">
+                                        <label class="skjemaelement__label" for="typeOfAttendance">
+                                            <p class="typo-element">Deltakelse</p>
+                                        </label>
+                                        <div class="selectContainer input--fullbredde">
+                                            <select
+                                                class="skjemaelement__input"
+                                                id="typeOfAttendance"
+                                                name="typeOfAttendance"
+                                                onchange={handleChange}
+                                            >
+                                                <option value></option>
+                                                <option value="Physical">Fysisk</option>
+                                                <option value="Digital">Digitalt</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div if:true={allergies} class="felt">
                                         <label class="skjemaelement__label" for="allergies">
                                             <p class="typo-element">Matallergi</p>
@@ -301,19 +334,62 @@
                                             onchange={handleChange}
                                         />
                                     </div>
+                                    <template if:true={addMultipleParticipants}>
+                                        <div class="felt">
+                                            <c-checkbox
+                                                oncheckboxclick={toggleMultipleParticipants}
+                                                label="Legg til flere deltakere"
+                                                name="multipleParticipants"
+                                            ></c-checkbox>
+                                        </div>
+
+                                        <div class="felt" if:true={showNumberInput}>
+                                            <label class="skjemaelement__label" for="numberOfParticipants">
+                                                <p class="typo-element">Totalt antall deltakere (inkl. deg selv)</p>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value="1"
+                                                id="numberOfParticipants"
+                                                name="numberOfParticipants"
+                                                class="skjemaelement__input input--fullbredde"
+                                                oninput={handleChange}
+                                            />
+                                        </div>
+                                    </template>
                                 </div>
 
-                                <div class="navno-dekorator alertstripe">
+                                <div class="navno-dekorator alertstripe alertstripe--info">
                                     <img
                                         class="navno-dekorator alertstripe__ikon"
                                         src={informationicon}
                                         alt="informasjon-ikon"
                                     />
                                     <p class="typo-normal">
-                                        NAV bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
+                                        Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
                                         Opplysningene blir ikke delt eller brukt til andre formål.
                                     </p>
                                 </div>
+                                <br />
+
+                                <div class="subscribeContainer" lwc:if={showEmailSubscribeContainer}>
+                                    <p class="typo-element">Abonner på kurs</p>
+                                    <c-checkbox
+                                        oncheckboxclick={handleCheckboxClick}
+                                        label={subscribeEmailText}
+                                        name="subscribeEmail"
+                                    ></c-checkbox>
+                                    <br />
+                                    <p class="typo-normal">
+                                        For å aktivere abonneringen må du bekrefte ved å trykke på lenken i e-posten som
+                                        blir sendt til e-postadressen du oppgir innen 2 dager. Dersom du allerede
+                                        abonnerer på kurs, trenger du ikke gjøre noe.<br />
+                                        Alle e-poster inneholder en lenke der du kan endre preferansene dine for hvilke
+                                        typer kategorier du ønsker å bli varslet om.
+                                    </p>
+                                </div>
+                                <br />
                                 <div if:true={showError}>
                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
                                         <img

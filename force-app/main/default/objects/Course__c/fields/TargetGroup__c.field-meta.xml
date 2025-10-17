@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TargetGroup__c</fullName>
+    <description>Conditional banner based on which target group</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Skriv inn din egen tekst her som vil vises som et banner øverst i påmeldingsskjemaet. Eksempeltekst &quot;Dette kurset er kun egnet for ergoterapauter i kommunen&quot;. Banneret vil ikke vises om dette feltet er tomt.</inlineHelpText>
+    <label>Velg målgruppe</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

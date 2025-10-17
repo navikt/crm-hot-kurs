@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -42,6 +43,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ShowAdditionalInformation__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ShowAddMultipleParticipants__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -138,12 +143,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>RegistrationPlaceName__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Region__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -244,7 +243,7 @@
         <fields>NAME</fields>
         <fields>CourseParticipant__c</fields>
         <fields>Status__c</fields>
-        <fields>Attendance__c</fields>
+        <fields>NumberOfParticipants__c</fields>
         <relatedList>CourseRegistration__c.Course__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -253,7 +252,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5t0000038WZh</masterLabel>
+        <masterLabel>00hQI0000089Aeg</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

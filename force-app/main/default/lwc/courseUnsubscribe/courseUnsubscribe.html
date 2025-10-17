@@ -1,19 +1,109 @@
 <template>
-    <div class="center-screen">
-        <div if:true={showButton}>
-            <h2 class="typo-systemtittel">
-                Hei {name}
-                <br />
-                <br />
-                Du er i ferd med å melde deg av kurset: {course}
-            </h2>
-            <br />
-            <button title="Meld av" class="btn-submit" type="submit" onclick={handleSubmit}>
-                Klikk her for å bekrefte
-            </button>
+    <!-- Global loader overlay -->
+    <template if:true={isLoading}>
+        <div class="overlay" aria-busy="true">
+            <lightning-spinner alternative-text="Laster..." size="medium"></lightning-spinner>
         </div>
-        <div if:true={showConfirmation}>
-            <h2 class="typo-systemtittel">Du er nå meldt av kurset</h2>
-        </div>
-    </div>
+    </template>
+
+    <!-- Everything else waits until not loading -->
+    <template if:true={ready}>
+        <!-- If already unsubscribed -->
+        <template lwc:if={isStatusAvmeldt}>
+            <div class="center-screen">
+                <h2 class="typo-systemtittel">
+                    Hei {name}
+                    <br /><br />
+                    Du er allerede meldt av kurset. Meld deg på igjen fra kursoversikten.
+                </h2>
+            </div>
+        </template>
+
+        <!-- Else normal flow -->
+        <template lwc:else>
+            <div class="center-screen">
+                <!-- SINGLE attendee: one confirm button -->
+                <template lwc:if={showSingleControls}>
+                    <h2 class="typo-systemtittel">
+                        Hei {name}
+                        <br /><br />
+                        Du er i ferd med å melde deg av kurset: {course}
+                    </h2>
+                    <p>Er du sikker på at du vil melde deg av?</p>
+
+                    <button
+                        title="Bekreft avmelding"
+                        class="btn-submit"
+                        type="button"
+                        onclick={handleFullUnregister}
+                        disabled={isLoading}
+                    >
+                        Bekreft avmelding
+                    </button>
+                </template>
+
+                <!-- MULTIPLE attendees: two buttons -->
+                <template lwc:if={showMultiControls}>
+                    <h2 class="typo-systemtittel">
+                        Hei {name}
+                        <br /><br />
+                        Du er i ferd med å endre påmeldingen for kurset: {course}
+                    </h2>
+
+                    <p class="help">Det er registrert {numberOfParticipants} påmeldte.</p>
+
+                    <div class="btn-row">
+                        <button
+                            title="Meld av alle"
+                            class="btn-submit"
+                            type="button"
+                            onclick={handleFullUnregister}
+                            disabled={isLoading}
+                        >
+                            Meld av alle
+                        </button>
+
+                        <button
+                            title="Endre antall påmeldte"
+                            class={reduceBtnClass}
+                            type="button"
+                            aria-pressed={reduceMode}
+                            onclick={toggleReduceMode}
+                            disabled={isLoading}
+                        >
+                            {reduceBtnLabel}
+                        </button>
+                    </div>
+
+                    <!-- Only shown when user picked "Endre antall" -->
+                    <template if:true={reduceMode}>
+                        <p class="help">Skriv nytt antall (min 1, maks {maxReduceTo}) og trykk Lagre nytt antall.</p>
+                        <input
+                            type="number"
+                            min="1"
+                            max={maxReduceTo}
+                            step="1"
+                            value={newCount}
+                            oninput={handleCountChange}
+                            class="num-input"
+                        />
+                        <br />
+                        <button
+                            title="Lagre nytt antall"
+                            class="btn-submit"
+                            type="button"
+                            onclick={handlePartialSubmit}
+                            disabled={isLoading}
+                        >
+                            Lagre nytt antall
+                        </button>
+                    </template>
+                </template>
+
+                <div if:true={showConfirmation}>
+                    <h2 class="typo-systemtittel">{hostMessage}</h2>
+                </div>
+            </div>
+        </template>
+    </template>
 </template>

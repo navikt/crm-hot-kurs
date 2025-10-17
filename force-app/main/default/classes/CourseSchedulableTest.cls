@@ -6,7 +6,7 @@ public class CourseSchedulableTest {
     }
     @isTest
     public static void testCourseSchedulable() {
-        String cronExpr = '0 0 0 21 9 ? 2025';
+        String cronExpr = '0 0 0 21 12 ?';
 
         Course__c course1 = CourseRegistrationHandlerTest.getCourse('Testkurs');
         course1.RegistrationToDateTime__c = Datetime.Now().addDays(-85);

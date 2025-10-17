@@ -6,9 +6,10 @@ public without sharing class CourseScheduledDeleteContacts {
     public static void courseScheduledDeleteContacts() {
         List<CourseRegistration__c> courseRegistrationsToClean = fetchCourseRegistrationsToClean();
         Set<Id> contactsToDelete = fetchContactsToDelete(courseRegistrationsToClean);
+        Set<Id> emailMessagesToDelete = fetchEmaiMessagesToDelete(courseRegistrationsToClean);
 
         removePersonalDataFromCr(courseRegistrationsToClean);
-        deleteContacts(contactsToDelete);
+        deleteEmailMessagesAndContacts(emailMessagesToDelete, contactsToDelete);
     }
 
     // ---------------------------------------------------------------------------------------------- //
@@ -42,6 +43,14 @@ public without sharing class CourseScheduledDeleteContacts {
 
         return contactIdsToDelete;
     }
+    public static Set<Id> fetchEmaiMessagesToDelete(List<CourseRegistration__c> courseRegistrations) {
+        Set<Id> emailMessagesId = new Set<Id>();
+        List<EmailMessage> emailMessages = [SELECT Id FROM EmailMessage WHERE RelatedToId IN :courseRegistrations];
+        for (EmailMessage emailMessage : emailMessages) {
+            emailMessagesId.add(emailMessage.Id);
+        }
+        return emailMessagesId;
+    }
 
     public static Set<Id> fetchContactIds(List<CourseRegistration__c> courseRegistrationsToClean) {
         Set<Id> contactsFromRegistrations = new Set<Id>();
@@ -56,19 +65,28 @@ public without sharing class CourseScheduledDeleteContacts {
     // ---------------------------------------------------------------------------------------------- //
 
     @future
-    public static void deleteContacts(Set<Id> contactIdsForDeletion) {
-        List<Contact> contactsForDeletion = [
-            SELECT Id
-            FROM Contact
-            WHERE Id IN :contactIdsForDeletion AND IsPersonAccount = FALSE
-        ];
-
+    public static void deleteEmailMessagesAndContacts(Set<Id> emailMessagesIds, Set<Id> contactIds) {
         try {
-            delete contactsForDeletion;
+            if (!emailMessagesIds.isEmpty()) {
+                List<EmailMessage> emailMessagesForDeletion = [
+                    SELECT Id
+                    FROM EmailMessage
+                    WHERE Id IN :emailMessagesIds
+                ];
+                delete emailMessagesForDeletion;
+            }
+
+            if (!contactIds.isEmpty()) {
+                List<Contact> contactsForDeletion = [
+                    SELECT Id
+                    FROM Contact
+                    WHERE Id IN :contactIds AND IsPersonAccount = FALSE
+                ];
+                delete contactsForDeletion;
+            }
         } catch (Exception e) {
-            LoggerUtility.LogLevel logLevel = LoggerUtility.LogLevel.Error;
-            logger.logMessage(logLevel, '', null, e.getMessage(), null, null, CRM_ApplicationDomain.Domain.POAB);
-            logger.publish();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
         }
     }
 
