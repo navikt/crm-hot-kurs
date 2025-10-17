@@ -59,7 +59,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
 
-
     @track subCategoryNames = [
         'Bevegelse',
         'Bolig',
@@ -252,6 +251,12 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         for (const field of requiredFields) {
             const value = this.theRecord[field] ? this.theRecord[field].trim() : '';
 
+            if (this[field] && !this.theRecord[field]) {
+                this.showError = true;
+                this.errorMessage = `Vennligst fyll ut alle feltene.`;
+                return;
+            }
+
             if (['firstName', 'lastName', 'phone'].includes(field)) {
                 if (!value || value.length < 2) {
                     this.showError = true;
@@ -320,7 +325,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         }
 
         // Validate role field 
-        if(this.role) {
+        if (this.role) {
             const value = this.theRecord.role ? this.theRecord.role.trim() : '';
             if (!value || value.length < 2) {
                 this.showError = true;
