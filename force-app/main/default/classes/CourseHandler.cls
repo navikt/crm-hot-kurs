@@ -45,6 +45,7 @@ global with sharing class CourseHandler {
             wrapper.AvailableSeats = course.AvailableSeats__c;
             wrapper.MaxNumberOfParticipants = course.MaxNumberOfParticipants__c;
             wrapper.NumberOfParticipants = course.NumberOfParticipants__c;
+            wrapper.PublishWithoutRegistrationForm = course.PublishWithoutRegistrationForm__c;
 
             wrapper.configurable_custom = new CourseApiModel.Configurable_custom();
 
