@@ -2,16 +2,6 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
         <editable>true</editable>
-        <field>CourseRegistration__c.Organisasjonsnavn__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CourseRegistration__c.OrganizationNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Course__c.Cancel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -23,6 +13,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.NumberOfParticipants__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.ShowOrganizationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

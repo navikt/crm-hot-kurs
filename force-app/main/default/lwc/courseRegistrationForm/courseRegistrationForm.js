@@ -52,6 +52,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track companyName = false;
     @track role = false;
 
+    organizationNumberSearch;
+    organizationName = 'Feltet fylles automatisk';
+    showOrganizationNumber; 
+
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
 
@@ -111,6 +115,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
+                this.showOrganizationNumber = result.ShowOrganizationNumber__c;
                 this.targetGroup = result.TargetGroup__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
@@ -143,10 +148,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             }
         });
     }
-
-    // organization = '';
-    organizationNumberSearch;
-    organizationName = 'Feltet fylles automatisk';
 
     handleOrganizationNumberInput(event) {
         this.organizationNumberSearch = event.target.value;
