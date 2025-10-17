@@ -568,6 +568,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.ShowOrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.ShowRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
