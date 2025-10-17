@@ -177,4 +177,29 @@ private with sharing class CourseRegistrationControllerTest {
         System.assertEquals(c.RegistrationToDateTime__c, f.RegistrationToDateTime__c);
         System.assertEquals(c.Waitinglist__c, f.Waitinglist__c);
     }
+
+    @IsTest
+    static void getOrganizationInfoTest() {
+        Account acc = new Account();
+        acc.Name = 'The Organization';
+        acc.INT_OrganizationNumber__c = '213456784';
+        insert acc;
+
+        Test.startTest();
+        List<Account> accounts = CourseRegistrationController.getOrganizationInfo('213456784');
+        Test.stopTest();
+        System.assertEquals(1, accounts.size());
+        System.assertEquals('The Organization', accounts[0].Name, 'Account name should match');
+        System.assertEquals('213456784', accounts[0].INT_OrganizationNumber__c, 'Account number should match');
+    }
+
+    @IsTest
+    static void getOrganizationInfoTestWithNoAccounts() {
+
+        Test.startTest();
+        List<Account> accounts = CourseRegistrationController.getOrganizationInfo('999999999');
+        Test.stopTest();
+
+        System.assertEquals(0, accounts.size(), 'No accounts should be returned when the organization number is not found');
+    }
 }
