@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Region2__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Region</label>
     <required>false</required>
@@ -14,6 +15,21 @@
                 <fullName>Agder</fullName>
                 <default>false</default>
                 <label>Agder</label>
+            </value>
+            <value>
+                <fullName>Akershus</fullName>
+                <default>false</default>
+                <label>Akershus</label>
+            </value>
+            <value>
+                <fullName>Buskerud</fullName>
+                <default>false</default>
+                <label>Buskerud</label>
+            </value>
+            <value>
+                <fullName>Finnmark</fullName>
+                <default>false</default>
+                <label>Finnmark</label>
             </value>
             <value>
                 <fullName>Innlandet</fullName>
@@ -41,8 +57,19 @@
                 <label>Rogaland</label>
             </value>
             <value>
+                <fullName>Telemark</fullName>
+                <default>false</default>
+                <label>Telemark</label>
+            </value>
+            <value>
+                <fullName>Troms</fullName>
+                <default>false</default>
+                <label>Troms</label>
+            </value>
+            <value>
                 <fullName>Troms og Finnmark</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Troms og Finnmark</label>
             </value>
             <value>
@@ -51,8 +78,14 @@
                 <label>Trøndelag</label>
             </value>
             <value>
+                <fullName>Vestfold</fullName>
+                <default>false</default>
+                <label>Vestfold</label>
+            </value>
+            <value>
                 <fullName>Vestfold og Telemark</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Vestfold og Telemark</label>
             </value>
             <value>
@@ -63,11 +96,18 @@
             <value>
                 <fullName>Vest-Viken</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Vest-Viken</label>
+            </value>
+            <value>
+                <fullName>Østfold</fullName>
+                <default>false</default>
+                <label>Østfold</label>
             </value>
             <value>
                 <fullName>Øst-Viken</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Øst-Viken</label>
             </value>
         </valueSetDefinition>
