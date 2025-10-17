@@ -54,7 +54,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     organizationNumberSearch;
     organizationName = 'Feltet fylles automatisk';
-    showOrganizationNumber; 
+    showOrganizationNumber;
 
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
@@ -227,7 +227,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             'invoiceAdress',
             'invoiceReference',
             'workplace',
-            'typeOfAttendance'
+            'typeOfAttendance',
+            'organizationNumber'
         ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
 
@@ -244,7 +245,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
             additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
-            typeOfAttendance: 'Deltakelse'
+            typeOfAttendance: 'Deltakelse',
+            organizationNumber: 'Organisasjonsnummer'
         };
         for (const field of requiredFields) {
             if (this[field] && !this.theRecord[field]) {
@@ -277,6 +279,27 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     availableSlots +
                     ' ledige plasser. ' +
                     'Vennligst reduser antall deltakere for å sikre en plass. For påmelding til venteliste, må kurset først være fullt og kun én deltaker kan meldes på om gangen til ventelisten.';
+                return;
+            }
+        }
+
+        // Organization number validation
+        if (this.showOrganizationNumber) {
+            const orgNum = this.theRecord.organizationNumber ? this.theRecord.organizationNumber.trim() : '';
+            const orgRegex = /^[0-9]{9}$/;
+
+            if (!orgRegex.test(orgNum)) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi et gyldig organisasjonsnummer (9 sifre).';
+                return;
+            }
+
+            if (
+                this.organizationName === 'Kunne ikke finne organisasjon' ||
+                this.organizationName === 'Feltet fylles automatisk'
+            ) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi et gyldig organisasjonsnummer (9 sifre).';
                 return;
             }
         }
