@@ -34,7 +34,7 @@ private without sharing class EmailConfirmationModalControllerTest {
             Active__c = true,
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
@@ -77,7 +77,7 @@ private without sharing class EmailConfirmationModalControllerTest {
             Active__c = true,
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)
@@ -127,7 +127,7 @@ private without sharing class EmailConfirmationModalControllerTest {
             Name = 'mitt kurs',
             MaxNumberOfParticipants__c = 4,
             CommunityUrl__c = 'test',
-            Region__c = 'Oslo',
+            Region2__c = 'Oslo',
             RegistrationDeadline__c = d,
             RegistrationFromDateTime__c = d,
             RegistrationToDateTime__c = d.addDays(1)

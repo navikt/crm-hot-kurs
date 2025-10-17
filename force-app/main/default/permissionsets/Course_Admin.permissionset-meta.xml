@@ -493,11 +493,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Region__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Course__c.RegistrationDeadline__c</field>
         <readable>true</readable>
     </fieldPermissions>
