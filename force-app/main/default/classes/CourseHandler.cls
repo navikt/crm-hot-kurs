@@ -20,7 +20,8 @@ global with sharing class CourseHandler {
                 Theme__c,
                 AvailableSeats__c,
                 MaxNumberOfParticipants__c,
-                NumberOfParticipants__c
+                NumberOfParticipants__c,
+                PublishWithoutRegistrationForm__c
             FROM Course__c
             WHERE Active__c = TRUE
         ];
