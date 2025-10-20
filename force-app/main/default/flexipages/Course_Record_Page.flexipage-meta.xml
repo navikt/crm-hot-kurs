@@ -565,6 +565,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.ShowOrganizationNumber__c</fieldItem>
+                <identifier>RecordShowOrganizationNumber_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.ShowAllergies__c</fieldItem>
                 <identifier>RecordShowAllergies__cField</identifier>
             </fieldInstance>
@@ -579,6 +589,10 @@
                 <identifier>RecordShowWorkplace__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -599,10 +613,6 @@
                 <identifier>RecordShow_type_of_participation_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>

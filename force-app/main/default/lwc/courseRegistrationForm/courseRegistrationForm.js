@@ -2,6 +2,7 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
+import getOrganizationInfo from '@salesforce/apex/CourseRegistrationController.getOrganizationInfo';
 import icons from '@salesforce/resourceUrl/icons';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
@@ -50,6 +51,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     @track county = false;
     @track companyName = false;
     @track role = false;
+
+    organizationNumberSearch;
+    organizationName = 'Feltet fylles automatisk';
+    showOrganizationNumber;
 
     @track subscribeEmailText;
     @track showEmailSubscribeContainer = false;
@@ -109,6 +114,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.showEmailSubscribeContainer = this.shouldShowEmailSubscribe(result.Sub_category__c);
                 this.typeOfAttendance = result.ShowTypeOfAttendance__c;
                 this.dueDate = result.RegistrationDeadline__c;
+                this.showOrganizationNumber = result.ShowOrganizationNumber__c;
                 this.targetGroup = result.TargetGroup__c || '';
                 let registrationDeadline = new Date(this.dueDate);
                 let dateNow = new Date(Date.now());
@@ -140,6 +146,36 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 }
             }
         });
+    }
+
+    handleOrganizationNumberInput(event) {
+        this.organizationNumberSearch = event.target.value;
+        if (this.organizationNumberSearch.length == 9) {
+            this.organizationName = 'Henter organisasjon...';
+            try {
+                getOrganizationInfo({
+                    organizationNumber: this.organizationNumberSearch
+                }).then((result) => {
+                    if (result.length == 1) {
+                        this.organizationName = result[0].Name;
+                        this.theRecord.organizationName = result[0].Name;
+                        this.theRecord.organizationNumber = this.organizationNumberSearch;
+                    } else {
+                        this.organizationName = 'Kunne ikke finne organisasjon';
+                        this.theRecord.organizationName = null;
+                        this.theRecord.organizationNumber = null;
+                    }
+                });
+            } catch (error) {
+                this.organizationName = error;
+                this.theRecord.organizationName = null;
+                this.theRecord.organizationNumber = null;
+            }
+        } else {
+            this.organizationName = 'Feltet fylles automatisk';
+            this.theRecord.organizationName = null;
+            this.theRecord.organizationNumber = null;
+        }
     }
 
     shouldShowEmailSubscribe(categoryField) {
@@ -190,7 +226,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             'invoiceAdress',
             'invoiceReference',
             'workplace',
-            'typeOfAttendance'
+            'typeOfAttendance',
+            'organizationNumber'
         ]; // List of required fields
         const nonRequiredFields = ['allergies', 'additionalInformation']; // List of non required fields
 
@@ -207,13 +244,26 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             workplace: 'Arbeidsplass',
             allergies: 'Matallergi',
             additionalInformation: 'Tilleggsinformasjon (f.eks behov for tolk)',
-            typeOfAttendance: 'Deltakelse'
+            typeOfAttendance: 'Deltakelse',
+            organizationNumber: 'Organisasjonsnummer'
         };
+
         for (const field of requiredFields) {
+            const value = this.theRecord[field] ? this.theRecord[field].trim() : '';
+
             if (this[field] && !this.theRecord[field]) {
                 this.showError = true;
                 this.errorMessage = `Vennligst fyll ut alle feltene.`;
                 return;
+            }
+
+            // Validate firstname, lastname and phone
+            if (['firstName', 'lastName', 'phone', 'email'].includes(field)) {
+                if (!value || value.length < 2) {
+                    this.showError = true;
+                    this.errorMessage = `Vennligst fyll ut ${fieldLabels[field]}.`;
+                    return;
+                }
             }
 
             // Validate field lengths (less than 255 characters)
@@ -223,6 +273,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
         }
+
         if (this.showNumberInput) {
             const n = Number(this.theRecord.numberOfParticipants);
             if (!n || !Number.isInteger(n) || n < 1) {
@@ -240,6 +291,47 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     availableSlots +
                     ' ledige plasser. ' +
                     'Vennligst reduser antall deltakere for å sikre en plass. For påmelding til venteliste, må kurset først være fullt og kun én deltaker kan meldes på om gangen til ventelisten.';
+                return;
+            }
+        }
+
+        // Organization number validation
+        if (this.showOrganizationNumber) {
+            const orgNum = this.theRecord.organizationNumber ? this.theRecord.organizationNumber.trim() : '';
+            const orgRegex = /^[0-9]{9}$/;
+
+            if (!orgRegex.test(orgNum)) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi et gyldig organisasjonsnummer (9 sifre).';
+                return;
+            }
+
+            if (
+                this.organizationName === 'Kunne ikke finne organisasjon' ||
+                this.organizationName === 'Feltet fylles automatisk'
+            ) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi et gyldig organisasjonsnummer (9 sifre).';
+                return;
+            }
+        }
+
+        // Validate company field
+        if (this.companyName) {
+            const value = this.theRecord.companyName ? this.theRecord.companyName.trim() : '';
+            if (!value || value.length < 2) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi firmanavn.';
+                return;
+            }
+        }
+
+        // Validate role field 
+        if (this.role) {
+            const value = this.theRecord.role ? this.theRecord.role.trim() : '';
+            if (!value || value.length < 2) {
+                this.showError = true;
+                this.errorMessage = 'Vennligst oppgi rolle.';
                 return;
             }
         }
