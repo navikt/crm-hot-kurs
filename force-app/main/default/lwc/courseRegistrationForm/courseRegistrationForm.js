@@ -258,7 +258,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             }
 
             // Validate firstname, lastname and phone
-            if (['firstName', 'lastName', 'phone'].includes(field)) {
+            if (['firstName', 'lastName', 'phone', 'email'].includes(field)) {
                 if (!value || value.length < 2) {
                     this.showError = true;
                     this.errorMessage = `Vennligst fyll ut ${fieldLabels[field]}.`;
@@ -273,6 +273,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 return;
             }
         }
+
         if (this.showNumberInput) {
             const n = Number(this.theRecord.numberOfParticipants);
             if (!n || !Number.isInteger(n) || n < 1) {
