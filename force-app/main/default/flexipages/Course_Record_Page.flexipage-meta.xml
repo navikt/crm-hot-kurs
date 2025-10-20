@@ -242,6 +242,16 @@
                 <identifier>RecordDescriptionFormatted__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.VideoLink__c</fieldItem>
+                <identifier>RecordVideo_Link_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-7af45425-a172-449e-b870-13a7a2096a0d</name>
         <type>Facet</type>
     </flexiPageRegions>
