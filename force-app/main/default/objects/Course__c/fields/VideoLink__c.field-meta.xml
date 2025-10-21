@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VideoLink__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Her kan du legge til en lenke til et videomøte.</inlineHelpText>
+    <inlineHelpText>Video lenke blir sendt ut til de som melder seg på.</inlineHelpText>
     <label>Video Link</label>
     <length>255</length>
     <required>false</required>
