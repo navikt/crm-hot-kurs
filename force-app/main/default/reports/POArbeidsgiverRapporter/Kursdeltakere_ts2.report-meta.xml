@@ -80,6 +80,9 @@
     <columns>
         <field>CourseRegistration__c.OrganizationNumber__c</field>
     </columns>
+    <columns>
+        <field>CourseRegistration__c.VideoLinkDisplay__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
