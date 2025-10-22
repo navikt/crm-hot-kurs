@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Her kan du legge til en lenke til et videomøte. --></help>
-    <label>Videolenke</label>
+    <help><!-- Video lenke blir sendt ut til de som melder seg på. --></help>
+    <label>Digital møte lenke</label>
     <name>VideoLink__c</name>
 </CustomFieldTranslation>
