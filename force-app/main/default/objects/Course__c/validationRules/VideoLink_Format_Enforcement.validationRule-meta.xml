@@ -7,5 +7,5 @@
     NOT(ISBLANK(VideoLink__c)),
     NOT(CONTAINS(VideoLink__c, &quot;https://www.&quot;))
 )</errorConditionFormula>
-    <errorMessage>Feltet Videolenke må begynne med «https://www.» for å være gyldig. For eksempel: &quot;https://www.nav.no/&quot;</errorMessage>
+    <errorMessage>Feltet digital møte lenke må begynne med «https://www.» for å være gyldig. For eksempel: &quot;https://www.nav.no/&quot;</errorMessage>
 </ValidationRule>
