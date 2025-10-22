@@ -4,7 +4,7 @@
     <description>Will display hyperlink if there are values from VideoLink__c from Course_c</description>
     <externalId>false</externalId>
     <formula>IF( ISBLANK( Course__r.VideoLink__c ) , &quot;&quot;,  HYPERLINK( Course__r.VideoLink__c , &quot;Lenke til digitalt møte&quot;) )</formula>
-    <label>Video Link Display</label>
+    <label>Digital Link Display</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
