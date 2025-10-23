@@ -11,6 +11,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.VideoLinkDisplay__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Cancel__c</field>
         <readable>true</readable>
@@ -38,6 +43,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.TargetGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.VideoLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
