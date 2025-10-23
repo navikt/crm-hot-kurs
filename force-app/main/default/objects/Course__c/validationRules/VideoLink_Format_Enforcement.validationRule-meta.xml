@@ -2,10 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VideoLink_Format_Enforcement</fullName>
     <active>true</active>
-    <description>Triggers when missing &quot;https://www.&quot; format</description>
+    <description>Triggers when missing &quot;https://&quot; format</description>
     <errorConditionFormula>AND(
     NOT(ISBLANK(VideoLink__c)),
-    NOT(CONTAINS(VideoLink__c, &quot;https://www.&quot;))
+    NOT(CONTAINS(VideoLink__c, &quot;https://&quot;))
 )</errorConditionFormula>
-    <errorMessage>Feltet digital møte lenke må begynne med «https://www.» for å være gyldig. For eksempel: &quot;https://www.nav.no/&quot;</errorMessage>
+    <errorMessage>Feltet digital møte lenke må begynne med «https://» for å være gyldig.</errorMessage>
 </ValidationRule>
