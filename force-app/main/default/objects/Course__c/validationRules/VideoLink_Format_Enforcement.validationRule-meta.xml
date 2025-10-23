@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VideoLink_Format_Enforcement</fullName>
+    <active>true</active>
+    <description>Triggers when missing &quot;https://www.&quot; format</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(VideoLink__c)),
+    NOT(CONTAINS(VideoLink__c, &quot;https://&quot;))
+)</errorConditionFormula>
+    <errorMessage>Feltet digital møte lenke må begynne med «https://» for å være gyldig.</errorMessage>
+</ValidationRule>
