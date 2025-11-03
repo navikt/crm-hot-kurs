@@ -133,8 +133,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 }
 
                 this.maxNumberOfParticipants = result.MaxNumberOfParticipants__c;
-                this.numberOfParticipants = result.NumberOfParticipants__c;
-                this.numberOnWaitinglist = result.Waitinglist__c + 1;
+                this.numberOfParticipants = result.Registration_Signups_Count__c || 0;
+                const waitlistedCount = result.Registration_Waitlisted_Count__c || 0;
+                this.numberOnWaitinglist = waitlistedCount + 1;
 
                 if (this.numberOfParticipants >= this.maxNumberOfParticipants) {
                     this.courseIsFullWarning = true;

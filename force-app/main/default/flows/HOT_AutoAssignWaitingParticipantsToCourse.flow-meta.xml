@@ -108,7 +108,7 @@
     <formulas>
         <name>availableseatsleftCheck</name>
         <dataType>Number</dataType>
-        <expression>{!$Record.MaxNumberOfParticipants__c} - {!$Record.NumberOfParticipants__c}</expression>
+        <expression>{!$Record.MaxNumberOfParticipants__c} - {!$Record.Registration_Signups_Count__c}</expression>
         <scale>0</scale>
     </formulas>
     <interviewLabel>Auto assign waiting participants to Course {!$Flow.CurrentDateTime}</interviewLabel>

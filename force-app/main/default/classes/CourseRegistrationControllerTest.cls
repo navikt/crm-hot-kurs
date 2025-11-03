@@ -125,8 +125,18 @@ private with sharing class CourseRegistrationControllerTest {
 
     @isTest
     static void testWaitlistLogic() {
-        Course__c c = new Course__c(Name = 'Full', MaxNumberOfParticipants__c = 1, NumberOfParticipants__c = 1);
+        Course__c c = new Course__c(Name = 'Full', MaxNumberOfParticipants__c = 1);
         insert c;
+
+        CourseRegistration__c existing = new CourseRegistration__c(
+            ContactFirstName__c = 'Existing',
+            ContactLastName__c = 'Attendee',
+            ContactEmail__c = 'existing@nav.no',
+            Course__c = c.Id,
+            Status__c = 'Påmeldt',
+            NumberOfParticipants__c = 1
+        );
+        insert existing;
 
         CourseRegistrationModel mw = new CourseRegistrationModel();
         mw.firstName = 'M';
@@ -160,13 +170,22 @@ private with sharing class CourseRegistrationControllerTest {
             RegistrationToDateTime__c = toDT,
             Type__c = 'Kurs',
             MaxNumberOfParticipants__c = 50,
-            Waitinglist__c = 1,
             ShowCompany__c = true,
             ShowCounty__c = true,
             ShowRole__c = true,
             Cancel__c = false
         );
         insert c;
+
+        CourseRegistration__c waitlisted = new CourseRegistration__c(
+            ContactFirstName__c = 'Wait',
+            ContactLastName__c = 'List',
+            ContactEmail__c = 'wait@nav.no',
+            Course__c = c.Id,
+            Status__c = 'Venteliste',
+            NumberOfParticipants__c = 1
+        );
+        insert waitlisted;
 
         Course__c f = CourseRegistrationController.getCourseFields(c.Id);
         System.assertEquals(c.Name, f.Name);
@@ -175,7 +194,7 @@ private with sharing class CourseRegistrationControllerTest {
         System.assertEquals(c.RegistrationDeadline__c, f.RegistrationDeadline__c);
         System.assertEquals(c.RegistrationFromDateTime__c, f.RegistrationFromDateTime__c);
         System.assertEquals(c.RegistrationToDateTime__c, f.RegistrationToDateTime__c);
-        System.assertEquals(c.Waitinglist__c, f.Waitinglist__c);
+        System.assertEquals(1, Integer.valueOf(f.Registration_Waitlisted_Count__c));
     }
 
     @IsTest

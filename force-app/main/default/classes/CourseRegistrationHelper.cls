@@ -1,244 +1,139 @@
 public class CourseRegistrationHelper {
+    private static Integer resolveParticipantCount(CourseRegistration__c registration) {
+        if (registration == null) {
+            return 0;
+        }
+        if (registration.NumberOfParticipants__c == null || registration.NumberOfParticipants__c < 1) {
+            return 1;
+        }
+        return registration.NumberOfParticipants__c.intValue();
+    }
+
+    private static Boolean countsTowardsCapacity(CourseRegistration__c registration) {
+        return registration != null && registration.Status__c == 'Påmeldt';
+    }
+
     public static void validateRegistrationsAgainstCourseCapacity(
         List<CourseRegistration__c> registrationsToValidate,
         Map<Id, CourseRegistration__c> oldRegistrationsMap
     ) {
+        if (registrationsToValidate == null || registrationsToValidate.isEmpty()) {
+            return;
+        }
+
+        Map<Id, CourseRegistration__c> safeOldMap = oldRegistrationsMap == null
+            ? new Map<Id, CourseRegistration__c>()
+            : oldRegistrationsMap;
+
         Set<Id> courseIds = new Set<Id>();
-        List<CourseRegistration__c> regsRequiringValidation = new List<CourseRegistration__c>();
+        Map<Id, Decimal> courseDelta = new Map<Id, Decimal>();
+        Map<Id, List<CourseRegistration__c>> courseToIncreasingRegistrations = new Map<Id, List<CourseRegistration__c>>();
 
         for (CourseRegistration__c cr : registrationsToValidate) {
-            Boolean needsValidation = (oldRegistrationsMap == null || oldRegistrationsMap.get(cr.Id) == null);
-            if (!needsValidation && oldRegistrationsMap != null && oldRegistrationsMap.get(cr.Id) != null) {
-                CourseRegistration__c oldCr = oldRegistrationsMap.get(cr.Id);
-                if (cr.Course__c != oldCr.Course__c || cr.NumberOfParticipants__c != oldCr.NumberOfParticipants__c) {
-                    needsValidation = true;
-                }
+            if (cr == null) {
+                continue;
             }
 
-            // Only validate if relevant fields are populated and validation is determined to be needed.
-            if (
-                needsValidation &&
-                cr.Course__c != null &&
-                cr.NumberOfParticipants__c != null &&
-                cr.NumberOfParticipants__c > 0
-            ) {
-                courseIds.add(cr.Course__c);
-                regsRequiringValidation.add(cr);
+            Id newCourseId = cr.Course__c;
+            Integer newParticipants = resolveParticipantCount(cr);
+            Boolean newCounts = countsTowardsCapacity(cr);
+            Decimal newContribution = (newCourseId != null && newCounts) ? Decimal.valueOf(newParticipants) : 0;
+
+            CourseRegistration__c oldCr = safeOldMap.get(cr.Id);
+            Id oldCourseId = oldCr != null ? oldCr.Course__c : null;
+            Integer oldParticipants = resolveParticipantCount(oldCr);
+            Boolean oldCounts = countsTowardsCapacity(oldCr);
+            Decimal oldContribution = (oldCourseId != null && oldCounts) ? Decimal.valueOf(oldParticipants) : 0;
+
+            if (oldCourseId != null && oldContribution > 0) {
+                Decimal existingDelta = courseDelta.containsKey(oldCourseId) ? courseDelta.get(oldCourseId) : 0;
+                courseDelta.put(oldCourseId, existingDelta - oldContribution);
+                courseIds.add(oldCourseId);
+            }
+
+            if (newCourseId != null && newContribution > 0) {
+                Decimal existingDelta = courseDelta.containsKey(newCourseId) ? courseDelta.get(newCourseId) : 0;
+                courseDelta.put(newCourseId, existingDelta + newContribution);
+                courseIds.add(newCourseId);
+
+                Boolean increasesOccupancy = true;
+                if (oldCourseId != null && oldCourseId == newCourseId) {
+                    increasesOccupancy = newContribution > oldContribution;
+                }
+
+                if (increasesOccupancy) {
+                    List<CourseRegistration__c> regsForCourse = courseToIncreasingRegistrations.containsKey(newCourseId)
+                        ? courseToIncreasingRegistrations.get(newCourseId)
+                        : new List<CourseRegistration__c>();
+                    regsForCourse.add(cr);
+                    courseToIncreasingRegistrations.put(newCourseId, regsForCourse);
+                }
+            } else if (newCourseId != null) {
+                courseIds.add(newCourseId);
             }
         }
 
-        if (regsRequiringValidation.isEmpty()) {
+        if (courseIds.isEmpty()) {
             return;
         }
 
-        // Query for course capacities
         Map<Id, Course__c> coursesWithCapacity = new Map<Id, Course__c>();
-        if (!courseIds.isEmpty()) {
-            for (Course__c course : [SELECT Id, MaxNumberOfParticipants__c FROM Course__c WHERE Id IN :courseIds]) {
-                coursesWithCapacity.put(course.Id, course);
-            }
+        for (Course__c course : [
+            SELECT Id, MaxNumberOfParticipants__c, Registration_Signups_Count__c
+            FROM Course__c
+            WHERE Id IN :courseIds
+        ]) {
+            coursesWithCapacity.put(course.Id, course);
         }
 
-        // Perform the validation
-        for (CourseRegistration__c cr : regsRequiringValidation) {
-            Course__c relatedCourse = coursesWithCapacity.get(cr.Course__c);
-
-            if (relatedCourse != null) {
-                if (relatedCourse.MaxNumberOfParticipants__c != null && relatedCourse.MaxNumberOfParticipants__c > 0) {
-                    if (cr.NumberOfParticipants__c > relatedCourse.MaxNumberOfParticipants__c) {
-                        cr.addError(
-                            'Antall deltakere (' +
-                            cr.NumberOfParticipants__c.intValue() +
-                            ') for denne påmeldingen overstiger kursets maksimale kapasitet (' +
-                            relatedCourse.MaxNumberOfParticipants__c.intValue() +
-                            '). Vennligst reduser antall deltakere. ' +
-                            'Hvis gruppen din er større enn kursets kapasitet og du ønsker at noen skal settes på venteliste, ' +
-                            'kan det hende du må opprette flere, mindre påmeldinger.'
-                        );
-                    }
-                } else {
-                    System.debug(
-                        LoggingLevel.WARN,
-                        'CourseRegistrationHelper: MaxNumberOfParticipants__c is not defined or not positive for Course ID ' +
-                        relatedCourse.Id +
-                        '. Skipping capacity validation for Registration ID ' +
-                        cr.Id
-                    );
-                }
-            } else {
+        for (Id courseId : courseIds) {
+            Course__c relatedCourse = coursesWithCapacity.get(courseId);
+            if (relatedCourse == null) {
                 System.debug(
                     LoggingLevel.WARN,
-                    'CourseRegistrationHelper: Could not find Course details for Registration ID ' +
-                    cr.Id +
-                    ' with Course__c = ' +
-                    cr.Course__c +
-                    '. Skipping capacity validation.'
+                    'CourseRegistrationHelper: Could not find Course details for Course ID ' + courseId
                 );
-            }
-        }
-    }
-
-    private static void processCourseRegistrations(
-        List<CourseRegistration__c> registrations,
-        Boolean isIncreaseOperation // true for increase, false for reduce
-    ) {
-        List<CourseRegistration__c> regsForAttending = new List<CourseRegistration__c>();
-        List<CourseRegistration__c> regsForWaiting = new List<CourseRegistration__c>();
-
-        for (CourseRegistration__c cr : registrations) {
-            if (cr.Status__c == 'Påmeldt') {
-                regsForAttending.add(cr);
-            } else if (cr.Status__c == 'Venteliste') {
-                regsForWaiting.add(cr);
-            }
-        }
-
-        if (!regsForAttending.isEmpty()) {
-            if (isIncreaseOperation) {
-                countCourseIdsToIncreaseAttending(regsForAttending);
-            } else {
-                countCourseIdsToReduceAttending(regsForAttending);
-            }
-        }
-        if (!regsForWaiting.isEmpty()) {
-            if (isIncreaseOperation) {
-                countCourseIdsToIncreaseWaiting(regsForWaiting);
-            } else {
-                countCourseIdsToReduceWaiting(regsForWaiting);
-            }
-        }
-    }
-
-    public static void getCourseIdToReduce(List<CourseRegistration__c> registrations) {
-        processCourseRegistrations(registrations, false); // false indicates a reduction
-    }
-
-    public static void getCourseIdToIncrease(List<CourseRegistration__c> registrations) {
-        processCourseRegistrations(registrations, true); // true indicates an increase
-    }
-
-    // Private consolidated helper for accumulating participant changes into a map.
-    private static void accumulateParticipantChanges(
-        List<CourseRegistration__c> registrations,
-        Map<Id, Integer> changeMap,
-        boolean isPositiveIncrement // true for +N (increase), false for -N (reduce)
-    ) {
-        for (CourseRegistration__c cr : registrations) {
-            Integer numParticipants = (cr.NumberOfParticipants__c == null ||
-                cr.NumberOfParticipants__c < 1)
-                ? 1
-                : cr.NumberOfParticipants__c.intValue();
-
-            Integer currentChange = changeMap.get(cr.Course__c);
-            if (currentChange == null) {
-                currentChange = 0;
+                continue;
             }
 
-            if (isPositiveIncrement) {
-                changeMap.put(cr.Course__c, currentChange + numParticipants);
-            } else {
-                changeMap.put(cr.Course__c, currentChange - numParticipants);
+            Decimal maxCapacity = relatedCourse.MaxNumberOfParticipants__c == null
+                ? 0
+                : relatedCourse.MaxNumberOfParticipants__c;
+            if (maxCapacity <= 0) {
+                continue;
             }
-        }
-    }
 
-    public static void countCourseIdsToReduceAttending(List<CourseRegistration__c> registrationsToReduce) {
-        Map<Id, Integer> courseParticipantChanges = new Map<Id, Integer>();
-        accumulateParticipantChanges(registrationsToReduce, courseParticipantChanges, false); // false for reduce
-        if (!courseParticipantChanges.isEmpty()) {
-            updateCoursesParticipants(courseParticipantChanges);
-        }
-    }
-
-    public static void countCourseIdsToIncreaseAttending(List<CourseRegistration__c> registrationsToIncrease) {
-        Map<Id, Integer> courseParticipantChanges = new Map<Id, Integer>();
-        accumulateParticipantChanges(registrationsToIncrease, courseParticipantChanges, true); // true for increase
-        if (!courseParticipantChanges.isEmpty()) {
-            updateCoursesParticipants(courseParticipantChanges);
-        }
-    }
-
-    public static void updateCoursesParticipants(Map<Id, Integer> coursesCountChanges) {
-        if (coursesCountChanges == null || coursesCountChanges.isEmpty())
-            return;
-
-        List<Course__c> coursesToUpdate = new List<Course__c>();
-        for (Course__c course : [
-            SELECT Id, NumberOfParticipants__c
-            FROM Course__c
-            WHERE Id IN :coursesCountChanges.keySet()
-        ]) {
-            Decimal currentParticipants = course.NumberOfParticipants__c == null ? 0 : course.NumberOfParticipants__c;
-            Integer change = coursesCountChanges.get(course.Id);
-
-            course.NumberOfParticipants__c = currentParticipants + change;
-            if (course.NumberOfParticipants__c < 0) {
-                course.NumberOfParticipants__c = 0;
+            Decimal currentSignups = relatedCourse.Registration_Signups_Count__c == null
+                ? 0
+                : relatedCourse.Registration_Signups_Count__c;
+            Decimal netDelta = courseDelta.containsKey(courseId) ? courseDelta.get(courseId) : 0;
+            if (netDelta <= 0) {
+                continue;
             }
-            coursesToUpdate.add(course);
-        }
 
-        if (!coursesToUpdate.isEmpty()) {
-            try {
-                update coursesToUpdate;
-            } catch (Exception e) {
-                System.debug(
-                    LoggingLevel.ERROR,
-                    'Error updating course participants: ' +
-                    e.getMessage() +
-                    ' Stacktrace: ' +
-                    e.getStackTraceString()
-                );
+            Decimal projectedSignups = currentSignups + netDelta;
+            if (projectedSignups <= maxCapacity) {
+                continue;
             }
-        }
-    }
 
-    public static void countCourseIdsToReduceWaiting(List<CourseRegistration__c> registrationsToReduce) {
-        Map<Id, Integer> courseWaitlistChanges = new Map<Id, Integer>();
-        accumulateParticipantChanges(registrationsToReduce, courseWaitlistChanges, false); // false for reduce
-        if (!courseWaitlistChanges.isEmpty()) {
-            updateCourseWaiting(courseWaitlistChanges);
-        }
-    }
+            Decimal availableSeatsDecimal = maxCapacity - currentSignups;
+            Integer availableSeats = availableSeatsDecimal > 0 ? availableSeatsDecimal.intValue() : 0;
+            List<CourseRegistration__c> impactedRegistrations = courseToIncreasingRegistrations.get(courseId);
 
-    public static void countCourseIdsToIncreaseWaiting(List<CourseRegistration__c> registrationsToIncrease) {
-        Map<Id, Integer> courseWaitlistChanges = new Map<Id, Integer>();
-        accumulateParticipantChanges(registrationsToIncrease, courseWaitlistChanges, true); // true for increase
-        if (!courseWaitlistChanges.isEmpty()) {
-            updateCourseWaiting(courseWaitlistChanges);
-        }
-    }
-
-    public static void updateCourseWaiting(Map<Id, Integer> coursesWaitlistChanges) {
-        if (coursesWaitlistChanges == null || coursesWaitlistChanges.isEmpty())
-            return;
-
-        List<Course__c> coursesToUpdate = new List<Course__c>();
-        for (Course__c course : [
-            SELECT Id, Waitinglist__c
-            FROM Course__c
-            WHERE Id IN :coursesWaitlistChanges.keySet()
-        ]) {
-            Decimal currentWaitlist = course.Waitinglist__c == null ? 0 : course.Waitinglist__c;
-            Integer change = coursesWaitlistChanges.get(course.Id);
-
-            course.Waitinglist__c = currentWaitlist + change;
-            if (course.Waitinglist__c < 0) {
-                course.Waitinglist__c = 0;
+            if (impactedRegistrations == null || impactedRegistrations.isEmpty()) {
+                continue;
             }
-            coursesToUpdate.add(course);
-        }
 
-        if (!coursesToUpdate.isEmpty()) {
-            try {
-                update coursesToUpdate;
-            } catch (Exception e) {
-                System.debug(
-                    LoggingLevel.ERROR,
-                    'Error updating course waitlist: ' +
-                    e.getMessage() +
-                    ' Stacktrace: ' +
-                    e.getStackTraceString()
+            for (CourseRegistration__c cr : impactedRegistrations) {
+                Integer regParticipants = resolveParticipantCount(cr);
+                cr.addError(
+                    'Antall deltakere (' +
+                        regParticipants +
+                        ') for denne påmeldingen overstiger tilgjengelige plasser (' +
+                        availableSeats +
+                        ') på kurset (maks ' +
+                        maxCapacity.intValue() +
+                        '). Vennligst reduser antall deltakere eller sett påmeldingen på venteliste.'
                 );
             }
         }
@@ -247,7 +142,7 @@ public class CourseRegistrationHelper {
     public static void countCourseIdsToCheckWaiting(Set<Id> courseIds) {
         if (courseIds == null || courseIds.isEmpty())
             return;
-        updateCourseWaitlistPromotions(courseIds);
+        System.enqueueJob(new CourseWaitlistPromotionJob(new List<Id>(courseIds)));
     }
 
     public static void updateCourseWaitlistPromotions(Set<Id> courseIdsToProcess) {
@@ -257,7 +152,7 @@ public class CourseRegistrationHelper {
         List<CourseRegistration__c> registrationsToPromote = new List<CourseRegistration__c>();
 
         List<Course__c> courses = [
-            SELECT Id, NumberOfParticipants__c, Waitinglist__c, MaxNumberOfParticipants__c
+            SELECT Id, Registration_Signups_Count__c, Registration_Waitlisted_Count__c, MaxNumberOfParticipants__c
             FROM Course__c
             WHERE Id IN :courseIdsToProcess
         ];
@@ -273,12 +168,12 @@ public class CourseRegistrationHelper {
                 continue;
             }
 
-            Decimal currentParticipants = currentCourse.NumberOfParticipants__c == null
+            Decimal currentParticipants = currentCourse.Registration_Signups_Count__c == null
                 ? 0
-                : currentCourse.NumberOfParticipants__c;
-            Decimal currentWaitlistParticipants = currentCourse.Waitinglist__c == null
+                : currentCourse.Registration_Signups_Count__c;
+            Decimal currentWaitlistParticipants = currentCourse.Registration_Waitlisted_Count__c == null
                 ? 0
-                : currentCourse.Waitinglist__c;
+                : currentCourse.Registration_Waitlisted_Count__c;
             Decimal maxCapacity = currentCourse.MaxNumberOfParticipants__c;
 
             if (currentWaitlistParticipants <= 0)

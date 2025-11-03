@@ -39,7 +39,8 @@ export default class courseRegistrationInformation extends LightningElement {
                     moment(result.RegistrationDeadline__c).format('LT');
                 this.place = result.RegistrationPlaceName__c;
                 this.type = result.Type__c;
-                this.seats = result.MaxNumberOfParticipants__c - result.NumberOfParticipants__c;
+                const currentSignups = result.Registration_Signups_Count__c || 0;
+                this.seats = result.MaxNumberOfParticipants__c - currentSignups;
             } else {
             }
         });

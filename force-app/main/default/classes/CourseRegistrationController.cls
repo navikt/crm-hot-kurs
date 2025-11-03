@@ -63,7 +63,7 @@ public without sharing class CourseRegistrationController {
                 Course__c = courseId
             );
 
-            Decimal current = (course.NumberOfParticipants__c != null) ? course.NumberOfParticipants__c : 0;
+            Decimal current = (course.Registration_Signups_Count__c != null) ? course.Registration_Signups_Count__c : 0;
             Decimal maxCap = (course.MaxNumberOfParticipants__c != null) ? course.MaxNumberOfParticipants__c : 0;
             Decimal avail = maxCap - current;
 
@@ -126,8 +126,8 @@ public without sharing class CourseRegistrationController {
                 RegistrationPlaceName__c,
                 Type__c,
                 MaxNumberOfParticipants__c,
-                NumberOfParticipants__c,
-                Waitinglist__c,
+                Registration_Signups_Count__c,
+                Registration_Waitlisted_Count__c,
                 ShowCompany__c,
                 ShowCounty__c,
                 ShowRole__c,
@@ -170,7 +170,7 @@ public without sharing class CourseRegistrationController {
         }
         try {
             Course__c course = [
-                SELECT Name, NumberOfParticipants__c, MaxNumberOfParticipants__c, Cancel__c
+                SELECT Name, Registration_Signups_Count__c, MaxNumberOfParticipants__c, Cancel__c
                 FROM Course__c
                 WHERE Id = :courseId
                 LIMIT 1
