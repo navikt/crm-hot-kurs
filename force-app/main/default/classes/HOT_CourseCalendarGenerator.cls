@@ -51,7 +51,6 @@ public without sharing class HOT_CourseCalendarGenerator {
             if (course.Name == null || 
                 course.RegistrationFromDateTime__c == null || 
                 course.RegistrationToDateTime__c == null || 
-                course.RegistrationPlaceName__c == null || 
                 course.RegistrationUrl2__c == null) {
                 continue;
             }
