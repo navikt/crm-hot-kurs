@@ -50,8 +50,6 @@ global class CourseRegistrationHandler extends MyTriggers {
     }
     global override void onAfterInsert() {
         CourseRegistrationHelper.getCourseIdToIncrease((List<CourseRegistration__c>) records);
-
-        HOT_CourseCalendarGenerator.generateCalendarUrlsFromRegistrations((List<CourseRegistration__c>) records);
     }
 
     global override void onAfterUpdate(Map<Id, sObject> triggerOldMap) {

@@ -14,16 +14,16 @@ public without sharing class HOT_CourseCalendarGenerator {
      * Output: 
      * - Stores the generated URL in OutlookCalendar__c field of Course__c records.
      */
-    public static void generateCalendarUrlsFromRegistrations(List<CourseRegistration__c> registrations) {
+    public static void generateCalendarUrlsFromRegistrations(List<Course__c> courseList) {
      
-        if (registrations == null || registrations.isEmpty()) {
+        if (courseList == null || courseList.isEmpty()) {
             return;
         }
 
         Set<Id> courseIds = new Set<Id>();
-        for (CourseRegistration__c reg : registrations) {
-            if (reg.Course__c != null) {
-                courseIds.add(reg.Course__c);
+        for (Course__c course : courseList) {
+            if (course.Id != null) {
+                courseIds.add(course.Id);
             }
         }
 
