@@ -183,6 +183,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.OutlookCalendar__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.PublishWithoutRegistrationForm__c</field>
         <readable>true</readable>
     </fieldPermissions>
