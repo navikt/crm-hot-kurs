@@ -46,19 +46,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Registration_Signups_Count__c</field>
+                <field>RegistrationSignupsCount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Registration_Waitlisted_Count__c</field>
+                <field>RegistrationWaitlistedCount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Registration_Cancelled_Count__c</field>
+                <field>RegistrationCancelledCount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Registration_Invited_Count__c</field>
+                <field>RegistrationInvitedCount__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

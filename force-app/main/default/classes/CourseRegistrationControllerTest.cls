@@ -194,7 +194,7 @@ private with sharing class CourseRegistrationControllerTest {
         System.assertEquals(c.RegistrationDeadline__c, f.RegistrationDeadline__c);
         System.assertEquals(c.RegistrationFromDateTime__c, f.RegistrationFromDateTime__c);
         System.assertEquals(c.RegistrationToDateTime__c, f.RegistrationToDateTime__c);
-        System.assertEquals(1, Integer.valueOf(f.Registration_Waitlisted_Count__c));
+        System.assertEquals(1, Integer.valueOf(f.RegistrationWaitlistedCount__c));
     }
 
     @IsTest

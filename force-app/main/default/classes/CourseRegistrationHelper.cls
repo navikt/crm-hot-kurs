@@ -79,7 +79,7 @@ public class CourseRegistrationHelper {
 
         Map<Id, Course__c> coursesWithCapacity = new Map<Id, Course__c>();
         for (Course__c course : [
-            SELECT Id, MaxNumberOfParticipants__c, Registration_Signups_Count__c
+            SELECT Id, MaxNumberOfParticipants__c, RegistrationSignupsCount__c
             FROM Course__c
             WHERE Id IN :courseIds
         ]) {
@@ -103,9 +103,9 @@ public class CourseRegistrationHelper {
                 continue;
             }
 
-            Decimal currentSignups = relatedCourse.Registration_Signups_Count__c == null
+            Decimal currentSignups = relatedCourse.RegistrationSignupsCount__c == null
                 ? 0
-                : relatedCourse.Registration_Signups_Count__c;
+                : relatedCourse.RegistrationSignupsCount__c;
             Decimal netDelta = courseDelta.containsKey(courseId) ? courseDelta.get(courseId) : 0;
             if (netDelta <= 0) {
                 continue;
@@ -152,7 +152,7 @@ public class CourseRegistrationHelper {
         List<CourseRegistration__c> registrationsToPromote = new List<CourseRegistration__c>();
 
         List<Course__c> courses = [
-            SELECT Id, Registration_Signups_Count__c, Registration_Waitlisted_Count__c, MaxNumberOfParticipants__c
+            SELECT Id, RegistrationSignupsCount__c, RegistrationWaitlistedCount__c, MaxNumberOfParticipants__c
             FROM Course__c
             WHERE Id IN :courseIdsToProcess
         ];
@@ -168,12 +168,12 @@ public class CourseRegistrationHelper {
                 continue;
             }
 
-            Decimal currentParticipants = currentCourse.Registration_Signups_Count__c == null
+            Decimal currentParticipants = currentCourse.RegistrationSignupsCount__c == null
                 ? 0
-                : currentCourse.Registration_Signups_Count__c;
-            Decimal currentWaitlistParticipants = currentCourse.Registration_Waitlisted_Count__c == null
+                : currentCourse.RegistrationSignupsCount__c;
+            Decimal currentWaitlistParticipants = currentCourse.RegistrationWaitlistedCount__c == null
                 ? 0
-                : currentCourse.Registration_Waitlisted_Count__c;
+                : currentCourse.RegistrationWaitlistedCount__c;
             Decimal maxCapacity = currentCourse.MaxNumberOfParticipants__c;
 
             if (currentWaitlistParticipants <= 0)

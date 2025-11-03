@@ -8,7 +8,7 @@
         AND(
             ISNEW(),
             ISPICKVAL(Status__c, &quot;Påmeldt&quot;),
-            Course__r.Registration_Signups_Count__c &gt;= Course__r.MaxNumberOfParticipants__c
+            Course__r.RegistrationSignupsCount__c &gt;= Course__r.MaxNumberOfParticipants__c
         ),
         AND(
             ISCHANGED(Status__c),
@@ -18,7 +18,7 @@
                 ISPICKVAL(PRIORVALUE(Status__c), &quot;Invitert&quot;)
             ),
             ISPICKVAL(Status__c, &quot;Påmeldt&quot;),
-            Course__r.Registration_Signups_Count__c &gt;= Course__r.MaxNumberOfParticipants__c
+            Course__r.RegistrationSignupsCount__c &gt;= Course__r.MaxNumberOfParticipants__c
         ),
         AND(
             ISCHANGED(Status__c),
@@ -28,7 +28,7 @@
                 ISPICKVAL(Status__c, &quot;Avmeldt&quot;),
                 ISPICKVAL(Status__c, &quot;Invitert&quot;)
             ),
-            Course__r.Registration_Signups_Count__c &gt; Course__r.MaxNumberOfParticipants__c
+            Course__r.RegistrationSignupsCount__c &gt; Course__r.MaxNumberOfParticipants__c
         )
     )
 )</errorConditionFormula>

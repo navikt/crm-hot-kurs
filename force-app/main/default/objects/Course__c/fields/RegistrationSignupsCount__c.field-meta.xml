@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Registration_Cancelled_Count__c</fullName>
+    <fullName>RegistrationSignupsCount__c</fullName>
     <externalId>false</externalId>
-    <label>Registration Cancelled Count</label>
+    <label>Registration Signups Count</label>
     <summarizedField>CourseRegistration__c.NumberOfParticipants__c</summarizedField>
     <summaryFilterItems>
         <field>CourseRegistration__c.Status__c</field>
         <operation>equals</operation>
-        <value>Avmeldt</value>
+        <value>Påmeldt</value>
     </summaryFilterItems>
     <summaryForeignKey>CourseRegistration__c.Course__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>

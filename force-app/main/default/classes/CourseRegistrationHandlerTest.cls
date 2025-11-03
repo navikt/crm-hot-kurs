@@ -12,16 +12,16 @@ public with sharing class CourseRegistrationHandlerTest {
 
         System.assertEquals(
             0,
-            course1.Registration_Signups_Count__c == null
+            course1.RegistrationSignupsCount__c == null
                 ? 0
-                : course1.Registration_Signups_Count__c.intValue(),
+                : course1.RegistrationSignupsCount__c.intValue(),
             'Should be 0 participants'
         );
         System.assertEquals(
             0,
-            course2.Registration_Signups_Count__c == null
+            course2.RegistrationSignupsCount__c == null
                 ? 0
-                : course2.Registration_Signups_Count__c.intValue(),
+                : course2.RegistrationSignupsCount__c.intValue(),
             'Should be 0 participants'
         );
 
@@ -34,9 +34,9 @@ public with sharing class CourseRegistrationHandlerTest {
         Course__c course1After = fetchCourse('Testkurs');
         Course__c course2After = fetchCourse('Testkurs2');
 
-        System.assertEquals(1, Integer.valueOf(course1After.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(1, Integer.valueOf(course2After.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(1, Integer.valueOf(course2After.Registration_Waitlisted_Count__c), 'Should be 1 on waitinglist');
+        System.assertEquals(1, Integer.valueOf(course1After.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(course2After.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(course2After.RegistrationWaitlistedCount__c), 'Should be 1 on waitinglist');
     }
     @isTest
     private static void testDelete() {
@@ -55,7 +55,7 @@ public with sharing class CourseRegistrationHandlerTest {
         System.assertEquals(0, crListDel.size(), 'Should be 0 registrations');
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
     }
     @isTest
     private static void testUnDelete() {
@@ -75,7 +75,7 @@ public with sharing class CourseRegistrationHandlerTest {
         System.assertEquals(2, crListUnDel.size(), 'Should be 2 registrations');
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(2, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 2 participants');
+        System.assertEquals(2, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 2 participants');
     }
 
     @isTest
@@ -89,7 +89,7 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
     }
 
     @isTest
@@ -103,7 +103,7 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(1, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 1 participant');
     }
 
     @isTest
@@ -117,8 +117,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
-        System.assertEquals(1, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 1 on waiting list');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
+        System.assertEquals(1, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 1 on waiting list');
     }
 
     @isTest
@@ -132,8 +132,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(1, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 0 on waiting list');
+        System.assertEquals(1, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 0 on waiting list');
     }
     @isTest
     private static void updateOneWaiting_toOneNotAttending() {
@@ -146,8 +146,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 0 on waiting list');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 0 on waiting list');
     }
 
     @isTest
@@ -163,7 +163,7 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
     }
 
     @isTest
@@ -179,7 +179,7 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(2, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 2 participants');
+        System.assertEquals(2, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 2 participants');
     }
 
     @isTest
@@ -195,8 +195,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
-        System.assertEquals(2, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 2 on waiting list');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
+        System.assertEquals(2, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 2 on waiting list');
     }
 
     @isTest
@@ -212,8 +212,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(2, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 2 participants');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 0 on waiting list');
+        System.assertEquals(2, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 2 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 0 on waiting list');
     }
 
     @isTest
@@ -229,8 +229,8 @@ public with sharing class CourseRegistrationHandlerTest {
         Test.StopTest();
 
         Course__c courseAfter = fetchCourse('Testkurs');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Signups_Count__c), 'Should be 0 participants');
-        System.assertEquals(0, Integer.valueOf(courseAfter.Registration_Waitlisted_Count__c), 'Should be 0 on waiting list');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationSignupsCount__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(courseAfter.RegistrationWaitlistedCount__c), 'Should be 0 on waiting list');
     }
 
     @isTest
@@ -248,8 +248,8 @@ public with sharing class CourseRegistrationHandlerTest {
 
         Course__c course1After = fetchCourse('Testkurs');
         Course__c course2After = fetchCourse('Testkurs2');
-        System.assertEquals(0, Integer.valueOf(course1After.Registration_Signups_Count__c), 'Should be 0 participants');
-        System.assertEquals(0, Integer.valueOf(course2After.Registration_Signups_Count__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(course1After.RegistrationSignupsCount__c), 'Should be 0 participants');
+        System.assertEquals(0, Integer.valueOf(course2After.RegistrationSignupsCount__c), 'Should be 0 participants');
     }
 
     @isTest
@@ -267,8 +267,8 @@ public with sharing class CourseRegistrationHandlerTest {
 
         Course__c course1After = fetchCourse('Testkurs');
         Course__c course2After = fetchCourse('Testkurs2');
-        System.assertEquals(1, Integer.valueOf(course1After.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(1, Integer.valueOf(course2After.Registration_Signups_Count__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(course1After.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(course2After.RegistrationSignupsCount__c), 'Should be 1 participant');
     }
 
     @isTest
@@ -292,15 +292,15 @@ public with sharing class CourseRegistrationHandlerTest {
         Course__c course2After = fetchCourse('Testkurs2');
         String cr2IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr2.Id LIMIT 1].Status__c;
         String cr4IdStatus = [SELECT Id, Status__c FROM CourseRegistration__c WHERE Id = :cr4.Id LIMIT 1].Status__c;
-        System.debug('1 after >>' + course1After.Registration_Signups_Count__c);
-        System.debug('c after >>' + course2After.Registration_Signups_Count__c);
+        System.debug('1 after >>' + course1After.RegistrationSignupsCount__c);
+        System.debug('c after >>' + course2After.RegistrationSignupsCount__c);
         System.debug('c after >>' + cr2IdStatus);
         System.debug('c after >>' + cr4IdStatus);
 
-        System.assertEquals(1, Integer.valueOf(course1After.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(0, Integer.valueOf(course1After.Registration_Waitlisted_Count__c), 'Should be 0 on waiting list');
-        System.assertEquals(1, Integer.valueOf(course2After.Registration_Signups_Count__c), 'Should be 1 participant');
-        System.assertEquals(1, Integer.valueOf(course2After.Registration_Waitlisted_Count__c), 'Should be 1 on waiting list');
+        System.assertEquals(1, Integer.valueOf(course1After.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(0, Integer.valueOf(course1After.RegistrationWaitlistedCount__c), 'Should be 0 on waiting list');
+        System.assertEquals(1, Integer.valueOf(course2After.RegistrationSignupsCount__c), 'Should be 1 participant');
+        System.assertEquals(1, Integer.valueOf(course2After.RegistrationWaitlistedCount__c), 'Should be 1 on waiting list');
         System.assertEquals('Påmeldt', cr2IdStatus, 'cr2 should have Påmeldt status');
         System.assertEquals('Påmeldt', cr4IdStatus, 'cr4 should have Påmeldt status');
     }
@@ -342,7 +342,7 @@ public with sharing class CourseRegistrationHandlerTest {
 
     public static Course__c fetchCourse(String courseName) {
         Course__c course = [
-            SELECT Id, Registration_Signups_Count__c, Registration_Waitlisted_Count__c
+            SELECT Id, RegistrationSignupsCount__c, RegistrationWaitlistedCount__c
             FROM Course__c
             WHERE Name = :courseName
             LIMIT 1

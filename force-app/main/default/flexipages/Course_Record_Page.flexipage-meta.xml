@@ -148,7 +148,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Registration_Signups_Count__c</fieldItem>
+                <fieldItem>Record.RegistrationSignupsCount__c</fieldItem>
                 <identifier>RecordRegistration_Signups_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -158,7 +158,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Registration_Waitlisted_Count__c</fieldItem>
+                <fieldItem>Record.RegistrationWaitlistedCount__c</fieldItem>
                 <identifier>RecordRegistration_Waitlisted_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -1190,7 +1190,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>reportName</name>
-                    <value>Kursdeltagere_42y</value>
+                    <value>Kursdeltakere_42y</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showRefreshButton</name>
