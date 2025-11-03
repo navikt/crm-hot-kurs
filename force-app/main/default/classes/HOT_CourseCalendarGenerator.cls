@@ -14,7 +14,7 @@ public without sharing class HOT_CourseCalendarGenerator {
      * Output: 
      * - Stores the generated URL in OutlookCalendar__c field of Course__c records.
      */
-    public static void generateCalendarUrlsFromRegistrations(List<Course__c> courseList) {
+    public static void generateCalendarUrls(List<Course__c> courseList) {
      
         if (courseList == null || courseList.isEmpty()) {
             return;
@@ -62,7 +62,8 @@ public without sharing class HOT_CourseCalendarGenerator {
             subjectTitle = course.Name;
         }
 
-        String bodyText = 'Lenke til kurset: ' + course.RegistrationUrl2__c; 
+        String bodyText = 'Lenke til kurset:<br/>' +
+                '<a href="' + course.RegistrationUrl2__c + '" target="_blank">' + course.Name + '</a>';
 
         Map<String, String> params = new Map<String, String>{
             'path' => '/calendar/view/Month',
@@ -79,7 +80,6 @@ public without sharing class HOT_CourseCalendarGenerator {
                 Id = course.Id,
                 OutlookCalendar__c = buildOutlookCalendarUrl(baseUrl, params)
             ));
-
         }
 
         if (!coursesToUpdate.isEmpty()) {
