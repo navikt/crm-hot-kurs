@@ -6,7 +6,6 @@ public without sharing class HOT_CourseCalendarGenerator {
      * 
      * Outlook url parameter -> Course__c fields used: 
      *  - subject = Type__c + Name
-     *  - body = RegistrationUrl2__c added in the end of body as a link to the course
      *  - startdt = RegistrationFromDateTime__c
      *  - enddt = RegistrationToDateTime__c
      *  - location = RegistrationPlaceName__c
@@ -55,15 +54,16 @@ public without sharing class HOT_CourseCalendarGenerator {
                 continue;
             }
         
+        String courseUrl = 'https://arbeidsgiver.nav.no/kursoversikt/' + course.Id;
+        String bodyText = 'Lenke til kurset:<br/>' +
+            '<a href="' + courseUrl + '" target="_blank">' + course.Name + '</a>';
+
         String subjectTitle;
         if (String.isNotBlank(course.Type__c)) {
             subjectTitle = course.Type__c + ' - ' + course.Name;
         } else {
             subjectTitle = course.Name;
         }
-
-        String bodyText = 'Lenke til kurset:<br/>' +
-                '<a href="' + course.RegistrationUrl2__c + '" target="_blank">' + course.Name + '</a>';
 
         Map<String, String> params = new Map<String, String>{
             'path' => '/calendar/view/Month',
