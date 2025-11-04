@@ -8,14 +8,15 @@ public without sharing class HOT_CourseCalendarGenerator {
      *  - startdt = RegistrationFromDateTime__c
      *  - enddt = RegistrationToDateTime__c
      *  - location = RegistrationPlaceName__c
+     * 
      * Google url parameter 
      *  - text = Type__c + Name
      *  - details = Name + link to course record
      *  - location = RegistrationPlaceName__c
-     *  - dates = RegistrationFromDateTime__c / RegistrationToDateTime__c
+     *  - dates = RegistrationFromDateTime__c '/' RegistrationToDateTime__c
      * 
      * Output: 
-     *  - URLs are stored in OutlookCalendar__c, OutlookOfficeCalendar__c and GoogleCalendar__c fields of Course__c records.
+     *  - URLs are stored in OutlookCalendar__c, OutlookOfficeCalendar__c and GoogleCalendar__c fields.
      */
     public static void generateCalendarUrls(List<Course__c> courseList) {
      
