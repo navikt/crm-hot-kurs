@@ -148,15 +148,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.NumberOfParticipants__c</fieldItem>
-                <identifier>RecordNumberOfParticipants__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.RegistrationSignupsCount__c</fieldItem>
+                <identifier>RecordRegistration_Signups_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -165,15 +158,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Waitinglist__c</fieldItem>
-                <identifier>RecordWaitinglist__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.RegistrationWaitlistedCount__c</fieldItem>
+                <identifier>RecordRegistration_Waitlisted_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-25ae3f01-3e42-4c5f-855f-b2ae433d7248</name>
@@ -1200,12 +1186,11 @@
                     <value>1440</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>reportFilter</name>
-                    <value>FK_CUSTENT_ID</value>
+                    <name>label</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>reportName</name>
-                    <value>Kursdeltakere_ts2</value>
+                    <value>Kursdeltakere_42y</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showRefreshButton</name>
