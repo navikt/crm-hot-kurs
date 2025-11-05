@@ -20,7 +20,7 @@ global with sharing class CourseHandler {
                 Theme__c,
                 AvailableSeats__c,
                 MaxNumberOfParticipants__c,
-                NumberOfParticipants__c,
+                RegistrationSignupsCount__c,
                 PublishWithoutRegistrationForm__c
             FROM Course__c
             WHERE Active__c = TRUE
@@ -45,7 +45,7 @@ global with sharing class CourseHandler {
             wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
             wrapper.AvailableSeats = course.AvailableSeats__c;
             wrapper.MaxNumberOfParticipants = course.MaxNumberOfParticipants__c;
-            wrapper.NumberOfParticipants = course.NumberOfParticipants__c;
+            wrapper.NumberOfParticipants = course.RegistrationSignupsCount__c;
             wrapper.PublishWithoutRegistrationForm = course.PublishWithoutRegistrationForm__c;
 
             wrapper.configurable_custom = new CourseApiModel.Configurable_custom();

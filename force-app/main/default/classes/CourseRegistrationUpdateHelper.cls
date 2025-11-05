@@ -1,62 +1,57 @@
 public class CourseRegistrationUpdateHelper {
     public static void updateHelper(List<CourseRegistration__c> newRecords, Map<Id, sObject> triggerOldMap) {
+        if (newRecords == null || newRecords.isEmpty()) {
+            return;
+        }
+
         Map<Id, CourseRegistration__c> oldMap = triggerOldMap == null
             ? new Map<Id, CourseRegistration__c>()
             : new Map<Id, CourseRegistration__c>((List<CourseRegistration__c>) triggerOldMap.values());
 
-        List<CourseRegistration__c> crsToRemoveOldContribution = new List<CourseRegistration__c>();
-        List<CourseRegistration__c> crsToAddNewContribution = new List<CourseRegistration__c>();
-
         Set<Id> coursesToCheckWaitlist = new Set<Id>();
 
         for (CourseRegistration__c newCr : newRecords) {
+            if (newCr == null) {
+                continue;
+            }
+
             CourseRegistration__c oldCr = oldMap.get(newCr.Id);
-
-            boolean relevantChangeOccurred = false;
-            if (newCr.Status__c != oldCr.Status__c) {
-                relevantChangeOccurred = true;
-            }
-            if (
-                (newCr.Status__c == 'Påmeldt' ||
-                newCr.Status__c == 'Venteliste' ||
-                oldCr.Status__c == 'Påmeldt' ||
-                oldCr.Status__c == 'Venteliste') && (newCr.NumberOfParticipants__c != oldCr.NumberOfParticipants__c)
-            ) {
-                relevantChangeOccurred = true;
+            if (oldCr == null) {
+                continue;
             }
 
-            if (!relevantChangeOccurred) {
-                continue; // Skip if no relevant fields changed
-            }
+            Boolean oldWasAttending = oldCr.Status__c == 'Påmeldt';
+            Boolean newIsAttending = newCr.Status__c == 'Påmeldt';
 
-            if (oldCr.Status__c == 'Påmeldt' || oldCr.Status__c == 'Venteliste') {
-                crsToRemoveOldContribution.add(oldCr);
-            }
-
-            if (newCr.Status__c == 'Påmeldt' || newCr.Status__c == 'Venteliste') {
-                crsToAddNewContribution.add(newCr);
-            }
-
-            if (oldCr.Status__c == 'Påmeldt' && newCr.Status__c != 'Påmeldt') {
-                coursesToCheckWaitlist.add(oldCr.Course__c); // Course ID from old record (should be same as new)
-            } else if (
-                oldCr.Status__c == 'Påmeldt' &&
-                newCr.Status__c == 'Påmeldt' &&
-                newCr.NumberOfParticipants__c != null &&
-                oldCr.NumberOfParticipants__c != null &&
-                newCr.NumberOfParticipants__c < oldCr.NumberOfParticipants__c
-            ) {
-                // Participants decreased while still attending
+            if (oldWasAttending && !newIsAttending && oldCr.Course__c != null) {
                 coursesToCheckWaitlist.add(oldCr.Course__c);
+                continue;
             }
-        }
 
-        if (!crsToRemoveOldContribution.isEmpty()) {
-            CourseRegistrationHelper.getCourseIdToReduce(crsToRemoveOldContribution);
-        }
+            if (!oldWasAttending || !newIsAttending) {
+                continue;
+            }
 
-        if (!crsToAddNewContribution.isEmpty()) {
-            CourseRegistrationHelper.getCourseIdToIncrease(crsToAddNewContribution);
+            Id oldCourseId = oldCr.Course__c;
+            if (oldCourseId == null) {
+                continue;
+            }
+
+            if (newCr.Course__c != null && newCr.Course__c != oldCourseId) {
+                coursesToCheckWaitlist.add(oldCourseId);
+                continue;
+            }
+
+            Integer oldParticipants = oldCr.NumberOfParticipants__c == null || oldCr.NumberOfParticipants__c < 1
+                ? 1
+                : oldCr.NumberOfParticipants__c.intValue();
+            Integer newParticipants = newCr.NumberOfParticipants__c == null || newCr.NumberOfParticipants__c < 1
+                ? 1
+                : newCr.NumberOfParticipants__c.intValue();
+
+            if (newParticipants < oldParticipants) {
+                coursesToCheckWaitlist.add(oldCourseId);
+            }
         }
 
         if (!coursesToCheckWaitlist.isEmpty()) {
