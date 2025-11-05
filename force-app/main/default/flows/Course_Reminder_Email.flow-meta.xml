@@ -4,15 +4,15 @@
     <description>For course participant to receive a reminder email about the upcoming course.</description>
     <environments>Default</environments>
     <formulas>
-        <description>Starts in 2 days</description>
-        <name>In2Days</name>
-        <dataType>Date</dataType>
-        <expression>TODAY() + 2</expression>
-    </formulas>
-    <formulas>
         <name>In3Days</name>
         <dataType>Date</dataType>
         <expression>TODAY() + 3</expression>
+    </formulas>
+    <formulas>
+        <description>Starts in 4 days</description>
+        <name>In4Days</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 4</expression>
     </formulas>
     <interviewLabel>Course Reminder Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Course Reminder Email</label>
@@ -21,7 +21,7 @@
         <label>Loop Through Courses</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <collectionReference>Get_Courses_Starting_in_2_Days</collectionReference>
+        <collectionReference>Get_Courses_Starting_in_3_Days</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Get_Registrations_for_Course</targetReference>
@@ -83,7 +83,7 @@
         <inputAssignments>
             <field>Status__c</field>
             <value>
-                <stringValue>Instant</stringValue>
+                <stringValue>Queued</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -101,15 +101,15 @@
         <inputAssignments>
             <field>WhatId__c</field>
             <value>
-                <elementReference>Loop_Through_Courses.Id</elementReference>
+                <elementReference>Loop_Through_Registrations.Id</elementReference>
             </value>
         </inputAssignments>
         <object>EmailQueue__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_Courses_Starting_in_2_Days</name>
-        <label>Get Courses Starting in 2 Days</label>
+        <name>Get_Courses_Starting_in_3_Days</name>
+        <label>Get Courses Starting in 3 Days</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -128,14 +128,14 @@
             <field>RegistrationFromDateTime__c</field>
             <operator>GreaterThanOrEqualTo</operator>
             <value>
-                <elementReference>In2Days</elementReference>
+                <elementReference>In3Days</elementReference>
             </value>
         </filters>
         <filters>
             <field>RegistrationFromDateTime__c</field>
             <operator>LessThan</operator>
             <value>
-                <elementReference>In3Days</elementReference>
+                <elementReference>In4Days</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -174,14 +174,14 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Courses_Starting_in_2_Days</targetReference>
+            <targetReference>Get_Courses_Starting_in_3_Days</targetReference>
         </connector>
         <schedule>
             <frequency>Daily</frequency>
             <startDate>2025-11-04</startDate>
-            <startTime>14:15:00.000Z</startTime>
+            <startTime>16:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>
