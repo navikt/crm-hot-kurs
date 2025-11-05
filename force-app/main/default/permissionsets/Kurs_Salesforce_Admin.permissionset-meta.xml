@@ -21,6 +21,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.GoogleCalendar__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.NotifiedSubscribers__c</field>
         <readable>true</readable>
@@ -28,6 +33,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.NumberOfParticipants__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.OutlookCalendar__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.OutlookOfficeCalendar__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
