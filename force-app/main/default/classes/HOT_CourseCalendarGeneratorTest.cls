@@ -67,8 +67,10 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
             WHERE Name 
             LIKE 'Test %'];
         
+        // List<Course__c> courses = [SELECT Id, Name FROM Course__c WHERE Id = :course.Id];
+        
         System.Test.startTest();
-        HOT_CourseCalendarGenerator.generateAllCalendarUrls(courses);
+        HOT_CourseCalendarGenerator.generateCalendarUrls(courses);
         System.Test.stopTest();
 
         List<Course__c> updatedCourses = [

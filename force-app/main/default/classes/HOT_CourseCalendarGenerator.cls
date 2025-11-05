@@ -43,10 +43,10 @@ public without sharing class HOT_CourseCalendarGenerator {
             WHERE Id IN :courseIds
         ];
 
-        generateAllCalendarUrls(courses);
+        buildValidCalendarUrls(courses);
     }
 
-    public static void generateAllCalendarUrls(List<Course__c> courses) {
+    public static void buildValidCalendarUrls(List<Course__c> courses) {
         if (courses == null || courses.isEmpty()) return;
 
         List<Course__c> coursesToUpdate = new List<Course__c>(); 
