@@ -1,10 +1,11 @@
 public without sharing class HOT_CourseCalendarGenerator {
 
     /**
-     * Generates dynamic calendar URLs (Outlook live, outlook office and Google) for created Course__c records.
+     * Generates dynamic calendar event URLs (Outlook live, outlook office and Google) for created Course__c records.
      * 
      * Outlook url parameter -> Course__c fields used: 
      *  - subject = Type__c + Name
+     *  - body = Name + link to course record
      *  - startdt = RegistrationFromDateTime__c
      *  - enddt = RegistrationToDateTime__c
      *  - location = RegistrationPlaceName__c
@@ -12,8 +13,8 @@ public without sharing class HOT_CourseCalendarGenerator {
      * Google url parameter 
      *  - text = Type__c + Name
      *  - details = Name + link to course record
-     *  - location = RegistrationPlaceName__c
      *  - dates = RegistrationFromDateTime__c '/' RegistrationToDateTime__c
+     *  - location = RegistrationPlaceName__c
      * 
      * Output: 
      *  - URLs are stored in OutlookCalendar__c, OutlookOfficeCalendar__c and GoogleCalendar__c fields.
