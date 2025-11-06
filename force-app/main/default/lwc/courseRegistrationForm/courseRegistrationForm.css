@@ -149,9 +149,8 @@
     box-shadow: 0 2px 0 #c6c2bf;
     border-color: #0067c5;
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-grid;
+    place-items: center;
     font-weight: 600;
     font-family: Source Sans Pro, Arial, sans-serif;
     font-size: 1em;
@@ -168,12 +167,51 @@
     border: 2px solid #0067c5;
 }
 
-.btn-submit:hover {
+.btn-submit__label,
+.btn-submit__spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: 1 / 1;
+}
+
+.btn-submit__spinner {
+    display: none;
+    pointer-events: none;
+    --ac-loader-inverted-stroke: #fff;
+    --ac-loader-inverted-stroke-bg: rgba(255, 255, 255, 0.35);
+}
+
+.btn-submit--loading .btn-submit__label {
+    opacity: 0;
+}
+
+.btn-submit--loading .btn-submit__spinner {
+    display: inline-flex;
+}
+
+.btn-submit:not([disabled]):hover {
     transform: translateY(-3px);
     box-shadow: 0 3px 0 #d2cfcc;
     color: #fff;
     border-color: #0074df;
     background-color: #0074df;
+}
+
+.btn-submit[disabled] {
+    cursor: not-allowed;
+    opacity: 0.75;
+    transform: translateY(0);
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.btn-submit--loading {
+    cursor: progress;
+}
+
+.btn-debug {
+    margin-top: 1rem;
 }
 
 .btn2 {

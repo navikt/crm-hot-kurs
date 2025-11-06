@@ -71,6 +71,12 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         'Varsling'
     ];
 
+    @track isSubmitting = false;
+
+    get submitButtonClasses() {
+        return this.isSubmitting ? 'btn-submit btn-submit--loading' : 'btn-submit';
+    }
+
     //icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
@@ -215,6 +221,10 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     handleSubmit(event) {
         event.preventDefault();
+
+        if (this.isSubmitting) {
+            return;
+        }
 
         const requiredFields = [
             'firstName',
@@ -362,6 +372,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
         // Alle sjekker er passert om vi kommer hit
         let output = JSON.stringify(this.theRecord, null);
+        this.isSubmitting = true;
         createRegistration({
             fields: output,
             courseId: this.courseId
@@ -389,6 +400,9 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.showError = true;
                 this.errorMessage = 'Teknisk feil ved innsending. Prøv igjen senere.';
                 this.showConfirmation = false;
+            })
+            .finally(() => {
+                this.isSubmitting = false;
             });
     }
 
