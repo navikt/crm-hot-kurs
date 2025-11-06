@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <description>For course participant to receive a reminder email about the upcoming course.</description>
     <environments>Default</environments>
     <formulas>
         <name>In3Days</name>
@@ -14,8 +13,8 @@
         <dataType>Date</dataType>
         <expression>TODAY() + 4</expression>
     </formulas>
-    <interviewLabel>Course Reminder Email {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Course Reminder Email</label>
+    <interviewLabel>HOT Course Reminder Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HOT Course Reminder Email</label>
     <loops>
         <name>Loop_Through_Courses</name>
         <label>Loop Through Courses</label>
