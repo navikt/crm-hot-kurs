@@ -30,6 +30,10 @@
         <field>CourseRegistration__c.CourseParticipant__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>CourseRegistration__c.NumberOfParticipants__c</field>
+    </columns>
+    <columns>
         <field>CourseRegistration__c.firstName__c</field>
     </columns>
     <columns>
@@ -77,10 +81,6 @@
     <columns>
         <field>CourseRegistration__c.OrganizationNumber__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>CourseRegistration__c.NumberOfParticipants__c</field>
-    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
@@ -90,7 +90,7 @@
     <name>Kursdeltakere</name>
     <params>
         <name>co</name>
-        <value>1</value>
+        <value>0</value>
     </params>
     <reportType>CustomEntityCustomEntity$Course__c$CourseRegistration__c</reportType>
     <scope>user</scope>
