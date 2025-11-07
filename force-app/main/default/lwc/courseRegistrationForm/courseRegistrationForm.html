@@ -309,8 +309,23 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <button title="Meld på" class="btn-submit" type="submit" onclick={handleSubmit}>
-                                        Meld deg på
+                                    <button
+                                        title="Meld på"
+                                        class={submitButtonClasses}
+                                        type="submit"
+                                        onclick={handleSubmit}
+                                        disabled={isSubmitting}
+                                    >
+                                        <span class="btn-submit__label">Meld deg på</span>
+                                        <template if:true={isSubmitting}>
+                                            <c-hot_loader-kurs
+                                                class="btn-submit__spinner"
+                                                size="xsmall"
+                                                variant="inverted"
+                                                transparent
+                                                title="Sender inn"
+                                            ></c-hot_loader-kurs>
+                                        </template>
                                     </button>
                                 </div>
                             </form>
