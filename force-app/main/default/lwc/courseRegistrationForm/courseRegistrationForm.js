@@ -7,59 +7,59 @@ import icons from '@salesforce/resourceUrl/icons';
 import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
-    @track courseId;
+    courseId;
 
-    @track theRecord = {
+    theRecord = {
         subscribeEmail: false
     };
 
-    @track output;
+    output;
 
-    @track showForm = false;
-    @track showConfirmation = false;
-    @track showError = false;
-    @track displayErrorMessage = false;
-    @track errorMessage;
-    @track message;
+    showForm = false;
+    showConfirmation = false;
+    showError = false;
+    displayErrorMessage = false;
+    errorMessage;
+    message;
 
-    @track inputValCode = '';
-    @track code;
+    inputValCode = '';
+    code;
 
-    @track dueDate;
-    @track title;
-    @track canceled = false;
-    @track allergies = false;
-    @track invoiceAdress = false;
-    @track invoiceReference = false;
-    @track workplace = false;
-    @track addMultipleParticipants = false;
-    @track showNumberInput = false;
-    @track maxNumberOfParticipants;
-    @track numberOfParticipants;
-    @track typeOfAttendance = false;
+    dueDate;
+    title;
+    canceled = false;
+    allergies = false;
+    invoiceAdress = false;
+    invoiceReference = false;
+    workplace = false;
+    addMultipleParticipants = false;
+    showNumberInput = false;
+    maxNumberOfParticipants;
+    numberOfParticipants;
+    typeOfAttendance = false;
     targetGroup = '';
     showGroupTargetAlert = false;
 
-    @track courseIsFullWarning = false;
-    @track numberOnWaitinglist;
+    courseIsFullWarning = false;
+    numberOnWaitinglist;
 
-    @track showValidationInput = false;
+    showValidationInput = false;
     parameters = {};
 
-    @track url;
+    url;
 
-    @track county = false;
-    @track companyName = false;
-    @track role = false;
+    county = false;
+    companyName = false;
+    role = false;
 
     organizationNumberSearch;
     organizationName = 'Feltet fylles automatisk';
     showOrganizationNumber;
 
-    @track subscribeEmailText;
-    @track showEmailSubscribeContainer = false;
+    subscribeEmailText;
+    showEmailSubscribeContainer = false;
 
-    @track subCategoryNames = [
+    subCategoryNames = [
         'Bevegelse',
         'Bolig',
         'Hørsel',
@@ -71,7 +71,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         'Varsling'
     ];
 
-    @track isSubmitting = false;
+    isSubmitting = false;
 
     get submitButtonClasses() {
         return this.isSubmitting ? 'btn-submit btn-submit--loading' : 'btn-submit';
