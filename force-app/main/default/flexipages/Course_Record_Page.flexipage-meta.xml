@@ -1189,6 +1189,10 @@
                     <name>label</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>reportFilter</name>
+                    <value>CUST_ID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>reportName</name>
                     <value>Kursdeltakere_42y</value>
                 </componentInstanceProperties>

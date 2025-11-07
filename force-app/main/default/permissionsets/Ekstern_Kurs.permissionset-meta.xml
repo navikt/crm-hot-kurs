@@ -97,6 +97,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.GoogleCalendarDisplay__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CourseRegistration__c.Invoice_address__c</field>
         <readable>true</readable>
@@ -119,6 +124,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CourseRegistration__c.OrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.OutlookCalendarDisplay__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CourseRegistration__c.OutlookOfficeDisplay__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -168,6 +183,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.GoogleCalendar__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.GoogleMapsLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -179,6 +199,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.NumberOfParticipants__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.OutlookCalendar__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.OutlookOfficeCalendar__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
