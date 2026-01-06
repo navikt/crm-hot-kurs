@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Add_Course_Id_to_collection</name>
+        <label>Add Course Id to collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CourseIdCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Through_Courses.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Courses</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Course_Registration_to_email_queue</name>
+        <label>Add Course Registration to email queue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>1</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.SaveAsActivity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Queued</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.TargetObjectId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Registrations.CourseParticipant__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.TemplateName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>courseAllScheduledEmailReminder</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SingleEmailQueue.WhatId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Registrations.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>EmailQueueCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>SingleEmailQueue</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Registrations</targetReference>
+        </connector>
+    </assignments>
     <environments>Default</environments>
     <formulas>
         <name>In3Days</name>
@@ -23,8 +97,11 @@
         <collectionReference>Get_Courses_Starting_in_3_Days</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Get_Registrations_for_Course</targetReference>
+            <targetReference>Add_Course_Id_to_collection</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Registrations_for_Course</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Loop_Through_Registrations</name>
@@ -34,10 +111,10 @@
         <collectionReference>Get_Registrations_for_Course</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Send_Course_Reminder_Email</targetReference>
+            <targetReference>Add_Course_Registration_to_email_queue</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Loop_Through_Courses</targetReference>
+            <targetReference>Send_Course_Reminder_Email</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -64,47 +141,7 @@
         <label>Send Course Reminder Email</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Through_Registrations</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Priority__c</field>
-            <value>
-                <stringValue>1</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>SaveAsActivity__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Queued</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TargetObjectId__c</field>
-            <value>
-                <elementReference>Loop_Through_Registrations.CourseParticipant__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TemplateName__c</field>
-            <value>
-                <stringValue>courseAllScheduledEmailReminder</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>WhatId__c</field>
-            <value>
-                <elementReference>Loop_Through_Registrations.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <object>EmailQueue__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <inputReference>EmailQueueCollection</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Courses_Starting_in_3_Days</name>
@@ -160,9 +197,9 @@
         </filters>
         <filters>
             <field>Course__c</field>
-            <operator>EqualTo</operator>
+            <operator>In</operator>
             <value>
-                <elementReference>Loop_Through_Courses.Id</elementReference>
+                <elementReference>CourseIdCollection</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -183,4 +220,27 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>CourseIdCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>EmailQueueCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
+    <variables>
+        <name>SingleEmailQueue</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailQueue__c</objectType>
+    </variables>
 </Flow>
