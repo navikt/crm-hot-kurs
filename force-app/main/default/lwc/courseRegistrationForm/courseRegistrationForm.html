@@ -89,6 +89,7 @@
                             </div>
                             <!--===================================================================================-->
                             <!--======== ERROR MESSAGE ===========-->
+                            <div class="sr-only" aria-live="assertive" role="status">{erroMessage}</div>
                             <div if:true={displayErrorMessage} class="">
                                 <div
                                     class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
@@ -442,6 +443,7 @@
                             </form>
 
                             <!--======================== CONFIRMATION PAGE =============================================-->
+                            <div class="sr-only" aria-live="assertive" role="status">{message}</div>
                             <div if:true={showConfirmation} class="midtstill">
                                 <div
                                     class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess"
@@ -451,6 +453,7 @@
                                     <p class="typo-normal">{message}</p>
                                 </div>
                             </div>
+
                             <!--=========================================================================================-->
                             <div class="omKurset__tilbakelenke">
                                 <a
