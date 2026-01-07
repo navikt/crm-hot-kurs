@@ -110,6 +110,15 @@
     background-color: #ffe9cc;
 }
 
+.sr-only {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
 .navno-dekorator.alertstripe--info {
     border: 1px solid #368da8;
     background-color: #d8f9ff;
@@ -146,7 +155,6 @@
     background-color: #0067c5;
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 2px 0 #c6c2bf;
     border-color: #0067c5;
     position: relative;
     display: inline-grid;
@@ -191,11 +199,12 @@
 }
 
 .btn-submit:not([disabled]):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 3px 0 #d2cfcc;
-    color: #fff;
-    border-color: #0074df;
-    background-color: #0074df;
+    background-color: #0056b4;
+    border-color: #0056b4;
+}
+.btn-submit:not([disabled]):focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #00347d !important;
 }
 
 .btn-submit[disabled] {

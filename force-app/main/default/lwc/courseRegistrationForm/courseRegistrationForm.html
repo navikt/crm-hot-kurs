@@ -7,21 +7,25 @@
                 <nav class="brodsmulesti" aria-label="Brødsmulesti" itemprop="breadcrumb">
                     <ol>
                         <li class="typo-normal">
-                            <a href="https://www.nav.no" class="lenke brodsmulesti__home"><img src={houseicon} alt=""
-                                    class="brodsmulesti__icon" /> <span>nav.no</span><i class="chevron"></i></a>
+                            <a href="https://www.nav.no" class="lenke brodsmulesti__home"
+                                ><img src={houseicon} alt="" class="brodsmulesti__icon" /> <span>nav.no</span
+                                ><i class="chevron"></i
+                            ></a>
                         </li>
                         <li class="typo-normal">
-                            <a href="https://www.nav.no/no/bedrift" class="lenke"><span>Arbeidsgiver</span><i
-                                    class="chevron"></i></a>
+                            <a href="https://www.nav.no/no/bedrift" class="lenke"
+                                ><span>Arbeidsgiver</span><i class="chevron"></i
+                            ></a>
                         </li>
-                        <li class="typo-normal" aria-current="false">
-                            <a href="https://arbeidsgiver.nav.no/kursoversikt/"
-                                class="lenke brodsmulesti__transform"><span>Kurskalender</span><i
-                                    class="chevron"></i></a>
+                        <li class="typo-normal">
+                            <a href="https://arbeidsgiver.nav.no/kursoversikt/" class="lenke brodsmulesti__transform"
+                                ><span>Kurskalender</span><i class="chevron"></i
+                            ></a>
                         </li>
-                        <li class="typo-normal" aria-current="false">
-                            <a href={url} class="lenke brodsmulesti__transform"><span>Om kurset</span><i
-                                    class="chevron"></i></a>
+                        <li class="typo-normal">
+                            <a href={url} class="lenke brodsmulesti__transform"
+                                ><span>Om kurset</span><i class="chevron"></i
+                            ></a>
                         </li>
                         <li class="typo-normal" aria-current="page">
                             <span class="brodsmulesti__transform">Påmeldingsskjema</span>
@@ -56,8 +60,15 @@
 
                                 <div class="inline">
                                     <label for="invCode" class="skjemaelement__label">Tast inn din tilgangskode</label>
-                                    <input type="text" class="skjemaelement__input" id="invCode" name={inputValCode}
-                                        value={inputValCode} onchange={handleChange2} required />
+                                    <input
+                                        type="text"
+                                        class="skjemaelement__input"
+                                        id="invCode"
+                                        name={inputValCode}
+                                        value={inputValCode}
+                                        onchange={handleChange2}
+                                        required
+                                    />
 
                                     <button title="Vis aktivitet" class="btn2" type="submit" onclick={validateCode}>
                                         Vis aktivitet
@@ -69,9 +80,8 @@
 
                             <!--======== COURSEID DOES NOT EXIST ===========-->
                             <div if:false={courseId} class="">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--feil">
-                                    <img class="navno-dekorator alertstripe__ikon" src={erroricon}
-                                        alt="advarsel-ikon" />
+                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--feil" role="alert">
+                                    <img class="navno-dekorator alertstripe__ikon" src={erroricon} alt="" />
                                     <div class="typo-normal alertstripe__tekst">
                                         Dette kurset er ikke tilgjengelig for øyeblikket, vennligst prøv igjen senere
                                     </div>
@@ -79,10 +89,13 @@
                             </div>
                             <!--===================================================================================-->
                             <!--======== ERROR MESSAGE ===========-->
+                            <div class="sr-only" aria-live="assertive" role="status">{erroMessage}</div>
                             <div if:true={displayErrorMessage} class="">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                    <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                        alt="advarsel-ikon" />
+                                <div
+                                    class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                                    role="alert"
+                                >
+                                    <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
                                     <div class="typo-normal alertstripe__tekst">{errorMessage}</div>
                                 </div>
                             </div>
@@ -93,8 +106,7 @@
                                 <!-- Alert banner -->
                                 <template if:true={targetGroup}>
                                     <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                            alt="advarsel-ikon" />
+                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
                                         <p class="typo-normal">{targetGroup}</p>
                                     </div>
                                     <br />
@@ -103,9 +115,11 @@
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
                                 <div if:true={courseIsFullWarning}>
-                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                            alt="advarsel-ikon" />
+                                    <div
+                                        class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                                        role="status"
+                                    >
+                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
                                         <p class="typo-normal">
                                             Kurset er fullt. Ved å fylle ut skjemaet blir du satt på venteliste og
                                             automatisk tildelt en plass dersom det blir ledig. Du blir nummer
@@ -119,44 +133,76 @@
                                 <div class="kontaktskjema-felter__bolk">
                                     <div class="felt">
                                         <label class="skjemaelement__label" for="firstName">
-                                            <p class="typo-element">Fornavn</p>
+                                            <span class="typo-element">Fornavn</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde" id="firstName"
-                                            name="firstName" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            id="firstName"
+                                            name="firstName"
+                                            onchange={handleChange}
+                                            autocomplete="given-name"
+                                            required
+                                        />
                                     </div>
 
                                     <div class="felt">
                                         <label class="skjemaelement__label" for="lastName">
-                                            <p class="typo-element">Etternavn</p>
+                                            <span class="typo-element">Etternavn</span>
                                         </label>
 
-                                        <input type="text" class="skjemaelement__input input--fullbredde" id="lastName"
-                                            name="lastName" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            id="lastName"
+                                            name="lastName"
+                                            onchange={handleChange}
+                                            autocomplete="family-name"
+                                            required
+                                        />
                                     </div>
 
                                     <div class="felt">
                                         <label class="skjemaelement__label" for="email">
-                                            <p class="typo-element">E-post</p>
+                                            <span class="typo-element">E-post</span>
                                         </label>
-                                        <input type="email" class="skjemaelement__input input--fullbredde" id="email"
-                                            name="email" onchange={handleChange} required />
+                                        <input
+                                            type="email"
+                                            class="skjemaelement__input input--fullbredde"
+                                            id="email"
+                                            name="email"
+                                            onchange={handleChange}
+                                            autocomplete="email"
+                                            required
+                                        />
                                     </div>
 
                                     <div class="felt">
                                         <label class="skjemaelement__label" for="phone">
-                                            <p class="typo-element">Telefonnummer</p>
+                                            <span class="typo-element">Telefonnummer</span>
                                         </label>
-                                        <input type="phone" class="skjemaelement__input input--fullbredde" name="phone"
-                                            id="phone" onchange={handleChange} required />
+                                        <input
+                                            type="tel"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="phone"
+                                            id="phone"
+                                            onchange={handleChange}
+                                            autocomplete="tel"
+                                            required
+                                        />
                                     </div>
 
                                     <div if:true={county} class="felt">
                                         <label class="skjemaelement__label" for="county">
-                                            <p class="typo-element">Fylke</p>
+                                            <span class="typo-element">Fylke</span>
                                         </label>
                                         <div class="selectContainer input--fullbredde">
-                                            <select class="skjemaelement__input" id="county" name="county"
-                                                onchange={handleChange}>
+                                            <select
+                                                class="skjemaelement__input"
+                                                id="county"
+                                                name="county"
+                                                onchange={handleChange}
+                                            >
                                                 <!--<img src={chevrondown} alt="pil ned ikon" /> -->
                                                 <option value></option>
                                                 <option value="Agder">Agder</option>
@@ -179,65 +225,109 @@
                                     </div>
                                     <div if:true={companyName} class="felt">
                                         <label class="skjemaelement__label" for="companyName">
-                                            <p class="typo-element">Firma</p>
+                                            <span class="typo-element">Firma</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="companyName" id="companyName" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="companyName"
+                                            id="companyName"
+                                            onchange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <!-- Arbeidsgiver org number and name Start -->
                                     <template lwc:if={showOrganizationNumber}>
                                         <div class="felt">
                                             <label class="skjemaelement__label" for="orgNumber">
-                                                <p class="typo-element">Organisasjonsnummer</p>
+                                                <span class="typo-element">Organisasjonsnummer</span>
                                             </label>
-                                            <input type="text" class="skjemaelement__input input--fullbredde"
-                                                name="orgNumber" oninput={handleOrganizationNumberInput} maxlength="9"/>
+                                            <input
+                                                type="text"
+                                                class="skjemaelement__input input--fullbredde"
+                                                name="orgNumber"
+                                                id="orgNumber"
+                                                oninput={handleOrganizationNumberInput}
+                                                maxlength="9"
+                                            />
                                         </div>
                                         <div class="felt">
                                             <label class="skjemaelement__label" for="orgName">
-                                                <p class="typo-element">Organisasjonsnavn</p>
+                                                <span class="typo-element">Organisasjonsnavn</span>
                                             </label>
-                                            <input type="text" class="skjemaelement__input input--fullbredde"
-                                                name="orgName" placeholder={organizationName} readonly />
+                                            <input
+                                                type="text"
+                                                class="skjemaelement__input input--fullbredde"
+                                                name="orgName"
+                                                placeholder={organizationName}
+                                                readonly
+                                            />
                                         </div>
                                     </template>
                                     <!-- Arbeidsgiver navn END -->
                                     <div if:true={role} class="felt">
                                         <label class="skjemaelement__label" for="role">
-                                            <p class="typo-element">Rolle</p>
+                                            <span class="typo-element">Rolle</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde" name="role"
-                                            id="role" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="role"
+                                            id="role"
+                                            onchange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div if:true={workplace} class="felt">
                                         <label class="skjemaelement__label" for="workplace">
-                                            <p class="typo-element">Arbeidsplass</p>
+                                            <span class="typo-element">Arbeidsplass</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="workplace" id="workplace" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="workplace"
+                                            id="workplace"
+                                            onchange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div if:true={invoiceAdress} class="felt">
                                         <label class="skjemaelement__label" for="invoiceAdress">
-                                            <p class="typo-element">Faktura adresse</p>
+                                            <span class="typo-element">Faktura adresse</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="invoiceAdress" id="invoiceAdress" onchange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="invoiceAdress"
+                                            id="invoiceAdress"
+                                            onchange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div if:true={invoiceReference} class="felt">
                                         <label class="skjemaelement__label" for="invoiceReference">
-                                            <p class="typo-element">Faktura referanse</p>
+                                            <span class="typo-element">Faktura referanse</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="invoiceReference" id="invoiceReference" onchange={handleChange}
-                                            required />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="invoiceReference"
+                                            id="invoiceReference"
+                                            onchange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div if:true={typeOfAttendance} class="felt">
                                         <label class="skjemaelement__label" for="typeOfAttendance">
-                                            <p class="typo-element">Deltakelse</p>
+                                            <span class="typo-element">Deltakelse</span>
                                         </label>
                                         <div class="selectContainer input--fullbredde">
-                                            <select class="skjemaelement__input" id="typeOfAttendance"
-                                                name="typeOfAttendance" onchange={handleChange}>
+                                            <select
+                                                class="skjemaelement__input"
+                                                id="typeOfAttendance"
+                                                name="typeOfAttendance"
+                                                onchange={handleChange}
+                                            >
                                                 <option value></option>
                                                 <option value="Physical">Fysisk</option>
                                                 <option value="Digital">Digitalt</option>
@@ -246,40 +336,58 @@
                                     </div>
                                     <div if:true={allergies} class="felt">
                                         <label class="skjemaelement__label" for="allergies">
-                                            <p class="typo-element">Matallergi</p>
+                                            <span class="typo-element">Matallergi</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="allergies" id="allergies" onchange={handleChange} />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="allergies"
+                                            id="allergies"
+                                            onchange={handleChange}
+                                        />
                                     </div>
                                     <div if:true={additionalInformation} class="felt">
                                         <label class="skjemaelement__label" for="additionalInformation">
-                                            <p class="typo-element">Tilleggsinformasjon (f.eks behov for tolk)</p>
+                                            <span class="typo-element">Tilleggsinformasjon (f.eks behov for tolk)</span>
                                         </label>
-                                        <input type="text" class="skjemaelement__input input--fullbredde"
-                                            name="additionalInformation" id="additionalInformation"
-                                            onchange={handleChange} />
+                                        <input
+                                            type="text"
+                                            class="skjemaelement__input input--fullbredde"
+                                            name="additionalInformation"
+                                            id="additionalInformation"
+                                            onchange={handleChange}
+                                        />
                                     </div>
                                     <template if:true={addMultipleParticipants}>
                                         <div class="felt">
-                                            <c-checkbox oncheckboxclick={toggleMultipleParticipants}
+                                            <c-checkbox
+                                                oncheckboxclick={toggleMultipleParticipants}
                                                 label="Legg til flere deltakere"
-                                                name="multipleParticipants"></c-checkbox>
+                                                name="multipleParticipants"
+                                            ></c-checkbox>
                                         </div>
 
                                         <div class="felt" if:true={showNumberInput}>
                                             <label class="skjemaelement__label" for="numberOfParticipants">
-                                                <p class="typo-element">Totalt antall deltakere (inkl. deg selv)</p>
+                                                <span class="typo-element"
+                                                    >Totalt antall deltakere (inkl. deg selv)</span
+                                                >
                                             </label>
-                                            <input type="number" min="1" value="1" id="numberOfParticipants"
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value="1"
+                                                id="numberOfParticipants"
                                                 name="numberOfParticipants"
-                                                class="skjemaelement__input input--fullbredde" oninput={handleChange} />
+                                                class="skjemaelement__input input--fullbredde"
+                                                oninput={handleChange}
+                                            />
                                         </div>
                                     </template>
                                 </div>
 
                                 <div class="navno-dekorator alertstripe alertstripe--info">
-                                    <img class="navno-dekorator alertstripe__ikon" src={informationicon}
-                                        alt="informasjon-ikon" />
+                                    <img class="navno-dekorator alertstripe__ikon" src={informationicon} alt="" />
                                     <p class="typo-normal">
                                         Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
                                         Opplysningene blir ikke delt eller brukt til andre formål.
@@ -289,8 +397,11 @@
 
                                 <div class="subscribeContainer" lwc:if={showEmailSubscribeContainer}>
                                     <p class="typo-element">Abonner på kurs</p>
-                                    <c-checkbox oncheckboxclick={handleCheckboxClick} label={subscribeEmailText}
-                                        name="subscribeEmail"></c-checkbox>
+                                    <c-checkbox
+                                        oncheckboxclick={handleCheckboxClick}
+                                        label={subscribeEmailText}
+                                        name="subscribeEmail"
+                                    ></c-checkbox>
                                     <br />
                                     <p class="typo-normal">
                                         For å aktivere abonneringen må du bekrefte ved å trykke på lenken i e-posten som
@@ -302,15 +413,16 @@
                                 </div>
                                 <br />
                                 <div if:true={showError}>
-                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon}
-                                            alt="advarsel-ikon" />
+                                    <div
+                                        class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
+                                        role="alert"
+                                    >
+                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
                                         <p class="typo-normal">{errorMessage}</p>
                                     </div>
                                 </div>
                                 <div class="">
                                     <button
-                                        title="Meld på"
                                         class={submitButtonClasses}
                                         type="submit"
                                         onclick={handleSubmit}
@@ -331,20 +443,29 @@
                             </form>
 
                             <!--======================== CONFIRMATION PAGE =============================================-->
+                            <div class="sr-only" aria-live="assertive" role="status">{message}</div>
                             <div if:true={showConfirmation} class="midtstill">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess">
-                                    <img class="navno-dekorator alertstripe__ikon" src={successicon}
-                                        alt="suksess-ikon" />
+                                <div
+                                    class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess"
+                                    role="status"
+                                >
+                                    <img class="navno-dekorator alertstripe__ikon" src={successicon} alt="" />
                                     <p class="typo-normal">{message}</p>
                                 </div>
                             </div>
+
                             <!--=========================================================================================-->
                             <div class="omKurset__tilbakelenke">
-                                <a class="lenke" href="https://arbeidsgiver.nav.no/kursoversikt/"
-                                    title="Tilbake til kursoversikten">
-                                    <i class="chevronboks chevron--venstre"><img class="tst" src={chevrondown}
-                                            alt="pil ned ikon" /></i>
-                                    Tilbake til kursoversikten</a>
+                                <a
+                                    class="lenke"
+                                    href="https://arbeidsgiver.nav.no/kursoversikt/"
+                                    title="Tilbake til kursoversikten"
+                                >
+                                    <i class="chevronboks chevron--venstre"
+                                        ><img class="tst" src={chevrondown} alt="pil ned ikon"
+                                    /></i>
+                                    Tilbake til kursoversikten</a
+                                >
                             </div>
                         </div>
                     </span>
