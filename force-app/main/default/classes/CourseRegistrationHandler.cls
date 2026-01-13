@@ -30,9 +30,6 @@ global class CourseRegistrationHandler extends MyTriggers {
 
     global override void onAfterDelete() {
         List<CourseRegistration__c> deletedRegistrations = (List<CourseRegistration__c>) records;
-        if (deletedRegistrations != null && !deletedRegistrations.isEmpty()) {
-            CourseRegistrationHelper.getCourseIdToReduce(deletedRegistrations);
-        }
         Set<Id> courseIdsToCheckForPromotion = new Set<Id>();
         if (deletedRegistrations != null) {
             for (CourseRegistration__c reg : deletedRegistrations) {
@@ -46,10 +43,8 @@ global class CourseRegistrationHandler extends MyTriggers {
         }
     }
     global override void onAfterUndelete() {
-        CourseRegistrationHelper.getCourseIdToIncrease((List<CourseRegistration__c>) records);
     }
     global override void onAfterInsert() {
-        CourseRegistrationHelper.getCourseIdToIncrease((List<CourseRegistration__c>) records);
     }
 
     global override void onAfterUpdate(Map<Id, sObject> triggerOldMap) {

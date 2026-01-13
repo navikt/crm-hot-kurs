@@ -128,6 +128,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.PublishWithoutRegistrationForm__c</fieldItem>
+                <identifier>RecordPublishWithoutRegistrationForm_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.OwnerId</fieldItem>
                 <identifier>RecordOwnerIdField</identifier>
             </fieldInstance>
@@ -138,15 +148,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.NumberOfParticipants__c</fieldItem>
-                <identifier>RecordNumberOfParticipants__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.RegistrationSignupsCount__c</fieldItem>
+                <identifier>RecordRegistration_Signups_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -155,15 +158,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Waitinglist__c</fieldItem>
-                <identifier>RecordWaitinglist__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.IsNew__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.RegistrationWaitlistedCount__c</fieldItem>
+                <identifier>RecordRegistration_Waitlisted_Count_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-25ae3f01-3e42-4c5f-855f-b2ae433d7248</name>
@@ -240,6 +236,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.DescriptionFormatted__c</fieldItem>
                 <identifier>RecordDescriptionFormatted__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.VideoLink__c</fieldItem>
+                <identifier>RecordVideo_Link_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-7af45425-a172-449e-b870-13a7a2096a0d</name>
@@ -565,6 +571,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.ShowOrganizationNumber__c</fieldItem>
+                <identifier>RecordShowOrganizationNumber_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.ShowAllergies__c</fieldItem>
                 <identifier>RecordShowAllergies__cField</identifier>
             </fieldInstance>
@@ -579,6 +595,10 @@
                 <identifier>RecordShowWorkplace__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -599,10 +619,6 @@
                 <identifier>RecordShow_type_of_participation_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-922e6b39-4067-4765-ac8e-6c49e1bf5cd2</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -1170,12 +1186,15 @@
                     <value>1440</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>reportFilter</name>
-                    <value>FK_CUSTENT_ID</value>
+                    <value>CUST_ID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>reportName</name>
-                    <value>Kursdeltakere_ts2</value>
+                    <value>Kursdeltakere_42y</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showRefreshButton</name>

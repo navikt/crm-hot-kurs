@@ -58,10 +58,12 @@ public without sharing class CourseRegistrationController {
                 AdditionalInformation__c = model.additionalInformation,
                 TypeOfAttendance__c = model.typeOfAttendance,
                 NumberOfParticipants__c = num,
+                OrganizationName__c = model.organizationName,
+                OrganizationNumber__c = model.organizationNumber,
                 Course__c = courseId
             );
 
-            Decimal current = (course.NumberOfParticipants__c != null) ? course.NumberOfParticipants__c : 0;
+            Decimal current = (course.RegistrationSignupsCount__c != null) ? course.RegistrationSignupsCount__c : 0;
             Decimal maxCap = (course.MaxNumberOfParticipants__c != null) ? course.MaxNumberOfParticipants__c : 0;
             Decimal avail = maxCap - current;
 
@@ -124,8 +126,8 @@ public without sharing class CourseRegistrationController {
                 RegistrationPlaceName__c,
                 Type__c,
                 MaxNumberOfParticipants__c,
-                NumberOfParticipants__c,
-                Waitinglist__c,
+                RegistrationSignupsCount__c,
+                RegistrationWaitlistedCount__c,
                 ShowCompany__c,
                 ShowCounty__c,
                 ShowRole__c,
@@ -139,6 +141,7 @@ public without sharing class CourseRegistrationController {
                 ShowTypeOfAttendance__c,
                 ShowAdditionalInformation__c,
                 ShowAddMultipleParticipants__c,
+                ShowOrganizationNumber__c,
                 TargetGroup__c
             FROM Course__c
             WHERE Id = :courseId
@@ -167,7 +170,7 @@ public without sharing class CourseRegistrationController {
         }
         try {
             Course__c course = [
-                SELECT Name, NumberOfParticipants__c, MaxNumberOfParticipants__c, Cancel__c
+                SELECT Name, RegistrationSignupsCount__c, MaxNumberOfParticipants__c, Cancel__c
                 FROM Course__c
                 WHERE Id = :courseId
                 LIMIT 1
@@ -176,5 +179,15 @@ public without sharing class CourseRegistrationController {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getOrganizationInfo(String organizationNumber) {
+        List<Account> account = [
+            SELECT Id, Name, INT_OrganizationNumber__c
+            FROM Account
+            WHERE INT_OrganizationNumber__c = :organizationNumber
+        ];
+        return account;
     }
 }

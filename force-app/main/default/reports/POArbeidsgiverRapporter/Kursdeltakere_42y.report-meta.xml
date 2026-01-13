@@ -14,7 +14,7 @@
         <expandOthers>true</expandOthers>
         <groupingColumn>CourseRegistration__c.Status__c</groupingColumn>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
+        <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
         <showValues>false</showValues>
@@ -22,6 +22,7 @@
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
+        <title>Antall påmeldte</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -74,6 +75,12 @@
     <columns>
         <field>CourseRegistration__c.Invoice_address__c</field>
     </columns>
+    <columns>
+        <field>CourseRegistration__c.OrganizationName__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.OrganizationNumber__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
@@ -83,15 +90,15 @@
     <name>Kursdeltakere</name>
     <params>
         <name>co</name>
-        <value>1</value>
+        <value>0</value>
     </params>
-    <reportType>CustomEntity$CourseRegistration__c@CourseRegistration__c.Course__c</reportType>
+    <reportType>CustomEntityCustomEntity$Course__c$CourseRegistration__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <dateColumn>Course__c.RegistrationToDateTime__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>
