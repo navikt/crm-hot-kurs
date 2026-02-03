@@ -3,7 +3,7 @@ public class HOT_CourseSharingHandler extends MyTriggers {
         shareWithOwnersDepartmentQueue((List<Course__c>) records);
     }
 
-    private static void shareWithOwnersDepartmentQueue(List<Course__c> courses) {
+    public static void shareWithOwnersDepartmentQueue(List<Course__c> courses) {
         if (courses == null || courses.isEmpty()) {
             return;
         }
