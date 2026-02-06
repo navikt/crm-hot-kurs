@@ -157,11 +157,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.FrontPageDescription__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Course__c.GenerateInvitationCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
