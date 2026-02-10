@@ -13,7 +13,8 @@ public without sharing class HOT_CourseHandler extends MyTriggers {
                 (oldCourse.RegistrationFromDateTime__c != course.RegistrationFromDateTime__c) ||
                 (oldCourse.RegistrationToDateTime__c != course.RegistrationToDateTime__c) ||
                 (oldCourse.Name != course.Name) ||
-                (oldCourse.RegistrationPlaceName__c != course.RegistrationPlaceName__c);
+                (oldCourse.RegistrationPlaceName__c != course.RegistrationPlaceName__c) ||
+                (oldCourse.VideoLink__c != course.VideoLink__c);
 
             if (hasChanged) {
                 updatedCourses.add(course);
