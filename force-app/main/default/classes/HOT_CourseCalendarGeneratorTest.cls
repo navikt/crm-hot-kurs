@@ -1,6 +1,6 @@
 @isTest
 private with sharing class HOT_CourseCalendarGeneratorTest {
-    @TestSetup 
+    @TestSetup
     static void setup() {
         List<Course__c> courses = new List<Course__c>();
 
@@ -17,7 +17,7 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
             course.RegistrationToDateTime__c = DateTime.now().addHours(5);
             course.RegistrationDeadline__c = DateTime.now().addDays(-1);
 
-            if(i == 0){
+            if (i == 0) {
                 course.Type__c = '';
             } else {
                 course.Type__c = 'Informasjonsmøte';
@@ -27,10 +27,9 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         }
         insert courses;
     }
-    
+
     @IsTest
     private static void testGenerateCalendarUrls() {
-        
         List<Course__c> courses = [
             SELECT Id, Name, DescriptionFormatted__c, DescriptionShort__c, GoogleCalendar__c, Region2__c
             FROM Course__c
@@ -50,7 +49,11 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         ];
 
         System.assertNotEquals(null, updatedCourse.OutlookCalendar__c, 'Outlook calendar URL should be created');
-        System.assertNotEquals(null, updatedCourse.OutlookOfficeCalendar__c, 'Outlook Office calendar URL should be created');
+        System.assertNotEquals(
+            null,
+            updatedCourse.OutlookOfficeCalendar__c,
+            'Outlook Office calendar URL should be created'
+        );
         System.assertNotEquals(null, updatedCourse.GoogleCalendar__c, 'Google calendar URL should be created');
 
         // Check that the URLs contain expected parameters
@@ -62,25 +65,42 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
     @isTest
     private static void testGenerateUrlForAllCourses() {
         List<Course__c> courses = [
-            SELECT Id, Name, RegistrationFromDateTime__c, RegistrationToDateTime__c, Type__c, RegistrationPlaceName__c, DescriptionFormatted__c, DescriptionShort__c, GoogleCalendar__c, Region2__c 
-            FROM Course__c  
-            WHERE Name 
-            LIKE 'Test %'];
-        
+            SELECT
+                Id,
+                Name,
+                RegistrationFromDateTime__c,
+                RegistrationToDateTime__c,
+                Type__c,
+                RegistrationPlaceName__c,
+                DescriptionFormatted__c,
+                DescriptionShort__c,
+                GoogleCalendar__c,
+                Region2__c
+            FROM Course__c
+            WHERE Name LIKE 'Test %'
+        ];
+
         System.Test.startTest();
         HOT_CourseCalendarGenerator.generateCalendarUrls(courses);
         System.Test.stopTest();
 
         List<Course__c> updatedCourses = [
-            SELECT Id, RegistrationFromDateTime__c, RegistrationToDateTime__c, Type__c, RegistrationPlaceName__c, OutlookCalendar__c, OutlookOfficeCalendar__c, GoogleCalendar__c
+            SELECT
+                Id,
+                RegistrationFromDateTime__c,
+                RegistrationToDateTime__c,
+                Type__c,
+                RegistrationPlaceName__c,
+                OutlookCalendar__c,
+                OutlookOfficeCalendar__c,
+                GoogleCalendar__c
             FROM Course__c
-            WHERE Name 
-            LIKE 'Test %'
+            WHERE Name LIKE 'Test %'
         ];
 
         Integer missingUrlsCount = 0;
-        for(Course__c c : updatedCourses) {
-            if(c.OutlookCalendar__c == null || c.OutlookOfficeCalendar__c == null || c.GoogleCalendar__c == null) {
+        for (Course__c c : updatedCourses) {
+            if (c.OutlookCalendar__c == null || c.OutlookOfficeCalendar__c == null || c.GoogleCalendar__c == null) {
                 missingUrlsCount++;
             }
         }
@@ -94,16 +114,19 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         List<Course__c> incompleteCourses = new List<Course__c>();
 
         for (Integer i = 0; i < 2; i++) {
-            incompleteCourses.add(new Course__c(
-                Name = null, 
-                Type__c = 'Webinar',
-                Region2__c = 'Oslo',
-                Active__c = true,
-                MaxNumberOfParticipants__c = 20,
-                DescriptionShort__c = 'Short incomplete course ' + i,
-                RegistrationToDateTime__c = null,
-                RegistrationDeadline__c = null
-            ));
+            incompleteCourses.add(
+                new Course__c(
+                    Name = null,
+                    Type__c = 'Webinar',
+                    Region2__c = 'Oslo',
+                    Active__c = true,
+                    MaxNumberOfParticipants__c = 20,
+                    DescriptionShort__c = 'Short incomplete course ' + i,
+                    RegistrationToDateTime__c = null,
+                    RegistrationDeadline__c = null,
+                    VideoLink__c = 'https://www.nav.no'
+                )
+            );
         }
 
         insert incompleteCourses;
@@ -113,8 +136,8 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         System.Test.stopTest();
 
         List<Course__c> results = [
-            SELECT Id, OutlookCalendar__c, OutlookOfficeCalendar__c, GoogleCalendar__c 
-            FROM Course__c 
+            SELECT Id, OutlookCalendar__c, OutlookOfficeCalendar__c, GoogleCalendar__c
+            FROM Course__c
             WHERE Id IN :incompleteCourses
         ];
 
@@ -133,16 +156,18 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
     private static void testGenerateCalendarCourseIdsEmpty() {
         List<Course__c> coursesWithoutIds = new List<Course__c>();
         for (Integer i = 0; i < 2; i++) {
-            coursesWithoutIds.add(new Course__c(
-                Name = 'No ID Course ' + i,
-                Type__c = 'Konferanse',
-                Region2__c = 'Trøndelag',
-                Active__c = true,
-                MaxNumberOfParticipants__c = 25,
-                RegistrationFromDateTime__c = DateTime.now(),
-                RegistrationToDateTime__c = DateTime.now().addHours(4),
-                RegistrationDeadline__c = DateTime.now().addDays(-2)
-            ));
+            coursesWithoutIds.add(
+                new Course__c(
+                    Name = 'No ID Course ' + i,
+                    Type__c = 'Konferanse',
+                    Region2__c = 'Trøndelag',
+                    Active__c = true,
+                    MaxNumberOfParticipants__c = 25,
+                    RegistrationFromDateTime__c = DateTime.now(),
+                    RegistrationToDateTime__c = DateTime.now().addHours(4),
+                    RegistrationDeadline__c = DateTime.now().addDays(-2)
+                )
+            );
         }
 
         System.Test.startTest();
@@ -150,8 +175,8 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         System.Test.stopTest();
 
         Integer existingUrlsCount = 0;
-        for(Course__c c : coursesWithoutIds) {
-            if(c.OutlookCalendar__c != null || c.OutlookOfficeCalendar__c != null || c.GoogleCalendar__c != null) {
+        for (Course__c c : coursesWithoutIds) {
+            if (c.OutlookCalendar__c != null || c.OutlookOfficeCalendar__c != null || c.GoogleCalendar__c != null) {
                 existingUrlsCount++;
             }
         }
