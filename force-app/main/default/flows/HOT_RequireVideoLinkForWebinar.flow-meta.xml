@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <customErrors>
+        <name>Error_message</name>
+        <label>Error message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Digital møte lenke kan ikke være tom når kurs type er webinar.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <environments>Default</environments>
+    <interviewLabel>HOT_RequireVideoLinkForWebinar {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HOT_RequireVideoLinkForWebinar</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Error_message</targetReference>
+        </connector>
+        <filterFormula>AND(
+    TEXT({!$Record.Type__c}) = &quot;Webinar&quot;,
+    OR(
+        ISBLANK({!$Record__Prior.Id}),
+        TEXT({!$Record.Type__c}) &lt;&gt; TEXT({!$Record__Prior.Type__c})
+    ),
+    ISBLANK({!$Record.VideoLink__c})
+)</filterFormula>
+        <object>Course__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
