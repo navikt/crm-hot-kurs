@@ -81,13 +81,13 @@ public without sharing class HOT_CourseCalendarGenerator {
                 : '';
 
             String bodyText =
-                'Lenke til kurset:<br/>' +
+                videoLinkText +
+                '</a></br></br>' +
+                'Lenke til kurset på nav.no: ' +
                 '<a href="' +
                 courseUrl +
                 '" target="_blank">' +
-                course.Name +
-                '</a></br></br>' +
-                videoLinkText;
+                course.Name;
 
             String subjectTitle = String.isNotBlank(course.Type__c)
                 ? course.Type__c + ' - ' + course.Name
