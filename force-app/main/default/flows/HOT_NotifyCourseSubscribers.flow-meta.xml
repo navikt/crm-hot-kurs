@@ -359,23 +359,28 @@
     <formulas>
         <name>courseEndFormatted</name>
         <dataType>String</dataType>
-        <expression>RIGHT(
-  &quot;00&quot; &amp;
-  TEXT(
-    MOD(
-      VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 12, 2)) +
-      IF(
-        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
-        DATEVALUE({!loop_courses.RegistrationToDateTime__c}) &lt; DATE(2025, 10, 26),
-        2,  /* Oslo is in CEST (UTC+2) */
-        1   /* Oslo is in CET (UTC+1) */
-      ),
-      24
-    )
-  ),
-  2
-) &amp; &quot;.&quot; &amp;
-RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDateTime__c}), 15, 2))), 2)</expression>
+        <expression>RIGHT(&quot;00&quot;&amp;MID(TEXT(
+{!loop_courses.RegistrationToDateTime__c} +
+IF(
+{!loop_courses.RegistrationToDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationToDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),12,2),2)
+&amp; &quot;:&quot;
+&amp;
+RIGHT(&quot;00&quot;&amp;MID(TEXT(
+{!loop_courses.RegistrationToDateTime__c} +
+IF(
+{!loop_courses.RegistrationToDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationToDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationToDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),15,2),2)</expression>
     </formulas>
     <formulas>
         <name>courseLink</name>
@@ -405,42 +410,69 @@ RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationToDate
     <formulas>
         <name>courseStartFormatted</name>
         <dataType>String</dataType>
-        <expression>RIGHT(&quot;00&quot; &amp; TEXT(DAY(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))), 2) &amp; &quot;. &quot; &amp;
+        <expression>RIGHT(&quot;00&quot; &amp; TEXT(
+VALUE(MID(TEXT(
+{!loop_courses.RegistrationFromDateTime__c} +
+IF(
+{!loop_courses.RegistrationFromDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationFromDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),9,2))
+),2)
+&amp; &quot;. &quot;
+&amp;
 CASE(
-  MONTH(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),
-  1, &quot;januar&quot;,
-  2, &quot;februar&quot;,
-  3, &quot;mars&quot;,
-  4, &quot;april&quot;,
-  5, &quot;mai&quot;,
-  6, &quot;juni&quot;,
-  7, &quot;juli&quot;,
-  8, &quot;august&quot;,
-  9, &quot;september&quot;,
-  10, &quot;oktober&quot;,
-  11, &quot;november&quot;,
-  12, &quot;desember&quot;,
-  &quot;ukjent&quot;
-) &amp; &quot; &quot; &amp;
-TEXT(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c}))) &amp;
-&quot; kl &quot; &amp;
-RIGHT(
-  &quot;00&quot; &amp;
-  TEXT(
-    MOD(
-      VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 12, 2)) +
-      IF(
-        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &gt;= DATE(2025, 3, 30) &amp;&amp;
-        DATEVALUE({!loop_courses.RegistrationFromDateTime__c}) &lt; DATE(2025, 10, 26),
-        2,  /* CEST */
-        1   /* CET */
-      ),
-      24
-    )
-  ),
-  2
-) &amp; &quot;.&quot; &amp;
-RIGHT(&quot;00&quot; &amp; TEXT(VALUE(MID(TEXT({!loop_courses.RegistrationFromDateTime__c}), 15, 2))), 2)</expression>
+VALUE(MID(TEXT(
+{!loop_courses.RegistrationFromDateTime__c} +
+IF(
+{!loop_courses.RegistrationFromDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationFromDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),6,2)),
+1,&quot;januar&quot;,2,&quot;februar&quot;,3,&quot;mars&quot;,4,&quot;april&quot;,5,&quot;mai&quot;,6,&quot;juni&quot;,7,&quot;juli&quot;,8,&quot;august&quot;,9,&quot;september&quot;,10,&quot;oktober&quot;,11,&quot;november&quot;,12,&quot;desember&quot;,&quot;&quot;
+)
+&amp; &quot; &quot;
+&amp;
+MID(TEXT(
+{!loop_courses.RegistrationFromDateTime__c} +
+IF(
+{!loop_courses.RegistrationFromDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationFromDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),1,4)
+&amp; &quot; kl. &quot;
+&amp;
+RIGHT(&quot;00&quot;&amp;MID(TEXT(
+{!loop_courses.RegistrationFromDateTime__c} +
+IF(
+{!loop_courses.RegistrationFromDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationFromDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),12,2),2)
+&amp; &quot;:&quot;
+&amp;
+RIGHT(&quot;00&quot;&amp;MID(TEXT(
+{!loop_courses.RegistrationFromDateTime__c} +
+IF(
+{!loop_courses.RegistrationFromDateTime__c} &gt;= DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),3,31))-1))&amp;&quot; 01:00:00&quot;)
+&amp;&amp;
+{!loop_courses.RegistrationFromDateTime__c} &lt; DATETIMEVALUE(TEXT(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31)-(WEEKDAY(DATE(YEAR(DATEVALUE({!loop_courses.RegistrationFromDateTime__c})),10,31))-1))&amp;&quot; 01:00:00&quot;),
+2/24,
+1/24
+)
+),15,2),2)</expression>
     </formulas>
     <formulas>
         <name>someDaysAgo</name>
