@@ -174,6 +174,13 @@
                 <elementReference>In4Days</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Cancel__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Course__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -213,7 +220,9 @@
             <targetReference>Get_Courses_Starting_in_3_Days</targetReference>
         </connector>
         <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
             <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
             <startDate>2025-11-04</startDate>
             <startTime>16:00:00.000Z</startTime>
         </schedule>
