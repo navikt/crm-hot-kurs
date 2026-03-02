@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VideoLink__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>Digital møte lenke blir sendt ut til de som melder seg på.</inlineHelpText>
+    <inlineHelpText>Digital møte lenke blir sendt ut til de som melder seg på. Det oppfordres til å legge inn lenke før kurset publiseres, slik at alle som melder seg på får lenken til det digitale møtet i kalender avtalen sin ved påmelding.</inlineHelpText>
     <label>Digital link</label>
     <length>255</length>
     <required>false</required>
