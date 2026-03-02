@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Video lenke blir sendt ut til de som melder seg på. --></help>
+    <help><!-- Digital møte lenke blir sendt ut til de som melder seg på. Det oppfordres til å legge inn lenke før kurset publiseres, slik at alle som melder seg på får lenken til det digitale møtet i kalender avtalen sin ved påmelding. --></help>
     <label>Digital møte lenke</label>
     <name>VideoLink__c</name>
 </CustomFieldTranslation>
