@@ -155,7 +155,19 @@ public class CourseRegistrationHelper {
             FROM Course__c
             WHERE Id IN :courseIdsToProcess
         ];
+
         Map<Id, Course__c> courseMap = new Map<Id, Course__c>(courses);
+        Map<Id, List<CourseRegistration__c>> waitlistMap = new Map<Id, List<CourseRegistration__c>>();
+
+        // Query all waitlisted registrations for the courses being processed, ordered by CreatedDate to ensure FIFO promotion
+        List<CourseRegistration__c> allWaitlistedRegistrations = [
+            SELECT Id, Status__c, Course__c, CreatedDate, NumberOfParticipants__c
+            FROM CourseRegistration__c
+            if (!waitlistMap.containsKey(reg.Course__c)) {
+                waitlistMap.put(reg.Course__c, new List<CourseRegistration__c>());
+            }
+            waitlistMap.get(reg.Course__c).add(reg);
+        }
 
         for (Id courseId : courseIdsToProcess) {
             Course__c currentCourse = courseMap.get(courseId);
