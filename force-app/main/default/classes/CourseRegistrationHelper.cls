@@ -77,14 +77,13 @@ public class CourseRegistrationHelper {
             return;
         }
 
-        Map<Id, Course__c> coursesWithCapacity = new Map<Id, Course__c>();
-        for (Course__c course : [
-            SELECT Id, MaxNumberOfParticipants__c, RegistrationSignupsCount__c
-            FROM Course__c
-            WHERE Id IN :courseIds
-        ]) {
-            coursesWithCapacity.put(course.Id, course);
-        }
+        Map<Id, Course__c> coursesWithCapacity = new Map<Id, Course__c>(
+            [
+                SELECT Id, MaxNumberOfParticipants__c, RegistrationSignupsCount__c
+                FROM Course__c
+                WHERE Id IN :courseIds
+            ]
+        );
 
         for (Id courseId : courseIds) {
             Course__c relatedCourse = coursesWithCapacity.get(courseId);
