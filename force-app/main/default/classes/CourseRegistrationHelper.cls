@@ -163,6 +163,13 @@ public class CourseRegistrationHelper {
         List<CourseRegistration__c> allWaitlistedRegistrations = [
             SELECT Id, Status__c, Course__c, CreatedDate, NumberOfParticipants__c
             FROM CourseRegistration__c
+            WHERE Course__c IN :courseIdsToProcess AND Status__c = 'Venteliste'
+            ORDER BY CreatedDate ASC
+        ];
+
+        // Group waitlisted registrations by course
+        for (CourseRegistration__c reg : allWaitlistedRegistrations) {
+            // Create a new list for the course if it doesn't exist
             if (!waitlistMap.containsKey(reg.Course__c)) {
                 waitlistMap.put(reg.Course__c, new List<CourseRegistration__c>());
             }
@@ -194,12 +201,10 @@ public class CourseRegistrationHelper {
             if (availableSlots <= 0)
                 continue;
 
-            List<CourseRegistration__c> waitlistedRegistrations = [
-                SELECT Id, Status__c, Course__c, CreatedDate, NumberOfParticipants__c
-                FROM CourseRegistration__c
-                WHERE Course__c = :courseId AND Status__c = 'Venteliste'
-                ORDER BY CreatedDate ASC
-            ];
+            // Get waitlisted registrations for this course
+            List<CourseRegistration__c> waitlistedRegistrations = waitlistMap.containsKey(courseId)
+                ? waitlistMap.get(courseId)
+                : new List<CourseRegistration__c>();
             if (waitlistedRegistrations.isEmpty())
                 continue;
 
