@@ -6,6 +6,7 @@ public without sharing class HOT_CourseHandler extends MyTriggers {
     }
     public override void onAfterUpdate(Map<Id, sObject> triggerOldMap) {
         List<Course__c> updatedCourses = new List<Course__c>();
+        Set<Id> coursesToPromote = new Set<Id>();
 
         for (Course__c course : (List<Course__c>) records) {
             Course__c oldCourse = (Course__c) triggerOldMap.get(course.Id);
@@ -19,9 +20,17 @@ public without sharing class HOT_CourseHandler extends MyTriggers {
             if (hasChanged) {
                 updatedCourses.add(course);
             }
+
+            if (course.MaxNumberOfParticipants__c > oldCourse.MaxNumberOfParticipants__c) {
+                coursesToPromote.add(course.Id);
+            }
         }
         if (!updatedCourses.isEmpty()) {
             HOT_CourseCalendarGenerator.generateCalendarUrls(updatedCourses);
+        }
+
+        if (!coursesToPromote.isEmpty()) {
+            CourseRegistrationHelper.countCourseIdsToCheckWaiting(coursesToPromote);
         }
     }
 }
