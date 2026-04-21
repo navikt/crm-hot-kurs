@@ -130,7 +130,14 @@ public without sharing class HOT_CourseCalendarGenerator {
         }
 
         if (!coursesToUpdate.isEmpty()) {
-            update coursesToUpdate;
+            try {
+                update coursesToUpdate;
+            } catch (Exception e) {
+                LoggerUtility logger = new LoggerUtility();
+                logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+                logger.publishSynch();
+                throw e;
+            }
         }
     }
 

@@ -51,4 +51,34 @@ private with sharing class CourseHandlerTest {
         System.assert(result.contains('Testkurs'));
         System.assert(result.contains('1'));
     }
+
+    @isTest
+    private static void testCourseHandlerThrowsForCourseWithoutDates() {
+        insert new Course__c(
+            Name = 'Broken course',
+            DescriptionFormatted__c = 'Missing dates',
+            DescriptionShort__c = 'Missing dates',
+            Region2__c = 'Oslo',
+            Active__c = true,
+            MaxNumberOfParticipants__c = 10
+        );
+
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+
+        req.requestURI = '/services/apexrest/Course';
+        req.httpMethod = 'GET';
+
+        RestContext.request = req;
+        RestContext.response = res;
+
+        Test.startTest();
+        try {
+            CourseHandler.doGet();
+            System.assert(false, 'Expected missing registration dates to throw');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
 }
