@@ -14,6 +14,13 @@ global class Contact_Create extends MyTriggers {
             cr.EncryptedId__c = EncodingUtil.urlEncode(CryptoService.encryptString(cr.Id), 'UTF-8');
             recordsToUpdate.add(cr);
         }
-        update recordsToUpdate;
+        try {
+            update recordsToUpdate;
+        } catch (Exception e) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+            throw e;
+        }
     }
 }

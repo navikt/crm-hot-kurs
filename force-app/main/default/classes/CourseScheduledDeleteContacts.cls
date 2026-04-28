@@ -99,7 +99,13 @@ public without sharing class CourseScheduledDeleteContacts {
 
             crListToUpdate.add(cr);
         }
-        update crListToUpdate;
+        try {
+            update crListToUpdate;
+        } catch (Exception e) {
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+            throw e;
+        }
     }
 
     // ---------------------------------------------------------------------------------------------- //

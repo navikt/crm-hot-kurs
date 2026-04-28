@@ -229,7 +229,9 @@ public class CourseRegistrationHelper {
             try {
                 update registrationsToPromote;
             } catch (Exception e) {
-                System.debug(LoggingLevel.ERROR, 'Error promoting waitlisted registrations: ' + e.getMessage());
+                LoggerUtility logger = new LoggerUtility();
+                logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+                logger.publishSynch();
             }
         }
     }

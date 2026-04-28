@@ -109,6 +109,9 @@ public without sharing class CourseRegistrationController {
                 result.message = e.getMessage();
                 return result;
             }
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
             result.message = 'En uventet feil oppstod under registrering. Feilmelding: ' + e.getMessage();
             return result;
         }
@@ -177,6 +180,9 @@ public without sharing class CourseRegistrationController {
             ];
             return course;
         } catch (Exception e) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
             return null;
         }
     }

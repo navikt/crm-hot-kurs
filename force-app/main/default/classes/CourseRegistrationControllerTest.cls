@@ -39,6 +39,33 @@ private with sharing class CourseRegistrationControllerTest {
     }
 
     @isTest
+    static void testInvalidCourseIdReturnsUnavailableMessage() {
+        Course__c deletedCourse = new Course__c(
+            Name = 'Deleted course',
+            MaxNumberOfParticipants__c = 5,
+            DescriptionFormatted__c = 'Deleted course'
+        );
+        insert deletedCourse;
+        delete deletedCourse;
+
+        CourseRegistrationModel model = new CourseRegistrationModel();
+        model.firstName = 'Bad';
+        model.lastName = 'Id';
+        model.email = 'bad.id@test.no';
+
+        CourseRegistrationController.RegistrationResult res = CourseRegistrationController.createRegistration(
+            JSON.serialize(model),
+            deletedCourse.Id
+        );
+
+        System.assertEquals(false, res.success);
+        System.assert(
+            res.message.contains('Kunne ikke hente kursdetaljer'),
+            'Expected invalid course id to trigger unavailable course message'
+        );
+    }
+
+    @isTest
     static void testCourseCancelled() {
         Course__c c = new Course__c(Name = 'Cancelled', MaxNumberOfParticipants__c = 5, Cancel__c = true);
         insert c;
