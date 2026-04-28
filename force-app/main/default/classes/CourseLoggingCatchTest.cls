@@ -39,7 +39,8 @@ private with sharing class CourseLoggingCatchTest {
     static void testCourseEmailSubscribeHandlerThrowsForDeletedSubscriber() {
         HOT_CourseSubscriber__c subscriber = new HOT_CourseSubscriber__c(
             Email__c = 'deleted.subscriber@test.no',
-            SubCategories__c = 'Syn'
+            SubCategories__c = 'Syn',
+            isActive__c = true
         );
         insert subscriber;
         delete subscriber;
