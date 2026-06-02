@@ -77,12 +77,13 @@ public without sharing class HOT_CourseCalendarGenerator {
                   course.VideoLink__c +
                   '" target="_blank">' +
                   course.VideoLink__c +
-                  '</a>'
+                  '</a>' +
+                  '</a></br></br>'
                 : '';
 
             String bodyText =
                 videoLinkText +
-                '</a></br></br>' +
+                // '</a></br></br>' +
                 'Lenke til kurset på nav.no:</br>' +
                 '<a href="' +
                 courseUrl +
