@@ -6,6 +6,26 @@
             "package": "crm-hot-kurs",
             "versionNumber": "1.117.0.NEXT",
             "dependencies": [
+                               {
+                    "package": "platform-data-model",
+                    "versionNumber": "0.1.33.LATEST",
+                    "branch": ""
+                },
+                {
+                    "package": "custom-metadata-dao",
+                    "versionNumber": "0.1.33.LATEST",
+                    "branch": ""
+                },
+                {
+                    "package": "custom-permission-helper",
+                    "versionNumber": "0.1.33.LATEST",
+                    "branch": ""
+                },
+                {
+                    "package": "feature-toggle",
+                    "versionNumber": "0.1.48.LATEST",
+                    "branch": ""
+                },
                 {
                     "package": "crm-platform-base",
                     "versionNumber": "0.305.0.LATEST"
@@ -37,23 +57,22 @@
                 {
                     "package": "crm-henvendelse-base",
                     "versionNumber": "0.31.0.LATEST"
-                },
-                        {
+                },         
+                {
                     "package": "platform-data-model",
-                    "versionNumber": "0.1.47.LATEST"
+                    "versionNumber": "0.1.2.LATEST"
                 },
                 {
                     "package": "custom-metadata-dao",
-                    "versionNumber": "0.1.47.LATEST"
+                    "versionNumber": "0.1.2.LATEST"
                 },
                 {
                     "package": "custom-permission-helper",
-                    "versionNumber": "0.1.47.LATEST"
+                    "versionNumber": "0.1.2.LATEST"
                 },
-                     {
+                {
                     "package": "feature-toggle",
-                    "versionNumber": "0.1.48.LATEST",
-                    "branch": ""
+                    "versionNumber": "0.1.3.LATEST"
                 },
                 {
                     "package": "crm-platform-integration",
