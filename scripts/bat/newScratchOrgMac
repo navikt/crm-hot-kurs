@@ -12,11 +12,14 @@ sf package install --package 04tQC000001C7bRYAS --no-prompt --wait 30 --publish-
 # Installer custom-permission-helper ver. 0.1.47
 sf package install --package 04tQC000001C7d3YAC --no-prompt --wait 30 --publish-wait 30
 
-# Installerer crm-platform-base ver. 0.270
-sf package install --package 04tQC000000kpU9YAI --no-prompt --installation-key $3 --wait 30 --publish-wait 30
+# Installer feature-toggle ver. 0.1.48
+sf package install --package 04tQC000001C7jVYAS --no-prompt --wait 30 --publish-wait 30
 
-# Installerer crm-platform-access-control ver. 0.160
-sf package install --package 04tKB000000YBLfYAO --no-prompt --installation-key $3 --wait 30 --publish-wait 30
+# Installerer crm-platform-base ver. 0.305
+sf package install --package 04tQC000001JMgzYAG --no-prompt --installation-key $3 --wait 30 --publish-wait 30
+
+# Installerer crm-platform-access-control ver. 0.177
+sf package install --package 04tQC000001AGR7YAO --no-prompt --installation-key $3 --wait 30 --publish-wait 30
 
 # Installerer crm-platform-reporting ver. 0.41 
 sf package install --package 04tKB000000YAWDYA4 --no-prompt --installation-key $3 --wait 30 --publish-wait 30
