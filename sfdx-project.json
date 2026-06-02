@@ -40,15 +40,15 @@
                 },
                         {
                     "package": "platform-data-model",
-                    "versionNumber": "0.1.2.LATEST"
+                    "versionNumber": "0.1.47.LATEST"
                 },
                 {
                     "package": "custom-metadata-dao",
-                    "versionNumber": "0.1.2.LATEST"
+                    "versionNumber": "0.1.47.LATEST"
                 },
                 {
                     "package": "custom-permission-helper",
-                    "versionNumber": "0.1.2.LATEST"
+                    "versionNumber": "0.1.47.LATEST"
                 },
                      {
                     "package": "feature-toggle",
