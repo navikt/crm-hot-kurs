@@ -61,6 +61,10 @@
                 {
                     "package": "crm-platform-email-scheduling",
                     "versionNumber": "1.7.0.LATEST"
+                },
+                {
+                    "package": "crm-hot-felles",
+                    "versionNumber": "0.14.0.LATEST"
                 }
             ]
         }
@@ -83,6 +87,7 @@
         "crm-shared-flowComponents": "0Ho2o000000fxYJCAY",
         "crm-henvendelse-base": "0Ho7U000000000kSAA",
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
-        "crm-platform-oppgave": "0Ho2o000000fxXzCAI"
+        "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
+        "crm-hot-felles": "0HoQC00000005qv0AA"
     }
 }
