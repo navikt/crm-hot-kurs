@@ -83,7 +83,6 @@ public without sharing class HOT_CourseCalendarGenerator {
 
             String bodyText =
                 videoLinkText +
-                // '</a></br></br>' +
                 'Lenke til kurset på nav.no:</br>' +
                 '<a href="' +
                 courseUrl +
