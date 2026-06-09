@@ -136,7 +136,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
-                        this.errorMessage = 'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
+                        this.errorMessage = 'Det er ikke lenger mulig å melde seg på.';
                         this.displayErrorMessage = true;
                     } else {
                         this.errorMessage = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
