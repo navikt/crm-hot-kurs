@@ -77,11 +77,17 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         return this.isSubmitting ? 'btn-submit btn-submit--loading' : 'btn-submit';
     }
 
-    //icons
+    get courseIsFullWarningContent() {
+        return `Kurset er fullt. Ved å fylle ut skjemaet blir du satt på venteliste og automatisk tildelt en plass dersom det blir ledig. Du blir nummer ${this.numberOnWaitinglist} på ventelisten.`;
+    }
+
+    // remove these icons
     warningicon = icons + '/warningicon.svg';
     informationicon = icons + '/informationicon.svg';
     successicon = icons + '/successicon.svg';
     erroricon = icons + '/erroricon.svg';
+
+    //icons
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
 
@@ -337,7 +343,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             }
         }
 
-        // Validate role field 
+        // Validate role field
         if (this.role) {
             const value = this.theRecord.role ? this.theRecord.role.trim() : '';
             if (!value || value.length < 2) {
