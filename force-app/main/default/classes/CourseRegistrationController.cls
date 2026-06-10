@@ -74,7 +74,7 @@ public without sharing class CourseRegistrationController {
                     CourseEmailSubscriberController.createCourseEmailSubscriber(courseId, model.email);
                 }
                 result.success = true;
-                result.message = 'Påmelding vellykket. Du vil om kort tid motta en bekreftelse på e-post.';
+                result.message = 'Du vil om kort tid motta en bekreftelse på e-post.';
                 return result;
             }
 

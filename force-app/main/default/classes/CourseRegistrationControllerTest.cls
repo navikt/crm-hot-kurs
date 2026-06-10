@@ -97,7 +97,7 @@ private with sharing class CourseRegistrationControllerTest {
         String j1 = JSON.serialize(m1);
         CourseRegistrationController.RegistrationResult r1 = CourseRegistrationController.createRegistration(j1, c.Id);
         System.assertEquals(true, r1.success);
-        System.assert(r1.message.contains('Påmelding vellykket'));
+        System.assert(r1.message.contains('Du vil om kort tid motta en bekreftelse på e-post.'));
     }
     @isTest
     static void testDuplicate() {
@@ -241,11 +241,14 @@ private with sharing class CourseRegistrationControllerTest {
 
     @IsTest
     static void getOrganizationInfoTestWithNoAccounts() {
-
         Test.startTest();
         List<Account> accounts = CourseRegistrationController.getOrganizationInfo('999999999');
         Test.stopTest();
 
-        System.assertEquals(0, accounts.size(), 'No accounts should be returned when the organization number is not found');
+        System.assertEquals(
+            0,
+            accounts.size(),
+            'No accounts should be returned when the organization number is not found'
+        );
     }
 }

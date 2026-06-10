@@ -19,6 +19,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     showConfirmation = false;
     showError = false;
     displayErrorMessage = false;
+    errorTitle;
     errorMessage;
     message;
 
@@ -77,11 +78,11 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         return this.isSubmitting ? 'btn-submit btn-submit--loading' : 'btn-submit';
     }
 
+    get courseIsFullWarningContent() {
+        return `Ved å fylle ut skjemaet blir du satt på venteliste og automatisk tildelt en plass dersom det blir ledig. Du blir nummer ${this.numberOnWaitinglist} på ventelisten.`;
+    }
+
     //icons
-    warningicon = icons + '/warningicon.svg';
-    informationicon = icons + '/informationicon.svg';
-    successicon = icons + '/successicon.svg';
-    erroricon = icons + '/erroricon.svg';
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
 
@@ -130,10 +131,12 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
-                        this.errorMessage = 'Påmeldingsfristen er passert, det er ikke lenger mulig å melde seg på';
+                        this.errorTitle = 'Påmeldingsfristen er passert';
+                        this.errorMessage = 'Det er ikke lenger mulig å melde seg på.';
                         this.displayErrorMessage = true;
                     } else {
-                        this.errorMessage = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
+                        this.errorTitle = 'Kurset er avlyst';
+                        this.errorMessage = 'Det er ikke lenger mulig å melde seg på.';
                         this.displayErrorMessage = true;
                     }
                 }
@@ -337,7 +340,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
             }
         }
 
-        // Validate role field 
+        // Validate role field
         if (this.role) {
             const value = this.theRecord.role ? this.theRecord.role.trim() : '';
             if (!value || value.length < 2) {
