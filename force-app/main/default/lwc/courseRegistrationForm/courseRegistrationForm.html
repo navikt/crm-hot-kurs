@@ -80,51 +80,30 @@
 
                             <!--======== COURSEID DOES NOT EXIST ===========-->
                             <div if:false={courseId} class="">
-                                <div class="navno-dekorator alertstripe navno-dekorator alertstripe--feil" role="alert">
-                                    <img class="navno-dekorator alertstripe__ikon" src={erroricon} alt="" />
-                                    <div class="typo-normal alertstripe__tekst">
-                                        Dette kurset er ikke tilgjengelig for øyeblikket, vennligst prøv igjen senere
-                                    </div>
-                                </div>
-                                <!--New alert banner -->
                                 <c-hot_local-alert
                                     type="error"
-                                    title="error kurs finnes ikke"
-                                    content="Dette kurset er ikke tilgjengelig for øyeblikket, vennligst prøv igjen senere"
+                                    title="Kurset er ikke tilgjengelig"
+                                    content="Kurset finnes ikke eller er ikke tilgjengelig akkurat nå. Vennligst prøv igjen senere."
                                 ></c-hot_local-alert>
                             </div>
                             <!--===================================================================================-->
                             <!--======== ERROR MESSAGE ===========-->
                             <div class="sr-only" aria-live="assertive" role="status">{errorMessage}</div>
-                            <div if:true={displayErrorMessage} class="">
-                                <div
-                                    class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                                    role="alert"
-                                >
-                                    <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
-                                    <div class="typo-normal alertstripe__tekst">{errorMessage}</div>
-                                </div>
-                                <!--New alert banner -->
+                            <div lwc:if={displayErrorMessage}>
                                 <c-hot_local-alert
                                     type="warning"
-                                    title="Påmeldingsfristen er passert"
+                                    title={errorTitle}
                                     content={errorMessage}
                                 ></c-hot_local-alert>
                             </div>
                             <!--===================================================================================-->
 
                             <!--============================REGISTRATION FORM=========================================-->
-                            <form if:true={showForm}>
+                            <form lwc:if={showForm}>
                                 <!-- Alert banner -->
-                                <template if:true={targetGroup}>
-                                    <div class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel">
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
-                                        <p class="typo-normal">{targetGroup}</p>
-                                    </div>
-                                    <!--New alert banner -->
+                                <template lwc:if={targetGroup}>
                                     <c-hot_local-alert
-                                        type="warning"
-                                        title="Advarsel målgruppe"
+                                        title="Dette kurset er for en bestemt målgruppe"
                                         content={targetGroup}
                                     ></c-hot_local-alert>
                                     <br />
@@ -132,19 +111,7 @@
                                 <h2 class="omKurset__overskrift typo-systemtittel">Påmeldingsskjema</h2>
 
                                 <!--================ COURSE IS FULL WARNING ============================-->
-                                <div if:true={courseIsFullWarning}>
-                                    <div
-                                        class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                                        role="status"
-                                    >
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
-                                        <p class="typo-normal">
-                                            Kurset er fullt. Ved å fylle ut skjemaet blir du satt på venteliste og
-                                            automatisk tildelt en plass dersom det blir ledig. Du blir nummer
-                                            {numberOnWaitinglist} på ventelisten.
-                                        </p>
-                                    </div>
-                                    <!--New alert banner -->
+                                <div lwc:if={courseIsFullWarning}>
                                     <c-hot_local-alert
                                         type="warning"
                                         title="Kurset er fullt"
@@ -410,17 +377,8 @@
                                     </template>
                                 </div>
 
-                                <div class="navno-dekorator alertstripe alertstripe--info">
-                                    <img class="navno-dekorator alertstripe__ikon" src={informationicon} alt="" />
-                                    <p class="typo-normal">
-                                        Nav bruker disse opplysningene for å kontakte deg ang dette kurset. <br />
-                                        Opplysningene blir ikke delt eller brukt til andre formål.
-                                    </p>
-                                </div>
-
-                                <!-- New banner test-->
                                 <c-hot_info-card
-                                    title="Test"
+                                    title="Informasjon"
                                     content="Nav bruker disse opplysningene for å kontakte deg ang dette kurset. Opplysningene blir ikke delt eller brukt til andre formål."
                                     type="info"
                                     show-icon
@@ -446,18 +404,9 @@
                                 </div>
                                 <br />
                                 <div if:true={showError}>
-                                    <div
-                                        class="navno-dekorator alertstripe navno-dekorator alertstripe--advarsel"
-                                        role="alert"
-                                    >
-                                        <img class="navno-dekorator alertstripe__ikon" src={warningicon} alt="" />
-                                        <p class="typo-normal">{errorMessage}</p>
-                                    </div>
-
-                                    <!--New alert banner -->
                                     <c-hot_local-alert
                                         type="warning"
-                                        title="Feil ved innsending av skjema"
+                                        title="Fyll ut manglende felter"
                                         content={errorMessage}
                                     ></c-hot_local-alert>
                                 </div>
@@ -484,16 +433,7 @@
 
                             <!--======================== CONFIRMATION PAGE =============================================-->
                             <div class="sr-only" aria-live="assertive" role="status">{message}</div>
-                            <div if:true={showConfirmation} class="midtstill">
-                                <div
-                                    class="navno-dekorator alertstripe navno-dekorator alertstripe--suksess"
-                                    role="status"
-                                >
-                                    <img class="navno-dekorator alertstripe__ikon" src={successicon} alt="" />
-                                    <p class="typo-normal">{message}</p>
-                                </div>
-
-                                <!--New alert banner -->
+                            <div lwc:if={showConfirmation} class="midtstill">
                                 <c-hot_local-alert
                                     type="success"
                                     title="Påmelding vellykket"

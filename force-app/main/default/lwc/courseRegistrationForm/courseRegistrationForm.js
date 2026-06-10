@@ -19,6 +19,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     showConfirmation = false;
     showError = false;
     displayErrorMessage = false;
+    errorTitle;
     errorMessage;
     message;
 
@@ -78,7 +79,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     }
 
     get courseIsFullWarningContent() {
-        return `Kurset er fullt. Ved å fylle ut skjemaet blir du satt på venteliste og automatisk tildelt en plass dersom det blir ledig. Du blir nummer ${this.numberOnWaitinglist} på ventelisten.`;
+        return `Ved å fylle ut skjemaet blir du satt på venteliste og automatisk tildelt en plass dersom det blir ledig. Du blir nummer ${this.numberOnWaitinglist} på ventelisten.`;
     }
 
     // remove these icons
@@ -136,10 +137,12 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.showForm = true;
                 } else {
                     if (!this.canceled) {
+                        this.errorTitle = 'Påmeldingsfristen er passert';
                         this.errorMessage = 'Det er ikke lenger mulig å melde seg på.';
                         this.displayErrorMessage = true;
                     } else {
-                        this.errorMessage = 'Kurset er avlyst, det er ikke lenger mulig å melde seg på';
+                        this.errorTitle = 'Kurset er avlyst';
+                        this.errorMessage = 'Det er ikke lenger mulig å melde seg på.';
                         this.displayErrorMessage = true;
                     }
                 }
