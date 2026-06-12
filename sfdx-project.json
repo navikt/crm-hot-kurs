@@ -4,9 +4,9 @@
             "path": "force-app",
             "default": true,
             "package": "crm-hot-kurs",
-            "versionNumber": "1.117.0.NEXT",
+            "versionNumber": "1.118.0.NEXT",
             "dependencies": [
-                               {
+                {
                     "package": "platform-data-model",
                     "versionNumber": "0.1.33.LATEST",
                     "branch": ""
@@ -54,10 +54,10 @@
                     "package": "crm-shared-flowComponents",
                     "versionNumber": "0.4.0.LATEST"
                 },
-                 {
+                {
                     "package": "crm-henvendelse-base",
                     "versionNumber": "0.36.0.LATEST"
-                },       
+                },
                 {
                     "package": "platform-data-model",
                     "versionNumber": "0.1.2.LATEST"
@@ -78,7 +78,7 @@
                     "package": "crm-platform-integration",
                     "versionNumber": "0.159.0.LATEST"
                 },
-                      {
+                {
                     "package": "crm-shared-user-notification",
                     "versionNumber": "0.27.0.LATEST"
                 },
@@ -95,9 +95,9 @@
                     "versionNumber": "0.144.0.LATEST"
                 },
                 {
-               "package": "crm-henvendelse",
-               "versionNumber": "0.201.0.LATEST"
-           },
+                    "package": "crm-henvendelse",
+                    "versionNumber": "0.201.0.LATEST"
+                },
                 {
                     "package": "crm-arbeidsgiver-base",
                     "versionNumber": "1.691.0.LATEST"
@@ -119,7 +119,7 @@
     "packageAliases": {
         "crm-hot-kurs": "0Ho2o000000KylvCAC",
         "feature-toggle": "0HoKB000000000V0AQ",
-         "platform-data-model": "0HoKB00000000010AA",
+        "platform-data-model": "0HoKB00000000010AA",
         "custom-metadata-dao": "0HoKB000000000B0AQ",
         "custom-permission-helper": "0HoKB000000000f0AA",
         "crm-platform-base": "0Ho2o0000008ORmCAM",
