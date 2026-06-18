@@ -90,6 +90,12 @@ public without sharing class HOT_CourseCalendarGenerator {
                 courseUrl +
                 ' </a>';
 
+            String googleVideoLinkText = String.isNotBlank(course.VideoLink__c)
+                ? 'Lenke til digitalt møte: \n' + course.VideoLink__c + '\n\n'
+                : '';
+
+            String googleBodyText = googleVideoLinkText + 'Lenke til kurset på nav.no:\n' + courseUrl;
+
             String subjectTitle = String.isNotBlank(course.Type__c)
                 ? course.Type__c + ' - ' + course.Name
                 : course.Name;
@@ -109,7 +115,7 @@ public without sharing class HOT_CourseCalendarGenerator {
             Map<String, String> googleParams = new Map<String, String>{
                 'action' => 'TEMPLATE',
                 'text' => subjectTitle,
-                'details' => bodyText,
+                'details' => googleBodyText,
                 'location' => course.RegistrationPlaceName__c,
                 'dates' => formatDatetimeForGoogle(course.RegistrationFromDateTime__c, course.RegistrationToDateTime__c)
             };
