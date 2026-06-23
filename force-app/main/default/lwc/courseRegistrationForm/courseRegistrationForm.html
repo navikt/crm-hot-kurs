@@ -59,7 +59,9 @@
                                 </h2>
 
                                 <div class="inline">
-                                    <label for="invCode" class="skjemaelement__label">Tast inn din tilgangskode</label>
+                                    <label for="invCode" class="access-text__header skjemaelement__label"
+                                        >Tast inn din tilgangskode</label
+                                    >
                                     <input
                                         type="text"
                                         class="skjemaelement__input"
@@ -70,9 +72,14 @@
                                         required
                                     />
 
-                                    <button title="Vis aktivitet" class="btn2" type="submit" onclick={validateCode}>
-                                        Vis aktivitet
-                                    </button>
+                                    <c-button
+                                        button-label="Vis aktivitet"
+                                        type="submit"
+                                        onbuttonclick={validateCode}
+                                        desktop-style="margin: 0.5rem"
+                                        mobile-style="margin: 0.5rem"
+                                    >
+                                    </c-button>
                                 </div>
                                 <br />
                             </form>
