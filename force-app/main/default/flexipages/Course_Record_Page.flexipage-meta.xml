@@ -88,6 +88,16 @@
                 <identifier>Recordhot_targetGroup_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ShowQRCode__c</fieldItem>
+                <identifier>RecordGenerateQRCode__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-9aa53d00-a66e-4b36-a1e3-c0bc8f6a812f</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -433,6 +443,34 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.QRCodeImage__c</fieldItem>
+                <identifier>RecordQRCodeImage__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-7fb85ca6-9cee-4f6e-9224-5114ccae24fd</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-7fb85ca6-9cee-4f6e-9224-5114ccae24fd</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column17</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-ab4beb9a-a4df-4a6c-b7cd-98fb113761ea</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
@@ -538,6 +576,31 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-ab4beb9a-a4df-4a6c-b7cd-98fb113761ea</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>QR-kode</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection12</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.ShowQRCode__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
