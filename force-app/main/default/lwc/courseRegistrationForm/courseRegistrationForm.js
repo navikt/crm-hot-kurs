@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import createRegistration from '@salesforce/apex/CourseRegistrationController.createRegistration';
 import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
@@ -8,6 +8,7 @@ import houseIconNew from '@salesforce/resourceUrl/houseicon2';
 
 export default class CourseRegistrationForm extends NavigationMixin(LightningElement) {
     courseId;
+    courseFields;
 
     theRecord = {
         subscribeEmail: false
@@ -45,8 +46,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     numberOnWaitinglist;
 
     showValidationInput = false;
-    parameters = {};
-
     url;
 
     county = false;
@@ -82,6 +81,19 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         return `Ved å fylle ut skjemaet blir du satt på venteliste og automatisk tildelt en plass dersom det blir ledig. Du blir nummer ${this.numberOnWaitinglist} på ventelisten.`;
     }
 
+    get courseDetailsBreadcrumbLabel() {
+        switch (this.courseFields?.Type__c) {
+            case 'Webinar':
+                return 'Om webinaret';
+            case 'Konferanse':
+                return 'Om konferansen';
+            case 'Seminar':
+                return 'Om seminaret';
+            default:
+                return 'Om kurset';
+        }
+    }
+
     //icons
     chevrondown = icons + '/chevrondown.svg';
     houseicon = houseIconNew;
@@ -100,11 +112,21 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
     }
 
     connectedCallback() {
-        this.parameters = this.getQueryParameters();
-        this.courseId = this.parameters.id;
+        const queryParameters = new URLSearchParams(window.location.search);
+        this.courseId = queryParameters.get('id');
 
-        getCourseFields({ courseId: this.courseId }).then((result) => {
-            if (result) {
+        if (!this.courseId) {
+            return;
+        }
+
+        getCourseFields({ courseId: this.courseId })
+            .then((result) => {
+                if (!result) {
+                    this.showCourseLoadError();
+                    return;
+                }
+
+                this.courseFields = result;
                 this.code = result.InvitationCode__c;
                 this.title = result.Name;
                 this.companyName = result.ShowCompany__c;
@@ -123,8 +145,8 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                 this.dueDate = result.RegistrationDeadline__c;
                 this.showOrganizationNumber = result.ShowOrganizationNumber__c;
                 this.targetGroup = result.TargetGroup__c || '';
-                let registrationDeadline = new Date(this.dueDate);
-                let dateNow = new Date(Date.now());
+                const registrationDeadline = new Date(this.dueDate);
+                const dateNow = new Date(Date.now());
                 this.url = 'https://arbeidsgiver.nav.no/kursoversikt/' + this.courseId;
 
                 if (registrationDeadline > dateNow && this.canceled === false) {
@@ -154,8 +176,15 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.showForm = false;
                     this.showValidationInput = true;
                 }
-            }
-        });
+            })
+            .catch(() => this.showCourseLoadError());
+    }
+
+    showCourseLoadError() {
+        this.showForm = false;
+        this.showValidationInput = false;
+        this.errorMessage = 'Kunne ikke laste kursinformasjonen. Last siden på nytt eller prøv igjen senere.';
+        this.displayErrorMessage = true;
     }
 
     handleOrganizationNumberInput(event) {
@@ -194,18 +223,6 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
         const categories = categoryField.split(';').map((s) => s.trim());
         return categories.some((cat) => this.subCategoryNames.includes(cat));
-    }
-
-    getQueryParameters() {
-        var params = {};
-        var search = window.location.search.substring(1);
-
-        if (search) {
-            params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
-                return key === '' ? value : decodeURIComponent(value);
-            });
-        }
-        return params;
     }
 
     handleChange(event) {
@@ -374,7 +391,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
         }
 
         // Alle sjekker er passert om vi kommer hit
-        let output = JSON.stringify(this.theRecord, null);
+        const output = JSON.stringify(this.theRecord, null);
         this.isSubmitting = true;
         createRegistration({
             fields: output,
@@ -398,7 +415,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
                     this.showConfirmation = false;
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 this.showForm = true;
                 this.showError = true;
                 this.errorMessage = 'Teknisk feil ved innsending. Prøv igjen senere.';
