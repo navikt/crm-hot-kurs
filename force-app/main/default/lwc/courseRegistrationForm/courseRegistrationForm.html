@@ -24,7 +24,7 @@
                         </li>
                         <li class="typo-normal">
                             <a href={url} class="lenke brodsmulesti__transform"
-                                ><span>{courseDetailsBreadcrumbLabel}</span><i class="chevron"></i
+                                ><span>Om kurset</span><i class="chevron"></i
                             ></a>
                         </li>
                         <li class="typo-normal" aria-current="page">
@@ -45,12 +45,9 @@
                 </header>
                 <main class="detaljside__innhold">
                     <!--============================INFROMATION BOX====================================-->
-                    <template lwc:if={courseFields}>
-                        <span class="metainfo">
-                            <c-course-registration-information course-fields={courseFields}>
-                            </c-course-registration-information>
-                        </span>
-                    </template>
+                    <span class="metainfo">
+                        <c-course-registration-information course-id={courseId}> </c-course-registration-information>
+                    </span>
                     <!--========================================================-->
 
                     <span class="omKurset">
