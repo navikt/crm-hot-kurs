@@ -2,7 +2,7 @@ import { LightningElement, api } from 'lwc';
 import icons from '@salesforce/resourceUrl/icons';
 
 export default class CourseRegistrationInformation extends LightningElement {
-    @api courseFields;
+    @api courseId;
 
     //icons
     calendaricon = icons + '/calendaricon.svg';
@@ -11,27 +11,27 @@ export default class CourseRegistrationInformation extends LightningElement {
     staricon = icons + '/staricon.svg';
 
     get courseStart() {
-        const courseStart = this.parseDate(this.courseFields?.RegistrationFromDateTime__c);
-        const courseEnd = this.parseDate(this.courseFields?.RegistrationToDateTime__c);
+        const courseStart = this.parseDate(this.courseId?.RegistrationFromDateTime__c);
+        const courseEnd = this.parseDate(this.courseId?.RegistrationToDateTime__c);
         return `${this.formatDate(courseStart)} kl. ${this.formatTime(courseStart)} - ${this.formatTime(courseEnd)}`;
     }
 
     get registrationDeadline() {
-        const deadline = this.parseDate(this.courseFields?.RegistrationDeadline__c);
+        const deadline = this.parseDate(this.courseId?.RegistrationDeadline__c);
         return `${this.formatDate(deadline)} kl. ${this.formatTime(deadline)}`;
     }
 
     get place() {
-        return this.courseFields?.RegistrationPlaceName__c;
+        return this.courseId?.RegistrationPlaceName__c;
     }
 
     get type() {
-        return this.courseFields?.Type__c;
+        return this.courseId?.Type__c;
     }
 
     get seats() {
-        const currentSignups = this.courseFields?.RegistrationSignupsCount__c || 0;
-        return this.courseFields?.MaxNumberOfParticipants__c - currentSignups;
+        const currentSignups = this.courseId?.RegistrationSignupsCount__c || 0;
+        return this.courseId?.MaxNumberOfParticipants__c - currentSignups;
     }
 
     parseDate(value) {
