@@ -45,12 +45,9 @@
                 </header>
                 <main class="detaljside__innhold">
                     <!--============================INFROMATION BOX====================================-->
-                    <template lwc:if={courseFields}>
-                        <span class="metainfo">
-                            <c-course-registration-information course-id={courseFields}>
-                            </c-course-registration-information>
-                        </span>
-                    </template>
+                    <span class="metainfo">
+                        <c-course-registration-information course-id={courseId}> </c-course-registration-information>
+                    </span>
                     <!--========================================================-->
 
                     <span class="omKurset">
