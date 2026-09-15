@@ -182,6 +182,7 @@ export default class CourseRegistrationForm extends NavigationMixin(LightningEle
 
     showCourseLoadError() {
         this.showForm = false;
+        this.errorTitle = 'Oi, noe gikk galt!';
         this.showValidationInput = false;
         this.errorMessage = 'Kunne ikke laste kursinformasjonen. Last siden på nytt eller prøv igjen senere.';
         this.displayErrorMessage = true;
