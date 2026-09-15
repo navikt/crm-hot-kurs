@@ -1,29 +1,27 @@
 <template>
     <!--<span class="metainfo"> -->
     <div class="panel metainfo__panel">
-        <lightning-record-view-form record-id={courseId} object-api-name="Course__c">
-            <div class="metainfo__egenskap">
-                <img class="metainfo__ikon" src={calendaricon} alt="kalender-ikon" />
-                <p class="typo-element metainfo__infoTekst">Når: {courseStart}</p>
-            </div>
-            <div class="metainfo__egenskap">
-                <img class="metainfo__ikon" src={flagicon} alt="flagg-ikon" />
-                <p class="typo-element metainfo__infoTekst">Påmeldingsfrist: {registrationDeadline}</p>
-            </div>
+        <div class="metainfo__egenskap">
+            <img class="metainfo__ikon" src={calendaricon} alt="kalender-ikon" />
+            <p class="typo-element metainfo__infoTekst">Når: {courseStart}</p>
+        </div>
+        <div class="metainfo__egenskap">
+            <img class="metainfo__ikon" src={flagicon} alt="flagg-ikon" />
+            <p class="typo-element metainfo__infoTekst">Påmeldingsfrist: {registrationDeadline}</p>
+        </div>
 
-            <div class="metainfo__egenskap">
-                <img class="metainfo__ikon" src={mapicon} alt="" />
-                <p class="typo-element metainfo__infoTekst">Sted: {place}</p>
-            </div>
-            <div class="metainfo__egenskap">
-                <img class="metainfo__ikon" src={staricon} alt="" />
-                <p class="typo-element metainfo__infoTekst">Type: {type}</p>
-            </div>
-            <div class="metainfo__egenskap">
-                <img class="metainfo__ikon" src={staricon} alt="" />
-                <p class="typo-element metainfo__infoTekst">Antall ledige plasser: {seats}</p>
-            </div>
-        </lightning-record-view-form>
+        <div class="metainfo__egenskap">
+            <img class="metainfo__ikon" src={mapicon} alt="" />
+            <p class="typo-element metainfo__infoTekst">Sted: {place}</p>
+        </div>
+        <div class="metainfo__egenskap">
+            <img class="metainfo__ikon" src={staricon} alt="" />
+            <p class="typo-element metainfo__infoTekst">Type kurs: {type}</p>
+        </div>
+        <div class="metainfo__egenskap">
+            <img class="metainfo__ikon" src={staricon} alt="" />
+            <p class="typo-element metainfo__infoTekst">Antall ledige plasser: {seats}</p>
+        </div>
     </div>
     <!-- </span> -->
 </template>
