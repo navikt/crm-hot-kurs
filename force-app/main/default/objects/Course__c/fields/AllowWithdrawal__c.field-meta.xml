@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>AllowWithdrawal__c</fullName>
     <defaultValue>true</defaultValue>
-    <description>Controls whether enrolled participants can unenroll from the corresponding course.</description>
+    <description>Styrer om påmeldte deltakere kan melde seg av det tilhørende kurset.</description>
     <externalId>false</externalId>
-    <inlineHelpText>When enabled, enrolled participants have the option to unenroll from the course.</inlineHelpText>
+    <inlineHelpText>Når dette er aktivert, har påmeldte deltakere mulighet til å melde seg av kurset.</inlineHelpText>
     <label>Allow Withdrawal</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
