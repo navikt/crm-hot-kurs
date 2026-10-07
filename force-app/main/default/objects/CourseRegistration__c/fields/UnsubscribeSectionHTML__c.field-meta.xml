@@ -7,7 +7,8 @@
     Course__r.AllowWithdrawal__c,
     IF(
         NumberOfParticipants__c &gt; 1,
-        &quot;Ønsker du å endre påmeldingen?&quot;,
+        &quot;Ønsker du å endre påmeldingen?&quot; &amp; BR() &amp;
+        HYPERLINK(UnsubscriptionUrl__c, &quot;Endre påmeldingen her&quot;),
         &quot;Ønsker du ikke å delta på kurset allikevel?&quot; &amp; BR() &amp;
         HYPERLINK(UnsubscriptionUrl__c, &quot;Meld deg av her&quot;)
     ),
