@@ -98,12 +98,6 @@
                 <identifier>RecordGenerateQRCode__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.AllowWithdrawal__c</fieldItem>
-                <identifier>RecordCanUnenrollFromCourse__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-9aa53d00-a66e-4b36-a1e3-c0bc8f6a812f</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -146,6 +140,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PublishWithoutRegistrationForm__c</fieldItem>
                 <identifier>RecordPublishWithoutRegistrationForm_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.AllowWithdrawal__c</fieldItem>
+                <identifier>RecordCanUnenrollFromCourse__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
