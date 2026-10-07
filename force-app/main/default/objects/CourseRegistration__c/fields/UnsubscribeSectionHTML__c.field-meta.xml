@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UnsubscribeSectionHTML__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF(
-  Course__r.AllowWithdrawal__c,
-  &quot;Ønsker du ikke å delta på kurset allikevel?&quot; &amp; BR() &amp;
-  HYPERLINK( UnsubscriptionUrl__c , &quot;Meld deg av her&quot;) ,
-  &quot;&quot;
+    Course__r.AllowWithdrawal__c,
+    IF(
+        NumberOfParticipants__c &gt; 1,
+        &quot;Ønsker du å endre påmeldingen?&quot; &amp; BR() &amp;
+        HYPERLINK(UnsubscriptionUrl__c, &quot;Endre påmeldingen her&quot;),
+        &quot;Ønsker du ikke å delta på kurset allikevel?&quot; &amp; BR() &amp;
+        HYPERLINK(UnsubscriptionUrl__c, &quot;Meld deg av her&quot;)
+    ),
+    &quot;&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Unsubscribe Section HTML</label>
