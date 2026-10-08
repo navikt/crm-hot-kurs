@@ -4,7 +4,11 @@ public with sharing class HOT_CourseUpdateExistingRecords implements Database.Ba
         Date today = Date.today();
         return Database.getQueryLocator(
             [
-                SELECT Id, CourseParticipant__r.FirstName, CourseParticipant__r.LastName
+                SELECT
+                    Id,
+                    CourseParticipant__r.FirstName,
+                    CourseParticipant__r.LastName,
+                    CourseParticipant__r.MobilePhone
                 FROM CourseRegistration__c
                 WHERE
                     CourseParticipant__c != NULL
@@ -22,7 +26,8 @@ public with sharing class HOT_CourseUpdateExistingRecords implements Database.Ba
                 new CourseRegistration__c(
                     Id = registration.Id,
                     ContactFirstName__c = registration.CourseParticipant__r.FirstName,
-                    ContactLastName__c = registration.CourseParticipant__r.LastName
+                    ContactLastName__c = registration.CourseParticipant__r.LastName,
+                    ContactPhone__c = registration.CourseParticipant__r.MobilePhone
                 )
             );
         }
