@@ -27,7 +27,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Informasjon on deltaker</label>
+        <label>Informasjon om deltaker</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
