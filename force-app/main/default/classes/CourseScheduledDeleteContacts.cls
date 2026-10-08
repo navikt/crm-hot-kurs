@@ -96,6 +96,9 @@ public without sharing class CourseScheduledDeleteContacts {
             cr.CourseParticipant__c = null;
             cr.AdditionalInformation__c = null;
             cr.Allergies__c = null;
+            cr.ContactFirstName__c = null;
+            cr.ContactLastName__c = null;
+            cr.ContactPhone__c = null;
 
             crListToUpdate.add(cr);
         }
