@@ -1,19 +1,22 @@
 public with sharing class HOT_CourseUpdateExistingRecords implements Database.Batchable<SObject> {
     public Database.QueryLocator start(Database.BatchableContext bc) {
-        Date twelveWeeksAgo = Date.today().addDays(-84);
-        Date today = Date.today();
         return Database.getQueryLocator(
             [
                 SELECT
                     Id,
+                    ContactFirstName__c,
+                    ContactLastName__c,
+                    ContactPhone__c,
                     CourseParticipant__r.FirstName,
                     CourseParticipant__r.LastName,
                     CourseParticipant__r.MobilePhone
                 FROM CourseRegistration__c
                 WHERE
                     CourseParticipant__c != NULL
-                    AND DAY_ONLY(Course__r.RegistrationToDateTime__c) > :twelveWeeksAgo
-                    AND DAY_ONLY(Course__r.RegistrationToDateTime__c) <= :today
+                    AND Course__r.Active__c = TRUE
+                    AND (ContactFirstName__c = NULL
+                    OR ContactLastName__c = NULL
+                    OR ContactPhone__c = NULL)
             ]
         );
     }
@@ -22,14 +25,32 @@ public with sharing class HOT_CourseUpdateExistingRecords implements Database.Ba
         List<CourseRegistration__c> registrationsToUpdate = new List<CourseRegistration__c>();
         for (SObject record : records) {
             CourseRegistration__c registration = (CourseRegistration__c) record;
-            registrationsToUpdate.add(
-                new CourseRegistration__c(
-                    Id = registration.Id,
-                    ContactFirstName__c = registration.CourseParticipant__r.FirstName,
-                    ContactLastName__c = registration.CourseParticipant__r.LastName,
-                    ContactPhone__c = registration.CourseParticipant__r.MobilePhone
-                )
-            );
+            CourseRegistration__c updatedRegistration = new CourseRegistration__c(Id = registration.Id);
+            Boolean hasChanges = false;
+            if (
+                String.isBlank(registration.ContactFirstName__c) &&
+                !String.isBlank(registration.CourseParticipant__r.FirstName)
+            ) {
+                updatedRegistration.ContactFirstName__c = registration.CourseParticipant__r.FirstName;
+                hasChanges = true;
+            }
+            if (
+                String.isBlank(registration.ContactLastName__c) &&
+                !String.isBlank(registration.CourseParticipant__r.LastName)
+            ) {
+                updatedRegistration.ContactLastName__c = registration.CourseParticipant__r.LastName;
+                hasChanges = true;
+            }
+            if (
+                String.isBlank(registration.ContactPhone__c) &&
+                !String.isBlank(registration.CourseParticipant__r.MobilePhone)
+            ) {
+                updatedRegistration.ContactPhone__c = registration.CourseParticipant__r.MobilePhone;
+                hasChanges = true;
+            }
+            if (hasChanges) {
+                registrationsToUpdate.add(updatedRegistration);
+            }
         }
         if (!registrationsToUpdate.isEmpty()) {
             update registrationsToUpdate;
