@@ -39,6 +39,33 @@ private with sharing class CourseRegistrationControllerTest {
     }
 
     @isTest
+    static void testInvalidCourseIdReturnsUnavailableMessage() {
+        Course__c deletedCourse = new Course__c(
+            Name = 'Deleted course',
+            MaxNumberOfParticipants__c = 5,
+            DescriptionFormatted__c = 'Deleted course'
+        );
+        insert deletedCourse;
+        delete deletedCourse;
+
+        CourseRegistrationModel model = new CourseRegistrationModel();
+        model.firstName = 'Bad';
+        model.lastName = 'Id';
+        model.email = 'bad.id@test.no';
+
+        CourseRegistrationController.RegistrationResult res = CourseRegistrationController.createRegistration(
+            JSON.serialize(model),
+            deletedCourse.Id
+        );
+
+        System.assertEquals(false, res.success);
+        System.assert(
+            res.message.contains('Kunne ikke hente kursdetaljer'),
+            'Expected invalid course id to trigger unavailable course message'
+        );
+    }
+
+    @isTest
     static void testCourseCancelled() {
         Course__c c = new Course__c(Name = 'Cancelled', MaxNumberOfParticipants__c = 5, Cancel__c = true);
         insert c;
@@ -70,7 +97,7 @@ private with sharing class CourseRegistrationControllerTest {
         String j1 = JSON.serialize(m1);
         CourseRegistrationController.RegistrationResult r1 = CourseRegistrationController.createRegistration(j1, c.Id);
         System.assertEquals(true, r1.success);
-        System.assert(r1.message.contains('Påmelding vellykket'));
+        System.assert(r1.message.contains('Du vil om kort tid motta en bekreftelse på e-post.'));
     }
     @isTest
     static void testDuplicate() {
@@ -214,11 +241,14 @@ private with sharing class CourseRegistrationControllerTest {
 
     @IsTest
     static void getOrganizationInfoTestWithNoAccounts() {
-
         Test.startTest();
         List<Account> accounts = CourseRegistrationController.getOrganizationInfo('999999999');
         Test.stopTest();
 
-        System.assertEquals(0, accounts.size(), 'No accounts should be returned when the organization number is not found');
+        System.assertEquals(
+            0,
+            accounts.size(),
+            'No accounts should be returned when the organization number is not found'
+        );
     }
 }

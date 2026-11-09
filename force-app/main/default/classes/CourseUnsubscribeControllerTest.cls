@@ -94,4 +94,40 @@ private with sharing class CourseUnsubscribeControllerTest {
         System.assertEquals(newCount, reloaded.NumberOfParticipants__c, 'Persisted value mismatch');
         System.assertEquals('Påmeldt', reloaded.Status__c, 'Status should remain unchanged');
     }
+
+    @isTest
+    private static void testGetCourseRegistrationFieldsThrowsForInvalidEncryptedId() {
+        Test.startTest();
+        try {
+            CourseUnsubscribeController.getCourseRegistrationFields('not-valid-encrypted-id');
+            System.assert(false, 'Expected an exception for invalid encrypted id');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
+
+    @isTest
+    private static void testUpdateCourseRegistrationStatusThrowsForInvalidEncryptedId() {
+        Test.startTest();
+        try {
+            CourseUnsubscribeController.updateCourseRegistrationStatusToAvmeldt('not-valid-encrypted-id');
+            System.assert(false, 'Expected an exception for invalid encrypted id');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
+
+    @isTest
+    private static void testUpdateCourseRegistrationNumberOfParticipantsThrowsForInvalidEncryptedId() {
+        Test.startTest();
+        try {
+            CourseUnsubscribeController.updateCourseRegistrationNumberOfParticipants('not-valid-encrypted-id', 2);
+            System.assert(false, 'Expected an exception for invalid encrypted id');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
 }

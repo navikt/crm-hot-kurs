@@ -96,10 +96,19 @@ public without sharing class CourseScheduledDeleteContacts {
             cr.CourseParticipant__c = null;
             cr.AdditionalInformation__c = null;
             cr.Allergies__c = null;
+            cr.ContactFirstName__c = null;
+            cr.ContactLastName__c = null;
+            cr.ContactPhone__c = null;
 
             crListToUpdate.add(cr);
         }
-        update crListToUpdate;
+        try {
+            update crListToUpdate;
+        } catch (Exception e) {
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+            throw e;
+        }
     }
 
     // ---------------------------------------------------------------------------------------------- //

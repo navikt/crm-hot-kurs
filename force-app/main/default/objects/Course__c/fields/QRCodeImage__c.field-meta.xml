@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QRCodeImage__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(
+  &quot;https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://arbeidsgiver.nav.no/kursoversikt/&quot; &amp; CASESAFEID(Id) ,
+  &quot;QR-kode: &quot; &amp; Name
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>QR Code Image</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

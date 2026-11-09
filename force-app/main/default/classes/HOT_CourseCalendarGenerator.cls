@@ -77,18 +77,24 @@ public without sharing class HOT_CourseCalendarGenerator {
                   course.VideoLink__c +
                   '" target="_blank">' +
                   course.VideoLink__c +
-                  '</a>'
+                  '</a>' +
+                  '</a></br></br>'
                 : '';
 
             String bodyText =
                 videoLinkText +
-                '</a></br></br>' +
                 'Lenke til kurset på nav.no:</br>' +
                 '<a href="' +
                 courseUrl +
                 '" target="_blank">' +
                 courseUrl +
                 ' </a>';
+
+            String googleVideoLinkText = String.isNotBlank(course.VideoLink__c)
+                ? 'Lenke til digitalt møte: \n' + course.VideoLink__c + '\n\n'
+                : '';
+
+            String googleBodyText = googleVideoLinkText + 'Lenke til kurset på nav.no:\n' + courseUrl;
 
             String subjectTitle = String.isNotBlank(course.Type__c)
                 ? course.Type__c + ' - ' + course.Name
@@ -109,7 +115,7 @@ public without sharing class HOT_CourseCalendarGenerator {
             Map<String, String> googleParams = new Map<String, String>{
                 'action' => 'TEMPLATE',
                 'text' => subjectTitle,
-                'details' => bodyText,
+                'details' => googleBodyText,
                 'location' => course.RegistrationPlaceName__c,
                 'dates' => formatDatetimeForGoogle(course.RegistrationFromDateTime__c, course.RegistrationToDateTime__c)
             };
@@ -130,7 +136,14 @@ public without sharing class HOT_CourseCalendarGenerator {
         }
 
         if (!coursesToUpdate.isEmpty()) {
-            update coursesToUpdate;
+            try {
+                update coursesToUpdate;
+            } catch (Exception e) {
+                LoggerUtility logger = new LoggerUtility();
+                logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+                logger.publishSynch();
+                throw e;
+            }
         }
     }
 

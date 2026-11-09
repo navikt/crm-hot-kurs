@@ -255,6 +255,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ContactFirstName__c</fields>
+        <fields>ContactLastName__c</fields>
+        <fields>ContactPhone__c</fields>
         <fields>CourseParticipant__c</fields>
         <fields>Status__c</fields>
         <fields>NumberOfParticipants__c</fields>
@@ -266,7 +269,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hQI00000D5WpO</masterLabel>
+        <masterLabel>00h2o00000m56Nl</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
