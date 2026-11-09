@@ -24,7 +24,7 @@
                         </li>
                         <li class="typo-normal">
                             <a href={url} class="lenke brodsmulesti__transform"
-                                ><span>Om kurset</span><i class="chevron"></i
+                                ><span>{courseDetailsBreadcrumbLabel}</span><i class="chevron"></i
                             ></a>
                         </li>
                         <li class="typo-normal" aria-current="page">
@@ -45,9 +45,12 @@
                 </header>
                 <main class="detaljside__innhold">
                     <!--============================INFROMATION BOX====================================-->
-                    <span class="metainfo">
-                        <c-course-registration-information course-id={courseId}> </c-course-registration-information>
-                    </span>
+                    <template lwc:if={courseFields}>
+                        <span class="metainfo">
+                            <c-course-registration-information course-id={courseFields}>
+                            </c-course-registration-information>
+                        </span>
+                    </template>
                     <!--========================================================-->
 
                     <span class="omKurset">
@@ -59,7 +62,9 @@
                                 </h2>
 
                                 <div class="inline">
-                                    <label for="invCode" class="skjemaelement__label">Tast inn din tilgangskode</label>
+                                    <label for="invCode" class="access-text__header skjemaelement__label"
+                                        >Tast inn din tilgangskode</label
+                                    >
                                     <input
                                         type="text"
                                         class="skjemaelement__input"
@@ -70,9 +75,14 @@
                                         required
                                     />
 
-                                    <button title="Vis aktivitet" class="btn2" type="submit" onclick={validateCode}>
-                                        Vis aktivitet
-                                    </button>
+                                    <c-button
+                                        button-label="Vis aktivitet"
+                                        type="submit"
+                                        onbuttonclick={validateCode}
+                                        desktop-style="margin: 0.5rem"
+                                        mobile-style="margin: 0.5rem"
+                                    >
+                                    </c-button>
                                 </div>
                                 <br />
                             </form>

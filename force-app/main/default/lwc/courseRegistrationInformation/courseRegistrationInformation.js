@@ -1,10 +1,7 @@
-import { LightningElement, api, track } from 'lwc';
-import getCourseFields from '@salesforce/apex/CourseRegistrationController.getCourseFields';
+import { LightningElement, api } from 'lwc';
 import icons from '@salesforce/resourceUrl/icons';
-import { loadScript } from 'lightning/platformResourceLoader';
-import MOMENT_JS from '@salesforce/resourceUrl/moment';
 
-export default class courseRegistrationInformation extends LightningElement {
+export default class CourseRegistrationInformation extends LightningElement {
     @api courseId;
 
     //icons
@@ -13,36 +10,58 @@ export default class courseRegistrationInformation extends LightningElement {
     mapicon = icons + '/mapicon.svg';
     staricon = icons + '/staricon.svg';
 
-    @track registrationDeadline;
-    @track place;
-    @track type;
-    @track seats;
-    @track courseStart;
+    get courseStart() {
+        const courseStart = this.parseDate(this.courseId?.RegistrationFromDateTime__c);
+        const courseEnd = this.parseDate(this.courseId?.RegistrationToDateTime__c);
+        return `${this.formatDate(courseStart)} kl. ${this.formatTime(courseStart)} - ${this.formatTime(courseEnd)}`;
+    }
 
-    connectedCallback() {
-        Promise.all([loadScript(this, MOMENT_JS)]).then(() => {
-            moment.locale('nb-no');
-        });
+    get registrationDeadline() {
+        const deadline = this.parseDate(this.courseId?.RegistrationDeadline__c);
+        return `${this.formatDate(deadline)} kl. ${this.formatTime(deadline)}`;
+    }
 
-        getCourseFields({ courseId: this.courseId }).then((result) => {
-            if (result) {
-                let courseEnd = moment(result.RegistrationToDateTime__c).format('LT');
-                this.courseStart =
-                    moment(result.RegistrationFromDateTime__c).format('DD. MMM') +
-                    ' kl. ' +
-                    moment(result.RegistrationFromDateTime__c).format('LT') +
-                    ' - ' +
-                    courseEnd;
-                this.registrationDeadline =
-                    moment(result.RegistrationDeadline__c).format('DD. MMM') +
-                    ' kl. ' +
-                    moment(result.RegistrationDeadline__c).format('LT');
-                this.place = result.RegistrationPlaceName__c;
-                this.type = result.Type__c;
-                const currentSignups = result.RegistrationSignupsCount__c || 0;
-                this.seats = result.MaxNumberOfParticipants__c - currentSignups;
-            } else {
-            }
-        });
+    get place() {
+        return this.courseId?.RegistrationPlaceName__c;
+    }
+
+    get type() {
+        return this.courseId?.Type__c;
+    }
+
+    get seats() {
+        const currentSignups = this.courseId?.RegistrationSignupsCount__c || 0;
+        return this.courseId?.MaxNumberOfParticipants__c - currentSignups;
+    }
+
+    parseDate(value) {
+        if (!value) {
+            return undefined;
+        }
+
+        const localDateValue = /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00` : value;
+        return new Date(localDateValue);
+    }
+
+    formatDate(date) {
+        if (!date) {
+            return '';
+        }
+
+        return new Intl.DateTimeFormat('nb-NO', {
+            day: '2-digit',
+            month: 'short'
+        }).format(date);
+    }
+
+    formatTime(date) {
+        if (!date) {
+            return '';
+        }
+
+        return new Intl.DateTimeFormat('nb-NO', {
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date);
     }
 }
