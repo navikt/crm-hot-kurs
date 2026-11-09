@@ -22,11 +22,7 @@ public with sharing class CreateContactFromCourseRegistration {
 
             if (contacts.containsKey(reg.ContactEmail__c)) {
                 reg.CourseParticipant__c = contacts.get(reg.ContactEmail__c).Id;
-
-                reg.ContactFirstName__c = '';
-                reg.ContactLastName__c = '';
                 reg.ContactEmail__c = '';
-                reg.ContactPhone__c = '';
             }
         }
     }

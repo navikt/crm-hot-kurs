@@ -192,4 +192,30 @@ private with sharing class HOT_CourseCalendarGeneratorTest {
         HOT_CourseCalendarGenerator.generateCalendarUrls(emptyCourseList);
         System.Test.stopTest();
     }
+
+    @isTest
+    private static void testBuildValidCalendarUrlsThrowsForDeletedCourse() {
+        Course__c deletedCourse = new Course__c(
+            Name = 'Deleted Course',
+            DescriptionFormatted__c = 'Course description for deletion test',
+            DescriptionShort__c = 'Short description',
+            Region2__c = 'Oslo',
+            Active__c = true,
+            MaxNumberOfParticipants__c = 10,
+            RegistrationFromDateTime__c = DateTime.now(),
+            RegistrationToDateTime__c = DateTime.now().addHours(2),
+            RegistrationDeadline__c = DateTime.now().addDays(-1)
+        );
+        insert deletedCourse;
+        delete deletedCourse;
+
+        Test.startTest();
+        try {
+            HOT_CourseCalendarGenerator.buildValidCalendarUrls(new List<Course__c>{ deletedCourse });
+            System.assert(false, 'Expected update on deleted course to throw');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
 }

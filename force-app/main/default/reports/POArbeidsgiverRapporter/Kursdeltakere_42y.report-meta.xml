@@ -27,17 +27,17 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>CourseRegistration__c.CourseParticipant__c</field>
-    </columns>
-    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>CourseRegistration__c.NumberOfParticipants__c</field>
     </columns>
     <columns>
-        <field>CourseRegistration__c.firstName__c</field>
+        <field>CourseRegistration__c.ContactFirstName__c</field>
     </columns>
     <columns>
-        <field>CourseRegistration__c.lastName__c</field>
+        <field>CourseRegistration__c.ContactLastName__c</field>
+    </columns>
+    <columns>
+        <field>CourseRegistration__c.ContactPhone__c</field>
     </columns>
     <columns>
         <field>CourseRegistration__c.Participant_email__c</field>
@@ -46,7 +46,7 @@
         <field>CourseRegistration__c.InvalidEmail__c</field>
     </columns>
     <columns>
-        <field>CourseRegistration__c.Participant_phone__c</field>
+        <field>CourseRegistration__c.CourseParticipant__c</field>
     </columns>
     <columns>
         <field>CourseRegistration__c.County__c</field>

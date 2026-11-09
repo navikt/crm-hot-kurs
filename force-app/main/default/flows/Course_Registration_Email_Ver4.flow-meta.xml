@@ -4,12 +4,9 @@
     <decisions>
         <name>singleOrMultipleParticipants</name>
         <label>singleOrMultipleParticipants</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>323</locationY>
-        <defaultConnector>
-            <targetReference>Single_Create_EmailQueue_Send_Email</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>singleParticipant</defaultConnectorLabel>
+        <defaultConnectorLabel>None</defaultConnectorLabel>
         <rules>
             <name>multipleParticipants</name>
             <conditionLogic>and</conditionLogic>
@@ -20,10 +17,61 @@
                     <numberValue>1.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Påmeldt</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>Multiple_Create_EmailQueue_Send_Email</targetReference>
+                <targetReference>Multiple_Participant_Create_EmailQueue_Send_Email</targetReference>
             </connector>
             <label>multipleParticipants</label>
+        </rules>
+        <rules>
+            <name>singleParticipant</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.NumberOfParticipants__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Påmeldt</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Single_Participant_Create_EmailQueue_Send_Email</targetReference>
+            </connector>
+            <label>singleParticipant</label>
+        </rules>
+        <rules>
+            <name>single</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.NumberOfParticipants__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venteliste</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Single_Waitlist_Create_EmailQueue_Send_Email</targetReference>
+            </connector>
+            <label>singleWaitlist</label>
         </rules>
     </decisions>
     <description>Migrated from the Course Registration + Email Ver4 process using Status is set to Påmeldt criteria.
@@ -50,8 +98,8 @@ Sends email to confirm registration</description>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
         <description>For multiple participants</description>
-        <name>Multiple_Create_EmailQueue_Send_Email</name>
-        <label>Multiple Create EmailQueue (Send Email)</label>
+        <name>Multiple_Participant_Create_EmailQueue_Send_Email</name>
+        <label>Multiple Participant Create EmailQueue (Send Email)</label>
         <locationX>50</locationX>
         <locationY>431</locationY>
         <inputAssignments>
@@ -89,8 +137,8 @@ Sends email to confirm registration</description>
     </recordCreates>
     <recordCreates>
         <description>For single participants</description>
-        <name>Single_Create_EmailQueue_Send_Email</name>
-        <label>Single Create EmailQueue (Send Email)</label>
+        <name>Single_Participant_Create_EmailQueue_Send_Email</name>
+        <label>Single Participant Create EmailQueue (Send Email)</label>
         <locationX>314</locationX>
         <locationY>431</locationY>
         <inputAssignments>
@@ -126,15 +174,57 @@ Sends email to confirm registration</description>
         <object>EmailQueue__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordCreates>
+        <description>For single participants</description>
+        <name>Single_Waitlist_Create_EmailQueue_Send_Email</name>
+        <label>Single Waitlist Create EmailQueue (Send Email)</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>SaveAsActivity__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Instant</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TargetObjectId__c</field>
+            <value>
+                <elementReference>formula_1_myRule_1_A1_1487110129</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TemplateName__c</field>
+            <value>
+                <stringValue>courseRegistrationWaitlist</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmailQueue__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <start>
-        <locationX>56</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>singleOrMultipleParticipants</targetReference>
         </connector>
-        <filterFormula>OR(
-AND(ISNEW(),ISPICKVAL({!$Record.Status__c},&quot;Påmeldt&quot;) ),
-AND(ISCHANGED( {!$Record.Status__c}),ISPICKVAL({!$Record.Status__c} ,&quot;Påmeldt&quot;))
+        <filterFormula>AND(
+  OR(ISNEW(), ISCHANGED({!$Record.Status__c})),
+  OR(
+    ISPICKVAL({!$Record.Status__c}, &quot;Påmeldt&quot;),
+    ISPICKVAL({!$Record.Status__c}, &quot;Venteliste&quot;)
+  )
 )</filterFormula>
         <object>CourseRegistration__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

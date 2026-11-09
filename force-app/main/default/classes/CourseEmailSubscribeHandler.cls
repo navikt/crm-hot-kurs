@@ -9,6 +9,13 @@ public without sharing class CourseEmailSubscribeHandler extends MyTriggers {
             record.EncryptedId__c = EncodingUtil.urlEncode(CryptoService.encryptString(record.Id), 'UTF-8');
             recordsToUpdate.add(record);
         }
-        update recordsToUpdate;
+        try {
+            update recordsToUpdate;
+        } catch (Exception e) {
+            LoggerUtility logger = new LoggerUtility();
+            logger.exception(e, CRM_ApplicationDomain.Domain.HOT);
+            logger.publishSynch();
+            throw e;
+        }
     }
 }

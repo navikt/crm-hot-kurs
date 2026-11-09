@@ -307,6 +307,18 @@ public with sharing class CourseScheduledDeleteContactsTest {
         );
     }
 
+    @isTest
+    private static void testRemovePersonalDataFromCrThrowsForUnsavedRegistration() {
+        Test.startTest();
+        try {
+            CourseScheduledDeleteContacts.removePersonalDataFromCr(new List<CourseRegistration__c>{ new CourseRegistration__c() });
+            System.assert(false, 'Expected update on unsaved registration to throw');
+        } catch (Exception e) {
+            System.assertNotEquals(null, e, 'Expected exception to be rethrown');
+        }
+        Test.stopTest();
+    }
+
     public static CourseRegistration__c getCourseRegistration(String courseId, String contactId) {
         CourseRegistration__c cr = new CourseRegistration__c(
             CourseParticipant__c = contactId,
